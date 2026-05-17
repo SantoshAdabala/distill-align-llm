@@ -1,0 +1,125 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "distill-align"
+version = "0.1.0"
+description = "End-to-end LLM alignment pipeline: SFT, DPO, and RLHF with AWS SageMaker deployment"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Santosh Adabala"},
+]
+
+# ──────────────────────────────────────────────
+# Dependencies are grouped by purpose so you can
+# see exactly WHY each library is here.
+# ──────────────────────────────────────────────
+dependencies = [
+    # ── Core ML ──
+    "torch>=2.1.0",                   # Deep learning framework (PyTorch)
+    "transformers>=4.40.0",           # HuggingFace model loading, tokenizers, training utilities
+    "datasets>=2.18.0",              # HuggingFace dataset loading and processing
+    "peft>=0.10.0",                  # Parameter-Efficient Fine-Tuning (LoRA, QLoRA adapters)
+    "trl>=0.8.0",                    # Transformer Reinforcement Learning (SFTTrainer, DPOTrainer, PPOTrainer)
+    "bitsandbytes>=0.43.0",          # 4-bit/8-bit quantization for QLoRA
+    "accelerate>=0.28.0",            # Distributed training, mixed precision, device management
+    "sentencepiece>=0.2.0",          # Tokenizer backend for Llama/Mistral models
+    "protobuf>=4.25.0",              # Required by sentencepiece and some model configs
+
+    # ── Evaluation ──
+    "lm-eval>=0.4.0",               # EleutherAI's lm-evaluation-harness (MMLU, HellaSwag, etc.)
+    "scikit-learn>=1.4.0",           # Metrics: F1, precision, recall, classification reports
+    "rouge-score>=0.1.2",            # ROUGE metric for text generation evaluation
+    "nltk>=3.8.0",                   # BLEU score and text processing utilities
+
+    # ── Serving ──
+    "fastapi>=0.110.0",              # API framework for inference endpoints
+    "uvicorn>=0.29.0",               # ASGI server to run FastAPI
+    "sse-starlette>=2.0.0",          # Server-Sent Events for streaming responses
+    "pydantic>=2.6.0",               # Request/response validation (used by FastAPI)
+
+    # ── Monitoring ──
+    "prometheus-client>=0.20.0",     # Prometheus metrics collection and exposition
+
+    # ── Experiment Tracking ──
+    "wandb>=0.16.0",                 # Weights & Biases experiment tracking
+
+    # ── Configuration ──
+    "pyyaml>=6.0.1",                 # YAML config file parsing
+    "python-dotenv>=1.0.0",          # Load environment variables from .env files
+
+    # ── Cloud (RunPod) ──
+    # No cloud SDK needed — RunPod provides raw GPU access via SSH/Jupyter
+
+    # ── Data Quality ──
+    "great-expectations>=0.18.0",    # Data quality validation framework
+    "pyarrow>=15.0.0",               # Parquet file reading/writing (used by Glue ETL and datasets)
+]
+
+# ──────────────────────────────────────────────
+# Optional dependency groups — install with:
+#   pip install -e ".[dev]"     ← for development
+#   pip install -e ".[vllm]"    ← for vLLM serving
+# ──────────────────────────────────────────────
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",                 # Test framework
+    "pytest-cov>=4.1.0",            # Test coverage reporting
+    "pytest-asyncio>=0.23.0",       # Async test support (for FastAPI tests)
+    "ruff>=0.3.0",                   # Fast Python linter (replaces flake8, isort, pyflakes)
+    "mypy>=1.9.0",                   # Static type checker
+    "black>=24.2.0",                 # Code formatter
+    "pre-commit>=3.6.0",            # Git pre-commit hooks
+    "httpx>=0.27.0",                 # HTTP client for testing FastAPI endpoints
+]
+vllm = [
+    "vllm>=0.4.0",                   # vLLM inference engine (PagedAttention, continuous batching)
+]
+
+# ──────────────────────────────────────────────
+# Tool configurations
+# ──────────────────────────────────────────────
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort (import sorting)
+    "N",    # pep8-naming
+    "UP",   # pyupgrade (modernize syntax)
+    "B",    # flake8-bugbear (common bugs)
+    "SIM",  # flake8-simplify
+]
+ignore = [
+    "B905",  # zip() without strict= — intentional for HuggingFace batched processing
+    "E501",  # line too long — handled by formatter, not linter
+]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false          # Start lenient, tighten later
+ignore_missing_imports = true          # Many ML libraries lack type stubs
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]

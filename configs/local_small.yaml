@@ -1,0 +1,69 @@
+# ──────────────────────────────────────────────
+# Local development config: small model on consumer GPU
+# ──────────────────────────────────────────────
+# Use this for learning and development on your local machine.
+# Qwen2.5-1.5B fits in ~4GB with 4-bit quantization.
+#
+# Usage:
+#   from distill_align.config import ConfigManager
+#   config = ConfigManager.load_config("configs/local_small.yaml")
+
+model:
+  model_id: "Qwen/Qwen2.5-1.5B"
+  family: "qwen2.5"
+  max_seq_length: 1024          # Shorter for faster local training
+  trust_remote_code: true       # Required for Qwen models
+  quantization:
+    mode: "int4_nf4"            # 4-bit quantization (QLoRA)
+    quant_type: "nf4"
+    use_double_quant: true
+    compute_dtype: "bfloat16"
+  lora:
+    rank: 16                    # Good balance of quality vs. memory
+    alpha: 32                   # 2x rank is the standard
+    target_modules:
+      - "q_proj"
+      - "k_proj"
+      - "v_proj"
+      - "o_proj"
+    dropout: 0.05
+
+# SFT: teach the model to follow instructions
+sft:
+  learning_rate: 0.0002         # 2e-4, standard for LoRA
+  batch_size: 2                 # Small for local GPU
+  gradient_accumulation_steps: 8  # Effective batch = 2 × 8 = 16
+  num_epochs: 1                 # 1 epoch for quick local testing
+  warmup_steps: 50
+  bf16: true
+  gradient_checkpointing: true
+  logging_steps: 5
+  save_steps: 200
+  eval_steps: 200
+  output_dir: "./outputs/sft"
+
+# DPO: align with human preferences
+dpo:
+  beta: 0.1
+  learning_rate: 0.00001          # 1e-5, lowered for stable alignment
+  batch_size: 1                   # Small for local GPU with long sequences
+  gradient_accumulation_steps: 8  # Effective batch = 1 × 8 = 8
+  num_epochs: 1
+  bf16: true
+  gradient_checkpointing: true
+  logging_steps: 20
+  save_steps: 250
+  eval_steps: 100
+  output_dir: "./outputs/dpo"
+
+# RLHF: alternative alignment approach
+ppo:
+  kl_penalty_coeff: 0.2
+  learning_rate: 0.00001        # 1e-5, very conservative
+  batch_size: 8
+  mini_batch_size: 2
+  gradient_accumulation_steps: 4
+  ppo_epochs: 4
+  bf16: true
+  gradient_checkpointing: true
+  output_dir: "./outputs/rlhf"

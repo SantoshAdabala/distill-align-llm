@@ -1,0 +1,18 @@
+{
+  "dpo_loss": null,
+  "dpo_lr": "1e-5",
+  "dpo_dataset": "argilla/ultrafeedback-binarized-preferences-cleaned (5K train + 500 eval)",
+  "eval_reward_accuracy": null,
+  "eval_reward_margin": null,
+  "total_cost": null,
+  "dpo_steps": null,
+  "dpo_time_min": null,
+  "dpo_metrics": [
+    {"step": 100, "loss": null, "reward_acc": null, "margin": null},
+    {"step": 200, "loss": null, "reward_acc": null, "margin": null},
+    {"step": 300, "loss": null, "reward_acc": null, "margin": null},
+    {"step": 400, "loss": null, "reward_acc": null, "margin": null},
+    {"step": 500, "loss": null, "reward_acc": null, "margin": null}
+  ],
+  "notes": "Fill this in after running: python scripts/run_dpo.py --config configs/local_small.yaml --sft-adapter ./outputs/sft/final_adapter"
+}

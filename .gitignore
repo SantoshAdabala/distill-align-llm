@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Kiro / AI assistant files
+.kiro/
+
+# Learning notes (personal study material)
+docs/learning/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Linting / Type checking
+.mypy_cache/
+.ruff_cache/
+
+# ML artifacts (large files — don't commit these)
+outputs/
+models/
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+*.onnx
+wandb/
+.wandb_buffer/
+
+# Environment variables (may contain secrets)
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Terraform
+infrastructure/terraform/.terraform/
+infrastructure/terraform/*.tfstate
+infrastructure/terraform/*.tfstate.backup
+infrastructure/terraform/.terraform.lock.hcl
