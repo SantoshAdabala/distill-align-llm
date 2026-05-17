@@ -34,7 +34,6 @@ htmlcov/
 
 # ML artifacts (large files — don't commit these)
 outputs/
-models/
 checkpoints/
 *.pt
 *.bin
