@@ -9,8 +9,8 @@
 #   config = ConfigManager.load_config("configs/local_small.yaml")
 
 model:
-  model_id: "Qwen/Qwen2.5-1.5B"
-  family: "qwen2.5"
+  model_id: "meta-llama/Llama-3.1-8B"
+  family: "llama-3.1"
   max_seq_length: 1024          # Shorter for faster local training
   trust_remote_code: true       # Required for Qwen models
   quantization:
