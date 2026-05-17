@@ -52,7 +52,7 @@ dpo:
   bf16: true
   gradient_checkpointing: true
   logging_steps: 20
-  save_steps: 250
+  save_steps: 200
   eval_steps: 100
   output_dir: "./outputs/dpo"
 
