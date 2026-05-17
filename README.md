@@ -1,78 +1,35 @@
-# AlignLLM — End-to-End LLM Alignment Pipeline on AWS
+# AlignLLM — End-to-End LLM Alignment Pipeline
 
-An end-to-end LLM alignment pipeline that takes pre-trained language models through Supervised Fine-Tuning (SFT), Direct Preference Optimization (DPO), and Reinforcement Learning from Human Feedback (RLHF) to produce a general-purpose chat assistant aligned for helpfulness, harmlessness, and honesty. Built with a dual-mode architecture — local development on consumer GPUs with small models (Qwen2.5-1.5B, Llama-3.2-1B) and cloud-scale training on AWS SageMaker with larger models (Llama-3.1-8B, Mistral-7B) — using parameter-efficient fine-tuning (LoRA/QLoRA), serverless data engineering (Glue + Athena), and production serving with auto-scaling endpoints.
-
----
-
-## System Architecture
-
-```mermaid
-graph LR
-    subgraph Data["Data Layer"]
-        HF[HuggingFace Hub]
-        GLUE[AWS Glue ETL]
-        S3[(S3 Artifacts)]
-        DQ[Data Quality<br/>Great Expectations]
-    end
-
-    subgraph Train["Training Layer"]
-        SFT[SFT Trainer]
-        DPO[DPO Trainer]
-        RLHF[RLHF Trainer]
-    end
-
-    subgraph Eval["Evaluation"]
-        HARNESS[lm-eval-harness]
-        WANDB[Weights & Biases]
-    end
-
-    subgraph Serve["Serving"]
-        VLLM[vLLM / FastAPI<br/>Local]
-        SM[SageMaker Endpoint<br/>Auto-scaling + A/B]
-    end
-
-    HF --> GLUE --> S3
-    S3 --> DQ --> SFT
-    SFT --> DPO --> HARNESS
-    SFT --> RLHF --> HARNESS
-    HARNESS --> WANDB
-    DPO --> S3
-    RLHF --> S3
-    S3 --> VLLM
-    S3 --> SM
-```
+Fine-tuning and aligning large language models using **SFT → DPO → RLHF (GRPO)** with parameter-efficient methods (LoRA/QLoRA). Trained Llama-3.1-8B on a single RTX 3090 for $1.01 total.
 
 ---
 
-## Learning Path
+## What This Does
 
-This project is structured as a progressive learning journey. Study in order:
+Takes a pre-trained LLM through three alignment stages:
 
-| # | Topic | Document | What You'll Learn |
-|---|-------|----------|-------------------|
-| 1 | Decoder Architectures | [docs/learning/data-engineering/LEARNING.md](docs/learning/data-engineering/LEARNING.md) | Transformer internals, attention, tokenization, data pipelines |
-| 2 | Supervised Fine-Tuning | [docs/learning/sft/LEARNING.md](docs/learning/sft/LEARNING.md) | Instruction tuning, chat templates, loss masking |
-| 3 | LoRA / QLoRA | [docs/learning/lora/LEARNING.md](docs/learning/lora/LEARNING.md) | Parameter-efficient fine-tuning, quantization, adapter merging |
-| 4 | DPO | [docs/learning/dpo/LEARNING.md](docs/learning/dpo/LEARNING.md) | Direct Preference Optimization, Bradley-Terry model, beta tuning |
-| 5 | RLHF | [docs/learning/rlhf/LEARNING.md](docs/learning/rlhf/LEARNING.md) | Reward modeling, PPO, KL divergence penalties |
-| 6 | Evaluation | — | MT-Bench, MMLU, HellaSwag, TruthfulQA, reward accuracy |
-| 7 | Serving | [docs/learning/serving/LEARNING.md](docs/learning/serving/LEARNING.md) | vLLM, PagedAttention, continuous batching, streaming |
-| 8 | AWS SageMaker | [docs/learning/sagemaker/LEARNING.md](docs/learning/sagemaker/LEARNING.md) | Training jobs, endpoints, spot instances, auto-scaling |
+1. **SFT** (Supervised Fine-Tuning) — Teaches the model to follow instructions
+2. **DPO** (Direct Preference Optimization) — Aligns responses with human preferences
+3. **RLHF/GRPO** (Reinforcement Learning from Human Feedback) — Policy optimization with reward signals
+
+All training uses QLoRA (4-bit quantization + LoRA adapters), making it possible to fine-tune 8B parameter models on a single consumer GPU.
 
 ---
 
-## Tech Stack
+## Training Results
 
-| Category | Technologies |
-|----------|-------------|
-| **ML / DL** | PyTorch, HuggingFace Transformers, TRL (SFT/DPO/PPO), PEFT, bitsandbytes |
-| **Data** | HuggingFace Datasets, AWS Glue ETL, Athena, Great Expectations, PyArrow |
-| **Cloud** | AWS SageMaker (Training Jobs + Endpoints), S3, ECR, CloudWatch, IAM |
-| **Serving** | vLLM (PagedAttention), FastAPI, SSE streaming, SageMaker Real-time Endpoints |
-| **Evaluation** | lm-eval-harness (MMLU, HellaSwag, TruthfulQA), MT-Bench, scikit-learn |
-| **IaC** | Terraform (modules: S3, ECR, SageMaker, Glue, Monitoring) |
-| **Tracking** | Weights & Biases, Prometheus (local), CloudWatch (prod) |
-| **Dev Tools** | Ruff, Black, mypy, pytest, pre-commit, GitHub Actions CI/CD |
+| Stage | Loss | Steps | Duration | GPU |
+|-------|------|-------|----------|-----|
+| **SFT** | 1.3879 | 297 | 13.6 min | RTX 3090 |
+| **DPO** | 0.6976 | 1,187 | 71.5 min | RTX 3090 |
+
+- **Model**: meta-llama/Llama-3.1-8B
+- **Quantization**: QLoRA (4-bit NF4, double quantization, bf16 compute)
+- **Trainable params**: 13.6M (0.30% of 4.55B total)
+- **Platform**: RunPod.io
+- **Total cost**: $1.01
+
+See [docs/RESULTS.md](docs/RESULTS.md) for full training curves and analysis.
 
 ---
 
@@ -80,126 +37,98 @@ This project is structured as a progressive learning journey. Study in order:
 
 ```
 distill-align-llm/
-├── configs/
-│   ├── local_small.yaml          # Local dev: Qwen2.5-1.5B + QLoRA
-│   └── cloud_large.yaml          # Cloud: Llama-3.1-8B on SageMaker
+├── configs/local_small.yaml       # Training hyperparameters
 ├── src/distill_align/
-│   ├── config/                   # YAML config loading + Pydantic models
-│   ├── data/                     # Data processor, Glue ETL, quality validation
-│   ├── training/                 # SFT, DPO, RLHF trainers
-│   ├── evaluation/               # Eval harness (lm-eval + custom metrics)
-│   ├── serving/                  # vLLM engine, FastAPI, SageMaker deployment
-│   ├── monitoring/               # CloudWatch + Prometheus metrics
-│   ├── tracking/                 # W&B experiment tracking
-│   └── models/                   # Model loading, quantization, adapter merging
-├── infrastructure/terraform/     # IaC: S3, ECR, SageMaker, Glue, Monitoring
-├── docker/
-│   ├── training/Dockerfile       # Training container (SageMaker-compatible)
-│   └── serving/Dockerfile        # Inference container (vLLM + FastAPI)
-├── docs/
-│   ├── learning/                 # Deep-dive study notes per topic
-│   ├── ARCHITECTURE.md           # System architecture diagrams
-│   ├── RESULTS.md                # Benchmark results (post-training)
-│   └── COST_ANALYSIS.md          # AWS cost breakdown
-├── tests/                        # Unit + integration tests (moto for AWS)
-├── scripts/                      # Utility scripts
-├── .github/workflows/            # CI/CD: lint, test, deploy
-├── Makefile                      # Dev commands (install, lint, test, check)
-└── pyproject.toml                # Project config + dependencies
+│   ├── config/                    # YAML + Pydantic config system
+│   ├── data/processor.py          # Dataset loading, validation, tokenization
+│   ├── models/loader.py           # Model loading with QLoRA + LoRA
+│   ├── training/
+│   │   ├── sft.py                 # SFT trainer (TRL SFTTrainer)
+│   │   ├── dpo.py                 # DPO trainer (TRL DPOTrainer)
+│   │   └── rlhf.py               # RLHF trainer (TRL GRPOTrainer)
+│   ├── serving/
+│   │   ├── engine.py              # vLLM inference engine
+│   │   └── api.py                 # FastAPI REST gateway
+│   └── monitoring/service.py      # Prometheus metrics
+├── scripts/
+│   ├── run_sft.py                 # SFT entry point
+│   ├── run_dpo.py                 # DPO entry point
+│   └── compare_models.py         # Base vs SFT vs DPO response comparison
+├── dashboard/app.py               # Streamlit results dashboard
+├── tests/                         # 44 passing tests
+├── Makefile
+└── pyproject.toml
 ```
 
 ---
 
 ## Quick Start
 
-### Prerequisites
-
-- Python 3.10+
-- CUDA-capable GPU (4GB+ VRAM for local mode)
-- AWS CLI configured (for cloud mode)
-
-### Local Mode
-
 ```bash
 # Clone and install
-git clone https://github.com/santoshadabala/distill-align-llm.git
+git clone https://github.com/SantoshAdabala/distill-align-llm.git
 cd distill-align-llm
 make install
 
-# Run SFT on Qwen2.5-1.5B (local, ~4GB VRAM)
-python -m distill_align.training.sft --config configs/local_small.yaml
+# Run tests
+make test
 
-# Run DPO alignment
-python -m distill_align.training.dpo --config configs/local_small.yaml
+# Run SFT training (requires GPU)
+python scripts/run_sft.py --config configs/local_small.yaml
 
-# Serve locally with vLLM + FastAPI
-python -m distill_align.serving.api --model-path ./outputs/dpo
+# Run DPO alignment (requires SFT adapter)
+python scripts/run_dpo.py --config configs/local_small.yaml --sft-adapter ./outputs/sft/final_adapter
 
-# Run evaluation
-python -m distill_align.evaluation.harness --model-path ./outputs/dpo
-```
+# Compare model responses
+python scripts/compare_models.py \
+    --base-model meta-llama/Llama-3.1-8B \
+    --sft-adapter ./outputs/sft/final_adapter \
+    --dpo-adapter ./outputs/dpo/dpo_adapter
 
-### Cloud Mode (AWS SageMaker)
-
-```bash
-# Provision infrastructure
-cd infrastructure/terraform && terraform init && terraform apply
-
-# Launch SageMaker training job (Llama-3.1-8B, spot instances)
-python -m distill_align.training.sft --config configs/cloud_large.yaml --cloud
-
-# Deploy to SageMaker endpoint with auto-scaling
-python -m distill_align.serving.sagemaker --config configs/cloud_large.yaml
-
-# Run checks
-make check
+# Launch dashboard
+pip install -r dashboard/requirements.txt
+streamlit run dashboard/app.py
 ```
 
 ---
 
-## Prior Work
+## Tech Stack
 
-This project builds on prior work in **knowledge distillation** from the [clinical-nlp-optimization](https://github.com/santoshadabala/clinical-nlp-optimization) project, which demonstrated:
-
-- **Knowledge Distillation**: Bio_ClinicalBERT (110M params) → DistilClinicalBERT (66M params) with 40% size reduction and <2% F1 loss on clinical NER
-- **Production ML on AWS**: SageMaker training jobs, S3 artifact management, CloudWatch monitoring
-- **Data Engineering**: PySpark ETL pipelines for clinical text processing
-
-**AlignLLM** extends this foundation from encoder models (BERT) to decoder models (LLMs), from distillation to alignment (SFT → DPO → RLHF), and from NER to open-ended generation — while scaling the AWS infrastructure to handle 7-8B parameter models with GPU training.
-
----
-
-## Key Design Decisions
-
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| Fine-tuning approach | LoRA/QLoRA exclusively | Enables 7-8B model training on single A10G GPU; reduces trainable params by ~99% |
-| Alignment methods | Both DPO and RLHF | DPO is simpler/stable; RLHF shows full reward-model pipeline; comparison is a differentiator |
-| Serving engine | vLLM (local) + SageMaker (prod) | vLLM: PagedAttention + continuous batching; SageMaker: managed auto-scaling + A/B testing |
-| Data engineering | AWS Glue + Athena | Serverless, cost-effective; demonstrates progression beyond PySpark/EMR |
-| Experiment tracking | Weights & Biases | Industry standard; rich comparison dashboards; artifact versioning |
-| Infrastructure as Code | Terraform (modular) | Cloud-agnostic, widely adopted, modular design with reusable components |
-| Config management | YAML + Pydantic validation | Human-readable configs with runtime type safety and validation |
-| Dual-mode architecture | Local + Cloud | Fast iteration locally; production-grade training on AWS with same codebase |
+| Category | Technologies |
+|----------|-------------|
+| **Training** | PyTorch, HuggingFace Transformers, TRL, PEFT, bitsandbytes |
+| **Data** | HuggingFace Datasets |
+| **Serving** | vLLM, FastAPI |
+| **Monitoring** | Prometheus |
+| **Dashboard** | Streamlit, Plotly |
+| **Testing** | pytest, ruff |
 
 ---
 
-## Results
+## Model Configuration
 
-> **Note:** Results will be populated after training runs are complete.
+```yaml
+model:
+  model_id: "Qwen/Qwen2.5-1.5B"    # or meta-llama/Llama-3.1-8B
+  family: "qwen2.5"
+  quantization:
+    mode: "int4_nf4"                 # 4-bit QLoRA
+    use_double_quant: true
+  lora:
+    rank: 16
+    alpha: 32
+    target_modules: [q_proj, k_proj, v_proj, o_proj]
 
-| Model | Method | MT-Bench | MMLU | HellaSwag | TruthfulQA | Latency (p50) |
-|-------|--------|----------|------|-----------|-------------|---------------|
-| Qwen2.5-1.5B | Base | — | — | — | — | — |
-| Qwen2.5-1.5B | + SFT | — | — | — | — | — |
-| Qwen2.5-1.5B | + DPO | — | — | — | — | — |
-| Qwen2.5-1.5B | + RLHF | — | — | — | — | — |
-| Llama-3.1-8B | Base | — | — | — | — | — |
-| Llama-3.1-8B | + SFT | — | — | — | — | — |
-| Llama-3.1-8B | + DPO | — | — | — | — | — |
-| Llama-3.1-8B | + RLHF | — | — | — | — | — |
+sft:
+  learning_rate: 0.0002
+  batch_size: 2
+  gradient_accumulation_steps: 8
 
-See [docs/RESULTS.md](docs/RESULTS.md) for detailed benchmark analysis.
+dpo:
+  beta: 0.1
+  learning_rate: 0.00001
+  eval_steps: 100
+```
 
 ---
 
@@ -209,4 +138,4 @@ MIT
 
 ---
 
-*Built by [Santosh Adabala](https://github.com/santoshadabala) — AWS Certified Machine Learning Engineer*
+*Built by [Santosh Adabala](https://github.com/SantoshAdabala)*
