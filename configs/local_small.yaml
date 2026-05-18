@@ -11,7 +11,7 @@
 model:
   model_id: "meta-llama/Llama-3.1-8B-Instruct"
   family: "llama-3.1"
-  max_seq_length: 1024          # Shorter for faster local training
+  max_seq_length: 512           # Reduced for DPO memory (2 models in VRAM)
   trust_remote_code: true       # Required for Qwen models
   quantization:
     mode: "int4_nf4"            # 4-bit quantization (QLoRA)
