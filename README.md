@@ -40,12 +40,13 @@ All training uses QLoRA (4-bit quantization + LoRA adapters), making it possible
 
 Interactive Streamlit dashboard showing training curves, reward accuracy progression, and v1 vs v2 comparison:
 
+🔗 **[Live Dashboard](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)**
+
 ```bash
+# Or run locally:
 pip install streamlit plotly pandas
 streamlit run dashboard/app.py
 ```
-
-Live demo: *coming soon*
 
 ---
 
