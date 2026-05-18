@@ -1,6 +1,6 @@
 # AlignLLM — End-to-End LLM Alignment Pipeline
 
-Fine-tuning and aligning large language models using **SFT → DPO** with parameter-efficient methods (LoRA/QLoRA). Trained Llama-3.1-8B-Instruct on a single RTX A5000 for $0.58 total.
+Fine-tuning and aligning large language models using **SFT → DPO** with parameter-efficient methods (LoRA/QLoRA). Trained Llama-3.1-8B-Instruct on a single RTX A5000.
 
 ---
 
