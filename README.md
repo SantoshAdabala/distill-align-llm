@@ -1,35 +1,51 @@
 # AlignLLM — End-to-End LLM Alignment Pipeline
 
-Fine-tuning and aligning large language models using **SFT → DPO → RLHF (GRPO)** with parameter-efficient methods (LoRA/QLoRA). Trained Llama-3.1-8B on a single RTX 3090 for $1.01 total.
+Fine-tuning and aligning large language models using **SFT → DPO** with parameter-efficient methods (LoRA/QLoRA). Trained Llama-3.1-8B-Instruct on a single RTX A5000 for $0.58 total.
+
+---
+
+## Results
+
+| Stage | Loss | Reward Accuracy | Duration | Cost |
+|-------|------|----------------|----------|------|
+| **SFT** | 1.13 (eval) | 75% token accuracy | 3.1 min | — |
+| **DPO** | 0.76 | **75%** | 124.6 min | — |
+| **Total** | — | — | ~128 min | **$0.58** |
+
+**Key achievement:** DPO reward accuracy reached 75% — the model clearly learned to prefer chosen responses over rejected ones. Reward margins improved from -0.94 to +0.62 over training.
+
+| Metric | v1 (initial) | v2 (improved) |
+|--------|-------------|---------------|
+| Peak Reward Accuracy | 50% | **75%** |
+| Avg Accuracy (2nd half) | 35-45% | **60-68%** |
+| DPO Loss | 0.70 (≈ random) | **0.63** (below random) |
+| Alignment Quality | Weak | **Strong** ✅ |
+
+See [docs/RESULTS.md](docs/RESULTS.md) for full training curves.
 
 ---
 
 ## What This Does
 
-Takes a pre-trained LLM through three alignment stages:
+Takes a pre-trained LLM through two alignment stages:
 
 1. **SFT** (Supervised Fine-Tuning) — Teaches the model to follow instructions
-2. **DPO** (Direct Preference Optimization) — Aligns responses with human preferences
-3. **RLHF/GRPO** (Reinforcement Learning from Human Feedback) — Policy optimization with reward signals
+2. **DPO** (Direct Preference Optimization) — Aligns responses with human preferences using cleaned UltraFeedback data
 
-All training uses QLoRA (4-bit quantization + LoRA adapters), making it possible to fine-tune 8B parameter models on a single consumer GPU.
+All training uses QLoRA (4-bit quantization + LoRA adapters), making it possible to fine-tune 8B parameter models on a single 24GB GPU.
 
 ---
 
-## Training Results
+## Dashboard
 
-| Stage | Loss | Steps | Duration | GPU |
-|-------|------|-------|----------|-----|
-| **SFT** | 1.3879 | 297 | 13.6 min | RTX 3090 |
-| **DPO** | 0.6976 | 1,187 | 71.5 min | RTX 3090 |
+Interactive Streamlit dashboard showing training curves, reward accuracy progression, and v1 vs v2 comparison:
 
-- **Model**: meta-llama/Llama-3.1-8B
-- **Quantization**: QLoRA (4-bit NF4, double quantization, bf16 compute)
-- **Trainable params**: 13.6M (0.30% of 4.55B total)
-- **Platform**: RunPod.io
-- **Total cost**: $1.01
+```bash
+pip install streamlit plotly pandas
+streamlit run dashboard/app.py
+```
 
-See [docs/RESULTS.md](docs/RESULTS.md) for full training curves and analysis.
+Live demo: *coming soon*
 
 ---
 
@@ -55,6 +71,7 @@ distill-align-llm/
 │   ├── run_dpo.py                 # DPO entry point
 │   └── compare_models.py         # Base vs SFT vs DPO response comparison
 ├── dashboard/app.py               # Streamlit results dashboard
+├── notebooks/train_align.ipynb    # RunPod training notebook
 ├── tests/                         # 44 passing tests
 ├── Makefile
 └── pyproject.toml
@@ -73,21 +90,26 @@ make install
 # Run tests
 make test
 
-# Run SFT training (requires GPU)
-python scripts/run_sft.py --config configs/local_small.yaml
-
-# Run DPO alignment (requires SFT adapter)
-python scripts/run_dpo.py --config configs/local_small.yaml --sft-adapter ./outputs/sft/final_adapter
-
-# Compare model responses
-python scripts/compare_models.py \
-    --base-model meta-llama/Llama-3.1-8B \
-    --sft-adapter ./outputs/sft/final_adapter \
-    --dpo-adapter ./outputs/dpo/dpo_adapter
-
 # Launch dashboard
 pip install -r dashboard/requirements.txt
 streamlit run dashboard/app.py
+```
+
+### Training on RunPod
+
+```bash
+# Deploy RTX A5000 pod, then:
+git clone https://github.com/SantoshAdabala/distill-align-llm.git
+cd distill-align-llm
+pip install transformers accelerate peft datasets bitsandbytes trl
+pip install -e .
+hf auth login
+
+# SFT (~3 min)
+python scripts/run_sft.py --config configs/local_small.yaml
+
+# DPO (~2 hours)
+python scripts/run_dpo.py --config configs/local_small.yaml --sft-adapter ./outputs/sft/final_adapter
 ```
 
 ---
@@ -96,12 +118,13 @@ streamlit run dashboard/app.py
 
 | Category | Technologies |
 |----------|-------------|
-| **Training** | PyTorch, HuggingFace Transformers, TRL, PEFT, bitsandbytes |
-| **Data** | HuggingFace Datasets |
+| **Training** | PyTorch, HuggingFace Transformers, TRL (SFT/DPO/GRPO), PEFT, bitsandbytes |
+| **Data** | HuggingFace Datasets, argilla/ultrafeedback-binarized-preferences-cleaned |
 | **Serving** | vLLM, FastAPI |
 | **Monitoring** | Prometheus |
 | **Dashboard** | Streamlit, Plotly |
 | **Testing** | pytest, ruff |
+| **Infrastructure** | RunPod.io (RTX A5000, $0.27/hr) |
 
 ---
 
@@ -109,26 +132,32 @@ streamlit run dashboard/app.py
 
 ```yaml
 model:
-  model_id: "Qwen/Qwen2.5-1.5B"    # or meta-llama/Llama-3.1-8B
-  family: "qwen2.5"
+  model_id: "meta-llama/Llama-3.1-8B-Instruct"
+  family: "llama-3.1"
   quantization:
-    mode: "int4_nf4"                 # 4-bit QLoRA
+    mode: "int4_nf4"
     use_double_quant: true
   lora:
     rank: 16
     alpha: 32
     target_modules: [q_proj, k_proj, v_proj, o_proj]
 
-sft:
-  learning_rate: 0.0002
-  batch_size: 2
-  gradient_accumulation_steps: 8
-
 dpo:
   beta: 0.1
   learning_rate: 0.00001
-  eval_steps: 100
+  dataset: argilla/ultrafeedback-binarized-preferences-cleaned
 ```
+
+---
+
+## What Fixed DPO Alignment (v1 → v2)
+
+| Change | v1 | v2 | Impact |
+|--------|----|----|--------|
+| Learning rate | 5e-5 | **1e-5** | Prevented overshooting preference signal |
+| Dataset | UltraFeedback raw | **UltraFeedback cleaned** | Less noisy preference pairs |
+| Base model | Llama-3.1-8B (base) | **Llama-3.1-8B-Instruct** | Has chat template, better DPO starting point |
+| Sequence length | 1024 | **512** | Fits DPO (2 models) in 24GB VRAM |
 
 ---
 

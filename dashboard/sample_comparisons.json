@@ -1,0 +1,26 @@
+[
+  {
+    "prompt": "Explain gradient checkpointing in simple terms.",
+    "base": "(To be generated on next RunPod session)",
+    "sft": "(To be generated on next RunPod session)",
+    "dpo": "(To be generated on next RunPod session)"
+  },
+  {
+    "prompt": "How can I reduce GPU training costs?",
+    "base": "(To be generated on next RunPod session)",
+    "sft": "(To be generated on next RunPod session)",
+    "dpo": "(To be generated on next RunPod session)"
+  },
+  {
+    "prompt": "What is the difference between DPO and RLHF?",
+    "base": "(To be generated on next RunPod session)",
+    "sft": "(To be generated on next RunPod session)",
+    "dpo": "(To be generated on next RunPod session)"
+  },
+  {
+    "prompt": "Write a Python function to compute cosine similarity between two vectors.",
+    "base": "(To be generated on next RunPod session)",
+    "sft": "(To be generated on next RunPod session)",
+    "dpo": "(To be generated on next RunPod session)"
+  }
+]
