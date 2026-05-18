@@ -299,8 +299,8 @@ with open('dashboard/v2_results.json', 'w') as f:
 "
 """, language="bash")
 
-# --- Model Comparison (if available) ---
-COMPARISON_PATH = Path("outputs/comparison_results.json")
+# --- Model Comparison ---
+COMPARISON_PATH = Path("dashboard/sample_comparisons.json")
 
 if COMPARISON_PATH.exists():
     st.header("💬 Response Comparison: Base vs SFT vs DPO")
