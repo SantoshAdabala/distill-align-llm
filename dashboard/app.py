@@ -1,8 +1,8 @@
 """
 AlignLLM Training Dashboard — Streamlit App.
 
-Displays training results from SFT and DPO runs, comparing
-v1 (initial run) and v2 (improved alignment) side by side.
+Displays training results from SFT and DPO runs across v1–v4,
+including factuality evaluation (Base vs SFT vs DPO).
 
 Run: streamlit run dashboard/app.py
 """
@@ -26,7 +26,8 @@ st.set_page_config(
 )
 
 st.title("🧠 AlignLLM — Training Dashboard")
-st.markdown("**End-to-end LLM alignment pipeline**: SFT → DPO on Llama-3.1-8B with QLoRA")
+st.markdown("**End-to-end LLM alignment pipeline**: SFT → DPO on Llama-3.1-8B-Instruct with QLoRA")
+st.markdown("*When Alignment Metrics Look Good but Factuality Does Not*")
 
 # ═══════════════════════════════════════════════
 # V1 RESULTS (from first RunPod run)
@@ -132,10 +133,14 @@ st.sidebar.markdown(f"- **Dataset**: {V1_SUMMARY['dpo_dataset']}")
 
 if v2_data:
     st.sidebar.markdown("---")
-    st.sidebar.markdown("### v2 (Improved Run)")
+    st.sidebar.markdown("### v4 (Latest — Merged-SFT DPO)")
+    st.sidebar.markdown(f"- **Model**: {v2_data.get('model', 'Llama-3.1-8B-Instruct')}")
+    st.sidebar.markdown(f"- **GPU**: {v2_data.get('gpu', 'RTX A6000')}")
     st.sidebar.markdown(f"- **DPO LR**: {v2_data.get('dpo_lr', '1e-5')}")
+    st.sidebar.markdown(f"- **DPO Beta**: {v2_data.get('dpo_beta', 0.05)}")
     st.sidebar.markdown(f"- **Dataset**: {v2_data.get('dpo_dataset', 'UltraFeedback Cleaned')}")
-    st.sidebar.markdown(f"- **Eval Reward Acc**: {v2_data.get('eval_reward_accuracy', 'N/A')}")
+    st.sidebar.markdown(f"- **Reward Acc**: {v2_data.get('eval_reward_accuracy', 'N/A'):.0%}")
+    st.sidebar.markdown(f"- **Cost**: {v2_data.get('total_cost', 'N/A')}")
 
 # ═══════════════════════════════════════════════
 # MAIN CONTENT
@@ -144,20 +149,26 @@ if v2_data:
 # --- Overview metrics ---
 st.header("📊 Training Overview")
 
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("SFT Loss", f"{V1_SUMMARY['sft_loss']:.4f}", delta="-36% from start")
-col2.metric("DPO Loss (v1)", f"{V1_SUMMARY['dpo_loss']:.4f}", delta="near baseline ⚠️")
-col3.metric("Total Time", f"{V1_SUMMARY['sft_time_min'] + V1_SUMMARY['dpo_time_min']:.0f} min")
-col4.metric("Total Cost", V1_SUMMARY["total_cost"])
-
 if v2_data and "dpo_loss" in v2_data:
-    st.markdown("---")
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("SFT Loss (v4)", f"{v2_data.get('sft_loss', 0):.3f}",
+                delta=f"{v2_data.get('sft_loss', 0) - V1_SUMMARY['sft_loss']:.3f} vs v1")
+    col2.metric("DPO Loss (v4)", f"{v2_data['dpo_loss']:.4f}",
+                delta=f"{v2_data['dpo_loss'] - V1_SUMMARY['dpo_loss']:.3f} vs v1")
+    col3.metric("Reward Accuracy (v4)", f"{v2_data.get('eval_reward_accuracy', 0):.0%}")
+    col4.metric("Total Cost (v4)", v2_data.get("total_cost", "N/A"))
+
     col1b, col2b, col3b, col4b = st.columns(4)
-    col1b.metric("DPO Loss (v2)", f"{v2_data['dpo_loss']:.4f}",
-                 delta=f"{v2_data['dpo_loss'] - V1_SUMMARY['dpo_loss']:.4f}")
-    col2b.metric("Reward Acc (v2)", f"{v2_data.get('eval_reward_accuracy', 0):.1%}")
-    col3b.metric("Reward Margin (v2)", f"{v2_data.get('eval_reward_margin', 0):.4f}")
-    col4b.metric("v2 Cost", v2_data.get("total_cost", "N/A"))
+    col1b.metric("DPO Beta", f"{v2_data.get('dpo_beta', 0.05)}")
+    col2b.metric("DPO Steps", f"{v2_data.get('dpo_steps', 0)}")
+    col3b.metric("Reward Margin", f"{v2_data.get('eval_reward_margin', 0):.4f}")
+    col4b.metric("Experiment", v2_data.get("experiment", "v4"))
+else:
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("SFT Loss", f"{V1_SUMMARY['sft_loss']:.4f}", delta="-36% from start")
+    col2.metric("DPO Loss (v1)", f"{V1_SUMMARY['dpo_loss']:.4f}", delta="near baseline ⚠️")
+    col3.metric("Total Time", f"{V1_SUMMARY['sft_time_min'] + V1_SUMMARY['dpo_time_min']:.0f} min")
+    col4.metric("Total Cost", V1_SUMMARY["total_cost"])
 
 # --- SFT Training Curve ---
 st.header("📈 SFT Training Curve")
@@ -193,7 +204,7 @@ st.success(f"**SFT converged well**: loss dropped from 2.17 → 1.23 (best), fin
 # --- DPO Training Curve ---
 st.header("📈 DPO Training Curve")
 
-tab1, tab2 = st.tabs(["v1 (Initial — LR=5e-5, 5K samples)", "v2 (Improved — LR=1e-5, cleaned data)"])
+tab1, tab2 = st.tabs(["v1 (Initial — LR=5e-5, stacked adapter)", "v4 (Merged-SFT, β=0.05, 20% factual pairs)"])
 
 with tab1:
     dpo_df = pd.DataFrame(V1_DPO_METRICS)
@@ -244,9 +255,9 @@ with tab2:
 
         with col_left2:
             fig_v2_loss = px.line(v2_dpo_df, x="step", y="loss", markers=True,
-                                  title="DPO Loss (v2)", color_discrete_sequence=["#9C27B0"])
+                                  title="DPO Loss (v4 — Merged-SFT)", color_discrete_sequence=["#9C27B0"])
             fig_v2_loss.add_hline(y=0.693, line_dash="dash", line_color="gray",
-                                  annotation_text="Random baseline")
+                                  annotation_text="Random baseline (ln2)")
             fig_v2_loss.update_layout(height=350, margin=dict(t=40, b=40))
             st.plotly_chart(fig_v2_loss, use_container_width=True)
 
@@ -254,50 +265,156 @@ with tab2:
             fig_v2_acc = go.Figure()
             fig_v2_acc.add_trace(go.Scatter(
                 x=v2_dpo_df["step"], y=v2_dpo_df["reward_acc"],
-                mode="lines+markers", name="Reward Accuracy (v2)",
+                mode="lines+markers", name="Reward Accuracy (v4)",
                 line=dict(color="#4CAF50", width=2),
             ))
-            fig_v2_acc.add_hline(y=0.50, line_dash="dash", line_color="red")
-            fig_v2_acc.add_hline(y=0.60, line_dash="dot", line_color="green",
-                                 annotation_text="Target: 60%")
+            fig_v2_acc.add_hline(y=0.50, line_dash="dash", line_color="red",
+                                 annotation_text="50% (random)")
+            fig_v2_acc.add_hline(y=0.80, line_dash="dot", line_color="green",
+                                 annotation_text="80% target")
             fig_v2_acc.update_layout(
-                title="Reward Accuracy (v2)",
+                title="Reward Accuracy (v4)",
+                yaxis_title="Accuracy",
                 yaxis=dict(range=[0, 1]),
                 height=350, margin=dict(t=40, b=40),
             )
             st.plotly_chart(fig_v2_acc, use_container_width=True)
 
+        # Margin chart
+        fig_v4_margin = px.bar(v2_dpo_df, x="step", y="margin",
+                               title="Reward Margin (v4 — chosen vs rejected)",
+                               color="margin", color_continuous_scale="RdYlGn",
+                               color_continuous_midpoint=0)
+        fig_v4_margin.update_layout(height=300, margin=dict(t=40, b=40))
+        st.plotly_chart(fig_v4_margin, use_container_width=True)
+
         eval_acc = v2_data.get("eval_reward_accuracy", 0)
-        if eval_acc >= 0.65:
-            st.success(f"**v2 Strong alignment** — eval reward accuracy: {eval_acc:.1%}")
-        elif eval_acc >= 0.60:
-            st.success(f"**v2 Good alignment** — eval reward accuracy: {eval_acc:.1%}")
+        if eval_acc >= 0.75:
+            st.success(f"**v4 Strong alignment** — reward accuracy: {eval_acc:.0%}. "
+                       f"Merged-SFT + β=0.05 produces best DPO training dynamics.")
+        elif eval_acc >= 0.65:
+            st.success(f"**v4 Good alignment** — reward accuracy: {eval_acc:.0%}")
         elif eval_acc >= 0.55:
-            st.info(f"**v2 Moderate alignment** — eval reward accuracy: {eval_acc:.1%}")
+            st.info(f"**v4 Moderate alignment** — reward accuracy: {eval_acc:.0%}")
         else:
-            st.warning(f"**v2 Weak alignment** — eval reward accuracy: {eval_acc:.1%}")
+            st.warning(f"**v4 Weak alignment** — reward accuracy: {eval_acc:.0%}")
     else:
-        st.info("🔄 v2 results not yet available. Run the improved DPO training on RunPod, "
+        st.info("🔄 v4 results not yet available. Run the improved DPO training on RunPod, "
                 "then save results to `dashboard/v2_results.json`.")
-        st.code("""# After running improved DPO on RunPod, save metrics:
-python -c "
-import json
-results = {
-    'dpo_loss': 0.55,  # fill with actual
-    'dpo_lr': '1e-5',
-    'dpo_dataset': 'UltraFeedback Cleaned (5K)',
-    'eval_reward_accuracy': 0.62,  # fill with actual
-    'eval_reward_margin': 0.45,  # fill with actual
-    'total_cost': '$X.XX',
-    'dpo_metrics': [
-        {'step': 100, 'loss': 0.7, 'reward_acc': 0.55, 'margin': 0.2},
-        # ... add more steps
-    ]
+
+# --- Factuality Comparison ---
+if v2_data and "factuality" in v2_data:
+    st.header("🎯 Factuality Evaluation: Base vs SFT vs DPO")
+
+    st.markdown("""
+    **Key Finding:** Despite strong DPO alignment (80% reward accuracy), all model stages
+    perform poorly on strict factual recall of niche ML terminology. The base model itself
+    doesn't reliably know these terms.
+    """)
+
+    fact_data = v2_data["factuality"]
+    fact_df = pd.DataFrame([
+        {"Model Stage": "Base (Llama-3.1-8B-Instruct)", "Passed": fact_data["base"]["passed"],
+         "Total": fact_data["base"]["total"], "Accuracy": fact_data["base"]["accuracy"]},
+        {"Model Stage": "SFT (OpenHermes + Technical)", "Passed": fact_data["sft"]["passed"],
+         "Total": fact_data["sft"]["total"], "Accuracy": fact_data["sft"]["accuracy"]},
+        {"Model Stage": "DPO (Merged-SFT, β=0.05)", "Passed": fact_data["dpo"]["passed"],
+         "Total": fact_data["dpo"]["total"], "Accuracy": fact_data["dpo"]["accuracy"]},
+    ])
+
+    col_fact1, col_fact2 = st.columns([1, 2])
+
+    with col_fact1:
+        st.dataframe(fact_df[["Model Stage", "Passed", "Accuracy"]].style.format({"Accuracy": "{:.1%}"}),
+                     use_container_width=True, hide_index=True)
+
+        st.markdown("**Interpretation:**")
+        st.markdown("""
+        - Base model doesn't know niche ML terms (9.8%)
+        - 875 SFT examples / 1 epoch insufficient to teach factual recall
+        - DPO's contribution to factuality loss is secondary (~4pp)
+        - Primary bottleneck: SFT data quantity, not DPO interference
+        """)
+
+    with col_fact2:
+        fig_fact = go.Figure()
+        colors = ["#2196F3", "#FF9800", "#E91E63"]
+        stages = fact_df["Model Stage"].tolist()
+        accuracies = [a * 100 for a in fact_df["Accuracy"].tolist()]
+
+        fig_fact.add_trace(go.Bar(
+            x=stages, y=accuracies,
+            marker_color=colors,
+            text=[f"{a:.1f}%" for a in accuracies],
+            textposition="outside",
+        ))
+        fig_fact.update_layout(
+            title="Factuality Accuracy by Model Stage (51 prompts, strict keyword matching)",
+            yaxis_title="Accuracy (%)",
+            yaxis=dict(range=[0, 20]),
+            height=400,
+            margin=dict(t=50, b=80),
+            showlegend=False,
+        )
+        st.plotly_chart(fig_fact, use_container_width=True)
+
+    # Metric mismatch visualization
+    st.subheader("📉 The Metric-Factuality Mismatch")
+    col_m1, col_m2 = st.columns(2)
+
+    with col_m1:
+        fig_mismatch = go.Figure()
+        fig_mismatch.add_trace(go.Bar(
+            name="DPO Reward Accuracy",
+            x=["Alignment Metric"], y=[v2_data.get("eval_reward_accuracy", 0.80) * 100],
+            marker_color="#4CAF50",
+        ))
+        fig_mismatch.add_trace(go.Bar(
+            name="Factuality (DPO)",
+            x=["Factuality"], y=[fact_data["dpo"]["accuracy"] * 100],
+            marker_color="#E91E63",
+        ))
+        fig_mismatch.update_layout(
+            title="Alignment ≠ Factuality",
+            yaxis_title="Score (%)",
+            yaxis=dict(range=[0, 100]),
+            height=350,
+            barmode="group",
+        )
+        st.plotly_chart(fig_mismatch, use_container_width=True)
+
+    with col_m2:
+        st.markdown("### The Disconnect")
+        st.markdown("""
+        | Metric | Score |
+        |--------|-------|
+        | DPO Reward Accuracy | **80%** ✅ |
+        | SFT Token Accuracy | **78%** ✅ |
+        | SFT Eval Loss | **0.825** ✅ |
+        | Domain Factuality | **5.9%** ❌ |
+
+        **Training metrics look great. Factuality does not.**
+
+        This is the core finding: standard alignment metrics
+        (reward accuracy, loss) do not capture factual degradation.
+        """)
+
+    st.info("💡 **Next experiments needed:** SFT with 3-5 epochs, SFT with 2.5K-5K examples, "
+            "semantic/LLM-judge factuality eval (not just keyword matching).")
+
+# --- Version Comparison Table ---
+st.header("📋 Version Comparison")
+
+version_data = {
+    "Version": ["v1", "v2", "v3", "v4 (latest)"],
+    "SFT Data": ["Alpaca 1K", "Alpaca 1K", "OpenHermes+Tech 3.9K", "OpenHermes+Tech 3.9K"],
+    "DPO Config": ["Stacked, β=0.1", "Stacked, β=0.1", "Stacked, β=0.1", "Merged-SFT, β=0.05"],
+    "Peak Reward Acc": ["50%", "75%", "68%", "83%"],
+    "DPO Loss": ["0.70", "0.76", "0.77", "0.54"],
+    "Factuality": ["—", "—", "9.8% (DPO only)", "Base 9.8% / SFT 7.8% / DPO 5.9%"],
 }
-with open('dashboard/v2_results.json', 'w') as f:
-    json.dump(results, f, indent=2)
-"
-""", language="bash")
+version_df = pd.DataFrame(version_data)
+st.dataframe(version_df, use_container_width=True, hide_index=True)
 
 # --- Model Comparison ---
 COMPARISON_PATH = Path("dashboard/sample_comparisons.json")
@@ -327,22 +444,28 @@ st.header("⚙️ Configuration")
 col_config1, col_config2 = st.columns(2)
 
 with col_config1:
-    st.markdown("### Model")
+    st.markdown("### Model & Training")
     st.json({
-        "base_model": V1_SUMMARY["model"],
-        "quantization": V1_SUMMARY["quantization"],
-        "lora_rank": V1_SUMMARY["lora_rank"],
-        "trainable_params": V1_SUMMARY["trainable_params"],
+        "base_model": "meta-llama/Llama-3.1-8B-Instruct",
+        "quantization": "QLoRA (4-bit NF4, double quant)",
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "trainable_params": "13.6M (0.30%)",
+        "sft_data": "OpenHermes 3K + Technical 875 + Uncertainty 15",
+        "dpo_data": "UltraFeedback 5K + Factual pairs (20% upsampled)",
     })
 
 with col_config2:
     st.markdown("### Infrastructure")
     st.json({
-        "gpu": V1_SUMMARY["gpu"],
-        "platform": V1_SUMMARY["platform"],
-        "total_cost": V1_SUMMARY["total_cost"],
-        "sft_duration": f"{V1_SUMMARY['sft_time_min']} min",
-        "dpo_duration": f"{V1_SUMMARY['dpo_time_min']} min",
+        "gpu": "NVIDIA RTX A6000 (48 GB)",
+        "platform": "RunPod.io",
+        "total_cost": "~$5 across all runs",
+        "sft_duration": "12.5 min",
+        "dpo_duration": "67.6 min (v4)",
+        "dpo_beta": 0.05,
+        "dpo_lr": "1e-5",
+        "adapter_strategy": "Merged-SFT (bake SFT into base before DPO)",
     })
 
 # --- Footer ---

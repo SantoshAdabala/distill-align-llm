@@ -20,6 +20,9 @@ env/
 # Kiro / AI assistant files
 .kiro/
 
+# Paper (local only, not for git)
+paper/
+
 # Learning notes (personal study material)
 docs/learning/
 
