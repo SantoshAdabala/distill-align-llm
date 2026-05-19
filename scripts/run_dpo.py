@@ -13,6 +13,7 @@ USAGE:
 """
 
 import argparse
+import json
 import logging
 import sys
 from pathlib import Path
@@ -111,6 +112,21 @@ def main():
     logger.info("Formatting dataset for DPO...")
     train_dataset = train_dataset.map(format_for_dpo, remove_columns=train_dataset.column_names)
     eval_dataset = eval_dataset.map(format_for_dpo, remove_columns=eval_dataset.column_names)
+
+    # Add factual DPO pairs (reduces hallucination)
+    factual_path = Path("data/factual_dpo_pairs.jsonl")
+    if factual_path.exists():
+        factual_pairs = []
+        with open(factual_path) as f:
+            for line in f:
+                factual_pairs.append(json.loads(line))
+        if factual_pairs:
+            from datasets import Dataset as HFDataset
+            factual_ds = HFDataset.from_list(factual_pairs)
+            from datasets import concatenate_datasets
+            train_dataset = concatenate_datasets([train_dataset, factual_ds])
+            logger.info(f"Added {len(factual_pairs)} factual DPO pairs (total: {len(train_dataset)})")
+
     logger.info(f"Formatted columns: {train_dataset.column_names}")
 
     # Filter out any empty entries

@@ -77,6 +77,8 @@ def main():
 
     # ─── Load dataset ───
     logger.info("Loading instruction dataset...")
+    from datasets import Dataset
+
     from distill_align.config.models import DatasetType
     from distill_align.data.processor import DataProcessor
 
@@ -87,9 +89,48 @@ def main():
     ]
 
     if not instruction_datasets:
-        logger.info("No instruction dataset in config — using tatsu-lab/alpaca for testing")
-        from datasets import load_dataset
-        dataset = load_dataset("tatsu-lab/alpaca", split="train[:1000]")
+        logger.info("No instruction dataset in config — using OpenHermes-2.5 + custom technical data")
+        from datasets import concatenate_datasets, load_dataset
+
+        # Load high-quality instruction data (OpenHermes-2.5 is much better than Alpaca)
+        hermes = load_dataset("teknium/OpenHermes-2.5", split="train[:3000]")
+        # Format to messages
+        def format_hermes(example):
+            convos = example.get("conversations", [])
+            messages = []
+            for turn in convos:
+                role = "user" if turn["from"] == "human" else "assistant"
+                messages.append({"role": role, "content": turn["value"]})
+            return {"messages": messages}
+
+        hermes = hermes.map(format_hermes, remove_columns=hermes.column_names)
+
+        # Load custom technical dataset
+        import json
+        from pathlib import Path
+        tech_path = Path("data/technical_instructions.jsonl")
+        uncertainty_path = Path("data/uncertainty_examples.jsonl")
+
+        extra_data = []
+        if tech_path.exists():
+            with open(tech_path) as f:
+                for line in f:
+                    extra_data.append(json.loads(line))
+            logger.info(f"Loaded {len(extra_data)} technical examples")
+
+        if uncertainty_path.exists():
+            with open(uncertainty_path) as f:
+                for line in f:
+                    extra_data.append(json.loads(line))
+            logger.info(f"Added uncertainty examples (total extra: {len(extra_data)})")
+
+        if extra_data:
+            tech_dataset = Dataset.from_list(extra_data)
+            dataset = concatenate_datasets([hermes, tech_dataset])
+        else:
+            dataset = hermes
+
+        logger.info(f"Combined SFT dataset: {len(dataset)} examples")
     else:
         ds_config = instruction_datasets[0]
         dataset = processor.load_dataset(ds_config)

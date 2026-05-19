@@ -1,0 +1,51 @@
+{"prompt": "What does LoRA stand for?", "must_include": ["Low-Rank Adaptation"], "must_not_include": ["Learning to be Optimal", "Learned Optimizers", "Routing Algorithms"]}
+{"prompt": "What does DPO stand for?", "must_include": ["Direct Preference Optimization"], "must_not_include": ["Dynamic", "Deep"]}
+{"prompt": "What does QLoRA stand for?", "must_include": ["Quantized", "Low-Rank"], "must_not_include": ["Quick", "Quality"]}
+{"prompt": "What does RLHF stand for?", "must_include": ["Reinforcement Learning from Human Feedback"], "must_not_include": ["Recursive", "Regularized"]}
+{"prompt": "What does GRPO stand for?", "must_include": ["Group Relative Policy Optimization"], "must_not_include": ["Gradient", "Generalized"]}
+{"prompt": "What is gradient checkpointing?", "must_include": ["recompute", "activation", "memory"], "must_not_include": ["saves model weights", "exploding gradients", "model checkpoint"]}
+{"prompt": "What is the purpose of the KL penalty in RLHF?", "must_include": ["prevent", "diverge", "reference"], "must_not_include": ["increase reward", "speed up training"]}
+{"prompt": "What does NF4 stand for in QLoRA?", "must_include": ["NormalFloat", "4-bit"], "must_not_include": ["Neural Float", "Natural"]}
+{"prompt": "What is PagedAttention?", "must_include": ["KV-cache", "memory", "pages"], "must_not_include": ["pagination", "web pages"]}
+{"prompt": "What is the beta parameter in DPO?", "must_include": ["KL", "regularization", "reference"], "must_not_include": ["learning rate", "batch size"]}
+{"prompt": "What is continuous batching in LLM serving?", "must_include": ["requests", "batch", "finish"], "must_not_include": ["training", "gradient"]}
+{"prompt": "What is the difference between SFT and DPO?", "must_include": ["instruction", "preference", "chosen", "rejected"], "must_not_include": ["same thing", "identical"]}
+{"prompt": "What is reward accuracy in DPO?", "must_include": ["chosen", "rejected", "implicit reward"], "must_not_include": ["classification accuracy", "token accuracy"]}
+{"prompt": "What is mixed precision training?", "must_include": ["fp16", "bf16", "fp32"], "must_not_include": ["quantization", "4-bit"]}
+{"prompt": "What is Flash Attention?", "must_include": ["memory", "attention", "tiling"], "must_not_include": ["flash memory", "SSD"]}
+{"prompt": "What is the purpose of warmup steps in training?", "must_include": ["learning rate", "gradually", "stability"], "must_not_include": ["GPU temperature", "hardware"]}
+{"prompt": "What is adapter merging in LoRA?", "must_include": ["base weights", "fold", "inference"], "must_not_include": ["combine datasets", "merge models"]}
+{"prompt": "What is the reference model in DPO?", "must_include": ["frozen", "SFT", "anchor"], "must_not_include": ["reward model", "value function"]}
+{"prompt": "What is vLLM?", "must_include": ["inference", "serving", "PagedAttention"], "must_not_include": ["training", "fine-tuning"]}
+{"prompt": "What is the causal attention mask?", "must_include": ["future tokens", "previous", "autoregressive"], "must_not_include": ["bidirectional", "BERT"]}
+{"prompt": "What is weight decay in AdamW?", "must_include": ["regularization", "weights", "prevent"], "must_not_include": ["learning rate decay", "gradient decay"]}
+{"prompt": "What is gradient accumulation?", "must_include": ["batch size", "multiple steps", "optimizer"], "must_not_include": ["gradient checkpointing", "activation memory"]}
+{"prompt": "What is the lm_head in a language model?", "must_include": ["vocabulary", "logits", "projection"], "must_not_include": ["attention head", "LoRA head"]}
+{"prompt": "What is BitsAndBytes used for?", "must_include": ["quantization", "4-bit", "8-bit"], "must_not_include": ["data compression", "file format"]}
+{"prompt": "What is the difference between fp16 and bf16?", "must_include": ["exponent", "range", "precision"], "must_not_include": ["same thing", "identical"]}
+{"prompt": "What is PEFT?", "must_include": ["Parameter-Efficient Fine-Tuning"], "must_not_include": ["Performance", "Parallel"]}
+{"prompt": "What is TRL?", "must_include": ["Transformer Reinforcement Learning", "Hugging Face"], "must_not_include": ["Transfer", "Translation"]}
+{"prompt": "What is the SFTTrainer in TRL?", "must_include": ["supervised fine-tuning", "instruction", "chat"], "must_not_include": ["reward model", "PPO"]}
+{"prompt": "What is the DPOTrainer in TRL?", "must_include": ["preference", "chosen", "rejected"], "must_not_include": ["reward model", "value function"]}
+{"prompt": "What does device_map='auto' do?", "must_include": ["GPU", "distribute", "layers"], "must_not_include": ["training", "optimizer"]}
+{"prompt": "What is the purpose of the attention_mask?", "must_include": ["padding", "ignore", "attend"], "must_not_include": ["causal mask", "LoRA"]}
+{"prompt": "What is RoPE?", "must_include": ["Rotary Position", "relative position"], "must_not_include": ["absolute position", "learned embedding"]}
+{"prompt": "What is GQA (Grouped Query Attention)?", "must_include": ["KV heads", "query heads", "memory"], "must_not_include": ["question answering", "QA dataset"]}
+{"prompt": "What is SwiGLU?", "must_include": ["activation", "gated", "MLP"], "must_not_include": ["attention", "normalization"]}
+{"prompt": "What is RMSNorm?", "must_include": ["normalization", "root mean square"], "must_not_include": ["batch norm", "dropout"]}
+{"prompt": "What is the KV-cache?", "must_include": ["key", "value", "autoregressive", "stored"], "must_not_include": ["training", "gradient"]}
+{"prompt": "What is speculative decoding?", "must_include": ["draft model", "verify", "speed"], "must_not_include": ["training", "fine-tuning"]}
+{"prompt": "What is tensor parallelism?", "must_include": ["split", "layers", "GPUs"], "must_not_include": ["data parallelism", "batch"]}
+{"prompt": "What is the Bradley-Terry model?", "must_include": ["preference", "probability", "pairwise"], "must_not_include": ["classification", "regression"]}
+{"prompt": "What is reward hacking?", "must_include": ["exploit", "reward model", "quality"], "must_not_include": ["security", "hacking computers"]}
+{"prompt": "What is the implicit reward in DPO?", "must_include": ["log probability", "ratio", "reference"], "must_not_include": ["reward model", "scalar score"]}
+{"prompt": "What is double quantization in QLoRA?", "must_include": ["quantization constants", "additional memory"], "must_not_include": ["double precision", "fp64"]}
+{"prompt": "What is the purpose of prepare_model_for_kbit_training?", "must_include": ["quantized", "gradient", "LoRA"], "must_not_include": ["inference", "serving"]}
+{"prompt": "What is NEFTune?", "must_include": ["noise", "embedding", "regularization"], "must_not_include": ["network", "architecture"]}
+{"prompt": "What is sequence packing in SFT?", "must_include": ["concatenate", "short examples", "efficiency"], "must_not_include": ["compression", "quantization"]}
+{"prompt": "What is loss masking in SFT?", "must_include": ["prompt tokens", "-100", "assistant"], "must_not_include": ["dropout", "attention mask"]}
+{"prompt": "What is the difference between online and offline DPO?", "must_include": ["generate", "fixed dataset", "current policy"], "must_not_include": ["internet", "offline mode"]}
+{"prompt": "What is model merging?", "must_include": ["combine", "weights", "without retraining"], "must_not_include": ["ensemble", "voting"]}
+{"prompt": "What is GGUF format?", "must_include": ["llama.cpp", "quantized", "inference"], "must_not_include": ["training", "fine-tuning"]}
+{"prompt": "What is AWQ quantization?", "must_include": ["activation-aware", "important weights", "4-bit"], "must_not_include": ["training", "LoRA"]}
+{"prompt": "What is the difference between perplexity and loss?", "must_include": ["exponential", "exp(loss)"], "must_not_include": ["different metrics", "unrelated"]}
