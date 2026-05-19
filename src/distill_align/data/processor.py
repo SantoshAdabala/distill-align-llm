@@ -85,8 +85,8 @@ class DataProcessor:
         if source.startswith("s3://"):
             logger.info("S3 source detected — downloading via boto3")
             raise NotImplementedError(
-                "S3 loading will be implemented in SageMaker integration. "
-                "Use HuggingFace Hub ID or local path for now."
+                "S3 loading is not supported. "
+                "Use HuggingFace Hub ID or local path."
             )
 
         try:

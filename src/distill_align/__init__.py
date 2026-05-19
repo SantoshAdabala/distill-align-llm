@@ -3,12 +3,12 @@ Distill + Align: End-to-end LLM alignment pipeline.
 
 Modules:
     config/      - YAML configuration management and validation
-    data/        - Dataset loading, preprocessing, Glue ETL, quality validation
+    data/        - Dataset loading, preprocessing, quality validation
     training/    - SFT, DPO, and RLHF trainer wrappers
-    evaluation/  - Model benchmarking and comparison reports
-    serving/     - vLLM inference engine, FastAPI gateway, SageMaker endpoints
-    monitoring/  - Prometheus metrics (local) and CloudWatch alarms (AWS)
-    tracking/    - Weights & Biases experiment tracking
+    evaluation/  - Model benchmarking and comparison
+    serving/     - vLLM inference engine, FastAPI gateway
+    monitoring/  - Prometheus metrics
+    tracking/    - Experiment tracking
 """
 
 __version__ = "0.1.0"

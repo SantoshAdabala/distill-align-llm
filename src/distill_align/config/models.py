@@ -47,10 +47,10 @@ class DatasetSource(str, Enum):
 
 
 class TrainingMode(str, Enum):
-    """Where training runs: locally or on SageMaker."""
+    """Where training runs: locally or on cloud GPU (RunPod)."""
 
     LOCAL = "local"
-    SAGEMAKER = "sagemaker"
+    CLOUD = "cloud"
 
 
 # ═══════════════════════════════════════════════
@@ -228,12 +228,12 @@ class PPOConfig(BaseModel):
 
 
 class SageMakerConfig(BaseModel):
-    """AWS SageMaker training job configuration."""
+    """Cloud GPU training configuration (RunPod / cloud providers)."""
 
     training_mode: TrainingMode = TrainingMode.LOCAL
     instance_type: str = Field(
-        default="ml.g5.xlarge",
-        description="SageMaker instance type. ml.g5.xlarge has 1x A10G GPU (24GB), ~$1.40/hr on-demand",
+        default="RTX-A5000",
+        description="GPU type. RTX A5000 (24GB VRAM), ~$0.27/hr on RunPod",
     )
     instance_count: int = Field(default=1, ge=1)
     use_spot_instances: bool = Field(
@@ -247,14 +247,14 @@ class SageMakerConfig(BaseModel):
     )
     checkpoint_s3_uri: str = Field(default="", description="S3 path for checkpoint storage")
     ecr_image_uri: str = Field(default="", description="ECR Docker image URI for training container")
-    role_arn: str = Field(default="", description="IAM role ARN for SageMaker execution")
+    role_arn: str = Field(default="", description="IAM role ARN (if using AWS)")
     s3_output_path: str = Field(default="", description="S3 path for training output artifacts")
 
 
 class ServingConfig(BaseModel):
-    """Model serving configuration (local vLLM or SageMaker)."""
+    """Model serving configuration (local vLLM)."""
 
-    engine: str = Field(default="vllm", description="Serving engine: 'vllm' (local) or 'sagemaker'")
+    engine: str = Field(default="vllm", description="Serving engine: 'vllm' or 'huggingface'")
     model_path: str = Field(default="", description="Path to model weights (local or S3)")
     quantization: QuantizationMode = QuantizationMode.NONE
     max_model_len: int = Field(default=2048, ge=128, description="Max sequence length for serving")
@@ -266,7 +266,7 @@ class ServingConfig(BaseModel):
 
 
 class ProductionVariantConfig(BaseModel):
-    """A single model variant in a SageMaker A/B test endpoint."""
+    """A single model variant for A/B testing."""
 
     variant_name: str
     model_artifact_s3_uri: str
@@ -278,7 +278,7 @@ class ProductionVariantConfig(BaseModel):
 
 
 class EndpointConfig(BaseModel):
-    """SageMaker Endpoint configuration with auto-scaling."""
+    """Endpoint configuration with auto-scaling."""
 
     endpoint_name: str = ""
     instance_type: str = "ml.g5.xlarge"
@@ -301,7 +301,7 @@ class MonitoringConfig(BaseModel):
 
 
 class AlarmConfig(BaseModel):
-    """CloudWatch alarm settings for SageMaker Endpoints."""
+    """Monitoring alarm settings."""
 
     p99_latency_threshold_ms: float = Field(default=5000.0)
     error_rate_threshold: float = Field(default=0.05)

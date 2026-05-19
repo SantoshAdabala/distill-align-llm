@@ -5,7 +5,7 @@ USAGE:
     # Local mode (Mac M1/M2 — tiny model for testing)
     python scripts/run_sft.py --config configs/local_small.yaml
 
-    # Cloud mode (SageMaker — Llama-3.1-8B with spot instances)
+    # Cloud mode (used runpod.io for better GPU cost and efficiency)
     python scripts/run_sft.py --config configs/cloud_large.yaml --cloud
 """
 
@@ -33,7 +33,7 @@ def main():
         "--config", type=str, required=True, help="Path to YAML config file"
     )
     parser.add_argument(
-        "--cloud", action="store_true", help="Submit to SageMaker instead of local"
+        "--cloud", action="store_true", help="Submit to RunPod cloud GPU"
     )
     parser.add_argument(
         "--dry-run", action="store_true", help="Load model and data but don't train"
@@ -58,7 +58,7 @@ def main():
             logger.warning(
                 "⚠️  4-bit quantization (bitsandbytes) is NOT supported on Mac.\n"
                 "   Switching to fp32 for local testing.\n"
-                "   Use --cloud for real training with quantization on SageMaker."
+                "   Use RunPod with RTX A5000 for real training with quantization."
             )
             from distill_align.config.models import QuantizationMode
             config.model.quantization.mode = QuantizationMode.NONE
@@ -151,9 +151,8 @@ def main():
 
     # ─── Train ───
     if args.cloud:
-        logger.info("Submitting SFT training job to SageMaker...")
-        # TODO: Implement SageMaker job submission
-        logger.error("SageMaker submission not yet implemented. Use local mode for now.")
+        logger.info("Cloud training via RunPod — run this script directly on your RunPod pod.")
+        logger.error("This script is designed to run directly on the GPU pod, not submit remotely.")
         sys.exit(1)
     else:
         logger.info("Starting local SFT training...")

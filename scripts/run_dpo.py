@@ -34,7 +34,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run DPO alignment training (v2 — improved)")
     parser.add_argument("--config", type=str, required=True, help="Path to YAML config")
     parser.add_argument("--sft-adapter", type=str, required=True, help="Path to SFT adapter weights")
-    parser.add_argument("--cloud", action="store_true", help="Submit to SageMaker")
+    parser.add_argument("--cloud", action="store_true", help="Run on cloud GPU (RunPod)")
     parser.add_argument("--dry-run", action="store_true", help="Load but don't train")
     parser.add_argument("--num-samples", type=int, default=5000, help="Number of preference pairs")
     parser.add_argument("--eval-samples", type=int, default=500, help="Number of eval samples")
