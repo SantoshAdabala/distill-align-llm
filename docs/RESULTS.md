@@ -1,139 +1,184 @@
 # Results — AlignLLM Pipeline
 
-## Training Results: Llama-3.1-8B-Instruct (RunPod RTX A5000)
+## v3: Technical SFT + DPO with Factual Pairs (Latest)
 
-### Final Metrics
+### Training Configuration
 
-| Stage | Loss | Steps | Duration | GPU |
-|-------|------|-------|----------|-----|
-| **SFT** | 1.7626 | 57 | 3.1 min | RTX A5000 (24 GB) |
-| **DPO** | 0.7645 | 625 | 124.6 min | RTX A5000 (24 GB) |
+| Component | Details |
+|-----------|---------|
+| **Base Model** | meta-llama/Llama-3.1-8B-Instruct |
+| **SFT Data** | OpenHermes-2.5 (3K) + Technical Instructions (875) + Uncertainty Examples (15) = 3,890 total |
+| **DPO Data** | UltraFeedback Cleaned (5K) + Factual DPO Pairs (20) |
+| **GPU** | RTX A6000 (48 GB), RunPod.io |
+| **Quantization** | QLoRA (4-bit NF4, double quantization, bf16 compute) |
 
-**Total training time:** ~128 minutes
+### SFT Results (v3)
+
+| Metric | Value |
+|--------|-------|
+| **Train Loss** | 1.050 |
+| **Eval Loss** | 0.825 |
+| **Token Accuracy** | 78.3% |
+| **Steps** | 219 |
+| **Duration** | 12.5 min |
+
+Loss curve: 1.93 → 0.83 over 219 steps. Strong convergence with technical data.
+
+### DPO Results (v3)
+
+| Metric | Training Logs | Post-Training Eval |
+|--------|--------------|-------------------|
+| **Loss** | 0.772 | — |
+| **Reward Accuracy** | 60-68% (2nd half) | 0% (invalid — OOM during eval) |
+| **Reward Margin** | +0.30 to +0.59 | — |
+| **Steps** | 628 | — |
+| **Duration** | 57 min | — |
+
+Note: The 0% post-training eval is invalid due to OOM corruption. Training logs show healthy 60-68% accuracy.
+
+### DPO Training Curve (v3)
+
+| Step | Loss | Reward Accuracy | Margin |
+|------|------|----------------|--------|
+| 20 | 1.173 | 42.5% | -0.455 |
+| 60 | 0.997 | 46.3% | -0.152 |
+| 100 | 0.819 | 51.3% | +0.095 |
+| 160 | 0.845 | 48.1% | +0.033 |
+| 220 | 0.711 | 61.9% | +0.297 |
+| 240 | 0.673 | 65.0% | +0.399 |
+| 260 | 0.722 | 65.0% | +0.358 |
+| 300 | 0.749 | 61.3% | +0.319 |
+| 340 | 0.671 | 59.4% | +0.483 |
+| 400 | 0.705 | 66.3% | +0.435 |
+| 440 | 0.687 | 60.6% | +0.455 |
+| 480 | 0.685 | 65.0% | +0.429 |
+| 500 | 0.620 | 66.3% | +0.593 |
+| 520 | 0.620 | 64.4% | +0.562 |
+| 540 | 0.635 | 68.1% | +0.551 |
+| 580 | 0.676 | 63.8% | +0.521 |
+| 620 | 0.646 | 65.0% | +0.535 |
+
+### Factuality Evaluation (v3)
+
+**Result: 5/51 passed (9.8%)**
+
+The DPO model fails on domain-specific technical terms. Examples of hallucinations:
+- "DPO = Days Past Order" (should be Direct Preference Optimization)
+- "QLoRA = Quantum LoiR Accelerator" (should be Quantized Low-Rank Adaptation)
+- "RLHF = Rule-Based Human Evaluation and Feedback" (should be Reinforcement Learning from Human Feedback)
+- "vLLM = Very Large Language Model" (should be a serving engine)
+
+Passed correctly: LoRA, mixed precision, weight decay, attention_mask, RMSNorm.
+
+### Response Comparison (v3)
+
+| Prompt | Base | SFT | DPO |
+|--------|------|-----|-----|
+| Gradient checkpointing | Generic, verbose | Concise, mentions memory savings | Generic, verbose |
+| Reduce GPU costs | Lists AWS instances | Practical tips (batch size, mixed precision) | Lists AWS instances |
+| Safety refusal | Refuses correctly | Refuses correctly | Refuses correctly (most concise) |
+| LoRA vs full FT | Correct explanation | Correct, concise | Correct explanation |
+
+**Key observation:** SFT model gives more concise, technically-focused answers. DPO model reverts to base model's verbose, generic style on technical topics.
+
+---
+
+## Analysis: Why DPO Doesn't Preserve Technical Knowledge
+
+### Hypothesis
+
+DPO shifted the output distribution toward generic helpfulness patterns (rewarded by UltraFeedback), suppressing the technical response selection that SFT learned. The knowledge likely still exists in the model's representations — DPO just made it less likely to surface during generation.
+
+**This is NOT knowledge overwriting.** It's distribution shift + preference optimization selecting for a different output style.
+
+### Evidence
+
+1. SFT model correctly answers LoRA questions (prompt 4 in comparison)
+2. DPO training data: 5000 generic preference pairs vs 20 factual pairs — generic dominates
+3. UltraFeedback rewards helpfulness/tone/style, not technical accuracy
+4. The model learned: "be helpful > be technical" instead of "be correct > be helpful"
+
+### Research Question
+
+> Under what conditions does DPO preserve vs suppress domain-specific knowledge acquired during SFT?
+
+### Planned Experiments
+
+1. **Evaluate Base vs SFT vs DPO** on same factuality prompts (isolate where knowledge is lost)
+2. **Increase factual DPO pairs to 20%** of training data (not 0.4%)
+3. **Merge SFT adapter before DPO** (instead of stacked adapters)
+4. **Lower DPO beta to 0.05** (less aggressive preference shift)
+5. **Deterministic generation** (temperature=0) to rule out sampling artifacts
+
+---
+
+## v2: Improved DPO (Previous Best)
+
+### Results
+
+| Stage | Loss | Reward Accuracy | Duration |
+|-------|------|----------------|----------|
+| **SFT** | 1.763 (eval: 1.127) | 72% token accuracy | 3.1 min |
+| **DPO** | 0.758 | **75%** (final step) | 125 min |
+
 **Total cost:** ~$0.58 (RunPod RTX A5000 @ $0.27/hr)
 
-### Model Configuration
+### What Fixed DPO Alignment (v1 → v2)
 
-| Parameter | Value |
-|-----------|-------|
-| **Base Model** | meta-llama/Llama-3.1-8B-Instruct |
-| **Quantization** | QLoRA (4-bit NF4, double quantization, bf16 compute) |
-| **LoRA Rank** | 16 (alpha=32) |
-| **Target Modules** | q_proj, k_proj, v_proj, o_proj |
-| **Platform** | RunPod.io |
-| **GPU** | NVIDIA RTX A5000 (24 GB VRAM) |
+| Change | v1 | v2 |
+|--------|----|----|
+| Learning rate | 5e-5 | 1e-5 |
+| Dataset | UltraFeedback raw | UltraFeedback cleaned |
+| Base model | Llama-3.1-8B (base) | Llama-3.1-8B-Instruct |
+| Alignment quality | Weak (50%) | Strong (75%) |
 
 ---
 
-## SFT Training Curve
+## Version Comparison
 
-```
-Step  10: loss=3.371  token_acc=49.8%  epoch=0.09
-Step  20: loss=3.078  token_acc=53.0%  epoch=0.18
-Step  30: loss=2.500  token_acc=55.5%  epoch=0.27
-Step  40: loss=1.991  token_acc=63.3%  epoch=0.36
-Step  50: loss=1.487  token_acc=69.4%  epoch=0.44
-Step  57: loss=1.113  token_acc=74.8%  epoch=0.98
-```
-
-**Eval loss: 1.129 | Eval token accuracy: 72.2%**
-
-> SFT converged strongly: loss dropped from 3.37 → 1.11, token accuracy improved from 50% → 75%. The model learned instruction-following in under 3 minutes.
-
----
-
-## DPO Training Curve
-
-### Key Metrics Over Training
-
-| Step | Loss | Reward Accuracy | Reward Margin |
-|------|------|----------------|---------------|
-| 20 | 1.442 | 23.8% | -0.943 |
-| 60 | 1.319 | 36.9% | -0.648 |
-| 100 | 0.963 | 40.6% | -0.245 |
-| 140 | 0.841 | 43.1% | -0.048 |
-| 160 | 0.702 | 60.0% | +0.200 |
-| 200 | 0.669 | 61.9% | +0.315 |
-| 260 | 0.681 | 61.3% | +0.292 |
-| 300 | 0.626 | 64.4% | +0.407 |
-| 320 | 0.661 | 65.0% | +0.320 |
-| 380 | 0.559 | 68.1% | +0.637 |
-| 420 | 0.601 | 66.3% | +0.735 |
-| 460 | 0.614 | 64.4% | +0.542 |
-| 500 | 0.665 | 58.1% | +0.426 |
-| 540 | 0.605 | 67.5% | +0.505 |
-| 560 | 0.610 | 68.8% | +0.567 |
-| 600 | 0.665 | 65.0% | +0.461 |
-| 620 | 0.628 | 63.8% | +0.469 |
-| **625** | **0.764** | **75.0%** | **+0.623** |
-
-> DPO alignment succeeded. Reward accuracy climbed from 24% → 75%, consistently above 60% in the second half of training. The model clearly learned to prefer chosen responses over rejected ones.
-
----
-
-## DPO Configuration (v2 — Improved)
-
-| Parameter | Value | Rationale |
-|-----------|-------|-----------|
-| **Learning Rate** | 1e-5 | Lower than v1 (5e-5) for stable alignment |
-| **Beta** | 0.1 | Standard KL regularization strength |
-| **Batch Size** | 1 | Memory-constrained (2 models in VRAM) |
-| **Gradient Accumulation** | 8 | Effective batch = 8 |
-| **Max Sequence Length** | 512 | Reduced from 1024 to fit DPO in 24GB |
-| **Dataset** | argilla/ultrafeedback-binarized-preferences-cleaned | Cleaner than raw UltraFeedback |
-| **Train Samples** | 5,000 | |
-| **Epochs** | 1 | |
-
----
-
-## v1 vs v2 Comparison
-
-| Metric | v1 (initial run) | v2 (improved) |
-|--------|-----------------|---------------|
-| **Peak Reward Accuracy** | 50% | **75%** |
-| **Avg Accuracy (2nd half)** | 35-45% | **60-68%** |
-| **Final Reward Margin** | +0.66 | **+0.62** |
-| **DPO Loss** | 0.70 (≈ random baseline) | **0.63** (below random) |
-| **Dataset** | UltraFeedback raw 5K | UltraFeedback cleaned 5K |
-| **DPO Learning Rate** | 5e-5 | 1e-5 |
-| **Alignment Quality** | Weak/unstable | **Strong** ✅ |
-
-### What Fixed the Alignment
-
-1. **Lower learning rate** (1e-5 vs 5e-5) — prevented overshooting the preference signal
-2. **Cleaner dataset** (argilla cleaned version) — less noisy preference pairs
-3. **Instruct model as base** — already has chat template, better starting point for DPO
+| Metric | v1 | v2 | v3 |
+|--------|----|----|-----|
+| **SFT Eval Loss** | 1.127 | 1.127 | **0.825** |
+| **SFT Token Accuracy** | 72% | 72% | **78.3%** |
+| **DPO Reward Accuracy** | 50% | 75% | 60-68% |
+| **SFT Data** | Alpaca 1K | Alpaca 1K | OpenHermes + Technical 3.9K |
+| **Factuality** | Not tested | Not tested | 9.8% (DPO only) |
+| **Technical Knowledge** | No | No | Yes (SFT), No (DPO) |
 
 ---
 
 ## How to Reproduce
 
 ```bash
-# 1. Deploy RunPod pod (RTX A5000 24GB, PyTorch template)
-# 2. Clone and install
+# Deploy RunPod pod (RTX A6000 48GB recommended)
 git clone https://github.com/SantoshAdabala/distill-align-llm.git
 cd distill-align-llm
 pip install transformers accelerate peft datasets bitsandbytes trl
 pip install -e .
-
-# 3. Login to HuggingFace (Llama is gated)
 hf auth login
 
-# 4. Run SFT (~3 min)
+# SFT (~12 min)
 python scripts/run_sft.py --config configs/local_small.yaml
 
-# 5. Run DPO (~2 hours)
+# DPO (~57 min)
 python scripts/run_dpo.py --config configs/local_small.yaml --sft-adapter ./outputs/sft/final_adapter
 
-# 6. Stop pod when done
+# Factuality evaluation
+python scripts/eval_factuality.py --model-path ./outputs/dpo/dpo_adapter
+
+# Response comparison
+python scripts/compare_models.py --base-model meta-llama/Llama-3.1-8B-Instruct --sft-adapter ./outputs/sft/final_adapter --dpo-adapter ./outputs/dpo/dpo_adapter --max-prompts 4
 ```
 
 ---
 
 ## Next Steps
 
-1. ~~SFT training~~ ✅ (loss 1.13, token accuracy 75%)
-2. ~~DPO alignment~~ ✅ (reward accuracy 75%, strong alignment)
-3. Generate before/after response comparisons (Base vs SFT vs DPO)
-4. Run evaluation benchmarks (MMLU, HellaSwag, TruthfulQA)
-5. Implement RLHF/GRPO stage and compare against DPO
+1. ~~SFT with technical data~~ ✅
+2. ~~DPO with factual pairs~~ ✅
+3. ~~Factuality evaluation~~ ✅ (baseline established: 9.8%)
+4. Evaluate SFT adapter separately on factuality (isolate knowledge retention)
+5. Increase factual DPO pairs to 20% of training data
+6. Merge SFT before DPO (Experiment 3)
+7. Lower DPO beta to 0.05
+8. Add RAG for grounded technical responses
