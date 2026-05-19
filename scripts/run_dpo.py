@@ -65,21 +65,45 @@ def main():
     logger.info(f"Loading SFT adapter from: {args.sft_adapter}")
     if args.merge_sft:
         # Experiment 3: Merge SFT into base weights before DPO
-        # This preserves SFT knowledge more strongly during DPO
+        # Must load in bf16 (not quantized) to merge, then re-apply quantization
         logger.info("EXPERIMENT 3: Merging SFT adapter into base model before DPO...")
-        from peft import PeftModel
-        model_with_sft = PeftModel.from_pretrained(model, args.sft_adapter)
-        model = model_with_sft.merge_and_unload()
-        logger.info("SFT adapter merged into base weights. DPO will train fresh LoRA on merged model.")
-        # Re-apply LoRA for DPO training
-        from peft import LoraConfig, get_peft_model
-        dpo_lora_config = LoraConfig(
-            r=16, lora_alpha=32,
-            target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
-            lora_dropout=0.05, task_type="CAUSAL_LM",
+        logger.info("Loading base model in bf16 for merge (cannot merge into quantized model)...")
+
+        import torch as _torch
+        from peft import PeftModel as _PeftModel
+        from transformers import AutoModelForCausalLM as _AutoModel
+
+        # Load base in bf16 (no quantization) for clean merge
+        base_for_merge = _AutoModel.from_pretrained(
+            config.model.model_id,
+            torch_dtype=_torch.bfloat16,
+            device_map="auto",
+            trust_remote_code=True,
         )
-        model = get_peft_model(model, dpo_lora_config)
-        model.print_trainable_parameters()
+        # Load SFT adapter
+        merged = _PeftModel.from_pretrained(base_for_merge, args.sft_adapter)
+        # Merge adapter into base weights
+        merged = merged.merge_and_unload()
+        logger.info("SFT adapter merged successfully.")
+
+        # Save merged model temporarily
+        merge_path = "./outputs/sft_merged"
+        merged.save_pretrained(merge_path)
+        tokenizer.save_pretrained(merge_path)
+        del merged, base_for_merge, model
+        import gc
+        _torch.cuda.empty_cache()
+        gc.collect()
+
+        # Reload merged model with quantization + fresh LoRA for DPO
+        logger.info("Reloading merged model with QLoRA for DPO training...")
+        from distill_align.models.loader import ModelLoader as _Loader
+        # Create a config pointing to the merged model
+        merged_config = config.model.model_copy()
+        merged_config.model_id = merge_path
+        loader2 = _Loader()
+        model, tokenizer = loader2.load_model(merged_config)
+        logger.info("Merged model loaded with fresh LoRA. DPO will train on merged base.")
     else:
         # Standard: Load SFT adapter, train DPO adapter on top
         model.load_adapter(args.sft_adapter, adapter_name="sft")
