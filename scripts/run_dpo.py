@@ -34,6 +34,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run DPO alignment training (v2 — improved)")
     parser.add_argument("--config", type=str, required=True, help="Path to YAML config")
     parser.add_argument("--sft-adapter", type=str, required=True, help="Path to SFT adapter weights")
+    parser.add_argument("--merge-sft", action="store_true", help="Merge SFT adapter into base before DPO (Experiment 3)")
     parser.add_argument("--cloud", action="store_true", help="Run on cloud GPU (RunPod)")
     parser.add_argument("--dry-run", action="store_true", help="Load but don't train")
     parser.add_argument("--num-samples", type=int, default=5000, help="Number of preference pairs")
@@ -60,11 +61,30 @@ def main():
     loader = ModelLoader()
     model, tokenizer = loader.load_model(config.model)
 
-    # Load the trained SFT adapter weights into the LoRA layers
+    # Load the trained SFT adapter weights
     logger.info(f"Loading SFT adapter from: {args.sft_adapter}")
-    model.load_adapter(args.sft_adapter, adapter_name="sft")
-    model.set_adapter("sft")
-    logger.info("SFT adapter loaded successfully")
+    if args.merge_sft:
+        # Experiment 3: Merge SFT into base weights before DPO
+        # This preserves SFT knowledge more strongly during DPO
+        logger.info("EXPERIMENT 3: Merging SFT adapter into base model before DPO...")
+        from peft import PeftModel
+        model_with_sft = PeftModel.from_pretrained(model, args.sft_adapter)
+        model = model_with_sft.merge_and_unload()
+        logger.info("SFT adapter merged into base weights. DPO will train fresh LoRA on merged model.")
+        # Re-apply LoRA for DPO training
+        from peft import LoraConfig, get_peft_model
+        dpo_lora_config = LoraConfig(
+            r=16, lora_alpha=32,
+            target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
+            lora_dropout=0.05, task_type="CAUSAL_LM",
+        )
+        model = get_peft_model(model, dpo_lora_config)
+        model.print_trainable_parameters()
+    else:
+        # Standard: Load SFT adapter, train DPO adapter on top
+        model.load_adapter(args.sft_adapter, adapter_name="sft")
+        model.set_adapter("sft")
+        logger.info("SFT adapter loaded (stacked adapter approach)")
 
     # ─── Load preference dataset ───
     logger.info("Loading preference dataset: argilla/ultrafeedback-binarized-preferences-cleaned")
@@ -113,7 +133,7 @@ def main():
     train_dataset = train_dataset.map(format_for_dpo, remove_columns=train_dataset.column_names)
     eval_dataset = eval_dataset.map(format_for_dpo, remove_columns=eval_dataset.column_names)
 
-    # Add factual DPO pairs (reduces hallucination)
+    # Add factual DPO pairs — upsample to ~20% of training data (reduces hallucination)
     factual_path = Path("data/factual_dpo_pairs.jsonl")
     if factual_path.exists():
         factual_pairs = []
@@ -121,11 +141,21 @@ def main():
             for line in f:
                 factual_pairs.append(json.loads(line))
         if factual_pairs:
+            # Upsample factual pairs to reach ~20% of total training data
+            # With 5000 generic pairs, we need ~1250 factual pairs (20% of 6250)
+            import random
+            target_factual_count = max(len(factual_pairs), int(len(train_dataset) * 0.25))
+            upsampled = []
+            while len(upsampled) < target_factual_count:
+                upsampled.extend(factual_pairs)
+            upsampled = upsampled[:target_factual_count]
+            random.shuffle(upsampled)
+
             from datasets import Dataset as HFDataset
-            factual_ds = HFDataset.from_list(factual_pairs)
             from datasets import concatenate_datasets
+            factual_ds = HFDataset.from_list(upsampled)
             train_dataset = concatenate_datasets([train_dataset, factual_ds])
-            logger.info(f"Added {len(factual_pairs)} factual DPO pairs (total: {len(train_dataset)})")
+            logger.info(f"Added {len(upsampled)} factual DPO pairs (upsampled from {len(factual_pairs)}, total: {len(train_dataset)})")
 
     logger.info(f"Formatted columns: {train_dataset.column_names}")
 

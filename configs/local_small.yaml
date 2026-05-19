@@ -44,7 +44,7 @@ sft:
 
 # DPO: align with human preferences
 dpo:
-  beta: 0.1
+  beta: 0.05
   learning_rate: 0.00001          # 1e-5, lowered for stable alignment
   batch_size: 1                   # Small for local GPU with long sequences
   gradient_accumulation_steps: 8  # Effective batch = 1 × 8 = 8
