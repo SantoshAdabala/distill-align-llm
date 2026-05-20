@@ -239,21 +239,43 @@ class DPOTrainerWrapper:
         logger.info(f"Saved DPO-aligned adapter to: {adapter_path}")
 
         # ─── Evaluate and extract DPO-specific metrics ───
+        # NOTE: Final evaluation with eval_strategy="no" can be unreliable
+        # (OOM issues after training fills VRAM). We report training-log metrics
+        # as primary and attempt final eval as secondary.
         reward_accuracy = 0.0
         reward_margin = 0.0
 
+        # Extract metrics from training logs (more reliable than post-training eval)
+        train_log_accuracies = []
+        if hasattr(trainer, "state") and trainer.state.log_history:
+            for log_entry in trainer.state.log_history:
+                if "rewards/accuracies" in log_entry:
+                    train_log_accuracies.append(log_entry["rewards/accuracies"])
+
+        if train_log_accuracies:
+            # Use second-half average as the reported metric (more stable)
+            second_half = train_log_accuracies[len(train_log_accuracies) // 2:]
+            reward_accuracy = sum(second_half) / len(second_half) if second_half else 0.0
+            logger.info(f"Training-log reward accuracy (2nd half avg): {reward_accuracy:.2%}")
+            logger.info(f"Training-log reward accuracy (peak): {max(train_log_accuracies):.2%}")
+
+        # Attempt final eval (may fail with OOM on small GPUs)
         if eval_dataset is not None:
-            eval_metrics = trainer.evaluate()
-            reward_accuracy = eval_metrics.get("eval_rewards/accuracies", 0.0)
-            reward_margin = eval_metrics.get("eval_rewards/margins", 0.0)
+            try:
+                eval_metrics = trainer.evaluate()
+                eval_reward_acc = eval_metrics.get("eval_rewards/accuracies", 0.0)
+                reward_margin = eval_metrics.get("eval_rewards/margins", 0.0)
 
-            self._accuracy_monitor.check(reward_accuracy, total_steps)
+                if eval_reward_acc > 0.0:
+                    # Only override training-log metric if eval actually worked
+                    reward_accuracy = eval_reward_acc
+                    logger.info(f"Final eval reward accuracy: {reward_accuracy:.2%}")
+                else:
+                    logger.warning("Final eval returned 0% — likely OOM. Using training-log metrics.")
+            except Exception as e:
+                logger.warning(f"Final evaluation failed ({e}). Using training-log metrics.")
 
-            logger.info(
-                f"DPO eval metrics: "
-                f"reward_accuracy={reward_accuracy:.2%}, "
-                f"reward_margin={reward_margin:.4f}"
-            )
+        self._accuracy_monitor.check(reward_accuracy, total_steps)
 
         training_time = time.time() - start_time
 

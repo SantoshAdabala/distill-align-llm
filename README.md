@@ -145,7 +145,7 @@ distill-align-llm/
 │   │   ├── sft.py                 # SFT trainer (TRL SFTTrainer)
 │   │   ├── dpo.py                 # DPO trainer (TRL DPOTrainer)
 │   │   └── rlhf.py               # GRPO trainer (TRL GRPOTrainer)
-│   └── serving/
+│   └── serving/                    # Experimental serving module (not yet deployed)
 │       ├── engine.py              # vLLM inference engine
 │       └── api.py                 # FastAPI REST gateway
 ├── scripts/
@@ -236,7 +236,7 @@ model:
     target_modules: [q_proj, k_proj, v_proj, o_proj]
 
 dpo:
-  beta: 0.05          # Lower = more knowledge preservation
+  beta: 0.05          # worked best empirically in this setup
   learning_rate: 1e-5
   # Uses merged-SFT strategy (--merge-sft flag)
 ```

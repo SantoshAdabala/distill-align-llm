@@ -66,6 +66,8 @@ def main():
     parser.add_argument("--base-model", type=str, default="meta-llama/Llama-3.1-8B-Instruct")
     parser.add_argument("--sft-adapter", type=str, required=True)
     parser.add_argument("--dpo-adapter", type=str, required=True)
+    parser.add_argument("--dpo-base", type=str, default=None,
+                        help="Base model for DPO adapter (use ./outputs/sft_merged for merged-SFT DPO)")
     parser.add_argument("--max-prompts", type=int, default=None)
     args = parser.parse_args()
 
@@ -132,7 +134,21 @@ def main():
     logger.info("=" * 60)
     logger.info("EVALUATING: DPO Model")
     logger.info("=" * 60)
-    dpo_model = PeftModel.from_pretrained(base, args.dpo_adapter)
+
+    # If --dpo-base is specified, load DPO adapter on that base instead
+    # This is needed for merged-SFT DPO (v4) where the adapter was trained
+    # on the merged SFT model, not the original base.
+    if args.dpo_base:
+        logger.info(f"Loading DPO base model from: {args.dpo_base}")
+        del base
+        torch.cuda.empty_cache()
+        gc.collect()
+        dpo_base = AutoModelForCausalLM.from_pretrained(
+            args.dpo_base, quantization_config=bnb_config, device_map="auto", torch_dtype=torch.bfloat16,
+        )
+        dpo_model = PeftModel.from_pretrained(dpo_base, args.dpo_adapter)
+    else:
+        dpo_model = PeftModel.from_pretrained(base, args.dpo_adapter)
     dpo_responses = generate_responses(dpo_model, tokenizer, prompts)
     dpo_passed = 0
     for item, resp in zip(eval_data, dpo_responses):
@@ -142,7 +158,11 @@ def main():
     results["dpo"] = {"passed": dpo_passed, "total": len(eval_data), "accuracy": dpo_passed / len(eval_data)}
     logger.info(f"DPO: {dpo_passed}/{len(eval_data)} ({results['dpo']['accuracy']:.1%})")
 
-    del dpo_model, base
+    del dpo_model
+    if args.dpo_base:
+        del dpo_base
+    else:
+        del base
     torch.cuda.empty_cache()
     gc.collect()
 
