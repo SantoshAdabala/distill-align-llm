@@ -199,11 +199,13 @@ nohup python scripts/run_sft.py --config configs/local_small.yaml > sft_log.txt 
 nohup python scripts/run_dpo.py --config configs/local_small.yaml \
     --sft-adapter ./outputs/sft/final_adapter --merge-sft > dpo_log.txt 2>&1 &
 
-# Factuality evaluation
+# Factuality evaluation (v4 merged-SFT DPO)
 python scripts/eval_factuality_all.py \
     --base-model meta-llama/Llama-3.1-8B-Instruct \
     --sft-adapter ./outputs/sft/final_adapter \
-    --dpo-adapter ./outputs/dpo/dpo_adapter
+    --dpo-adapter ./outputs/dpo/dpo_adapter \
+    --dpo-base ./outputs/sft_merged \
+    --save-responses
 ```
 
 ---

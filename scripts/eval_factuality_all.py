@@ -4,11 +4,22 @@ Factuality Evaluation — Base vs SFT vs DPO.
 Tests all three model stages on the same factuality prompts to isolate
 where technical knowledge is retained vs lost.
 
+Each model stage is loaded fresh (no shared base object) to avoid
+adapter contamination between evaluations.
+
 USAGE:
+    # Standard (stacked adapter DPO):
     python scripts/eval_factuality_all.py \
         --base-model meta-llama/Llama-3.1-8B-Instruct \
         --sft-adapter ./outputs/sft/final_adapter \
         --dpo-adapter ./outputs/dpo/dpo_adapter
+
+    # Merged-SFT DPO (v4 — DPO trained on merged base):
+    python scripts/eval_factuality_all.py \
+        --base-model meta-llama/Llama-3.1-8B-Instruct \
+        --sft-adapter ./outputs/sft/final_adapter \
+        --dpo-adapter ./outputs/dpo/dpo_adapter \
+        --dpo-base ./outputs/sft_merged
 """
 
 import argparse
@@ -25,6 +36,7 @@ logger = logging.getLogger("eval_factuality_all")
 
 
 def evaluate_response(response: str, must_include: list[str], must_not_include: list[str]) -> dict:
+    """Score a single response against factuality criteria."""
     response_lower = response.lower()
     included = [t for t in must_include if t.lower() in response_lower]
     missing = [t for t in must_include if t.lower() not in response_lower]
@@ -37,7 +49,7 @@ def evaluate_response(response: str, must_include: list[str], must_not_include: 
     }
 
 
-def generate_responses(model, tokenizer, prompts, temperature=0.0, max_tokens=200):
+def generate_responses(model, tokenizer, prompts, max_tokens=200):
     """Generate responses with deterministic decoding (temperature=0)."""
     import torch
 
@@ -52,12 +64,58 @@ def generate_responses(model, tokenizer, prompts, temperature=0.0, max_tokens=20
             outputs = model.generate(
                 **inputs,
                 max_new_tokens=max_tokens,
-                do_sample=False,  # Deterministic — no randomness
+                do_sample=False,
             )
 
         response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
         responses.append(response)
     return responses
+
+
+def load_base_model(model_id: str):
+    """Load a fresh base model with QLoRA quantization."""
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
+    bnb_config = BitsAndBytesConfig(
+        load_in_4bit=True, bnb_4bit_quant_type="nf4",
+        bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True,
+    )
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id, quantization_config=bnb_config, device_map="auto", torch_dtype=torch.bfloat16,
+    )
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    return model, tokenizer
+
+
+def unload_model(model):
+    """Fully unload a model and free GPU memory."""
+    import torch
+    del model
+    torch.cuda.empty_cache()
+    gc.collect()
+
+
+def evaluate_stage(stage_name: str, model, tokenizer, eval_data, prompts) -> dict:
+    """Evaluate a single model stage and return results."""
+    logger.info("=" * 60)
+    logger.info(f"EVALUATING: {stage_name}")
+    logger.info("=" * 60)
+
+    responses = generate_responses(model, tokenizer, prompts)
+    passed = 0
+    details = []
+    for item, resp in zip(eval_data, responses):
+        r = evaluate_response(resp, item["must_include"], item["must_not_include"])
+        if r["passed"]:
+            passed += 1
+        details.append({"prompt": item["prompt"], "response": resp[:500], **r})
+
+    accuracy = passed / len(eval_data)
+    logger.info(f"{stage_name}: {passed}/{len(eval_data)} ({accuracy:.1%})")
+    return {"passed": passed, "total": len(eval_data), "accuracy": accuracy, "details": details}
 
 
 def main():
@@ -67,13 +125,13 @@ def main():
     parser.add_argument("--sft-adapter", type=str, required=True)
     parser.add_argument("--dpo-adapter", type=str, required=True)
     parser.add_argument("--dpo-base", type=str, default=None,
-                        help="Base model for DPO adapter (use ./outputs/sft_merged for merged-SFT DPO)")
+                        help="Base model for DPO adapter. Use ./outputs/sft_merged for merged-SFT DPO (v4).")
     parser.add_argument("--max-prompts", type=int, default=None)
+    parser.add_argument("--save-responses", action="store_true",
+                        help="Save raw responses for semantic eval")
     args = parser.parse_args()
 
-    import torch
     from peft import PeftModel
-    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
     # Load eval data
     eval_data = []
@@ -85,102 +143,70 @@ def main():
     prompts = [item["prompt"] for item in eval_data]
     logger.info(f"Loaded {len(eval_data)} factuality test cases")
 
-    bnb_config = BitsAndBytesConfig(
-        load_in_4bit=True, bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True,
-    )
-
     results = {}
+    all_responses = {}
 
-    # ─── Evaluate Base Model ───
-    logger.info("=" * 60)
-    logger.info("EVALUATING: Base Model")
-    logger.info("=" * 60)
-    base = AutoModelForCausalLM.from_pretrained(
-        args.base_model, quantization_config=bnb_config, device_map="auto", torch_dtype=torch.bfloat16,
-    )
-    tokenizer = AutoTokenizer.from_pretrained(args.base_model)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    # ─── Stage 1: Base Model (fresh load) ───
+    logger.info("\n[1/3] Loading fresh base model...")
+    base_model, tokenizer = load_base_model(args.base_model)
+    results["base"] = evaluate_stage("Base Model", base_model, tokenizer, eval_data, prompts)
+    if args.save_responses:
+        all_responses["base"] = results["base"]["details"]
+    unload_model(base_model)
 
-    base_responses = generate_responses(base, tokenizer, prompts)
-    base_passed = 0
-    for item, resp in zip(eval_data, base_responses):
-        r = evaluate_response(resp, item["must_include"], item["must_not_include"])
-        if r["passed"]:
-            base_passed += 1
-    results["base"] = {"passed": base_passed, "total": len(eval_data), "accuracy": base_passed / len(eval_data)}
-    logger.info(f"Base: {base_passed}/{len(eval_data)} ({results['base']['accuracy']:.1%})")
+    # ─── Stage 2: SFT Model (fresh base + SFT adapter) ───
+    logger.info("\n[2/3] Loading fresh base + SFT adapter...")
+    sft_base, tokenizer = load_base_model(args.base_model)
+    sft_model = PeftModel.from_pretrained(sft_base, args.sft_adapter)
+    results["sft"] = evaluate_stage("SFT Model", sft_model, tokenizer, eval_data, prompts)
+    if args.save_responses:
+        all_responses["sft"] = results["sft"]["details"]
+    unload_model(sft_model)
+    unload_model(sft_base)
 
-    # ─── Evaluate SFT Model ───
-    logger.info("=" * 60)
-    logger.info("EVALUATING: SFT Model")
-    logger.info("=" * 60)
-    sft_model = PeftModel.from_pretrained(base, args.sft_adapter)
-    sft_responses = generate_responses(sft_model, tokenizer, prompts)
-    sft_passed = 0
-    for item, resp in zip(eval_data, sft_responses):
-        r = evaluate_response(resp, item["must_include"], item["must_not_include"])
-        if r["passed"]:
-            sft_passed += 1
-    results["sft"] = {"passed": sft_passed, "total": len(eval_data), "accuracy": sft_passed / len(eval_data)}
-    logger.info(f"SFT: {sft_passed}/{len(eval_data)} ({results['sft']['accuracy']:.1%})")
-
-    del sft_model
-    torch.cuda.empty_cache()
-    gc.collect()
-
-    # ─── Evaluate DPO Model ───
-    logger.info("=" * 60)
-    logger.info("EVALUATING: DPO Model")
-    logger.info("=" * 60)
-
-    # If --dpo-base is specified, load DPO adapter on that base instead
-    # This is needed for merged-SFT DPO (v4) where the adapter was trained
-    # on the merged SFT model, not the original base.
-    if args.dpo_base:
-        logger.info(f"Loading DPO base model from: {args.dpo_base}")
-        del base
-        torch.cuda.empty_cache()
-        gc.collect()
-        dpo_base = AutoModelForCausalLM.from_pretrained(
-            args.dpo_base, quantization_config=bnb_config, device_map="auto", torch_dtype=torch.bfloat16,
-        )
-        dpo_model = PeftModel.from_pretrained(dpo_base, args.dpo_adapter)
-    else:
-        dpo_model = PeftModel.from_pretrained(base, args.dpo_adapter)
-    dpo_responses = generate_responses(dpo_model, tokenizer, prompts)
-    dpo_passed = 0
-    for item, resp in zip(eval_data, dpo_responses):
-        r = evaluate_response(resp, item["must_include"], item["must_not_include"])
-        if r["passed"]:
-            dpo_passed += 1
-    results["dpo"] = {"passed": dpo_passed, "total": len(eval_data), "accuracy": dpo_passed / len(eval_data)}
-    logger.info(f"DPO: {dpo_passed}/{len(eval_data)} ({results['dpo']['accuracy']:.1%})")
-
-    del dpo_model
-    if args.dpo_base:
-        del dpo_base
-    else:
-        del base
-    torch.cuda.empty_cache()
-    gc.collect()
+    # ─── Stage 3: DPO Model (fresh base + DPO adapter) ───
+    # For merged-SFT DPO (v4): load the merged model as base
+    # For stacked DPO (v1-v3): load original base
+    dpo_base_path = args.dpo_base if args.dpo_base else args.base_model
+    logger.info(f"\n[3/3] Loading fresh DPO base ({dpo_base_path}) + DPO adapter...")
+    dpo_base, tokenizer = load_base_model(dpo_base_path)
+    dpo_model = PeftModel.from_pretrained(dpo_base, args.dpo_adapter)
+    results["dpo"] = evaluate_stage("DPO Model", dpo_model, tokenizer, eval_data, prompts)
+    if args.save_responses:
+        all_responses["dpo"] = results["dpo"]["details"]
+    unload_model(dpo_model)
+    unload_model(dpo_base)
 
     # ─── Summary ───
     logger.info("\n" + "=" * 60)
     logger.info("FACTUALITY COMPARISON")
     logger.info("=" * 60)
-    logger.info(f"  Base: {results['base']['passed']}/{results['base']['total']} ({results['base']['accuracy']:.1%})")
-    logger.info(f"  SFT:  {results['sft']['passed']}/{results['sft']['total']} ({results['sft']['accuracy']:.1%})")
-    logger.info(f"  DPO:  {results['dpo']['passed']}/{results['dpo']['total']} ({results['dpo']['accuracy']:.1%})")
+    for stage in ["base", "sft", "dpo"]:
+        r = results[stage]
+        logger.info(f"  {stage.upper():<5}: {r['passed']}/{r['total']} ({r['accuracy']:.1%})")
     logger.info("=" * 60)
 
-    # Save
+    if args.dpo_base:
+        logger.info(f"  Note: DPO evaluated on merged base ({args.dpo_base})")
+    else:
+        logger.info("  Note: DPO evaluated on original base (stacked adapter mode)")
+
+    # ─── Save results ───
     output_path = Path("outputs/factuality_comparison.json")
     output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Strip details for summary file (keep it small)
+    summary = {k: {kk: vv for kk, vv in v.items() if kk != "details"} for k, v in results.items()}
     with open(output_path, "w") as f:
-        json.dump(results, f, indent=2)
-    logger.info(f"Results saved to: {output_path}")
+        json.dump(summary, f, indent=2)
+    logger.info(f"Summary saved to: {output_path}")
+
+    # Save responses for semantic eval if requested
+    if args.save_responses:
+        resp_path = Path("outputs/factuality_responses.json")
+        with open(resp_path, "w") as f:
+            json.dump(all_responses, f, indent=2)
+        logger.info(f"Responses saved to: {resp_path}")
 
 
 if __name__ == "__main__":
