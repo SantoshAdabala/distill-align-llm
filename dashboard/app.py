@@ -307,9 +307,8 @@ if v2_data and "factuality" in v2_data:
     st.header("🎯 Factuality Evaluation: Base vs SFT vs DPO")
 
     st.markdown("""
-    **Key Finding:** Despite strong DPO alignment (80% reward accuracy), all model stages
-    perform poorly on strict factual recall of niche ML terminology. The base model itself
-    doesn't reliably know these terms.
+    **Key Finding:** With sufficient SFT training (3 epochs), factuality improves from 9.8% to 15.7%.
+    DPO preserves and modestly improves factuality to 17.6% while achieving 82% reward accuracy.
     """)
 
     fact_data = v2_data["factuality"]
@@ -330,10 +329,10 @@ if v2_data and "factuality" in v2_data:
 
         st.markdown("**Interpretation:**")
         st.markdown("""
-        - Base model doesn't know niche ML terms (9.8%)
-        - 875 SFT examples / 1 epoch insufficient to teach factual recall
-        - DPO's contribution to factuality loss is secondary (~4pp)
-        - Primary bottleneck: SFT data quantity, not DPO interference
+        - 3 epochs of SFT improves factuality (+6pp over base)
+        - DPO preserves and slightly improves factuality (+2pp over SFT)
+        - Epochs matter more than data volume
+        - AFG (Alignment-Factuality Gap) = 64.3 points
         """)
 
     with col_fact2:
@@ -384,23 +383,59 @@ if v2_data and "factuality" in v2_data:
         st.plotly_chart(fig_mismatch, use_container_width=True)
 
     with col_m2:
-        st.markdown("### The Disconnect")
+        st.markdown("### The Alignment-Factuality Gap")
         st.markdown("""
         | Metric | Score |
         |--------|-------|
-        | DPO Reward Accuracy | **80%** ✅ |
+        | DPO Reward Accuracy | **82%** ✅ |
         | SFT Token Accuracy | **78%** ✅ |
-        | SFT Eval Loss | **0.825** ✅ |
-        | Domain Factuality | **5.9%** ❌ |
+        | Domain Factuality (DPO) | **17.6%** ⚠️ |
+        | **AFG** | **64.3 points** |
 
-        **Training metrics look great. Factuality does not.**
+        **Reward accuracy (82%) far exceeds factuality (17.6%).**
 
-        This is the core finding: standard alignment metrics
-        (reward accuracy, loss) do not capture factual degradation.
+        The AFG indicates alignment metrics and factuality
+        measure fundamentally different capabilities.
         """)
 
-    st.info("💡 **Next experiments needed:** SFT with 3-5 epochs, SFT with 2.5K-5K examples, "
-            "semantic/LLM-judge factuality eval (not just keyword matching).")
+    st.info("💡 **Key insight:** Epochs matter more than data volume. 3 epochs on 875 examples = same factuality as 3 epochs on 2.5K examples.")
+
+# --- SFT Scaling Results ---
+if v2_data and "scaling_results" in v2_data:
+    st.header("📊 SFT Scaling: Epochs vs Data Size")
+
+    scaling = v2_data["scaling_results"]
+    scaling_df = pd.DataFrame([
+        {"Config": k, "Loss": v["loss"], "Factuality": v["factuality"] * 100}
+        for k, v in scaling.items()
+    ])
+
+    fig_scaling = go.Figure()
+    colors = ["#E91E63" if f < 10 else "#FF9800" if f < 15 else "#4CAF50"
+              for f in scaling_df["Factuality"]]
+    fig_scaling.add_trace(go.Bar(
+        x=scaling_df["Config"], y=scaling_df["Factuality"],
+        marker_color=colors,
+        text=[f"{f:.1f}%" for f in scaling_df["Factuality"]],
+        textposition="outside",
+    ))
+    fig_scaling.add_hline(y=9.8, line_dash="dash", line_color="red",
+                          annotation_text="Base (9.8%)")
+    fig_scaling.update_layout(
+        title="Factuality by SFT Configuration (format: examples × epochs)",
+        yaxis_title="Factuality (%)",
+        yaxis=dict(range=[0, 22]),
+        height=400,
+        margin=dict(t=50, b=80),
+    )
+    st.plotly_chart(fig_scaling, use_container_width=True)
+
+    st.markdown("""
+    **Findings:**
+    - 🟢 3 epochs consistently reaches 15.7% regardless of data size (875 or 2.5K)
+    - 🟠 1 epoch shows no improvement even with 10K examples
+    - 🔴 5K×3ep paradoxically drops — generic data dilutes technical knowledge
+    """)
 
 # --- Version Comparison Table ---
 st.header("📋 Version Comparison")
