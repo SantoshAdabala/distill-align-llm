@@ -27,7 +27,7 @@ End-to-end LLM alignment pipeline (**SFT → DPO**) with QLoRA, investigating ho
 | v3 | A100 SXM | Stacked, β=0.1 | 68% | Added technical SFT data |
 | v4 | RTX A6000 | **Merged-SFT, β=0.05** | **83%** | Merge adapter + lower β |
 
-**Total cost: ~$10** on RunPod.io
+**Total cost: ~$27** on RunPod.io
 
 ---
 

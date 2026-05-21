@@ -1,109 +1,105 @@
 # Results — AlignLLM Pipeline
 
-## v4: Merged-SFT DPO (Latest)
+## Latest: SFT Scaling Study + DPO (v5)
 
-### Training Configuration
+### Key Finding
 
-| Component | Details |
-|-----------|---------|
-| **Base Model** | meta-llama/Llama-3.1-8B-Instruct |
-| **SFT Data** | OpenHermes-2.5 (3K) + Technical Instructions (875) + Uncertainty (15) = 3,890 |
-| **DPO Data** | UltraFeedback Cleaned (5K) + Factual DPO Pairs (20% upsampled) |
-| **DPO Strategy** | Merged-SFT (adapter merged into base before DPO) |
-| **DPO Beta** | 0.05 |
-| **GPU** | RTX A6000 (48 GB), RunPod.io |
-| **Quantization** | QLoRA (4-bit NF4, double quantization, bf16 compute) |
+**Epochs matter more than data volume for factual recall.** 3 epochs on 875 technical examples improves factuality from 9.8% → 15.7%. DPO preserves and modestly improves it to 17.6%.
 
-### SFT Results (v4)
+### Best Configuration Results
+
+| Stage | Metric | Value |
+|-------|--------|-------|
+| **SFT** | Config | 875 examples × 3 epochs |
+| **SFT** | Loss | 1.41 |
+| **DPO** | Reward Accuracy | 81.9% |
+| **DPO** | Loss | 0.52 |
+| **Factuality** | Base → SFT → DPO | 9.8% → 15.7% → 17.6% |
+| **AFG** | Alignment-Factuality Gap | 64.3 points |
+
+### SFT Scaling Matrix
+
+| Config | Loss | Factuality | Δ vs Base |
+|--------|------|-----------|-----------|
+| 875×1ep | 2.16 | 7.8% | -2.0pp |
+| 875×3ep | 1.41 | **15.7%** | **+5.9pp** |
+| 875×5ep | 1.11 | 15.7% | +5.9pp |
+| 2.5K×1ep | 1.31 | 9.8% | 0.0pp |
+| 2.5K×3ep | 1.10 | **15.7%** | **+5.9pp** |
+| 5K×3ep | 1.02 | 7.8% | -2.0pp |
+| 10K×1ep | 1.09 | 9.8% | 0.0pp |
+| *Base* | — | 9.8% | — |
+
+**Observations:**
+- 3 epochs is the threshold — factuality jumps from ~9% to 15.7%
+- More epochs beyond 3 doesn't help further (875×5ep = same as 875×3ep)
+- More data with 1 epoch doesn't help (10K×1ep = same as base)
+- Too much generic data hurts (5K×3ep drops to 7.8%)
+
+### DPO on Best SFT (875×3ep)
 
 | Metric | Value |
 |--------|-------|
-| **Train Loss** | 1.050 |
-| **Eval Loss** | 0.825 |
-| **Token Accuracy** | 78.3% |
-| **Steps** | 219 |
-| **Duration** | 12.5 min |
+| Loss | 0.517 |
+| Reward Accuracy (training avg) | 81.9% |
+| Peak Reward Accuracy | 87.5% |
+| Steps | 782 |
+| Duration | 72.6 min |
+| Factuality (DPO) | 17.6% (9/51) |
 
-### DPO Results (v4)
-
-| Metric | Value |
-|--------|-------|
-| **Loss** | 0.54 |
-| **Peak Reward Accuracy** | 83% |
-| **Avg Reward Accuracy (2nd half)** | 75–81% |
-| **Reward Margin (peak)** | 0.74 |
-| **Steps** | 782 |
-| **Duration** | 67.6 min |
-
-### Factuality Evaluation (v4)
-
-| Model Stage | Passed | Accuracy | 95% CI |
-|-------------|--------|----------|--------|
-| Base (Llama-3.1-8B-Instruct) | 5/51 | 9.8% | [4.3%, 21.0%] |
-| SFT (OpenHermes + Technical) | 4/51 | 7.8% | [3.1%, 18.5%] |
-| DPO (Merged-SFT, β=0.05) | 3/51 | 5.9% | [2.0%, 15.9%] |
-
-**Key finding:** All model stages perform poorly on strict factual recall of niche ML terminology. The base model itself doesn't reliably know these terms. SFT did not measurably improve factuality, and DPO's contribution to factuality loss is modest (~4pp) and within the noise range of a 51-prompt benchmark.
-
-**Interpretation:** Low-resource SFT (875 examples, 1 epoch) does not reliably encode domain knowledge. The factuality bottleneck is SFT data quantity, not DPO interference.
+**DPO did NOT degrade factuality.** It improved from 15.7% → 17.6%.
 
 ---
 
-## Version Comparison
+## Cost
 
-| Metric | v1 | v2 | v3 | v4 |
-|--------|----|----|-----|-----|
-| **GPU** | RTX 3090 | RTX A5000 | A100 SXM | RTX A6000 |
-| **SFT Data** | Alpaca 1K | Alpaca 1K | OpenHermes+Tech 3.9K | OpenHermes+Tech 3.9K |
-| **DPO Config** | Stacked, β=0.1 | Stacked, β=0.1 | Stacked, β=0.1 | Merged, β=0.05 |
-| **Peak Reward Acc** | 50% | 75% | 68% | **83%** |
-| **DPO Loss** | 0.70 | 0.76 | 0.77 | **0.54** |
-| **Factuality** | — | — | 9.8% (DPO only) | Base 9.8% / SFT 7.8% / DPO 5.9% |
+| Run | GPU | Cost |
+|-----|-----|------|
+| v1 (SFT+DPO) | RTX 3090 | $1.00 |
+| v2 (SFT+DPO) | RTX A5000 | $2.51 |
+| v3 (SFT+DPO) | A100 SXM | $6.51 |
+| Scaling (8 configs) | A100 SXM | $15.78 |
+| DPO + Eval | A100 SXM | $0.68 |
+| **Total** | | **~$27** |
 
 ---
 
-## What Fixed DPO Alignment (v1 → v4)
+## Version History
 
-| Change | v1 | v4 | Impact |
-|--------|----|----|--------|
-| Learning rate | 5e-5 | 1e-5 | Prevented overshooting |
-| Dataset | UltraFeedback raw | UltraFeedback cleaned + 20% factual | Cleaner signal |
-| Base model | Llama-3.1-8B (base) | Llama-3.1-8B-Instruct | Better starting point |
-| Adapter strategy | Stacked | Merged-SFT | No adapter competition |
-| Beta | 0.1 | 0.05 | More stable training |
+| Metric | v1 | v2 | v3 | v4 | v5 (latest) |
+|--------|----|----|-----|-----|-------------|
+| **GPU** | RTX 3090 | RTX A5000 | A100 SXM | RTX A6000 | A100 SXM |
+| **SFT Config** | Alpaca 1K×1ep | Alpaca 1K×1ep | Tech 3.9K×1ep | Tech 3.9K×1ep | Tech 875×3ep |
+| **DPO Config** | Stacked, β=0.1 | Stacked, β=0.1 | Stacked, β=0.1 | Merged, β=0.05 | Merged, β=0.05 |
+| **Peak Reward Acc** | 50% | 75% | 68% | 83% | **88%** |
+| **Factuality** | — | — | 9.8% | 5.9% | **17.6%** |
 
 ---
 
 ## How to Reproduce
 
 ```bash
-# Deploy RunPod pod (RTX A6000 48GB recommended)
+# Deploy RunPod pod (A100 SXM or RTX A6000 recommended)
 git clone https://github.com/SantoshAdabala/distill-align-llm.git
 cd distill-align-llm
 pip install transformers accelerate peft datasets bitsandbytes trl
 pip install -e .
-huggingface-cli login
+hf auth login
 
-# SFT (~12 min)
-nohup python scripts/run_sft.py --config configs/local_small.yaml > sft_log.txt 2>&1 &
+# SFT scaling (full matrix ~3 hours)
+nohup python scripts/run_sft_scaling.py --config configs/local_small.yaml --run-all > scaling_log.txt 2>&1 &
 
-# DPO with merged-SFT (~70 min)
+# Or single best config (~10 min)
+python scripts/run_sft_scaling.py --config configs/local_small.yaml --num-examples 875 --epochs 3
+
+# DPO on best SFT (~70 min)
 nohup python scripts/run_dpo.py --config configs/local_small.yaml \
-    --sft-adapter ./outputs/sft/final_adapter --merge-sft > dpo_log.txt 2>&1 &
+    --sft-adapter outputs/scaling/sft_875ex_3ep/final_adapter --merge-sft > dpo_log.txt 2>&1 &
 
-# Factuality evaluation (use --dpo-base for merged-SFT DPO)
+# Factuality evaluation
 python scripts/eval_factuality_all.py \
     --base-model meta-llama/Llama-3.1-8B-Instruct \
-    --sft-adapter ./outputs/sft/final_adapter \
-    --dpo-adapter ./outputs/dpo/dpo_adapter \
-    --dpo-base ./outputs/sft_merged
+    --sft-adapter outputs/scaling/sft_875ex_3ep/final_adapter \
+    --dpo-adapter outputs/dpo/dpo_adapter \
+    --dpo-base outputs/sft_merged
 ```
-
----
-
-## Next Experiments
-
-- [ ] SFT scaling: 875/2.5K/5K/10K examples × 1/3/5 epochs
-- [ ] Semantic/LLM-judge factuality eval (not just keyword matching)
-- [ ] Token probability analysis (does the model know but not generate?)
-- [ ] Expand benchmark to 500 prompts

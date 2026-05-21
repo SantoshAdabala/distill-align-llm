@@ -495,7 +495,7 @@ with col_config2:
     st.json({
         "gpu": "NVIDIA RTX A6000 (48 GB)",
         "platform": "RunPod.io",
-        "total_cost": "~$10 across all runs",
+        "total_cost": "~$27 across all runs (incl. scaling study)",
         "sft_duration": "12.5 min",
         "dpo_duration": "67.6 min (v4)",
         "dpo_beta": 0.05,
