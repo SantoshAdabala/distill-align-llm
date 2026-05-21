@@ -2,21 +2,22 @@
 
 End-to-end LLM alignment pipeline (**SFT → DPO**) with QLoRA, investigating how preference optimization interacts with domain-specific knowledge.
 
-**Key finding:** DPO achieves 80% reward accuracy while factuality drops to 5.9% — but the base model itself only scores 9.8%. The bottleneck is insufficient SFT data, not DPO interference.
+**Key finding:** With 3 epochs of domain-specific SFT, factuality improves from 9.8% to 15.7%, and DPO preserves this gain (17.6%). DPO achieves 82% reward accuracy — an Alignment-Factuality Gap (AFG) of 64.3 points.
 
 🔗 **[Live Dashboard](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)**
 
 ---
 
-## Results (v4 — Latest)
+## Results (v5 — Latest)
 
 | Stage | Metric | Value |
 |-------|--------|-------|
-| **SFT** | Eval Loss | 0.825 |
-| **SFT** | Token Accuracy | 78.3% |
-| **DPO** | Reward Accuracy | 80% (peak 83%) |
-| **DPO** | Loss | 0.54 |
-| **Factuality** | Base / SFT / DPO | 9.8% / 7.8% / 5.9% |
+| **SFT** | Config | 875 examples × 3 epochs |
+| **SFT** | Loss | 1.41 |
+| **DPO** | Reward Accuracy | 82% (peak 88%) |
+| **DPO** | Loss | 0.52 |
+| **Factuality** | Base → SFT → DPO | 9.8% → 15.7% → 17.6% |
+| **AFG** | Alignment-Factuality Gap | 64.3 points |
 
 ### Version Progression
 
@@ -25,22 +26,23 @@ End-to-end LLM alignment pipeline (**SFT → DPO**) with QLoRA, investigating ho
 | v1 | RTX 3090 | Stacked, β=0.1, LR=5e-5 | 50% | Baseline (weak) |
 | v2 | RTX A5000 | Stacked, β=0.1, LR=1e-5 | 75% | Lower LR + cleaned data |
 | v3 | A100 SXM | Stacked, β=0.1 | 68% | Added technical SFT data |
-| v4 | RTX A6000 | **Merged-SFT, β=0.05** | **83%** | Merge adapter + lower β |
+| v4 | RTX A6000 | Merged-SFT, β=0.05 | 83% | Merge adapter + lower β |
+| v5 | A100 SXM | Merged-SFT, β=0.05 | **88%** | **3-epoch SFT (scaling study)** |
 
 **Total cost: ~$27** on RunPod.io
 
 ---
 
-## The Metric-Factuality Mismatch
+## The Alignment-Factuality Gap (AFG)
 
-| Metric | Score | Looks Good? |
-|--------|-------|-------------|
-| DPO Reward Accuracy | 80% | ✅ |
+| Metric | Score | |
+|--------|-------|---|
+| DPO Reward Accuracy | 82% | ✅ |
 | SFT Token Accuracy | 78% | ✅ |
-| SFT Eval Loss | 0.825 | ✅ |
-| Domain Factuality (51 prompts) | 5.9% | ❌ |
+| Domain Factuality (DPO) | 17.6% | ⚠️ |
+| **AFG** | **64.3 points** | |
 
-Standard alignment metrics don't capture factual degradation. The model learns to *sound helpful* without *being correct* on niche ML terminology.
+Reward accuracy (82%) far exceeds factuality (17.6%). These metrics measure fundamentally different capabilities.
 
 ---
 
@@ -51,14 +53,22 @@ Tested Base vs SFT vs DPO on 51 technical ML prompts (strict keyword matching, t
 | Model Stage | Passed | Accuracy |
 |-------------|--------|----------|
 | Base (Llama-3.1-8B-Instruct) | 5/51 | 9.8% |
-| SFT (OpenHermes + 875 technical) | 4/51 | 7.8% |
-| DPO (Merged-SFT, β=0.05) | 3/51 | 5.9% |
+| SFT (875 examples × 3 epochs) | 8/51 | 15.7% |
+| DPO (Merged-SFT, β=0.05) | 9/51 | 17.6% |
 
-**Interpretation:**
-- Base model doesn't know niche ML terms (GRPO, PagedAttention, NF4, etc.)
-- 875 SFT examples / 1 epoch is insufficient to teach factual recall
-- DPO's contribution to factuality loss is secondary (~4pp)
-- Primary bottleneck: SFT data quantity, not DPO interference
+### SFT Scaling Study
+
+| Config | Factuality | Δ vs Base |
+|--------|-----------|-----------|
+| 875×1ep | 7.8% | -2.0pp |
+| 875×3ep | **15.7%** | **+5.9pp** |
+| 875×5ep | 15.7% | +5.9pp |
+| 2.5K×1ep | 9.8% | 0.0pp |
+| 2.5K×3ep | **15.7%** | **+5.9pp** |
+| 5K×3ep | 7.8% | -2.0pp |
+| 10K×1ep | 9.8% | 0.0pp |
+
+**Key insight:** Within our tested configurations, repeated exposure (epochs) was more predictive of factual gains than data volume. 3 epochs is the threshold. More generic data can dilute technical knowledge.
 
 ---
 
@@ -245,12 +255,12 @@ dpo:
 
 ---
 
-## Next Experiments
+## Next Steps
 
-- [ ] SFT with 3/5 epochs (same 875 examples)
-- [ ] SFT with 2,500–5,000 technical examples
+- [ ] Expand benchmark to 500 prompts with category-level analysis
 - [ ] Semantic/LLM-judge factuality eval (not just keyword matching)
 - [ ] Token probability analysis (does the model *know* but not *generate*?)
+- [ ] Test on larger models (70B) to see if epoch-sensitivity persists
 
 ---
 
