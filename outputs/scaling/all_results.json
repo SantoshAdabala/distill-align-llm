@@ -1,0 +1,74 @@
+[
+  {
+    "experiment": "sft_875ex_1ep",
+    "num_examples": 875,
+    "epochs": 1,
+    "final_loss": 2.160500760348338,
+    "total_steps": 53,
+    "training_time_seconds": 194.47247672080994,
+    "adapter_path": "outputs/scaling/sft_875ex_1ep/final_adapter"
+  },
+  {
+    "experiment": "sft_875ex_3ep",
+    "num_examples": 875,
+    "epochs": 3,
+    "final_loss": 1.411846766681791,
+    "total_steps": 159,
+    "training_time_seconds": 558.5251460075378,
+    "adapter_path": "outputs/scaling/sft_875ex_3ep/final_adapter"
+  },
+  {
+    "experiment": "sft_875ex_5ep",
+    "num_examples": 875,
+    "epochs": 5,
+    "final_loss": 1.1122164213432455,
+    "total_steps": 265,
+    "training_time_seconds": 932.969907283783,
+    "adapter_path": "outputs/scaling/sft_875ex_5ep/final_adapter"
+  },
+  {
+    "experiment": "sft_2500ex_1ep",
+    "num_examples": 2500,
+    "epochs": 1,
+    "final_loss": 1.3117610496162568,
+    "total_steps": 149,
+    "training_time_seconds": 602.3068315982819,
+    "adapter_path": "outputs/scaling/sft_2500ex_1ep/final_adapter"
+  },
+  {
+    "experiment": "sft_2500ex_3ep",
+    "num_examples": 2500,
+    "epochs": 3,
+    "final_loss": 1.1020789941151936,
+    "total_steps": 447,
+    "training_time_seconds": 1806.6747524738312,
+    "adapter_path": "outputs/scaling/sft_2500ex_3ep/final_adapter"
+  },
+  {
+    "experiment": "sft_5000ex_1ep",
+    "num_examples": 5000,
+    "epochs": 1,
+    "final_loss": 1.165072369655776,
+    "total_steps": 297,
+    "training_time_seconds": 1273.6549861431122,
+    "adapter_path": "outputs/scaling/sft_5000ex_1ep/final_adapter"
+  },
+  {
+    "experiment": "sft_5000ex_3ep",
+    "num_examples": 5000,
+    "epochs": 3,
+    "final_loss": 1.0250688218642299,
+    "total_steps": 891,
+    "training_time_seconds": 3753.3260004520416,
+    "adapter_path": "outputs/scaling/sft_5000ex_3ep/final_adapter"
+  },
+  {
+    "experiment": "sft_10000ex_1ep",
+    "num_examples": 10000,
+    "epochs": 1,
+    "final_loss": 1.0865730565003675,
+    "total_steps": 594,
+    "training_time_seconds": 2621.9686353206635,
+    "adapter_path": "outputs/scaling/sft_10000ex_1ep/final_adapter"
+  }
+]
