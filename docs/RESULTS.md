@@ -4,7 +4,19 @@
 
 ### Key Finding
 
-**Epochs matter more than data volume for factual recall.** 3 epochs on 875 technical examples improves factuality from 9.8% → 15.7%. DPO preserves and modestly improves it to 17.6%.
+**Within our tested configurations, repeated exposure (epochs) was more predictive of factual gains than data volume.** 3 epochs on 875 technical examples improves factuality from 9.8% → 15.7%. DPO did not measurably degrade this gain (15.7% → 17.6%, +1 prompt within noise).
+
+### Repository Artifacts
+
+| Artifact | Location | Description |
+|----------|----------|-------------|
+| **TechFact-100** | `data/techfact_100.jsonl` | 100 hand-crafted factuality prompts, 5 categories, 3 difficulty levels |
+| **51-prompt eval** | `data/eval_factuality.jsonl` | Original benchmark used in scaling experiments |
+| **Scaling outputs** | `outputs/scaling/all_results.json` | Per-configuration training metadata (8 configs) |
+| **Per-config eval logs** | `outputs/scaling/sft_*_eval.txt` | Raw evaluation logs for each scaling config |
+| **DPO training log** | `dpo_scaling_log.txt` | Full DPO training trajectory |
+| **Test suite** | `tests/` | 44 passing tests covering config and data processing |
+| **Semantic eval script** | `scripts/eval_semantic.py` | Exact + semantic + LLM-judge evaluation (requires `sentence-transformers`, optional OpenAI API) |
 
 ### Best Configuration Results
 
@@ -34,7 +46,20 @@
 - 3 epochs is the threshold — factuality jumps from ~9% to 15.7%
 - More epochs beyond 3 doesn't help further (875×5ep = same as 875×3ep)
 - More data with 1 epoch doesn't help (10K×1ep = same as base)
-- Too much generic data hurts (5K×3ep drops to 7.8%)
+- 5K×3ep drops to 7.8% — hypothesis: generic data dilution (see below)
+
+### The 5K×3ep Anomaly
+
+The 5K×3ep configuration achieves the lowest training loss (1.02) but factuality drops to 7.8% — worse than 875×3ep (15.7%) which has the same 3 epochs but only 875 examples.
+
+**Hypothesis:** The 5K dataset includes ~4,125 generic OpenHermes examples (vs. 875 technical). With 3 epochs, the model sees generic patterns 3× more often than technical patterns. The technical signal gets diluted, and the model optimizes for generic instruction-following style at the expense of technical recall.
+
+**Evidence supporting this:**
+- Lowest training loss (1.02) suggests the model is fitting *something* well — likely the generic data
+- 875×3ep achieves higher factuality (15.7%) with worse loss (1.41), suggesting it fits the technical data more specifically
+- This is a single run, so the anomaly may also reflect noise — replication would strengthen the claim
+
+**Caveat:** This is a hypothesis, not a confirmed finding. The scaling study has no replication (one seed per config), so individual data points may reflect noise rather than systematic patterns.
 
 ### DPO on Best SFT (875×3ep)
 
