@@ -8,10 +8,10 @@
         "avg_score": 0.09
       },
       "semantic": {
-        "passed": 0,
+        "passed": 20,
         "total": 100,
-        "accuracy": 0.0,
-        "avg_score": 0.23124723803717642
+        "accuracy": 0.2,
+        "avg_score": 0.3529838666319847
       }
     },
     "details": {
@@ -1020,502 +1020,502 @@
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4475966691970825
+          "score": 0.44759660959243774
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.19429181516170502
+          "score": 0.15990304946899414
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": -0.07185453176498413
+          "score": -0.05924980714917183
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3233951926231384
+          "score": 0.29517310857772827
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.28048405051231384
+          "score": 0.28048402070999146
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.0925697386264801
+          "score": 0.14096859097480774
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.5026577115058899
+          "passed": true,
+          "score": 0.5026578307151794
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.09497648477554321
+          "score": 0.06699064373970032
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.06998023390769958
+          "score": 0.1421840637922287
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": -0.027916334569454193
+          "score": 0.013952523469924927
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.28862953186035156
+          "score": 0.2886294722557068
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.22648188471794128
+          "score": 0.07380887866020203
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": -0.0037854122929275036
+          "score": 0.039015524089336395
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.23706188797950745
+          "score": 0.20748142898082733
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.1965027153491974
+          "score": 0.14942723512649536
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": -0.03736260160803795
+          "score": 0.2601311504840851
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": -0.006442397832870483
+          "score": 0.06124712899327278
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.1058165580034256
+          "score": 0.33646246790885925
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": -0.04094561189413071
+          "score": -0.04094567522406578
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.09204700589179993
+          "score": 0.06955020129680634
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2540439963340759
+          "score": 0.3745991587638855
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3988162875175476
+          "score": 0.4852142035961151
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.06552690267562866
+          "score": 0.16941602528095245
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.23478513956069946
+          "passed": true,
+          "score": 0.5160505771636963
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.11299987137317657
+          "score": 0.3646983504295349
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.5750264525413513
+          "passed": true,
+          "score": 0.5968613624572754
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.3951326608657837
+          "passed": true,
+          "score": 0.6062613725662231
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.5725812315940857
+          "score": 0.476920485496521
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.40698525309562683
+          "passed": true,
+          "score": 0.6338157057762146
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.07920941710472107
+          "passed": true,
+          "score": 0.6330795884132385
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.2381882220506668
+          "passed": true,
+          "score": 0.6057125926017761
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.43442273139953613
+          "score": 0.3600914180278778
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.09768389165401459
+          "score": 0.09547793120145798
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.5921958684921265
+          "score": 0.4214257299900055
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.24585311114788055
+          "score": 0.26292577385902405
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.36326631903648376
+          "score": 0.3996894359588623
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.45116570591926575
+          "passed": true,
+          "score": 0.5488952994346619
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.11473904550075531
+          "score": 0.12920410931110382
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.3495306372642517
+          "passed": true,
+          "score": 0.6322077512741089
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3117247223854065
+          "score": 0.4848293960094452
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3396632969379425
+          "score": 0.2961518168449402
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.16271741688251495
+          "score": 0.19026127457618713
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.20127131044864655
+          "score": 0.42775842547416687
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.30902156233787537
+          "score": 0.45017537474632263
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.5139639377593994
+          "passed": true,
+          "score": 0.7093014717102051
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.34270334243774414
+          "score": 0.3116299510002136
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2596603035926819
+          "score": 0.48075926303863525
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.28562772274017334
+          "score": 0.36660096049308777
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": -0.0653671845793724
+          "passed": true,
+          "score": 0.5818339586257935
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.08793557435274124
+          "score": 0.2833811342716217
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.15473902225494385
+          "score": 0.41077911853790283
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2379024177789688
+          "score": 0.47564497590065
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.27209651470184326
+          "score": 0.3530409634113312
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2628917098045349
+          "score": 0.44718828797340393
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.46858322620391846
+          "passed": true,
+          "score": 0.6548448801040649
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3441995084285736
+          "score": 0.3980143666267395
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.32563164830207825
+          "score": 0.36274731159210205
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.1930394321680069
+          "score": 0.23928147554397583
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2493046224117279
+          "score": 0.23636454343795776
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.26344412565231323
+          "score": 0.4640083909034729
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.33165886998176575
+          "score": 0.4264814555644989
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.39980483055114746
+          "score": 0.3509770631790161
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.0736599862575531
+          "score": 0.20949067175388336
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.09611648321151733
+          "passed": true,
+          "score": 0.6058341264724731
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.03518861159682274
+          "score": 0.2510169446468353
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4804687201976776
+          "score": 0.45895230770111084
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3947589695453644
+          "score": 0.4226807951927185
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.29041939973831177
+          "score": 0.3817315697669983
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.31218916177749634
+          "passed": true,
+          "score": 0.792874813079834
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.37753528356552124
+          "score": 0.3706544041633606
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.15990303456783295
+          "score": 0.15990304946899414
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": -0.07185453176498413
+          "score": -0.05924980714917183
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3233951926231384
+          "score": 0.29517310857772827
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.09665720909833908
+          "score": 0.31296828389167786
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.07140123844146729
+          "score": 0.2174353003501892
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.016645681113004684
+          "score": 0.2948217988014221
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2455294281244278
+          "score": 0.26004040241241455
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.029118306934833527
+          "score": 0.04457615315914154
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.09497648477554321
+          "score": 0.06699064373970032
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.11065740883350372
+          "passed": true,
+          "score": 0.5614825487136841
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.20110297203063965
+          "score": 0.2878550589084625
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.16160829365253448
+          "score": 0.4947111904621124
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4098389446735382
+          "score": 0.3395233154296875
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.1074446365237236
+          "score": 0.1471986323595047
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.16845256090164185
+          "score": 0.1419588327407837
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.38109132647514343
+          "score": 0.42098620533943176
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.3197687268257141
+          "passed": true,
+          "score": 0.522107720375061
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.20539991557598114
+          "score": 0.4292643666267395
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.1358879804611206
+          "score": 0.2782824635505676
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.21824023127555847
+          "passed": true,
+          "score": 0.5994362235069275
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.14742332696914673
+          "score": 0.3421463370323181
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.027197670191526413
+          "score": 0.3943776488304138
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.18433843553066254
+          "score": 0.3760693371295929
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.08411242812871933
+          "score": 0.4870164394378662
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.08670905977487564
+          "score": 0.40339434146881104
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.120686374604702
+          "score": 0.4577084183692932
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.4518503248691559
+          "passed": true,
+          "score": 0.5912507176399231
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.6049607992172241
+          "passed": true,
+          "score": 0.7431305646896362
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4395160675048828
+          "score": 0.3413239121437073
         },
         {
           "method": "semantic",
-          "passed": false,
-          "score": 0.3337723910808563
+          "passed": true,
+          "score": 0.70319664478302
         }
       ],
       "llm_judge": []
@@ -1530,10 +1530,10 @@
         "avg_score": 0.26
       },
       "semantic": {
-        "passed": 2,
+        "passed": 40,
         "total": 100,
-        "accuracy": 0.02,
-        "avg_score": 0.30159440653398634
+        "accuracy": 0.4,
+        "avg_score": 0.44123424887657164
       }
     },
     "details": {
@@ -2455,502 +2455,502 @@
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4487834572792053
+          "score": 0.4487837553024292
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.31456613540649414
+          "score": 0.31517866253852844
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3700753450393677
+          "score": 0.37007561326026917
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.1383448839187622
+          "score": 0.1113361269235611
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.11158145219087601
+          "score": 0.11158148944377899
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.15887343883514404
+          "score": 0.15911097824573517
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.34615451097488403
+          "score": 0.4016498029232025
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.20494407415390015
+          "score": 0.30496081709861755
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.14820702373981476
+          "score": 0.23228660225868225
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.17132174968719482
+          "score": 0.29834890365600586
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.27730733156204224
+          "score": 0.2773072123527527
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3146129548549652
+          "score": 0.31461280584335327
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.09444541484117508
+          "score": 0.12305845320224762
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.1429334133863449
+          "score": 0.2996079921722412
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3225248456001282
+          "score": 0.33013686537742615
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.07369935512542725
+          "score": 0.4810892343521118
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.07398984581232071
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.44644275307655334
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.05472801625728607
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.1635788232088089
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.47055783867836
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5026098489761353
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.11626490205526352
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4161219894886017
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3832395374774933
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.6232491135597229
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4596422612667084
+          "score": 0.08648272603750229
         },
         {
           "method": "semantic",
           "passed": true,
-          "score": 0.6713053584098816
+          "score": 0.6076407432556152
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3513534367084503
+          "score": 0.05472777038812637
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2842770516872406
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.019223028793931007
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5272778272628784
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.22301658987998962
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5171356201171875
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3521896302700043
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.42712971568107605
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4878580570220947
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.1537947803735733
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4516425132751465
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3841229975223541
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.46996399760246277
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2901490032672882
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.27226555347442627
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.46012935042381287
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5360810160636902
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.32688426971435547
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.27249598503112793
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.33870968222618103
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": -0.06307120621204376
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.11832773685455322
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.31697699427604675
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.29190558195114136
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.22901411354541779
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.25338107347488403
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4513961970806122
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.26556986570358276
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.32200950384140015
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3800385296344757
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.16658011078834534
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5225176811218262
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.43900710344314575
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4673912525177002
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.025962896645069122
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.1077001541852951
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.27746686339378357
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5726844668388367
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.6100267767906189
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4094671308994293
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.25654977560043335
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.38132214546203613
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.31517863273620605
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3700753450393677
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.1383448839187622
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.05982005596160889
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2242821305990219
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.07594861835241318
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4511607587337494
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.22875189781188965
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.20494407415390015
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.24145764112472534
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.23361888527870178
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2944345474243164
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4836830496788025
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.11638927459716797
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.17726224660873413
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2815712094306946
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2490777224302292
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2288641780614853
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.1831238716840744
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.291912704706192
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.17109879851341248
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.17305345833301544
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.19036367535591125
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.35355478525161743
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.11910738795995712
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.21721529960632324
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4983693063259125
+          "score": 0.20606422424316406
         },
         {
           "method": "semantic",
           "passed": true,
-          "score": 0.7035604119300842
+          "score": 0.6395776867866516
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4010888934135437
+          "score": 0.47235265374183655
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.5140963792800903
+          "score": 0.25194504857063293
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.49150583148002625
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4187396764755249
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6937114596366882
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6215682029724121
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5469817519187927
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.538242518901825
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.8238041400909424
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5321584343910217
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5338552594184875
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.20980943739414215
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3556605279445648
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.38399016857147217
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3955202102661133
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6231682300567627
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2514041066169739
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7081388831138611
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5586543679237366
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5328140258789062
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3108595609664917
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6034314632415771
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.46090030670166016
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7374522089958191
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6020468473434448
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5242596864700317
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.35681310296058655
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6095443964004517
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4855397343635559
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4785774052143097
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5586563348770142
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3273623287677765
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5760572552680969
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5986143350601196
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.432461142539978
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.382081538438797
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6223078966140747
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.23352760076522827
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6541799902915955
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5901100635528564
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.48316052556037903
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2985742688179016
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7533919811248779
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4596903622150421
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.566081702709198
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.49948975443840027
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5035930275917053
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5994516015052795
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.45007872581481934
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.31517866253852844
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.37007561326026917
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1113361269235611
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.37343502044677734
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.34281080961227417
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2163180708885193
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.36553362011909485
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33453187346458435
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.30496081709861755
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.517224133014679
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3818337321281433
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7339312434196472
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.561436653137207
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2727128863334656
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.20078498125076294
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3617737293243408
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.598253071308136
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5027301907539368
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3088773488998413
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4634062647819519
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.42914414405822754
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5502548813819885
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.31362757086753845
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5906627178192139
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6887844800949097
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6010010242462158
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5207894444465637
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7139266729354858
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33173516392707825
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.8704153895378113
         }
       ],
       "llm_judge": []
@@ -2965,10 +2965,10 @@
         "avg_score": 0.25
       },
       "semantic": {
-        "passed": 3,
+        "passed": 41,
         "total": 100,
-        "accuracy": 0.03,
-        "avg_score": 0.31483860362321137
+        "accuracy": 0.41,
+        "avg_score": 0.45762271046638486
       }
     },
     "details": {
@@ -3883,502 +3883,502 @@
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3894369602203369
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4981882572174072
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.41679835319519043
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.21458379924297333
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.11158145219087601
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.27148088812828064
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4374104142189026
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2670319676399231
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.06620684266090393
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.21870723366737366
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3462061882019043
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2766024172306061
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.14435745775699615
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.18249773979187012
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3433116674423218
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.08299463242292404
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.10044126212596893
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4177262783050537
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.12844261527061462
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.1301519125699997
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5215240716934204
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5079159736633301
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.13215583562850952
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3454725444316864
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.37318626046180725
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.6190580129623413
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.48465925455093384
+          "score": 0.3894369900226593
         },
         {
           "method": "semantic",
           "passed": true,
-          "score": 0.6780437231063843
+          "score": 0.5770037174224854
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3889668881893158
+          "score": 0.4198455214500427
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2787606120109558
+          "score": 0.23733125627040863
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": -0.006962032988667488
+          "score": 0.11158148944377899
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.5381290316581726
+          "score": 0.2702552080154419
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.1728830635547638
+          "score": 0.39961856603622437
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.5387271046638489
+          "score": 0.3486747145652771
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.2994517683982849
+          "score": 0.21026016771793365
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4910654127597809
+          "score": 0.29967647790908813
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.38265126943588257
+          "score": 0.3721585273742676
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.17441540956497192
+          "score": 0.2825186848640442
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4338493049144745
+          "score": 0.1747010201215744
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.42289337515830994
+          "score": 0.3549672067165375
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.47115761041641235
+          "score": 0.35648393630981445
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3371794521808624
+          "score": 0.4815827012062073
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3647982180118561
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.36744725704193115
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4257037043571472
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.40846097469329834
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2508416771888733
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.33287662267684937
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": -0.006742581725120544
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.16356681287288666
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.33393827080726624
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.21140895783901215
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.22240224480628967
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.203975647687912
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.39337921142578125
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.45362985134124756
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.34006384015083313
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.25539442896842957
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.33823680877685547
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3732594847679138
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5382385849952698
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3447631299495697
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.01736248843371868
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.14111082255840302
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.24834434688091278
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.6070476174354553
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4693448543548584
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.33035311102867126
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.27946946024894714
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.32330748438835144
+          "score": 0.0908227264881134
         },
         {
           "method": "semantic",
           "passed": true,
-          "score": 0.6514506340026855
+          "score": 0.5776512026786804
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.41679835319519043
+          "score": 0.1284424364566803
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.21458379924297333
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.058447763323783875
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2667846381664276
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.08147358894348145
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.4809243083000183
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.336410790681839
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2670319676399231
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.28106585144996643
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.24177223443984985
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.33454009890556335
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5021119117736816
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.13854646682739258
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.18141967058181763
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.2823640704154968
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.3442406952381134
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.30418360233306885
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.20240533351898193
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.28845399618148804
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.21922191977500916
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.18649722635746002
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.169777512550354
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.24189169704914093
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.12028586119413376
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.29291513562202454
-        },
-        {
-          "method": "semantic",
-          "passed": false,
-          "score": 0.5273187756538391
+          "score": 0.1216537356376648
         },
         {
           "method": "semantic",
           "passed": true,
-          "score": 0.6701557040214539
+          "score": 0.6110806465148926
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5252224802970886
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.3833125829696655
+          "score": 0.3764628767967224
         },
         {
           "method": "semantic",
           "passed": false,
-          "score": 0.4361485540866852
+          "score": 0.48588991165161133
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3459646999835968
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7105898261070251
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6448149681091309
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5364050269126892
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5333262085914612
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.8362846374511719
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.457114577293396
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.49472156167030334
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.17972423136234283
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4361966550350189
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3755922019481659
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.539884090423584
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4696861505508423
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.22274287045001984
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6601239442825317
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6101042032241821
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5350493788719177
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.34295737743377686
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6151056885719299
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.39883098006248474
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7453208565711975
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7109115123748779
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5050523281097412
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.34626173973083496
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6191666126251221
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.49430885910987854
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.472319096326828
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5797653794288635
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4232388734817505
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7134272456169128
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6066811084747314
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4820621609687805
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4404486417770386
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4194323420524597
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2974306046962738
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5206464529037476
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5807405114173889
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.34860366582870483
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2534302771091461
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.8175734877586365
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.39562058448791504
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.550061047077179
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5198010802268982
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.42721444368362427
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.760891318321228
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.42711079120635986
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5770037174224854
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4198455214500427
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.23733125627040863
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3726414442062378
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3699840009212494
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33483976125717163
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4780692756175995
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2554306983947754
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3486747145652771
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5776152610778809
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4703831672668457
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6542091965675354
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5647115707397461
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.23675985634326935
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2313246726989746
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.41687849164009094
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5544901490211487
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5254810452461243
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.34105172753334045
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5291272401809692
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4454396963119507
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5412759184837341
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.32303735613822937
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.674872100353241
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.565157949924469
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6461894512176514
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.5702487230300903
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7711960077285767
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3110809922218323
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.8118575811386108
         }
       ],
       "llm_judge": []

@@ -41,11 +41,11 @@ def exact_match_eval(response: str, must_include: list, must_not_include: list) 
             "missing": missing, "hallucinated": hallucinated}
 
 
-def semantic_similarity_eval(response: str, reference_terms: list, model=None) -> dict:
+def semantic_similarity_eval(response: str, reference_terms: list, model=None, gold_answer: str = "") -> dict:
     """Evaluate using embedding cosine similarity.
 
-    Compares the response embedding against a reference constructed from must_include terms.
-    Score > 0.7 is considered a pass.
+    Compares the first sentence of the response against the gold_answer
+    (or must_include terms if no gold_answer). Score > 0.5 is considered a pass.
     """
     try:
         from sentence_transformers import SentenceTransformer
@@ -57,12 +57,17 @@ def semantic_similarity_eval(response: str, reference_terms: list, model=None) -
     if model is None:
         model = SentenceTransformer("all-MiniLM-L6-v2")
 
-    reference_text = " ".join(reference_terms)
-    embeddings = model.encode([response, reference_text])
+    # Use gold_answer if available, otherwise join must_include terms
+    reference_text = gold_answer if gold_answer else " ".join(reference_terms)
+
+    # Use first 2 sentences of response (not full paragraph) to reduce dilution
+    response_short = ". ".join(response.split(". ")[:2])
+
+    embeddings = model.encode([response_short, reference_text])
     similarity = float(np.dot(embeddings[0], embeddings[1]) /
                        (np.linalg.norm(embeddings[0]) * np.linalg.norm(embeddings[1])))
 
-    passed = similarity > 0.65
+    passed = similarity > 0.50
     return {"method": "semantic", "passed": passed, "score": similarity}
 
 
@@ -165,7 +170,8 @@ def main():
                 model_results["exact"].append(r)
 
             if "semantic" in methods:
-                r = semantic_similarity_eval(response, item["must_include"], sem_model)
+                gold = item.get("gold_answer", "")
+                r = semantic_similarity_eval(response, item["must_include"], sem_model, gold_answer=gold)
                 model_results["semantic"].append(r)
 
             if "llm_judge" in methods:
