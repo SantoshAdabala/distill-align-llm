@@ -153,7 +153,13 @@ def main():
         logger.info(f"\nEvaluating: {model_name}")
         model_results = {"exact": [], "semantic": [], "llm_judge": []}
 
-        for i, (item, response) in enumerate(zip(eval_data, model_responses)):
+        for i, (item, response_data) in enumerate(zip(eval_data, model_responses)):
+            # Handle both plain string responses and dict responses
+            if isinstance(response_data, dict):
+                response = response_data.get("response", "")
+            else:
+                response = response_data
+
             if "exact" in methods:
                 r = exact_match_eval(response, item["must_include"], item["must_not_include"])
                 model_results["exact"].append(r)
