@@ -1,0 +1,4387 @@
+{
+  "base": {
+    "summary": {
+      "exact": {
+        "passed": 9,
+        "total": 100,
+        "accuracy": 0.09,
+        "avg_score": 0.09
+      },
+      "semantic": {
+        "passed": 0,
+        "total": 100,
+        "accuracy": 0.0,
+        "avg_score": 0.23124723803717642
+      }
+    },
+    "details": {
+      "exact": [
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "quantized",
+            "low-rank"
+          ],
+          "hallucinated": [
+            "quantum",
+            "accelerator"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "direct",
+            "preference",
+            "optimization"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reinforcement",
+            "learning"
+          ],
+          "hallucinated": [
+            "rule-based"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "supervised",
+            "fine-tuning"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "parameter",
+            "efficient",
+            "fine-tuning"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "group",
+            "relative",
+            "policy"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kahneman",
+            "tversky"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "odds",
+            "ratio",
+            "preference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "normalfloat",
+            "4-bit"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "grouped",
+            "query",
+            "attention"
+          ],
+          "hallucinated": [
+            "general"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "rotary",
+            "position"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "mixture"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "fully",
+            "sharded",
+            "parallel"
+          ],
+          "hallucinated": [
+            "fast",
+            "flexible"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "serving",
+            "pagedattention"
+          ],
+          "hallucinated": [
+            "very large language model"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "activation",
+            "weight",
+            "quantization"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "quantization",
+            "post-training"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "simple",
+            "preference",
+            "optimization"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "identity",
+            "preference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "recompute",
+            "activation"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reference",
+            "constraint"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "fp16"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "learning rate",
+            "gradually",
+            "stability"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "preference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "exploit"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "preferred",
+            "pair"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "base",
+            "inference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "requests",
+            "dynamic"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "draft",
+            "verify",
+            "speed"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "split",
+            "GPU",
+            "layer"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "precision"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "constants",
+            "memory"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "cross-entropy"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reasoning"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "response",
+            "fine-tun"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "memory",
+            "tiling"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kv-cache",
+            "memory"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "autoregressive"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "parallel",
+            "heads",
+            "subspace"
+          ],
+          "hallucinated": [
+            "single attention"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [],
+          "hallucinated": [
+            "batch normalization"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "gated",
+            "activation",
+            "swish"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "key-value",
+            "share"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "rotation",
+            "relative"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "causal",
+            "autoregressive"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "linear",
+            "hidden"
+          ],
+          "hallucinated": [
+            "attention mechanism"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "skip",
+            "gradient"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "local"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "router",
+            "sparse"
+          ],
+          "hallucinated": [
+            "ensemble"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "probability"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "byte pair",
+            "merge"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "merge"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "16"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "1e-5",
+            "lower"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "left"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "recompute",
+            "backward"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "accumulate",
+            "steps"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "4bit",
+            "nf4"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "q_proj",
+            "v_proj"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "scaling",
+            "rank"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "dpotrainer",
+            "beta",
+            "chosen",
+            "rejected"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "steps",
+            "epoch"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "batch size",
+            "gradient checkpointing"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "quantized",
+            "gradient"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "range"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "save_pretrained",
+            "from_pretrained"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "quantized",
+            "low-rank",
+            "adaptation"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "direct",
+            "preference",
+            "optimization"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reinforcement",
+            "learning"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "serving",
+            "inference"
+          ],
+          "hallucinated": [
+            "very large language model"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kv-cache",
+            "memory"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "frozen",
+            "anchor"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "normalfloat",
+            "4-bit"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "tiling",
+            "memory"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "group",
+            "relative",
+            "policy"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "scaling",
+            "magnitude"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "partition",
+            "GPU"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "frozen",
+            "low-rank",
+            "fewer parameters"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "chosen",
+            "higher"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "preference",
+            "rated",
+            "helpfulness"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "critique",
+            "revise"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "brain"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "format",
+            "tokens",
+            "assistant"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "device"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "highest",
+            "probability",
+            "random"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "cumulative",
+            "probability"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "logits",
+            "distribution"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "benchmark",
+            "training data",
+            "inflat"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reward",
+            "preference",
+            "policy"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "incorrect",
+            "confident"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "norm"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "without"
+          ],
+          "hallucinated": [
+            "training"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "replicate"
+          ],
+          "hallucinated": []
+        }
+      ],
+      "semantic": [
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4475966691970825
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.19429181516170502
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.07185453176498413
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3233951926231384
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.28048405051231384
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.0925697386264801
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5026577115058899
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.09497648477554321
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.06998023390769958
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.027916334569454193
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.28862953186035156
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.22648188471794128
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.0037854122929275036
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.23706188797950745
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1965027153491974
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.03736260160803795
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.006442397832870483
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1058165580034256
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.04094561189413071
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.09204700589179993
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2540439963340759
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3988162875175476
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.06552690267562866
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.23478513956069946
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11299987137317657
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5750264525413513
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3951326608657837
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5725812315940857
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.40698525309562683
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.07920941710472107
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2381882220506668
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.43442273139953613
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.09768389165401459
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5921958684921265
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.24585311114788055
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.36326631903648376
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.45116570591926575
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11473904550075531
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3495306372642517
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3117247223854065
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3396632969379425
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.16271741688251495
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.20127131044864655
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.30902156233787537
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5139639377593994
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.34270334243774414
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2596603035926819
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.28562772274017334
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.0653671845793724
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.08793557435274124
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.15473902225494385
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2379024177789688
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.27209651470184326
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2628917098045349
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.46858322620391846
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3441995084285736
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.32563164830207825
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1930394321680069
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2493046224117279
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.26344412565231323
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33165886998176575
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.39980483055114746
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.0736599862575531
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.09611648321151733
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.03518861159682274
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4804687201976776
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3947589695453644
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.29041939973831177
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.31218916177749634
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.37753528356552124
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.15990303456783295
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.07185453176498413
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3233951926231384
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.09665720909833908
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.07140123844146729
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.016645681113004684
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2455294281244278
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.029118306934833527
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.09497648477554321
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11065740883350372
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.20110297203063965
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.16160829365253448
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4098389446735382
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1074446365237236
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.16845256090164185
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.38109132647514343
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3197687268257141
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.20539991557598114
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1358879804611206
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.21824023127555847
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.14742332696914673
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.027197670191526413
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.18433843553066254
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.08411242812871933
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.08670905977487564
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.120686374604702
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4518503248691559
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.6049607992172241
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4395160675048828
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3337723910808563
+        }
+      ],
+      "llm_judge": []
+    }
+  },
+  "sft": {
+    "summary": {
+      "exact": {
+        "passed": 26,
+        "total": 100,
+        "accuracy": 0.26,
+        "avg_score": 0.26
+      },
+      "semantic": {
+        "passed": 2,
+        "total": 100,
+        "accuracy": 0.02,
+        "avg_score": 0.30159440653398634
+      }
+    },
+    "details": {
+      "exact": [
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "low-rank"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reinforcement",
+            "learning",
+            "human",
+            "feedback"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "supervised",
+            "fine-tuning"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "parameter",
+            "efficient"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "group",
+            "relative"
+          ],
+          "hallucinated": [
+            "gradient"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kahneman",
+            "tversky"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "odds",
+            "ratio",
+            "preference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "normalfloat",
+            "4-bit"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "grouped",
+            "query",
+            "attention"
+          ],
+          "hallucinated": [
+            "general"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "rotary",
+            "position"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "mixture"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "fully",
+            "sharded"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "pagedattention"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "activation",
+            "weight",
+            "quantization"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "post-training"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "simple"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "identity"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "constraint"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "previous",
+            "new"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "base",
+            "weights",
+            "inference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "dynamic"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "draft",
+            "verify",
+            "speed"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "layer"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "constants"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "cross-entropy",
+            "predict"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "intermediate"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "fine-tun"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "memory",
+            "tiling"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kv-cache"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "subspace"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "gated",
+            "activation"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "key-value",
+            "share"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "rotation",
+            "relative"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "causal",
+            "autoregressive"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "hidden",
+            "dimension"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "local"
+          ],
+          "hallucinated": [
+            "full attention"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "router",
+            "sparse"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "exponential"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "byte pair",
+            "subword"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "weights"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "16"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "left"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "accumulate",
+            "steps"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "4bit",
+            "nf4"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "q_proj",
+            "v_proj"
+          ],
+          "hallucinated": [
+            "all layers"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "scaling",
+            "rank"
+          ],
+          "hallucinated": [
+            "learning rate"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "beta",
+            "chosen",
+            "rejected"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "steps"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "quantized"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "range"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "low-rank",
+            "adaptation"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reinforcement",
+            "learning",
+            "human",
+            "feedback"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "inference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kv-cache"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "frozen",
+            "anchor"
+          ],
+          "hallucinated": [
+            "reward model"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "normalfloat"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "tiling",
+            "memory"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "group",
+            "relative"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "scaling"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "partition",
+            "GPU"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "frozen",
+            "fewer parameters"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "preference",
+            "rated",
+            "helpfulness"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "principles",
+            "critique",
+            "revise"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "regularization"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "brain"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "tokens",
+            "assistant"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "device"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "cumulative"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "logits"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "benchmark",
+            "inflat"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "incorrect",
+            "fabricat"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "decoupled"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "without"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "replicate"
+          ],
+          "hallucinated": []
+        }
+      ],
+      "semantic": [
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4487834572792053
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.31456613540649414
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3700753450393677
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1383448839187622
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11158145219087601
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.15887343883514404
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.34615451097488403
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.20494407415390015
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.14820702373981476
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.17132174968719482
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.27730733156204224
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3146129548549652
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.09444541484117508
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1429334133863449
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3225248456001282
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.07369935512542725
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.07398984581232071
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.44644275307655334
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.05472801625728607
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1635788232088089
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.47055783867836
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5026098489761353
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11626490205526352
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4161219894886017
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3832395374774933
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.6232491135597229
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4596422612667084
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6713053584098816
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3513534367084503
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2842770516872406
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.019223028793931007
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5272778272628784
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.22301658987998962
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5171356201171875
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3521896302700043
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.42712971568107605
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4878580570220947
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1537947803735733
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4516425132751465
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3841229975223541
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.46996399760246277
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2901490032672882
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.27226555347442627
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.46012935042381287
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5360810160636902
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.32688426971435547
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.27249598503112793
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33870968222618103
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.06307120621204376
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11832773685455322
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.31697699427604675
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.29190558195114136
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.22901411354541779
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.25338107347488403
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4513961970806122
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.26556986570358276
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.32200950384140015
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3800385296344757
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.16658011078834534
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5225176811218262
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.43900710344314575
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4673912525177002
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.025962896645069122
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1077001541852951
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.27746686339378357
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5726844668388367
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.6100267767906189
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4094671308994293
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.25654977560043335
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.38132214546203613
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.31517863273620605
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3700753450393677
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1383448839187622
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.05982005596160889
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2242821305990219
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.07594861835241318
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4511607587337494
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.22875189781188965
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.20494407415390015
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.24145764112472534
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.23361888527870178
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2944345474243164
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4836830496788025
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11638927459716797
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.17726224660873413
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2815712094306946
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2490777224302292
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2288641780614853
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1831238716840744
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.291912704706192
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.17109879851341248
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.17305345833301544
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.19036367535591125
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.35355478525161743
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11910738795995712
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.21721529960632324
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4983693063259125
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.7035604119300842
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4010888934135437
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5140963792800903
+        }
+      ],
+      "llm_judge": []
+    }
+  },
+  "dpo": {
+    "summary": {
+      "exact": {
+        "passed": 25,
+        "total": 100,
+        "accuracy": 0.25,
+        "avg_score": 0.25
+      },
+      "semantic": {
+        "passed": 3,
+        "total": 100,
+        "accuracy": 0.03,
+        "avg_score": 0.31483860362321137
+      }
+    },
+    "details": {
+      "exact": [
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "quantized"
+          ],
+          "hallucinated": [
+            "quality"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reinforcement",
+            "learning",
+            "human",
+            "feedback"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "supervised",
+            "fine-tuning"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "parameter",
+            "efficient"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "group",
+            "relative",
+            "policy"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kahneman",
+            "tversky"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "odds",
+            "ratio",
+            "preference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "normalfloat",
+            "4-bit"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "grouped",
+            "query",
+            "attention"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "rotary",
+            "position"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "mixture"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "fully",
+            "sharded"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "pagedattention"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "activation",
+            "weight",
+            "quantization"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "post-training"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "preference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "identity",
+            "preference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "recompute"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "constraint"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "fp32"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "gradually",
+            "stability"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [],
+          "hallucinated": [
+            "label"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "base",
+            "weights",
+            "inference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "dynamic"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "draft",
+            "verify",
+            "speed"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "layer"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "constants"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "cross-entropy",
+            "predict"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "tiling"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kv-cache"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "subspace"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "gated"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "key-value",
+            "share"
+          ],
+          "hallucinated": [
+            "full attention"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "rotation",
+            "relative"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "causal"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "hidden"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "local"
+          ],
+          "hallucinated": [
+            "full attention"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "router",
+            "sparse"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "exponential"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "byte pair",
+            "subword"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "recompute",
+            "backward"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "accumulate"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "4bit",
+            "nf4"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "q_proj",
+            "v_proj"
+          ],
+          "hallucinated": [
+            "embedding layer"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "rank"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "beta",
+            "chosen",
+            "rejected"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "steps"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "quantized",
+            "gradient"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "range"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "save_pretrained"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "quantized"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reinforcement",
+            "learning",
+            "human",
+            "feedback"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "inference"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "kv-cache"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "frozen",
+            "anchor"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "normalfloat"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "tiling"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "group",
+            "relative",
+            "policy"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "partition",
+            "GPU"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "frozen",
+            "fewer parameters"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "preference",
+            "rated",
+            "helpfulness"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "critique",
+            "revise"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "regularization"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "brain"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "tokens"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "device"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "cumulative"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "logits"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "benchmark"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "reward",
+            "policy"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "incorrect",
+            "fabricat"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "stabilize"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": true,
+          "score": 1.0,
+          "missing": [],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "decoupled"
+          ],
+          "hallucinated": []
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [],
+          "hallucinated": [
+            "training"
+          ]
+        },
+        {
+          "method": "exact",
+          "passed": false,
+          "score": 0.0,
+          "missing": [
+            "replicate"
+          ],
+          "hallucinated": []
+        }
+      ],
+      "semantic": [
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3894369602203369
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4981882572174072
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.41679835319519043
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.21458379924297333
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.11158145219087601
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.27148088812828064
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4374104142189026
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2670319676399231
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.06620684266090393
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.21870723366737366
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3462061882019043
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2766024172306061
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.14435745775699615
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.18249773979187012
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3433116674423218
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.08299463242292404
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.10044126212596893
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4177262783050537
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.12844261527061462
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1301519125699997
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5215240716934204
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5079159736633301
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.13215583562850952
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3454725444316864
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.37318626046180725
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.6190580129623413
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.48465925455093384
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6780437231063843
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3889668881893158
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2787606120109558
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.006962032988667488
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5381290316581726
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.1728830635547638
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5387271046638489
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2994517683982849
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4910654127597809
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.38265126943588257
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.17441540956497192
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4338493049144745
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.42289337515830994
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.47115761041641235
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3371794521808624
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3647982180118561
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.36744725704193115
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4257037043571472
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.40846097469329834
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2508416771888733
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33287662267684937
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": -0.006742581725120544
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.16356681287288666
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33393827080726624
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.21140895783901215
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.22240224480628967
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.203975647687912
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.39337921142578125
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.45362985134124756
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.34006384015083313
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.25539442896842957
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33823680877685547
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3732594847679138
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5382385849952698
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3447631299495697
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.01736248843371868
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.14111082255840302
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.24834434688091278
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.6070476174354553
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4693448543548584
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33035311102867126
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.27946946024894714
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.32330748438835144
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6514506340026855
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.41679835319519043
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.21458379924297333
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.058447763323783875
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2667846381664276
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.08147358894348145
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4809243083000183
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.336410790681839
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2670319676399231
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.28106585144996643
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.24177223443984985
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.33454009890556335
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5021119117736816
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.13854646682739258
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.18141967058181763
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.2823640704154968
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3442406952381134
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.30418360233306885
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.20240533351898193
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.28845399618148804
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.21922191977500916
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.18649722635746002
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.169777512550354
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.24189169704914093
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.12028586119413376
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.29291513562202454
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.5273187756538391
+        },
+        {
+          "method": "semantic",
+          "passed": true,
+          "score": 0.6701557040214539
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.3833125829696655
+        },
+        {
+          "method": "semantic",
+          "passed": false,
+          "score": 0.4361485540866852
+        }
+      ],
+      "llm_judge": []
+    }
+  }
+}
