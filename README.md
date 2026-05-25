@@ -2,7 +2,7 @@
 
 End-to-end LLM alignment pipeline (**SFT → DPO**) with QLoRA, investigating how preference optimization interacts with domain-specific knowledge.
 
-**Key finding:** With 3 epochs of domain-specific SFT, factuality improves from 9.8% to 15.7%, and DPO preserves this gain (17.6%). DPO achieves 82% reward accuracy — an Alignment-Factuality Gap (AFG) of 64.3 points.
+**Key finding:** With 3 epochs of domain-specific SFT, factuality improves from 9% to 26% on TechFact-100, and DPO preserves this gain (25%). DPO achieves 82% reward accuracy — an Alignment-Factuality Gap (AFG$_{\text{exact}}$) of 57 points.
 
 🔗 **[Live Dashboard](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)**
 
@@ -17,7 +17,7 @@ End-to-end LLM alignment pipeline (**SFT → DPO**) with QLoRA, investigating ho
 | **DPO** | Reward Accuracy | 82% (peak 88%) |
 | **DPO** | Loss | 0.52 |
 | **Factuality** | Base → SFT → DPO | 9.8% → 15.7% → 17.6% |
-| **AFG** | Alignment-Factuality Gap | 64.3 points |
+| **AFG** | Alignment-Factuality Gap | 57 points (exact) |
 
 ### Version Progression
 
@@ -40,7 +40,7 @@ End-to-end LLM alignment pipeline (**SFT → DPO**) with QLoRA, investigating ho
 | DPO Reward Accuracy | 82% | ✅ |
 | SFT Token Accuracy | 78% | ✅ |
 | Domain Factuality (DPO) | 17.6% | ⚠️ |
-| **AFG** | **64.3 points** | |
+| **AFG** | **57 points** | |
 
 Reward accuracy (82%) far exceeds factuality (17.6%). These metrics measure fundamentally different capabilities.
 
@@ -111,12 +111,12 @@ Tested Base vs SFT vs DPO on 51 technical ML prompts (strict keyword matching, t
                     │  │         EVALUATION & SERVING            │ │
                     │  ├────────────────────────────────────────┤ │
                     │  │                                        │ │
-                    │  │  ┌──────────┐  ┌──────────┐  ┌──────┐ │ │
-                    │  │  │Factuality│  │ Response │  │ vLLM │ │ │
-                    │  │  │  Eval    │  │ Compare  │  │Serving│ │ │
-                    │  │  │(51 prompts) │(Base/SFT/│  │+ API  │ │ │
-                    │  │  │ temp=0)  │  │  DPO)    │  │       │ │ │
-                    │  │  └──────────┘  └──────────┘  └──────┘ │ │
+                    │  │  ┌──────────┐  ┌──────────┐         │ │
+                    │  │  │Factuality│  │ Response │         │ │
+                    │  │  │  Eval    │  │ Compare  │         │ │
+                    │  │  │(51 prompts) │(Base/SFT/│         │ │
+                    │  │  │ temp=0)  │  │  DPO)    │         │ │
+                    │  │  └──────────┘  └──────────┘         │ │
                     │  │                                        │ │
                     │  └────────────────────┬───────────────────┘ │
                     │                       │                     │
@@ -155,9 +155,6 @@ distill-align-llm/
 │   │   ├── sft.py                 # SFT trainer (TRL SFTTrainer)
 │   │   ├── dpo.py                 # DPO trainer (TRL DPOTrainer)
 │   │   └── rlhf.py               # GRPO trainer (TRL GRPOTrainer)
-│   └── serving/                    # Experimental serving module (not yet deployed)
-│       ├── engine.py              # vLLM inference engine
-│       └── api.py                 # FastAPI REST gateway
 ├── scripts/
 │   ├── run_sft.py                 # SFT entry point
 │   ├── run_dpo.py                 # DPO entry point (supports --merge-sft)
@@ -226,7 +223,7 @@ python scripts/eval_factuality_all.py \
 |----------|-------------|
 | **Training** | PyTorch, HuggingFace Transformers, TRL, PEFT, bitsandbytes |
 | **Data** | HuggingFace Datasets, UltraFeedback, OpenHermes-2.5 |
-| **Serving** | vLLM, FastAPI |
+| **Evaluation** | sentence-transformers, TechFact-100 |
 | **Dashboard** | Streamlit, Plotly |
 | **Testing** | pytest, ruff |
 | **Infrastructure** | RunPod.io (RTX 3090 / A5000 / A6000 / A100 SXM) |
