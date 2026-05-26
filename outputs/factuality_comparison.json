@@ -1,17 +1,17 @@
 {
   "base": {
-    "passed": 13,
-    "total": 100,
-    "accuracy": 0.13
+    "passed": 4,
+    "total": 51,
+    "accuracy": 0.0784313725490196
   },
   "sft": {
-    "passed": 27,
-    "total": 100,
-    "accuracy": 0.27
+    "passed": 8,
+    "total": 51,
+    "accuracy": 0.1568627450980392
   },
   "dpo": {
-    "passed": 31,
-    "total": 100,
-    "accuracy": 0.31
+    "passed": 2,
+    "total": 51,
+    "accuracy": 0.0392156862745098
   }
 }
