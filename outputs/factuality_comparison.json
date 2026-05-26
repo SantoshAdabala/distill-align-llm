@@ -5,9 +5,9 @@
     "accuracy": 0.0784313725490196
   },
   "sft": {
-    "passed": 9,
+    "passed": 6,
     "total": 51,
-    "accuracy": 0.17647058823529413
+    "accuracy": 0.11764705882352941
   },
   "dpo": {
     "passed": 3,
