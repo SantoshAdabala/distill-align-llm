@@ -1,0 +1,56 @@
+# ──────────────────────────────────────────────
+# Mistral-7B-Instruct-v0.3 — Cross-architecture AFG validation
+# ──────────────────────────────────────────────
+# Same hyperparameters as Llama-3.1-8B to isolate architecture effects.
+# Run on Lightning.ai A100 or RunPod A6000.
+#
+# Usage:
+#   python scripts/run_sft.py --config configs/mistral_7b.yaml
+#   python scripts/run_dpo.py --config configs/mistral_7b.yaml \
+#       --sft-adapter ./outputs/mistral_7b/sft/final_adapter --merge-sft
+
+model:
+  model_id: "mistralai/Mistral-7B-Instruct-v0.3"
+  family: "mistral"
+  max_seq_length: 512
+  trust_remote_code: false
+  quantization:
+    mode: "int4_nf4"
+    quant_type: "nf4"
+    use_double_quant: true
+    compute_dtype: "bfloat16"
+  lora:
+    rank: 16
+    alpha: 32
+    target_modules:
+      - "q_proj"
+      - "k_proj"
+      - "v_proj"
+      - "o_proj"
+    dropout: 0.05
+
+sft:
+  learning_rate: 0.0002
+  batch_size: 2
+  gradient_accumulation_steps: 8
+  num_epochs: 3                   # 3 epochs — matches best Llama config
+  warmup_steps: 50
+  bf16: true
+  gradient_checkpointing: true
+  logging_steps: 5
+  save_steps: 200
+  eval_steps: 200
+  output_dir: "./outputs/mistral_7b/sft"
+
+dpo:
+  beta: 0.05
+  learning_rate: 0.00001
+  batch_size: 1
+  gradient_accumulation_steps: 8
+  num_epochs: 1
+  bf16: true
+  gradient_checkpointing: true
+  logging_steps: 20
+  save_steps: 200
+  eval_steps: 100
+  output_dir: "./outputs/mistral_7b/dpo"
