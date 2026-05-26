@@ -1,0 +1,60 @@
+# ──────────────────────────────────────────────
+# Llama-3.1-8B-Instruct — 5 epoch SFT (plateau test)
+# ──────────────────────────────────────────────
+# Tests whether 8B model plateaus at 3 epochs or continues improving.
+# If it plateaus, smaller models have a steeper epoch sensitivity curve.
+# If it improves, both models benefit from more epochs but at different rates.
+#
+# Usage:
+#   python scripts/run_sft.py --config configs/llama_8b_5ep.yaml
+#   python scripts/eval_factuality_all.py \
+#       --base-model meta-llama/Llama-3.1-8B-Instruct \
+#       --sft-adapter ./outputs/llama_8b_5ep/sft/final_adapter \
+#       --dpo-adapter ./outputs/dpo/dpo_adapter \
+#       --eval-file data/eval_factuality.jsonl
+
+model:
+  model_id: "meta-llama/Llama-3.1-8B-Instruct"
+  family: "llama-3.1"
+  max_seq_length: 512
+  trust_remote_code: true
+  quantization:
+    mode: "int4_nf4"
+    quant_type: "nf4"
+    use_double_quant: true
+    compute_dtype: "bfloat16"
+  lora:
+    rank: 16
+    alpha: 32
+    target_modules:
+      - "q_proj"
+      - "k_proj"
+      - "v_proj"
+      - "o_proj"
+    dropout: 0.05
+
+sft:
+  learning_rate: 0.0002
+  batch_size: 2
+  gradient_accumulation_steps: 8
+  num_epochs: 5                   # 5 epochs — plateau test
+  warmup_steps: 50
+  bf16: true
+  gradient_checkpointing: true
+  logging_steps: 5
+  save_steps: 200
+  eval_steps: 200
+  output_dir: "./outputs/llama_8b_5ep/sft"
+
+dpo:
+  beta: 0.05
+  learning_rate: 0.00001
+  batch_size: 1
+  gradient_accumulation_steps: 8
+  num_epochs: 1
+  bf16: true
+  gradient_checkpointing: true
+  logging_steps: 20
+  save_steps: 200
+  eval_steps: 100
+  output_dir: "./outputs/llama_8b_5ep/dpo"
