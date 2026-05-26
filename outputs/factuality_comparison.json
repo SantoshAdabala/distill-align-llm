@@ -5,13 +5,13 @@
     "accuracy": 0.0784313725490196
   },
   "sft": {
-    "passed": 8,
+    "passed": 9,
     "total": 51,
-    "accuracy": 0.1568627450980392
+    "accuracy": 0.17647058823529413
   },
   "dpo": {
-    "passed": 10,
+    "passed": 3,
     "total": 51,
-    "accuracy": 0.19607843137254902
+    "accuracy": 0.058823529411764705
   }
 }
