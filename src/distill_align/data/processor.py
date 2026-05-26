@@ -340,6 +340,62 @@ class DataProcessor:
         logger.info(f"Tokenization complete: {len(tokenized)} records")
         return tokenized
 
+    @staticmethod
+    def _sanitize_messages(messages: list[dict]) -> list[dict] | None:
+        """Ensure messages alternate user/assistant roles.
+
+        Mistral (and some other models) require strict alternation.
+        Returns None if the conversation can't be salvaged.
+        """
+        if not messages:
+            return None
+
+        sanitized = []
+        # Skip system messages at the start (keep them)
+        start_idx = 0
+        if messages[0].get("role") == "system":
+            sanitized.append(messages[0])
+            start_idx = 1
+
+        # Ensure alternating user/assistant from here
+        expected_role = "user"
+        for msg in messages[start_idx:]:
+            role = msg.get("role", "")
+            content = msg.get("content", "")
+
+            if not content or not content.strip():
+                continue
+
+            if role == expected_role:
+                sanitized.append(msg)
+                expected_role = "assistant" if role == "user" else "user"
+            elif role == "assistant" and expected_role == "user":
+                # Missing user turn — skip this assistant message
+                continue
+            elif role == "user" and expected_role == "assistant":
+                # Consecutive user messages — merge them
+                if sanitized and sanitized[-1]["role"] == "user":
+                    sanitized[-1] = {
+                        "role": "user",
+                        "content": sanitized[-1]["content"] + "\n" + content,
+                    }
+                else:
+                    sanitized.append(msg)
+                    expected_role = "assistant"
+
+        # Must have at least one user + one assistant message
+        roles = [m["role"] for m in sanitized if m["role"] != "system"]
+        if len(roles) < 2 or "user" not in roles or "assistant" not in roles:
+            return None
+
+        # Must end with assistant (complete conversation)
+        if sanitized[-1]["role"] != "assistant":
+            sanitized = sanitized[:-1]
+            if not sanitized or sanitized[-1]["role"] != "assistant":
+                return None
+
+        return sanitized
+
     def _tokenize_instruction(
         self, dataset: Dataset, tokenizer, max_length: int
     ) -> Dataset:
@@ -351,13 +407,21 @@ class DataProcessor:
 
             if "messages" in columns:
                 for messages in examples["messages"]:
+                    # Sanitize to ensure alternating roles (required by Mistral etc.)
+                    clean_messages = DataProcessor._sanitize_messages(messages)
+                    if clean_messages is None:
+                        # Skip malformed conversations — use a placeholder
+                        clean_messages = [
+                            {"role": "user", "content": "Hello"},
+                            {"role": "assistant", "content": "Hello! How can I help you?"},
+                        ]
                     if hasattr(tokenizer, "apply_chat_template"):
                         text = tokenizer.apply_chat_template(
-                            messages, tokenize=False, add_generation_prompt=False
+                            clean_messages, tokenize=False, add_generation_prompt=False
                         )
                     else:
                         text = "\n".join(
-                            f"{m['role']}: {m['content']}" for m in messages
+                            f"{m['role']}: {m['content']}" for m in clean_messages
                         )
                     texts.append(text)
 
