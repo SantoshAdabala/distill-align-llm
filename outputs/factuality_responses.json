@@ -2,7 +2,7 @@
   "base": [
     {
       "prompt": "What does LoRA stand for?",
-      "response": "LORA can stand for several things, depending on the context. Here are a few possible meanings:\n\n1. Local Register of Assessments: In the UK, LORA is an acronym for the Local Register of Assessments, which is a database of property assessments used for tax purposes.\n2. Learning Objectives and Requirements for Assessment: In education, LORA might refer to a framework or set of standards for assessing student learning outcomes.\n3. Local Organizing Region Association: In some cases, LORA might be an",
+      "response": "LoRa stands for Long Range. It is a wireless communication protocol designed for long-range, low-power wireless communication. It is often used for IoT (Internet of Things) applications, such as smart city infrastructure, agriculture monitoring, and supply chain and logistics management. LoRa uses a spread-spectrum modulation technique to transmit data over long distances while consuming minimal power.",
       "passed": false,
       "included": [],
       "missing": [
@@ -12,7 +12,7 @@
     },
     {
       "prompt": "What does DPO stand for?",
-      "response": "DPO can stand for several things, depending on the context. Here are a few possible meanings:\n\n1. Data Protection Officer: In the European Union, the Data Protection Officer (DPO) is a role responsible for ensuring an organization complies with data protection laws and regulations, such as the General Data Protection Regulation (GDPR).\n2. Director of Photography Operations: In the film and television industry, the Director of Photography Operations (DPO) is a position responsible for overseeing ",
+      "response": "DPO stands for Data Protection Officer. This is a role that is required in some jurisdictions for organizations that process personal data. The Data Protection Officer is responsible for ensuring that the organization complies with data protection laws and regulations, such as the General Data Protection Regulation (GDPR) in the European Union. The DPO is a key point of contact for data subjects, data protection authorities, and other stakeholders regarding matters related to data protection.",
       "passed": false,
       "included": [],
       "missing": [
@@ -22,7 +22,7 @@
     },
     {
       "prompt": "What does QLoRA stand for?",
-      "response": "I couldn't find any information on what QLoRA stands for. Can you provide more context or details about QLoRA?",
+      "response": "QLoRA is not a widely recognized acronym. It could potentially stand for various things depending on the context, as acronyms can be specific to certain fields or organizations. However, without more context, it's difficult to provide an accurate definition. If you have more information about where you encountered this term, I might be able to provide a more precise explanation.",
       "passed": false,
       "included": [],
       "missing": [
@@ -33,17 +33,17 @@
     },
     {
       "prompt": "What does RLHF stand for?",
-      "response": "RLHF stands for \"Reinforcement Learning from Human Feedback\". It's a type of machine learning approach that involves training AI models using human feedback to improve their performance. In this method, humans provide labels or feedback on the output of the AI model, which is then used to update the model's parameters to improve its accuracy and performance.",
-      "passed": true,
-      "included": [
+      "response": "RLHF stands for \"Reformat The World, Help Fix Humankind,\" which is a phrase often associated with the character Roy Batty from the movie \"Blade Runner.\" However, in a more specific context, RLHF could refer to the Research Library and Hypothesis Generator, a tool developed by the Allen Institute for Artificial Intelligence (AI2). It's a question answering system that uses machine learning to generate hypotheses and rank them based on their likelihood.",
+      "passed": false,
+      "included": [],
+      "missing": [
         "Reinforcement Learning from Human Feedback"
       ],
-      "missing": [],
       "hallucinated": []
     },
     {
       "prompt": "What does GRPO stand for?",
-      "response": "I'm not aware of a widely recognized acronym \"GRPO\". Could you provide more context or information about what GRPO stands for?",
+      "response": "GRPO is an acronym that can stand for various things depending on the context. Here are a few possibilities:\n\n1. Group, Report, Period, Organization - a common structure for financial reporting.\n2. Global Reporting Initiative (GRI) Performance Outcomes - a set of outcomes that organizations can use to measure their sustainability performance.\n3. General Revenue Performance Officers - a group of government officials responsible for managing revenue and financial performance.\n4. Group Risk and Pro",
       "passed": false,
       "included": [],
       "missing": [
@@ -53,33 +53,33 @@
     },
     {
       "prompt": "What is gradient checkpointing?",
-      "response": "Gradient checkpointing is a technique used in machine learning to improve the stability and efficiency of training neural networks, particularly during the optimization process. It involves saving the gradients of the model's parameters at certain intervals during training, and then using these saved gradients to update the model's parameters when the training process is resumed.\n\nThe main idea behind gradient checkpointing is to reduce the computational cost and memory requirements of training ",
+      "response": "Gradient checkpointing is a technique used in machine learning to reduce memory usage during the backpropagation step of training a neural network. It's particularly useful when training large models or when dealing with limited memory resources.\n\nIn standard backpropagation, the gradients of the loss function with respect to all the model parameters are computed and stored in memory for each training example. This can be memory-intensive, especially for models with a large number of parameters.",
       "passed": false,
       "included": [
+        "recompute",
         "memory"
       ],
       "missing": [
-        "recompute",
         "activation"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the purpose of the KL penalty in RLHF?",
-      "response": "The KL divergence (KL divergence) penalty is a common regularization term used in Reinforcement Learning from Human Feedback (RLHF) to encourage the model to produce more realistic and diverse responses. The purpose of the KL penalty is to:\n\n1. **Enforce diversity**: By adding a penalty term to the loss function, the model is incentivized to generate responses that are more diverse and less likely to be similar to the training data. This helps to prevent the model from overfitting to the trainin",
+      "response": "In Reinforcement Learning with Human Feedback (RLHF), the KL penalty, or Kullback-Leibler (KL) divergence penalty, is used to encourage the agent's policy to be similar to the human demonstrator's policy. This is a key component in the training process to ensure the agent's behavior aligns with human preferences.\n\nThe KL divergence is a measure of the difference between two probability distributions. In this context, the agent's policy and the human demonstrator's policy are considered as two pr",
       "passed": false,
       "included": [
-        "prevent",
-        "diverge"
+        "diverge",
+        "reference"
       ],
       "missing": [
-        "reference"
+        "prevent"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What does NF4 stand for in QLoRA?",
-      "response": "I cannot verify what NF4 stands for in QLoRA.",
+      "response": "In the context of QLoRA (Quantum Localized Rotor Model for Atoms), NF4 typically refers to a tetrahedral molecule composed of four nitrogen atoms (N) in a 3-dimensional structure. However, in a broader context, NF4 could also represent any group or compound with the formula NF4, such as Nitrogen fluoride (NF4) or Nitrogen(III) fluoride (NF4+). In the specific context of QLoRA, it's essential to consult the original research or the specific context for accurate interpretation.",
       "passed": false,
       "included": [],
       "missing": [
@@ -90,7 +90,7 @@
     },
     {
       "prompt": "What is PagedAttention?",
-      "response": "PagedAttention is a type of attention mechanism in deep learning, particularly in transformer-based models. It's a variant of the original attention mechanism introduced in the Transformer model by Vaswani et al. in 2017.\n\nIn traditional attention mechanisms, the attention weights are calculated based on the similarity between the query (Q) and key (K) vectors, and the value (V) vectors. However, in PagedAttention, the attention weights are calculated based on the similarity between the query an",
+      "response": "Paged Attention, also known as Sparse Attention, is a variant of the Attention mechanism used in machine learning, particularly in the field of Natural Language Processing (NLP). It's designed to handle sequences of variable length more efficiently than traditional Attention mechanisms, which can be computationally expensive when dealing with long sequences.\n\nIn a standard Attention mechanism, every element in the input sequence is compared with every element in the output sequence, which can le",
       "passed": false,
       "included": [
         "pages"
@@ -103,7 +103,7 @@
     },
     {
       "prompt": "What is the beta parameter in DPO?",
-      "response": "The beta parameter in DPO (Dynamic Programming Optimization) is a coefficient that controls the trade-off between the quality of the solution and the computational time.\n\nIn DPO, the beta parameter is used to balance the two main objectives of the optimization algorithm:\n\n1. **Optimality**: The algorithm aims to find the optimal solution that minimizes the objective function.\n2. **Computational efficiency**: The algorithm should also be computationally efficient, i.e., it should not take too muc",
+      "response": "In the context of Data Processing Obfuscation (DPO), the term \"beta parameter\" is not commonly used. However, in the field of machine learning, particularly in Gaussian Mixture Models (GMM) and some other algorithms, the beta parameter is often used.\n\nIn GMM, the beta parameter is a shape parameter for the gamma distribution that is used to model the covariance matrix of each Gaussian component. It determines the degree of concentration of the covariance matrix around the identity matrix. A beta",
       "passed": false,
       "included": [],
       "missing": [
@@ -115,7 +115,7 @@
     },
     {
       "prompt": "What is continuous batching in LLM serving?",
-      "response": "Continuous Batching in Large Language Model (LLM) serving refers to a technique used in the deployment of large language models, such as those used in conversational AI and natural language processing (NLP) applications. The goal of continuous batching is to improve the efficiency and scalability of LLMs by processing multiple requests concurrently, rather than one by one.\n\nIn traditional LLM serving, each incoming request is processed individually, which can lead to several issues:\n\n1. **Low th",
+      "response": "Continuous batching in Large Language Models (LLM) serving refers to a technique used to improve the efficiency of serving large models by batching multiple input requests together and processing them in a single pass through the model. This approach is particularly useful for models that have high computational requirements, such as transformer-based models, which are commonly used in natural language processing tasks.\n\nThe idea is to group multiple input requests into a batch, process them tog",
       "passed": false,
       "included": [
         "requests",
@@ -128,7 +128,7 @@
     },
     {
       "prompt": "What is the difference between SFT and DPO?",
-      "response": "SFT and DPO are two terms that are often used interchangeably, but they have slightly different meanings in the context of data protection and compliance.\n\n**SFT** stands for \"Secure File Transfer\" or \"Secure File Transfer Protocol.\" It refers to a method of transferring files securely over a network, typically using encryption and authentication to protect the data in transit. SFT is often used in enterprise environments to transfer sensitive data, such as financial information, between systems",
+      "response": "SFT (Software Fork-Tailored) and DPO (Data Processing Object) are terms from the IBM mainframe world, particularly in the context of z/OS operating system.\n\n1. SFT (Software Fork-Tailored) is a feature that allows multiple instances of the same program to run concurrently, each with its own set of data. This is useful for applications that require multiple independent instances, such as a web server that handles multiple requests concurrently.\n\n2. DPO (Data Processing Object) is a type of z/OS s",
       "passed": false,
       "included": [],
       "missing": [
@@ -141,7 +141,7 @@
     },
     {
       "prompt": "What is reward accuracy in DPO?",
-      "response": "In the context of Digital Payments and Online Transactions, Reward Accuracy refers to the accuracy of the rewards or incentives offered by a payment processor, online merchant, or financial institution to customers for using their services, such as cashback, points, or other forms of rewards.\n\nReward accuracy is crucial because it directly impacts the customer's perception of the value they receive from using a particular payment method or service. If the rewards are not accurately credited or r",
+      "response": "In the context of Direct and Productive Work (DPO), Reward Accuracy refers to the degree to which the rewards provided to employees are aligned with the performance and behavior that the organization wants to encourage. This includes both the monetary rewards (such as bonuses, raises, or promotions) and non-monetary rewards (such as recognition, feedback, or opportunities for growth).\n\nReward accuracy is important because it helps to ensure that employees are motivated to perform at their best a",
       "passed": false,
       "included": [],
       "missing": [
@@ -153,7 +153,7 @@
     },
     {
       "prompt": "What is mixed precision training?",
-      "response": "Mixed precision training is a technique used in deep learning and artificial intelligence (AI) to improve the performance of neural networks. It involves training a model using a combination of two or more precision levels, typically 16-bit and 32-bit, to balance the trade-off between accuracy and computational efficiency.\n\nIn traditional training, neural networks are typically trained using 32-bit floating-point numbers, which can lead to significant memory and computational requirements. Howev",
+      "response": "Mixed precision training is a technique used in deep learning to speed up the training of neural networks while maintaining or even improving the model's accuracy. It involves using a combination of single-precision (32-bit floating-point, or float32) and half-precision (16-bit floating-point, or float16) floating-point numbers during the training process.\n\nThe idea is to use float16 for the majority of the computations, which are less computationally intensive and require less memory, and switc",
       "passed": false,
       "included": [],
       "missing": [
@@ -165,7 +165,7 @@
     },
     {
       "prompt": "What is Flash Attention?",
-      "response": "Flash Attention is a type of attention mechanism used in deep learning models, particularly in the context of natural language processing (NLP) and computer vision. It's a technique designed to selectively focus on specific parts of the input data, such as images or text, while ignoring the rest.\n\nIn traditional attention mechanisms, the model focuses on the entire input and computes a weighted sum of the input features. In contrast, Flash Attention is a more efficient and flexible approach that",
+      "response": "Flash Attention, in the context of machine learning and artificial intelligence, is a concept used in deep learning models, particularly in the field of computer vision. It refers to a mechanism that allows a model to focus on specific regions of an image or video frame for a short period, similar to how a human might briefly focus on a particular area when scanning a scene.\n\nThis mechanism is often used in object detection and recognition models, such as You Only Look Once (YOLO) and Faster R-C",
       "passed": false,
       "included": [
         "attention"
@@ -178,19 +178,20 @@
     },
     {
       "prompt": "What is the purpose of warmup steps in training?",
-      "response": "The primary purpose of warm-up steps in training is to prepare the body for physical activity by increasing blood flow, reducing the risk of injury, and improving performance. A warm-up typically involves a series of light cardio and dynamic stretching exercises that are designed to:\n\n1. **Increase blood flow and temperature**: Warm up your muscles by increasing blood flow and temperature, which helps to reduce muscle stiffness and improve flexibility.\n2. **Reduce muscle soreness**: Warm up your",
+      "response": "Warm-up steps in training serve several important purposes:\n\n1. Preparing the body for physical activity: Warm-up exercises increase the body's core temperature, which helps to loosen muscles, increase blood flow, and reduce the risk of injury.\n\n2. Improving performance: Warm-up exercises help to prepare the body for the specific movements and demands of the workout or sport. This can help to improve athletic performance, as the muscles are more responsive and flexible.\n\n3. Reducing the risk of ",
       "passed": false,
-      "included": [],
+      "included": [
+        "gradually"
+      ],
       "missing": [
         "learning rate",
-        "gradually",
         "stability"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is adapter merging in LoRA?",
-      "response": "Adapter Merging in LoRA (Low-Overhead Runtime for Artificial General Intelligence) is a technique used to combine multiple models into a single model, which is then used to generate text. This technique is particularly useful in the context of large language models like those used in language translation, text generation, and other NLP tasks.\n\nIn LoRA, adapter merging is used to combine the weights of multiple smaller models into a single model, which is then used to generate text. The idea is t",
+      "response": "Adapter merging in LoRa (Long Range Wide Area Network) is not a standard term in the LoRa protocol itself, but rather a concept that arises when dealing with LoRaWAN gateways and network servers.\n\nIn a LoRaWAN network, multiple gateways can cover the same geographical area. Each gateway receives signals from LoRa devices and sends the data to the network server. The network server then processes and routes the data to the appropriate application server or end-point.\n\nAdapter merging, in this con",
       "passed": false,
       "included": [],
       "missing": [
@@ -202,7 +203,7 @@
     },
     {
       "prompt": "What is the reference model in DPO?",
-      "response": "In the context of Data Protection Officer (DPO) regulations, the reference model is a framework used to guide the implementation of data protection principles and practices. The reference model is often referred to as the \"Data Protection by Design and Default\" (DPbD) model.\n\nThe DPbD model is a widely accepted framework that provides a structured approach to integrating data protection into an organization's operations. It emphasizes the importance of designing and implementing data protection ",
+      "response": "In the context of Data Protection Officers (DPO), a reference model is a framework or a set of guidelines that provide a standardized approach to managing data protection obligations. The reference model helps organizations to ensure compliance with data protection laws and regulations, such as the General Data Protection Regulation (GDPR) in the European Union.\n\nThe reference model typically includes a set of principles, best practices, and procedures that a DPO can use to manage data protectio",
       "passed": false,
       "included": [],
       "missing": [
@@ -214,7 +215,7 @@
     },
     {
       "prompt": "What is vLLM?",
-      "response": "vLLM stands for \"Video Large Language Model.\" It's a type of artificial intelligence (AI) model that is specifically designed to process and understand video content, in addition to natural language processing (NLP) capabilities.\n\nvLLM models are typically used for tasks such as:\n\n1. Video analysis: Extracting insights and features from video data, such as object detection, facial recognition, and scene understanding.\n2. Video generation: Generating new video content, such as videos from text de",
+      "response": "vLLM (Virtual LLM) is a term that doesn't have a widely recognized standard definition in the field of law or technology. However, it could potentially refer to a Virtual Law Master of Laws (LLM), which is a degree program offered by some universities that allows students to study law online, rather than attending classes on campus. This type of program can be beneficial for individuals who are unable to attend traditional law schools due to geographical, financial, or time constraints.\n\nIt's al",
       "passed": false,
       "included": [],
       "missing": [
@@ -226,7 +227,7 @@
     },
     {
       "prompt": "What is the causal attention mask?",
-      "response": "The causal attention mask is a concept in cognitive psychology and neuroscience that refers to the process by which our attention selectively focuses on relevant information while ignoring irrelevant information. In other words, it's a mental filter that helps us concentrate on the most important information and filter out distractions.\n\nThe causal attention mask is thought to be a dynamic process that involves the activation of specific neural networks in the brain, which are responsible for at",
+      "response": "The Causal Attention Mask, in the context of machine learning and particularly in Transformer models like BERT, is a mechanism used to prevent the model from seeing future information when processing a sequence. This is crucial for maintaining the order of the sequence and ensuring that the model doesn't inadvertently use future information to influence its predictions about the past.\n\nIn practice, this is achieved by setting the attention weights for positions in the future to zero, effectively",
       "passed": false,
       "included": [],
       "missing": [
@@ -234,11 +235,13 @@
         "previous",
         "autoregressive"
       ],
-      "hallucinated": []
+      "hallucinated": [
+        "BERT"
+      ]
     },
     {
       "prompt": "What is weight decay in AdamW?",
-      "response": "In the AdamW algorithm, weight decay, also known as L2 regularization or weight decay term, is a technique used to prevent overfitting in neural networks. It is a penalty term added to the loss function to discourage large weights.\n\nThe AdamW algorithm is an extension of the Adam algorithm, which adds weight decay to the learning rate. The weight decay term is added to the learning rate, which is then used to update the model's weights.\n\nMathematically, the weight decay term can be represented a",
+      "response": "AdamW (Adam with Weight Decay) is a variant of the Adam (Adaptive Moment Estimation) optimizer, which is used in machine learning to update the parameters of a model during the training process. Weight decay, also known as L2 regularization or Ridge regression regularization, is a method used to prevent overfitting by adding a penalty to the loss function that is proportional to the square of the magnitude of the weights.\n\nIn AdamW, weight decay is implemented by adding a term to the standard Ad",
       "passed": true,
       "included": [
         "regularization",
@@ -250,11 +253,12 @@
     },
     {
       "prompt": "What is gradient accumulation?",
-      "response": "Gradient accumulation is a technique used in machine learning and optimization to improve the performance of neural networks. It involves accumulating the gradients of the loss function with respect to the model's parameters over time, rather than computing the gradients from scratch at each iteration.\n\nIn traditional stochastic gradient descent (SGD) or other optimization algorithms, the gradients are computed at each iteration using a single sample from the training dataset. This can be comput",
+      "response": "Gradient accumulation is a technique used in deep learning to train large neural network models with limited computational resources. In standard training, the model computes the loss gradient for each mini-batch of data and updates the model weights accordingly. However, for large models and large datasets, this can be computationally expensive, especially when using powerful but resource-constrained hardware like GPUs.\n\nGradient accumulation addresses this issue by accumulating the gradients o",
       "passed": false,
-      "included": [],
+      "included": [
+        "batch size"
+      ],
       "missing": [
-        "batch size",
         "multiple steps",
         "optimizer"
       ],
@@ -262,7 +266,7 @@
     },
     {
       "prompt": "What is the lm_head in a language model?",
-      "response": "In a language model, the LM (Language Model) head refers to the topmost layer of the model that generates the final output. It is typically a fully connected (dense) layer that takes the output from the previous layers and produces the final predicted output.\n\nThe LM head is responsible for:\n\n1. **Outputting the final prediction**: The LM head generates the final output of the model, which is the predicted probability distribution over all possible words in the vocabulary.\n2. **Transforming the ",
+      "response": "In the context of machine learning and natural language processing (NLP), `lm_head` often refers to the head of a language model that is specifically designed for language modeling tasks.\n\nLanguage modeling is a task in NLP that aims to predict the probability distribution of a sequence of words given a prefix of that sequence. The goal is to predict the next word in the sequence.\n\nThe `lm_head` is typically the final layer of a transformer-based language model, such as BERT, RoBERTa, or DistilB",
       "passed": false,
       "included": [
         "vocabulary"
@@ -275,7 +279,7 @@
     },
     {
       "prompt": "What is BitsAndBytes used for?",
-      "response": "I apologize but I cannot verify what BitsAndBytes is used for.",
+      "response": "BitsAndBytes is a Python library that provides various functions for working with binary data, such as converting between different base number systems (like decimal, hexadecimal, binary), encoding and decoding data, and performing bitwise operations. It's often used in programming to manipulate and analyze binary data, such as images, audio files, or network packets.\n\nHere are some common use cases for BitsAndBytes:\n\n1. Converting between different number systems: You can use BitsAndBytes to co",
       "passed": false,
       "included": [],
       "missing": [
@@ -287,7 +291,7 @@
     },
     {
       "prompt": "What is the difference between fp16 and bf16?",
-      "response": "FP16 and BF16 are two different data types used in computer science, particularly in the context of floating-point numbers.\n\n**FP16 (Half-Precision Floating-Point)**\n\nFP16 is a 16-bit floating-point data type, which is a reduced-precision representation of a floating-point number. It is also known as half-precision floating-point. In FP16, a 16-bit value is used to represent a floating-point number, which is equivalent to a 32-bit floating-point number in terms of precision.\n\nThe main characteri",
+      "response": "FP16 (Floating Point 16) and BF16 (Bfloat16) are both floating-point data formats used in computing, particularly in machine learning and high-performance computing, to improve efficiency and speed up calculations. However, they differ in their design and characteristics:\n\n1. FP16: It is a half-precision floating-point format that uses 16 bits to represent a number. It has a fractional part of 10 bits and an exponent part of 5 bits, which means it can represent numbers with a range of approximat",
       "passed": true,
       "included": [
         "exponent",
@@ -299,7 +303,7 @@
     },
     {
       "prompt": "What is PEFT?",
-      "response": "PEFT stands for Polyethylene Felt.",
+      "response": "PEFT, or Probabilistic Extension of First-Order Theories, is a method used in artificial intelligence (AI) and computer science. It's a form of description logic, a family of knowledge representation languages that are a subset of classical first-order logic.\n\nPEFT extends a first-order theory with probabilistic constructs, allowing for the representation and reasoning about uncertain knowledge. This is particularly useful in AI systems that need to make decisions based on incomplete or uncertai",
       "passed": false,
       "included": [],
       "missing": [
@@ -309,7 +313,7 @@
     },
     {
       "prompt": "What is TRL?",
-      "response": "TRL stands for Total Record Labels. It was a television program that aired on MTV from 1998 to 2008. The show was a countdown of the most popular songs on the Billboard Hot 100 chart, as voted by the public. It was hosted by Carson Kressley, Nick Cannon, and later by other hosts, including Vanessa Lachey, Chris Harrison, and others.\n\nTRL was known for its high-energy format, which featured live performances, interviews, and a countdown of the top 10 songs of the week. The show was a staple of MT",
+      "response": "TRL stands for Technology Readiness Level. It is a system used to quantify the maturity, technical maturity, and mission suitability of technologies in the development process, particularly in the aerospace industry. The TRL scale ranges from 1 (basic principles observed and reported) to 9 (actual system proven in operational environment). It helps in understanding the developmental stage of a technology and its potential for successful integration into a system or mission. The TRL system is use",
       "passed": false,
       "included": [],
       "missing": [
@@ -320,7 +324,7 @@
     },
     {
       "prompt": "What is the SFTTrainer in TRL?",
-      "response": "I'm not familiar with the specific term \"SFTTrainer\" in the context of TRL (Total Request Live). TRL was a popular television program that aired on MTV from 1998 to 2008, and it featured a countdown of the top music videos of the week. However, I couldn't find any information on a specific term like \"SFTTrainer\" being associated with TRL.\n\nIt's possible that \"SFTTrainer\" is a term used within a specific community or group related to TRL, but I couldn't find any information on it. Can you please ",
+      "response": "SFTTrainer is a tool in TRL (Time-Reversal Lattice) that is used for training time-reversal invariant (TRI) models. It is a part of the TRL library, which is a Python-based open-source library for training and inference of time-reversal invariant models.\n\nSFTTrainer is designed to train models that are invariant under time-reversal symmetry, which is a property that is important in many physical systems. This symmetry can help improve the generalization of the model and make it more robust to no",
       "passed": false,
       "included": [],
       "missing": [
@@ -332,7 +336,7 @@
     },
     {
       "prompt": "What is the DPOTrainer in TRL?",
-      "response": "I'm not familiar with the specific term \"DPOTrainer\" in the context of TRL (Total Request Live). TRL was a popular television program that aired on MTV from 1998 to 2008, known for its countdown of the top music videos and live performances.\n\nCould you please provide more context or information about what DPOTrainer refers to in this context? I'll do my best to help you understand its meaning.",
+      "response": "DPOTrainer is not a term directly associated with TRL (Technology Readiness Level), which is a method used to quantify the maturity, capability, and technical readiness of a technology for integration into a system.\n\nDPOTrainer, on the other hand, is a software tool developed by Dassault Syst\u00e8mes, a company that specializes in 3D design, simulation, and digital mockup. DPOTrainer is a part of the Dassault Syst\u00e8mes' 3DEXPERIENCE platform and is used for digital process operations training. It pro",
       "passed": false,
       "included": [],
       "missing": [
@@ -344,7 +348,7 @@
     },
     {
       "prompt": "What does device_map='auto' do?",
-      "response": "`device_map='auto'` is a configuration option in some frameworks, including TensorFlow and PyTorch, that controls how the framework determines the device (CPU or GPU) to use for computations.\n\nWhen `device_map='auto'`, the framework will automatically detect the available devices (CPU or GPU) and use the most suitable one for the computation. This means that the framework will:\n\n1. Check if a GPU is available and use it if possible.\n2. If no GPU is available, use the CPU.\n\nIn other words, `devic",
+      "response": "The `device_map='auto'` is a configuration option in the NVIDIA Docker runtime, specifically for the NVIDIA-Docker2 or NVIDIA Container Toolkit.\n\nThis option enables the NVIDIA Docker runtime to automatically map GPU devices to containers based on the number of GPUs available on the host system and the number of GPUs requested by the Docker container.\n\nWhen you run a Docker container with GPU support, you can specify the number of GPUs to allocate to the container using the `--gpus` flag. If `de",
       "passed": false,
       "included": [
         "GPU"
@@ -357,20 +361,19 @@
     },
     {
       "prompt": "What is the purpose of the attention_mask?",
-      "response": "The attention_mask is a crucial component in deep learning models, particularly in the context of transformer-based architectures like BERT, RoBERTa, and others. Its primary purpose is to control the attention mechanism in the model.\n\nIn the transformer architecture, the attention mechanism allows the model to focus on specific parts of the input data that are most relevant to the task at hand. However, without proper masking, the model might attend to all parts of the input, which can lead to:\n",
-      "passed": false,
+      "response": "The `attention_mask` is a tensor used in the Transformer model, a popular architecture in machine learning, particularly in the field of natural language processing (NLP).\n\nThe attention_mask serves two main purposes:\n\n1. It helps the model to differentiate between the words that should be attended to (1s in the mask) and the words that should be ignored (0s in the mask). This is crucial in scenarios where you have a pair of sentences, and you want the model to focus on one sentence at a time du",
+      "passed": true,
       "included": [
+        "padding",
+        "ignore",
         "attend"
       ],
-      "missing": [
-        "padding",
-        "ignore"
-      ],
+      "missing": [],
       "hallucinated": []
     },
     {
       "prompt": "What is RoPE?",
-      "response": "\"RoPE\" can refer to different things, but I'll provide a few possible interpretations:\n\n1. **RoPE (Organization)**: RoPE (Rape, Obstruction of Process, and Exploitation) is a UK-based organization that campaigns against rape, sexual violence, and exploitation. They work to support survivors, raise awareness, and advocate for policy changes.\n2. **RoPE (Software)**: RoPE is a software development methodology that focuses on rapid prototyping and iterative development. It's an alternative to Agile ",
+      "response": "RoPE stands for \"Rapid Prototyping for Engineering.\" It is a methodology used in software development, particularly in the field of embedded systems, to create a working model of a software system quickly. The goal is to identify and fix issues early in the development process, reducing the time and cost of later stages.\n\nRoPE involves breaking down the software into smaller, manageable components, or \"prototypes,\" which are developed and tested independently. This approach allows developers to ",
       "passed": false,
       "included": [],
       "missing": [
@@ -381,7 +384,7 @@
     },
     {
       "prompt": "What is GQA (Grouped Query Attention)?",
-      "response": "GQA (Grouped Query Attention) is a type of attention mechanism used in deep learning models, particularly in computer vision and natural language processing tasks. It's a variant of the traditional self-attention mechanism, designed to improve the performance of models by selectively focusing on specific regions or groups of elements within the input data.\n\nIn traditional self-attention, the model attends to all elements in the input sequence simultaneously, computing attention weights for each ",
+      "response": "GQA (Grouped Query Attention) is a method used in machine learning, particularly in the field of natural language processing (NLP). It's a way to improve the performance of models that process and generate responses to questions.\n\nIn the context of GQA, the \"attention\" part refers to a mechanism that allows the model to focus on specific parts of the input when generating an output. This is particularly useful in NLP tasks where the answer to a question might not be directly stated but can be in",
       "passed": false,
       "included": [],
       "missing": [
@@ -393,7 +396,7 @@
     },
     {
       "prompt": "What is SwiGLU?",
-      "response": "I couldn't find any information on \"SwiGLU\". It's possible that it's a misspelling or a term that is not widely known. Can you please provide more context or clarify what SwiGLU refers to? I'll do my best to help you find the answer.",
+      "response": "SwiGLU (Swift Implementation of GLU) is an open-source library that provides a Swift implementation of the OpenGL Utility Library (GLU). GLU is a part of the OpenGL API and provides a set of functions for performing common 3D mathematical operations, such as sphere and cylinder drawing, surface parameterization, and more.\n\nSwiGLU aims to provide the same functionality as GLU but in Swift, making it easier to use with Apple's Swift programming language and the Swift for TensorFlow project, which ",
       "passed": false,
       "included": [],
       "missing": [
@@ -405,7 +408,7 @@
     },
     {
       "prompt": "What is RMSNorm?",
-      "response": "RMSNorm is a normalization technique used in data preprocessing, particularly in machine learning and data analysis. It stands for \"Root Mean Square\" normalization.\n\nRMSNorm is a type of normalization that scales the values of a dataset to have a mean of 0 and a standard deviation of 1. This is done by subtracting the mean and then dividing by the standard deviation.\n\nMathematically, RMSNorm can be represented as:\n\nRMSNorm(x) = (x - \u03bc) / \u03c3\n\nwhere x is the input value, \u03bc is the mean of the datase",
+      "response": "RMSNorm, or Root Mean Square Normalization, is a method used in signal processing and machine learning to normalize data. It's a type of data normalization technique that scales data to have a root mean square (RMS) value of 1.\n\nThe RMS value is calculated by squaring each sample in the dataset, summing the squared values, dividing by the number of samples, and then taking the square root. This process is done for each feature (column) independently. The result is a set of data where each featur",
       "passed": true,
       "included": [
         "normalization",
@@ -416,7 +419,635 @@
     },
     {
       "prompt": "What is the KV-cache?",
-      "response": "The KV-cache is a caching layer that is part of the Kubernetes (K8s) ecosystem. It's a built-in caching mechanism designed to improve the performance of Kubernetes applications by reducing the number of requests made to external services.\n\nThe KV-cache is a key-value store that stores data in memory, allowing it to quickly retrieve and provide responses to requests. It's typically used to cache frequently accessed data, such as configuration, logs, or other metadata, that is not essential for th",
+      "response": "KV-cache, or Key-Value cache, is a type of data structure used in computer programming and computer science. It stores data in a collection of key-value pairs, where each data item is associated with a unique key. This structure is particularly useful in caching, where frequently accessed data is stored in the cache for quick retrieval, improving the performance of applications by reducing the number of expensive operations, such as database queries or file system lookups.\n\nIn the context of dat",
+      "passed": false,
+      "included": [
+        "key",
+        "value",
+        "stored"
+      ],
+      "missing": [
+        "autoregressive"
+      ],
+      "hallucinated": [
+        "training"
+      ]
+    },
+    {
+      "prompt": "What is speculative decoding?",
+      "response": "Speculative decoding is a technique used in computer architecture, particularly in modern CPUs, to improve performance. It's a form of out-of-order execution where the CPU starts decoding and executing instructions before they have been fetched from the memory.\n\nIn other words, the CPU guesses which instruction will be next in the program and starts decoding it, while the previous instruction is still being fetched from the memory. This can lead to a significant speedup in performance, as the CP",
+      "passed": false,
+      "included": [
+        "speed"
+      ],
+      "missing": [
+        "draft model",
+        "verify"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is tensor parallelism?",
+      "response": "Tensor parallelism is a method used in machine learning and deep learning to speed up computations by distributing the computations across multiple processors or GPUs. In this approach, a multi-dimensional array, or tensor, is divided into smaller sub-tensors, which are then computed in parallel. This is particularly useful in deep learning models, where matrix and tensor operations are common.\n\nThe goal is to take advantage of the parallelism inherent in these operations to reduce the computati",
+      "passed": false,
+      "included": [
+        "GPUs"
+      ],
+      "missing": [
+        "split",
+        "layers"
+      ],
+      "hallucinated": [
+        "data parallelism"
+      ]
+    },
+    {
+      "prompt": "What is the Bradley-Terry model?",
+      "response": "The Bradley-Terry model is a probabilistic model used to predict the outcome of contests between items, such as teams in sports, products in a market, or documents in a ranking system. It's a type of pairwise comparison model, which means it makes predictions based on comparisons between two items at a time.\n\nIn the Bradley-Terry model, each item is assigned a parameter, often denoted as \u03b8_i, which represents the relative ability or skill of that item. The probability of item i winning a contest",
+      "passed": false,
+      "included": [
+        "probability",
+        "pairwise"
+      ],
+      "missing": [
+        "preference"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is reward hacking?",
+      "response": "Reward hacking, also known as loyalty program hacking or points hacking, refers to the practice of maximizing the value of loyalty or rewards programs offered by businesses, often through strategic use of the program's rules and policies. This can include techniques such as signing up for multiple accounts, using credit cards that offer bonus points for certain purchases, or taking advantage of promotions and bonuses. The goal is to earn more rewards than the average customer, often without viol",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "exploit",
+        "reward model",
+        "quality"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the implicit reward in DPO?",
+      "response": "In Deep Policy Optimization (DPO), the implicit reward is the objective function that the algorithm is trying to optimize. In traditional reinforcement learning, an explicit reward signal is provided to the agent for each action it takes. However, in DPO, the reward signal is not explicitly given but is instead inferred from the data collected by the agent.\n\nIn DPO, the goal is to learn a policy that maximizes the expected return over a trajectory, which is a sequence of states, actions, and rew",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "log probability",
+        "ratio",
+        "reference"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is double quantization in QLoRA?",
+      "response": "Double quantization is a technique used in the Quantization and Learning-based Rate-Distortion Optimization (QLoRA) method for image and video compression.\n\nIn QLoRA, double quantization is applied to both the spatial and transform domains. Here's a simplified explanation:\n\n1. Spatial Quantization: This is the traditional quantization process where the pixel values of an image or video frame are quantized to a lower bit depth. This reduces the amount of data needed to represent the image, but at",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "quantization constants",
+        "additional memory"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the purpose of prepare_model_for_kbit_training?",
+      "response": "`prepare_model_for_kbit_training` is a function or method that prepares a machine learning model for training with the K-bit quantization technique. K-bit quantization is a method used to reduce the memory and computational requirements of deep learning models by quantizing the weights of the model to a lower precision, typically from 32-bit floating-point to 8-bit integers.\n\nThe purpose of `prepare_model_for_kbit_training` is to modify the model architecture and the training process to work wit",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "quantized",
+        "gradient",
+        "LoRA"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is NEFTune?",
+      "response": "NEFTune is a music production software developed by Native Instruments, a German company known for creating innovative music software and hardware for electronic music production. NEFTune is a part of the Komplete suite, which is a collection of various software instruments, effects, and tools for music production.\n\nNEFTune is a synthesizer that focuses on creating complex and evolving sounds, particularly for electronic music genres like techno, trance, and ambient. It features a unique \"Tune\" ",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "noise",
+        "embedding",
+        "regularization"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is sequence packing in SFT?",
+      "response": "Sequence packing in SFT (Subshift of Finite Type) refers to a method used in the study of symbolic dynamics and topological dynamics. In this context, a sequence packing is a way to pack a sequence (or word) into a bi-infinite sequence (or bi-infinite word) on a given alphabet.\n\nIn the context of SFTs, a subshift of finite type (SFT) is a shift space, which is a closed subset of the full shift over a finite alphabet, defined by forbidding certain finite patterns from occurring. The sequence pack",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "concatenate",
+        "short examples",
+        "efficiency"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is loss masking in SFT?",
+      "response": "Loss masking in Sentence-Fairness-Transformer (SFT) is a technique used to mitigate the bias in language models. The idea is to mask certain words in a sentence that are more likely to be associated with a specific group (e.g., race, gender, etc.) during training, forcing the model to learn more universally applicable responses.\n\nFor example, if a model is trained on a dataset that is biased towards a certain gender, it might generate responses that are more favorable to that gender. Loss maskin",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "prompt tokens",
+        "-100",
+        "assistant"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the difference between online and offline DPO?",
+      "response": "A Data Protection Officer (DPO) is a role designated under the General Data Protection Regulation (GDPR) in the European Union. The DPO is responsible for ensuring that an organization is compliant with data protection laws and regulations.\n\nThe main difference between an online DPO and an offline DPO lies in the context in which they operate.\n\n1. Online DPO: This role is specifically focused on data protection in the digital or online environment. This includes websites, mobile applications, an",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "generate",
+        "fixed dataset",
+        "current policy"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is model merging?",
+      "response": "Model merging is a technique used in machine learning and artificial intelligence to combine multiple machine learning models into a single, more powerful model. This approach is often used when dealing with complex problems that require different types of models to capture various aspects of the data.\n\nThere are several ways to merge models, including:\n\n1. **Stacking**: In stacking, multiple models are trained independently, and the outputs of these models are used as inputs to a meta-model (us",
+      "passed": false,
+      "included": [
+        "combine"
+      ],
+      "missing": [
+        "weights",
+        "without retraining"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is GGUF format?",
+      "response": "GGUF stands for Globally Unique Identifier (GUID) Format. It is a 128-bit value that is used to create unique identifiers for software components, files, or other items. The GUID is often used in software development, particularly in Microsoft technologies like Active Directory, COM, and WCF. It is defined by the GUID specification, which is part of the Open Software Foundation (OSF) DCE (Distributed Computing Environment) specification.\n\nA GUID is represented as a 32-character string, typically",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "llama.cpp",
+        "quantized",
+        "inference"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is AWQ quantization?",
+      "response": "AWQ (Adaptive Weight Quantization) is a method used in machine learning and signal processing to reduce the precision of numerical data, such as weights in a neural network, while minimizing the impact on the model's performance. This process is known as quantization.\n\nIn AWQ, the weights are adaptively quantized during the training process, meaning that the quantization levels are adjusted based on the distribution of the weights in the network. This approach aims to find an optimal trade-off b",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "activation-aware",
+        "important weights",
+        "4-bit"
+      ],
+      "hallucinated": [
+        "training"
+      ]
+    },
+    {
+      "prompt": "What is the difference between perplexity and loss?",
+      "response": "Perplexity (PPL) and loss are two different concepts used in machine learning, particularly in the field of natural language processing (NLP), but they serve different purposes.\n\n1. Loss: Loss is a measure of how well a model is learning during the training phase. It quantifies the difference between the predicted output and the actual output for a given data point. The goal of a machine learning model is to minimize the loss function, which is often a mathematical function that takes the predic",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "exponential",
+        "exp(loss)"
+      ],
+      "hallucinated": []
+    }
+  ],
+  "sft": [
+    {
+      "prompt": "What does LoRA stand for?",
+      "response": "LoRA stands for Low-Rank Adaptation. It is a parameter-efficient fine-tuning method that projects pretrained weights into a low-rank subspace.",
+      "passed": true,
+      "included": [
+        "Low-Rank Adaptation"
+      ],
+      "missing": [],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What does DPO stand for?",
+      "response": "DPO stands for DPO (Data-Poisoning Optimization). It is a preference-alignment method that adds a penalty term to the loss function to discourage the model from generating responses that are worse than a reference.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "Direct Preference Optimization"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What does QLoRA stand for?",
+      "response": "QLoRA stands for Quantized Low-Rank Adaptation. It is a memory-efficient fine-tuning method that quantizes the base model weights and uses low-rank adapters for fine-tuning.",
+      "passed": true,
+      "included": [
+        "Quantized",
+        "Low-Rank"
+      ],
+      "missing": [],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What does RLHF stand for?",
+      "response": "RLHF stands for Reinforcement Learning with Human Feedback. It is a method that combines reward model training and preference optimization.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "Reinforcement Learning from Human Feedback"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What does GRPO stand for?",
+      "response": "GRPO stands for Generative Reinforcement Learning with Preference Oracles. It is a preference-based RL method that uses a preference model to judge whether generated responses are better than references.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "Group Relative Policy Optimization"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is gradient checkpointing?",
+      "response": "gradient checkpointing (gradient checkpointing) is a memory-saving technique that stores fewer activations during the forward pass. It can reduce GPU memory usage by 2-3x on long sequences.",
+      "passed": false,
+      "included": [
+        "activation",
+        "memory"
+      ],
+      "missing": [
+        "recompute"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the purpose of the KL penalty in RLHF?",
+      "response": "The KL penalty encourages the policy to stay close to a reference model. In DPO, it prevents the policy from moving too far from the reference model. In RLHF, it prevents the model from generating unreasonable responses. Without KL, the model could learn to generate anything \u2014 not just good responses. The KL penalty is a regularization term that adds a penalty proportional to the KL divergence between the policy and reference model. In DPO, it's the only penalty. In RLHF, it's one of several pen",
+      "passed": true,
+      "included": [
+        "prevent",
+        "diverge",
+        "reference"
+      ],
+      "missing": [],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What does NF4 stand for in QLoRA?",
+      "response": "NF4 stands for Neural Fusion of 4 layers. In QLoRA, it refers to the architecture where the base model is split into 4 layers and each layer is adapted independently.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "NormalFloat",
+        "4-bit"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is PagedAttention?",
+      "response": "PagedAttention (PagedAttention) is an attention mechanism that reduces memory usage by paging tokens in and out of the attention cache. It is used in LoRA-based models.",
+      "passed": false,
+      "included": [
+        "memory"
+      ],
+      "missing": [
+        "KV-cache",
+        "pages"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the beta parameter in DPO?",
+      "response": "The beta parameter controls the strength of the preference signal. In DPO, the objective is: L(x, y) = -log(sigma(beta * (log(pi(y|x)/pi(x|y))))) - log(sigma(beta * (log(pi(x|y)/pi(y|x))))). When beta = 1, the objective is equivalent to the standard DPO objective. When beta > 1, the model is encouraged to generate responses that are more similar to chosen responses than rejected ones. When beta < 1, the model is encouraged to generate responses that are more different from rejected responses tha",
+      "passed": false,
+      "included": [
+        "reference"
+      ],
+      "missing": [
+        "KL",
+        "regularization"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is continuous batching in LLM serving?",
+      "response": "Continuous batching is serving multiple requests concurrently from a single batch of tokens. Instead of waiting for one request to finish before starting the next, the model processes multiple requests in parallel. This reduces latency for short requests and increases throughput. Implementations: (1) Continuous batching with token merging \u2014 merge tokens from multiple requests into a single sequence, process, split results. (2) Continuous batching with token interleaving \u2014 keep each request's tok",
+      "passed": true,
+      "included": [
+        "requests",
+        "batch",
+        "finish"
+      ],
+      "missing": [],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the difference between SFT and DPO?",
+      "response": "SFT (Supervised Fine-Tuning) trains on labeled data with a loss function that directly optimizes for the target distribution. It's the standard approach for most NLP tasks. DPO (Differentiable Preference Optimization) trains on unlabeled data with a loss function that optimizes for relative preferences. It's used for preference learning (choosing better responses) and instruction tuning (preferring helpful responses). The key difference: SFT needs labeled data and a clear target (correct answer)",
+      "passed": false,
+      "included": [
+        "instruction",
+        "preference"
+      ],
+      "missing": [
+        "chosen",
+        "rejected"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is reward accuracy in DPO?",
+      "response": "Reward accuracy measures how often the model chooses the preferred response over the rejected response. It's computed as: Reward accuracy = (# preferred chosen) / (# preferred chosen + # rejected chosen). In a binary DPO setup, it's the fraction of pairs where the model chooses the correct response. A good reward accuracy is >85%. If it's consistently <70%, the model may not be learning the preference signal effectively.",
+      "passed": false,
+      "included": [
+        "chosen",
+        "rejected"
+      ],
+      "missing": [
+        "implicit reward"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is mixed precision training?",
+      "response": "mixed precision training (mixed precision training) is training with lower precision than the model's weights. It can speed up training by 2-5x.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "fp16",
+        "bf16",
+        "fp32"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is Flash Attention?",
+      "response": "Flash Attention (Flash Attention) is an attention mechanism that computes attention scores using a small subset of tokens instead of all tokens. It reduces attention computation from O(n^2) to O(n) for long sequences.",
+      "passed": false,
+      "included": [
+        "attention"
+      ],
+      "missing": [
+        "memory",
+        "tiling"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the purpose of warmup steps in training?",
+      "response": "Warmup steps gradually increase learning rate from 0 to the target value over the first few percent of steps. Purpose: (1) Prevents catastrophic optimization where the model immediately collapses or diverges. (2) Allows gradients to flow through the network without being clipped. (3) Ensures the optimizer doesn't get stuck in a bad state. (4) Reduces early training instability. (5) Helps the model converge faster overall. Typical warmup: 1-5% of total steps, with a linear ramp-up. For a 10k-step",
+      "passed": true,
+      "included": [
+        "learning rate",
+        "gradually",
+        "stability"
+      ],
+      "missing": [],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is adapter merging in LoRA?",
+      "response": "Adapter merging combines multiple adapters into a single model. Instead of having separate models for different tasks, you can merge them into one model. For example, you can merge a chat model with a code-completion adapter. The merged model can handle both chat and code completion. This is useful when you have multiple small models for different tasks and want to consolidate them into one larger model. The merging process involves concatenating the adapter weights and applying a merge layer (o",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "base weights",
+        "fold",
+        "inference"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the reference model in DPO?",
+      "response": "The reference model is the model that generates the ideal response for each prompt. It's usually a strong model like GPT-4 or a model trained on the same data as the base model. The DPO loss compares the chosen response to the ideal response. The reference model doesn't need to be perfect \u2014 it just needs to be better than the base model on the task at hand.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "frozen",
+        "SFT",
+        "anchor"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is vLLM?",
+      "response": "vLLM (vectorized LLM) is a model serving framework that uses GPU memory efficiently. It is useful for serving multiple models.",
+      "passed": false,
+      "included": [
+        "serving"
+      ],
+      "missing": [
+        "inference",
+        "PagedAttention"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the causal attention mask?",
+      "response": "The causal attention mask is a tensor that masks future positions in self-attention. It prevents a token from attending to its own future.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "future tokens",
+        "previous",
+        "autoregressive"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is weight decay in AdamW?",
+      "response": "weight decay (also called weight decay or L2 regularization) adds a penalty to the loss proportional to the squared magnitude of the model parameters: L = -log(p(y|x)) + \u03bb*sum(w^2). It discourages large weights and prevents overfitting. In AdamW, weight decay is applied to the model parameters before the gradient update:\n\n    w_new = w - lr * grad * beta1 / (sqrt(running_avg) + eps) - lr * weight_decay * w\n\nThe weight decay term is applied before the gradient update, not after. This means the gr",
+      "passed": true,
+      "included": [
+        "regularization",
+        "weights",
+        "prevent"
+      ],
+      "missing": [],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is gradient accumulation?",
+      "response": "gradient accumulation (gradient accumulation) is accumulating gradients over multiple steps before updating parameters. It simulates larger batch sizes without the memory cost.",
+      "passed": false,
+      "included": [
+        "batch size",
+        "multiple steps"
+      ],
+      "missing": [
+        "optimizer"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the lm_head in a language model?",
+      "response": "lm_head (language model head) is the final linear layer that projects hidden states to logits. It is the last layer before softmax. In a standard LM, it projects from hidden_dim to vocab_size. In a causal LM, it projects from hidden_dim to vocab_size \u00d7 num_heads. In a decoder-only LM, it projects from hidden_dim to vocab_size \u00d7 num_heads \u00d7 num_layers. The head is typically initialized with xavier_uniform and trained with cross-entropy loss.",
+      "passed": false,
+      "included": [
+        "logits"
+      ],
+      "missing": [
+        "vocabulary",
+        "projection"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is BitsAndBytes used for?",
+      "response": "BitsAndBytes is a library that optimizes memory usage for quantized models. It is used for: (1) Loading quantized models (quant_bit_model_loader). (2) Converting models to quantized formats (quantize_model). (3) Saving quantized models (quant_bit_model_save). (4) Loading quantized models from S3 (s3_loader). (5) Inference with quantized models (quant_bit_inference). (6) Model quantization (quantize_model). (7) Model conversion (model_converter). It is essential for working with quantized models.",
+      "passed": false,
+      "included": [
+        "quantization"
+      ],
+      "missing": [
+        "4-bit",
+        "8-bit"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the difference between fp16 and bf16?",
+      "response": "Both are 16-bit floating-point formats, but they store different numbers. fp16 (half precision) uses 11 bits for the mantissa and 5 bits for the exponent, which limits it to numbers between ~1e-4 and ~1e4. bf16 (bfloat16) uses 8 bits for the mantissa and 5 bits for the exponent, which allows it to represent numbers between ~1e-4 and ~1e4 like fp16, but also includes a sign bit and a special bit for subnormal numbers (small numbers with imprecise exponent). This makes bf16 more flexible and preci",
+      "passed": false,
+      "included": [
+        "exponent",
+        "precision"
+      ],
+      "missing": [
+        "range"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is PEFT?",
+      "response": "PEFT (ParaEA for fine-tuning) is a simple fine-tuning method that adds a learnable projection head to the base model. It is often used as a reference baseline.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "Parameter-Efficient Fine-Tuning"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is TRL?",
+      "response": "TRL (Training-Related Loss) is the loss from training itself, not the task. It includes gradient norm, loss norm, and model size.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "Transformer Reinforcement Learning",
+        "Hugging Face"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the SFTTrainer in TRL?",
+      "response": "SFTTrainer (Structured Fine-Tuning Trainer) is a TRL class that handles structured fine-tuning training. It handles tokenization, padding, and gradient accumulation automatically.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "supervised fine-tuning",
+        "instruction",
+        "chat"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the DPOTrainer in TRL?",
+      "response": "DPOTrainer (DPOTrainer in TRL) is a PPO-like implementation using DPO as the reward model. It is the simplest way to get DPO working.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "preference",
+        "chosen",
+        "rejected"
+      ],
+      "hallucinated": [
+        "reward model"
+      ]
+    },
+    {
+      "prompt": "What does device_map='auto' do?",
+      "response": "device_map='auto' automatically assigns GPU devices to the model based on available memory. It's useful when you have multiple GPUs with different amounts of memory. For example, if you have a 40GB GPU and a 16GB GPU, it will put the model on the 40GB GPU if it fits, leaving the 16GB GPU free for gradient accumulation or other tasks. Without device_map='auto', the model always goes on the first GPU it finds, potentially wasting memory.",
+      "passed": false,
+      "included": [
+        "GPU"
+      ],
+      "missing": [
+        "distribute",
+        "layers"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the purpose of the attention_mask?",
+      "response": "The attention_mask serves two purposes: (1) It prevents the model from attending to padding tokens during causal attention. (2) It enables the model to generate tokens that are not part of the input sequence (e.g., next_token_ids). Without attention_mask, the model would attend to padding tokens and generate them instead of the actual next token. This would make the model unable to generate text.",
+      "passed": false,
+      "included": [
+        "padding",
+        "attend"
+      ],
+      "missing": [
+        "ignore"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is RoPE?",
+      "response": "RoPE (Reward-Only Policy Evaluation) is a reward model that predicts preference scores without generating responses. It is used in DPO and RLHF.",
+      "passed": false,
+      "included": [],
+      "missing": [
+        "Rotary Position",
+        "relative position"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is GQA (Grouped Query Attention)?",
+      "response": "GQA (Grouped Query Attention) is a memory-efficient attention implementation that groups queries by position. It is used in many LLM alignment methods.",
+      "passed": false,
+      "included": [
+        "memory"
+      ],
+      "missing": [
+        "KV heads",
+        "query heads"
+      ],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is SwiGLU?",
+      "response": "SwiGLU (Swish-GLU) is a gated activation function that combines Swish and GLU. It is used in attention and MLP layers.",
+      "passed": false,
+      "included": [
+        "activation",
+        "gated",
+        "MLP"
+      ],
+      "missing": [],
+      "hallucinated": [
+        "attention"
+      ]
+    },
+    {
+      "prompt": "What is RMSNorm?",
+      "response": "RMSNorm (Root Mean Square Normalization) is a normalization method that scales activations by the square root of their variance. It is used in Llama and other models.",
+      "passed": true,
+      "included": [
+        "normalization",
+        "root mean square"
+      ],
+      "missing": [],
+      "hallucinated": []
+    },
+    {
+      "prompt": "What is the KV-cache?",
+      "response": "The KV-cache (KV-cache) is the memory storing key and value tensors for past queries. It reduces compute by reusing attended keys and values.",
       "passed": false,
       "included": [
         "key",
@@ -430,7 +1061,7 @@
     },
     {
       "prompt": "What is speculative decoding?",
-      "response": "Speculative decoding is a method of analyzing and interpreting data, particularly in the context of cryptography and coding theory. It involves making educated guesses about the structure and meaning of encoded data, often based on patterns, trends, and heuristics.\n\nIn essence, speculative decoding is a form of \"brute force\" or \"informed guessing\" that leverages prior knowledge and experience to make educated guesses about the decoding process. It's a way to explore possible solutions to a decod",
+      "response": "speculative decoding (speculative decoding) is a technique that generates partial responses before the model has fully attended to all inputs. It can improve latency for chat systems.",
       "passed": false,
       "included": [],
       "missing": [
@@ -442,37 +1073,36 @@
     },
     {
       "prompt": "What is tensor parallelism?",
-      "response": "Tensor parallelism is a programming paradigm that aims to improve the performance of certain types of computations by dividing them into smaller, more manageable pieces, and then executing them in parallel across multiple processing units. The idea is to break down complex computations into smaller, independent tasks that can be executed concurrently, leveraging the power of multiple processing units to speed up the overall computation.\n\nIn tensor parallelism, the computation is represented as a",
+      "response": "tensor parallelism (tensor parallelism) is model parallelism that replicates tensors across GPUs rather than model weights. It is used when model parallelism is needed but gradient accumulation is not.",
       "passed": false,
-      "included": [],
+      "included": [
+        "GPUs"
+      ],
       "missing": [
         "split",
-        "layers",
-        "GPUs"
+        "layers"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the Bradley-Terry model?",
-      "response": "The Bradley-Terry model is a statistical model used to analyze the results of binary competitions, such as sports games, elections, or other events where two teams or individuals compete against each other. It is a type of generalized extreme value model that assumes that the probability of a team winning is a function of its relative strength, which is modeled as a random variable.\n\nThe model is named after its developers, David Bradley and John Terry, who introduced it in the 1950s. The model ",
-      "passed": false,
+      "response": "The Bradley-Terry model is a pairwise preference model that assumes each item has a latent strength parameter and the probability of preferring item i over item j is proportional to exp(s_i - s_j). It is often used as a baseline for preference learning.",
+      "passed": true,
       "included": [
-        "probability"
-      ],
-      "missing": [
         "preference",
+        "probability",
         "pairwise"
       ],
+      "missing": [],
       "hallucinated": []
     },
     {
       "prompt": "What is reward hacking?",
-      "response": "Reward hacking, also known as loyalty hacking or rewards hacking, refers to the practice of exploiting loopholes or using creative strategies to maximize rewards and benefits from loyalty programs, credit cards, and other rewards schemes. The goal is to accumulate points, miles, or other rewards more efficiently, often by taking advantage of technicalities, rules, and limitations.\n\nReward hackers use various tactics, such as:\n\n1. **Sign-up bonuses**: Maximizing sign-up bonuses by applying for mu",
+      "response": "reward hacking (reward hacking) is manipulating the reward signal to achieve a desired outcome without actually solving the task. It can make RLHF appear better than it is.",
       "passed": false,
-      "included": [
-        "exploit"
-      ],
+      "included": [],
       "missing": [
+        "exploit",
         "reward model",
         "quality"
       ],
@@ -480,35 +1110,36 @@
     },
     {
       "prompt": "What is the implicit reward in DPO?",
-      "response": "In the context of operant conditioning, an implicit reward is a stimulus that is associated with a behavior, but does not directly provide a tangible reward or pleasure. Instead, it creates a psychological or emotional response that motivates the behavior.\n\nIn the context of Don M. Kelley's work on the Dynamic Programming of Operations (DPO), an implicit reward is a key concept. In DPO, an implicit reward is a stimulus that is inherently linked to the behavior, but does not provide a direct payo",
+      "response": "The implicit reward in DPO is the difference between the chosen and rejected responses. It is computed as: r = log(pi(y_chosen|x)/pi(y_rejected|x)) - log(pi(y_rejected|x)/pi(y_chosen|x)). The model learns to maximize the difference between chosen and rejected responses, which is equivalent to minimizing the cross-entropy loss between the chosen and rejected distributions. The implicit reward is the signal that drives the model's learning.",
       "passed": false,
-      "included": [
-        "ratio"
-      ],
+      "included": [],
       "missing": [
         "log probability",
+        "ratio",
         "reference"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is double quantization in QLoRA?",
-      "response": "I apologize but I am unable to verify what double quantization is in QLoRA.",
+      "response": "Double quantization (double quant-quant) is quantizing the quantization constants themselves. In QLoRA, the base model is quantized to 4-bit, and the adapter weights are 2-bit. The quantization constants (scaling factors) for each weight are also quantized to 2 bits. This means the model can be loaded with 2-bit weights, and the quantization constants are automatically applied. This saves memory for the quantization constants and allows loading the model with less memory.",
       "passed": false,
-      "included": [],
+      "included": [
+        "quantization constants"
+      ],
       "missing": [
-        "quantization constants",
         "additional memory"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the purpose of prepare_model_for_kbit_training?",
-      "response": "I was unable to verify the purpose of `prepare_model_for_kbit_training`.",
+      "response": "prepare_model_for_kbit_training is a script that prepares a model for Kbit training by: (1) Converting the model to quantized weights (4-bit or 8-bit). (2) Adjusting the learning rate and weight decay. (3) Adding a Kbit-specific loss to the training loop. (4) Setting the correct batch size. (5) Enabling mixed precision training. This is necessary because Kbit training requires quantized weights and a different loss function. Without it, the model will not train properly.",
       "passed": false,
-      "included": [],
+      "included": [
+        "quantized"
+      ],
       "missing": [
-        "quantized",
         "gradient",
         "LoRA"
       ],
@@ -516,7 +1147,7 @@
     },
     {
       "prompt": "What is NEFTune?",
-      "response": "I couldn't find any information on \"NEFTune\". It's possible that it's a lesser-known or emerging technology, or it may be a misspelling or variation of a different term.\n\nHowever, I did find a reference to \"NEF\" which stands for \"National Endowment for the Arts\" in the United States. The National Endowment for the Arts (NEA) is a private, non-profit organization that provides funding for arts projects and programs across the United States.\n\nIf you could provide more context or clarify what you m",
+      "response": "NEFTune (NEFTune) is a fine-tuning method that uses a small reference model to guide the larger model's behavior. It can improve quality without full retraining.",
       "passed": false,
       "included": [],
       "missing": [
@@ -528,19 +1159,20 @@
     },
     {
       "prompt": "What is sequence packing in SFT?",
-      "response": "Sequence packing in SFT (Set Theory Framework) is a technique used to pack a set of items into a sequence of slots, where each slot can hold a subset of the items. The goal is to maximize the number of items that can be packed into the sequence.\n\nIn SFT, a sequence is a list of sets, where each set represents a slot. The items to be packed are represented as a set of elements. The packing problem is to find a sequence of sets that covers all the items, such that each set in the sequence is a sub",
+      "response": "sequence packing (sequence packing) is combining multiple short examples into one longer sequence. It reduces padding overhead and makes the model work harder on each token.",
       "passed": false,
-      "included": [],
+      "included": [
+        "short examples"
+      ],
       "missing": [
         "concatenate",
-        "short examples",
         "efficiency"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is loss masking in SFT?",
-      "response": "Loss masking is a technique used in Software Fault Tolerance (SFT) to detect and recover from transient faults in a system. It involves masking the effects of a fault by replacing the faulty component with a redundant component, thereby preventing the fault from propagating and causing a system failure.\n\nIn SFT, loss masking is typically implemented using a combination of redundancy and error-correcting codes. The idea is to have a set of redundant components that can be used to replace a faulty",
+      "response": "Loss masking prevents the model from learning to predict the exact token IDs of the training data. In a 7B model, the probability of generating the exact token ID is 1/7B. Without masking, the model learns to predict the exact token IDs and never learns to generate new sequences. With masking, the model learns to generate new sequences. The masking strategy: (1) For each token, replace it with a special token (e.g., [MASK]). (2) For each token, replace it with a random token. (3) For each token,",
       "passed": false,
       "included": [],
       "missing": [
@@ -552,11 +1184,12 @@
     },
     {
       "prompt": "What is the difference between online and offline DPO?",
-      "response": "A Data Protection Officer (DPO) is a role that oversees an organization's data protection and privacy practices. The main difference between online and offline DPOs is the scope of their responsibilities and the nature of their work.\n\n**Offline DPO:**\n\nAn offline DPO is a Data Protection Officer who is responsible for ensuring that an organization's data protection and privacy practices are compliant with relevant laws and regulations, such as the General Data Protection Regulation (GDPR) in the",
+      "response": "Offline DPO uses fixed reference models (e.g., GPT-4) and generates responses from the model being trained. Online DPO uses the current model as the reference and generates responses from a frozen copy of the model. Offline DPO: (1) Cheaper \u2014 no reference generation. (2) More reproducible \u2014 same reference model across runs. (3) Less memory \u2014 no need to store multiple reference models. (4) Less accurate \u2014 the reference model may not be the same quality as the trained model. Online DPO: (5) More a",
       "passed": false,
-      "included": [],
+      "included": [
+        "generate"
+      ],
       "missing": [
-        "generate",
         "fixed dataset",
         "current policy"
       ],
@@ -564,22 +1197,19 @@
     },
     {
       "prompt": "What is model merging?",
-      "response": "Model merging, also known as model integration or model fusion, is a process in artificial intelligence (AI) and machine learning (ML) where two or more models are combined to create a new, more accurate and robust model. The goal of model merging is to leverage the strengths of each individual model and reduce the weaknesses, resulting in a more effective and reliable model.\n\nThere are several types of model merging techniques, including:\n\n1. **Weighted averaging**: This involves combining the ",
+      "response": "model merging (model merging) is combining multiple models into a single larger one. It can improve quality without re-training.",
       "passed": false,
-      "included": [
-        "combine",
-        "weights"
-      ],
+      "included": [],
       "missing": [
+        "combine",
+        "weights",
         "without retraining"
       ],
-      "hallucinated": [
-        "ensemble"
-      ]
+      "hallucinated": []
     },
     {
       "prompt": "What is GGUF format?",
-      "response": "I couldn't find any information on a widely recognized format or acronym called \"GGUF.\" It's possible that it's a specific format or abbreviation used within a particular community, organization, or context that I'm not aware of.\n\nCould you please provide more context or information about where you encountered the \"GGUF\" format? This will help me better understand your question and provide a more accurate answer.",
+      "response": "GGUF format (GPT-4-compatible GGUF format) is a model file format that supports the full GPT-4 model architecture. It stores the model weights in a format that can be loaded by GGUF-compatible LLMs.",
       "passed": false,
       "included": [],
       "missing": [
@@ -591,7 +1221,7 @@
     },
     {
       "prompt": "What is AWQ quantization?",
-      "response": "AWQ (Absolute Weighted Quantization) is a type of quantization technique used in digital signal processing. It is a method of reducing the precision of a signal by assigning a limited number of discrete values to the signal's amplitude, while preserving the overall shape and characteristics of the signal.\n\nIn AWQ, the signal is divided into a set of discrete bins or intervals, and each bin is assigned a weight or value based on the signal's amplitude. The weights are typically chosen such that t",
+      "response": "AWQ quantization (AWQ quantization) is a quantization method that uses a learned weight matrix to scale and shift quantized values. It can improve quantization quality without increasing model size.",
       "passed": false,
       "included": [],
       "missing": [
@@ -603,7 +1233,7 @@
     },
     {
       "prompt": "What is the difference between perplexity and loss?",
-      "response": "Perplexity and loss are two related but distinct concepts in various fields, including mathematics, statistics, and philosophy. Here's a breakdown of the differences between them:\n\n**Perplexity**:\n\nPerplexity is a measure of the difficulty or uncertainty of a problem or a situation. It is often used in mathematics, statistics, and artificial intelligence to quantify the complexity or ambiguity of a problem. Perplexity is typically measured in units of bits or nats (natural logarithm of the numbe",
+      "response": "Perplexity is a measure of language model quality that scales with vocabulary size. It's defined as 2^(-1/N * sum(log p(y_i|y_<i, x))), where N is the vocabulary size and y_i is the i-th token. Loss is the negative log-likelihood of the true response, averaged over all tokens. Perplexity is a better quality metric because it's independent of vocabulary size. Loss is useful for training because it's what the optimizer minimizes. For a 10k-token response with a 100k-token vocabulary, perplexity is",
       "passed": false,
       "included": [],
       "missing": [
@@ -613,10 +1243,10 @@
       "hallucinated": []
     }
   ],
-  "sft": [
+  "dpo": [
     {
       "prompt": "What does LoRA stand for?",
-      "response": "LoRA stands for Low-Rank Adaptation. It is a method that reduces the adapter weights to a lower rank (typically 64x64) while preserving the same number of parameters. This makes it more memory-efficient and faster to train.",
+      "response": "LoRA stands for Low-Rank Adaptation. It is a parameter-efficient fine-tuning method that freezes the base model weights and learns low-rank adapter matrices instead. This allows for efficient adaptation to task-specific instructions or prompting without storing the full fine-tuned model.",
       "passed": true,
       "included": [
         "Low-Rank Adaptation"
@@ -626,7 +1256,7 @@
     },
     {
       "prompt": "What does DPO stand for?",
-      "response": "DPO stands for DPO (DPO) or Deaf Policy Optimization. It is a preference optimization method that uses a reference model to learn a policy that prefers certain responses over others. It is often used in SFT for preference alignment.",
+      "response": "DPO stands for Differential Privacy Optimization. It is a privacy-preserving RL method that adds noise to policy gradients without requiring replication.",
       "passed": false,
       "included": [],
       "missing": [
@@ -636,21 +1266,18 @@
     },
     {
       "prompt": "What does QLoRA stand for?",
-      "response": "QLoRA (Quantized LoRA) is a quantization-aware LoRA variant that quantizes the adapter weights during training. It improves efficiency by reducing memory usage without sacrificing quality.",
-      "passed": false,
+      "response": "QLoRA stands for Quantized Low-Rank Adaptation. It is a memory-efficient fine-tuning method that quantizes the base model weights to 4-bit precision and stores them in quantization tables. The fine-tuning parameters are full precision and stored in a small adapter.",
+      "passed": true,
       "included": [
-        "Quantized"
-      ],
-      "missing": [
+        "Quantized",
         "Low-Rank"
       ],
-      "hallucinated": [
-        "Quality"
-      ]
+      "missing": [],
+      "hallucinated": []
     },
     {
       "prompt": "What does RLHF stand for?",
-      "response": "RLHF stands for Reward Learning from Human Feedback. It is a method that uses human ratings or comments to learn a preference model that can generate responses that are likely to be rated high by humans. It is often used in SFT to improve the quality of generated responses.",
+      "response": "RLHF stands for Reinforcement Learning with Human Feedback. It is a preference-based alignment method that learns from paired chosen-reject responses instead of raw preferences. In practice, it often means using DPO-based methods (PPO-DPO, RM-DPO) that can handle noisy preference data.",
       "passed": false,
       "included": [],
       "missing": [
@@ -660,32 +1287,30 @@
     },
     {
       "prompt": "What does GRPO stand for?",
-      "response": "GRPO stands for Gradient Relative Penalty Optimization. It is a regularization term that prevents the policy from moving too far away from the reference policy.",
+      "response": "GRPO stands for Group Reward-based Preference Optimization. It is a preference alignment method that uses group-level rewards to encourage consistent behavior across multiple assistant personas. In a production alignment pipeline, it helps you reason about model quality, training stability, memory usage, or deployment behavior instead just remembering that it exists.",
       "passed": false,
       "included": [],
       "missing": [
         "Group Relative Policy Optimization"
       ],
-      "hallucinated": [
-        "Gradient"
-      ]
+      "hallucinated": []
     },
     {
       "prompt": "What is gradient checkpointing?",
-      "response": "gradient checkpointing (gradient checkpointing) is a memory-efficient optimization that stores only the gradients of the last few steps instead of storing the full history. It reduces memory usage by 50-90% for many models.",
+      "response": "Gradient checkpointing is a memory-saving technique that stores activations instead of intermediate hidden states during the forward pass, recomputing them on-the-fly during backward pass when needed. It reduces memory spike by 2-3x without requiring more GPU memory. In a production LLM alignment pipeline, it improves the quality of fine-tuned models without needing to buy more hardware.",
       "passed": false,
       "included": [
+        "activation",
         "memory"
       ],
       "missing": [
-        "recompute",
-        "activation"
+        "recompute"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the purpose of the KL penalty in RLHF?",
-      "response": "The KL penalty (KL penalty) is a regularization term that encourages the policy to be closer to the reference policy. It is added to the loss: L = L_train + KL(P|G) + ... It helps prevent the policy from diverging from the reference during training. The KL term is calculated as the KL divergence between the policy's distribution and the reference distribution. The penalty is usually small (0.01-0.1) and is added to the policy loss. It can help: (1) Reduce policy drift during training \u2014 the polic",
+      "response": "The KL penalty (Kullback-Leibler divergence penalty) in RLHF prevents the policy from drifting too far from the reference model. Without it, the policy could learn to generate responses that are grammatically correct but unhelpful or uninformative. The KL penalty encourages the policy to stay in the neighborhood of the reference model's distribution:\n\nL_KL = beta * KL(pi_theta || pi_ref)\n\nThe KL penalty is a regularization term that discourages the policy from moving too far from the reference m",
       "passed": true,
       "included": [
         "prevent",
@@ -697,7 +1322,7 @@
     },
     {
       "prompt": "What does NF4 stand for in QLoRA?",
-      "response": "NF4 stands for 4-bit floating-point. In QLoRA, NF4 is the default quantization format. It's a compact format that uses 4 bits to represent the sign and 8 bits for the exponent and mantissa. It's the most common quantization format used in LoRA.",
+      "response": "NF4 stands for 4-bit quantized float. In QLoRA, it refers to the 4-bit quantization level used for adapter weights. A common configuration is 40M NF4 adapters, which means 40 million 4-bit weights per fine-tuning task. This quantization level reduces model memory without significant quality loss for many tasks.",
       "passed": false,
       "included": [
         "4-bit"
@@ -709,20 +1334,20 @@
     },
     {
       "prompt": "What is PagedAttention?",
-      "response": "PagedAttention (PagedAttention) is a memory-efficient attention mechanism that stores only the most recent pages of attention weights and keys. It reduces memory usage by 50-70% compared to standard attention.",
+      "response": "PagedAttention (PagedAttention) is an attention implementation that reduces memory usage by loading only the necessary context tokens. It is used in LoRA-PagedAttention and LoRA-GPTQ.",
       "passed": false,
       "included": [
-        "memory",
-        "pages"
+        "memory"
       ],
       "missing": [
-        "KV-cache"
+        "KV-cache",
+        "pages"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the beta parameter in DPO?",
-      "response": "Beta (\u03b2) controls the relative importance of the reward signal compared to the policy. A higher \u03b2 makes the reward signal more influential, potentially leading to more extreme responses. Lower \u03b2 makes the policy more resistant to extreme rewards. The standard DPO training procedure: (1) Compute the reward for each response. (2) Compute the KL divergence between the policy and the reference policy. (3) Compute the DPO objective: -log(\u03b2) * log(s) + \u03b2 * r * log(s) - KL(p(x|d) || r(x|d)). (4) Train ",
+      "response": "Beta (\u03b2) controls the tradeoff between imitation and preference. In DPO, the objective is: L(\u03b8) = -E_\u03b2[log(\u03c0(a|x,y;\u03b8)/\u03c0_ref(a|x,y)) * r(x,y,a)] + KL(\u03c0(\u00b7|x,y) || \u03c0_ref(\u00b7|x,y)). The beta parameter scales the KL term: the objective becomes L(\u03b8) = -E_\u03b2[log(\u03c0(a|x,y;\u03b8)/\u03c0_ref(a|x,y)) * r(x,y,a)] + \u03b2 * KL(\u03c0(\u00b7|x,y) || \u03c0_ref(\u00b7|x,y)). For \u03b2=1, you get standard DPO with equal weight on imitation and preference. For \u03b2>1, you emphasize preference over im",
       "passed": false,
       "included": [
         "KL",
@@ -731,78 +1356,76 @@
       "missing": [
         "regularization"
       ],
-      "hallucinated": [
-        "learning rate"
-      ]
+      "hallucinated": []
     },
     {
       "prompt": "What is continuous batching in LLM serving?",
-      "response": "Continuous batching (continuous batching) is batching that never breaks the request stream. It's useful for serving models that can handle long sequences. In a production serving setup, it helps you reason about model health, memory usage, and request throughput.",
+      "response": "Continuous batching (batch fusion) merges multiple requests into a single GPU-resident tensor with dynamic sequence lengths. Instead of allocating a new tensor for each request, it appends new sequences to a shared tensor. This reduces memory fragmentation and GPU-context switches. Implementations: (1) ContinuousBatching in RWKV-server (default): appends new sequences to the end of a single tensor. (2) DynamicBatching in GGUF-server: uses a variable-length tensor with efficient indexing. (3) Tri",
       "passed": false,
       "included": [
+        "requests",
         "batch"
       ],
       "missing": [
-        "requests",
         "finish"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the difference between SFT and DPO?",
-      "response": "SFT (Supervised Fine-Tuning) trains on labeled data with a teacher model. The model learns to replicate the teacher's behavior on the training data. DPO (DPO) trains on unlabeled data with a reward model. The model learns to maximize the probability of the reward model's chosen responses. Key differences: (1) Labeled vs. unlabeled data \u2014 SFT needs labeled examples, DPO uses only unlabeled responses. (2) Teacher model \u2014 SFT has a teacher model that provides correct answers, DPO doesn't need one. ",
+      "response": "SFT (Supervised Fine-Tuning) directly teaches the model to generate target tokens given a prompt. It uses labeled data: (prompt, chosen_token, chosen_score, rejected_token, rejected_score). The model learns to maximize chosen_score - rejected_score. DPO (Divergence-based Fine-Tuning) learns implicitly by minimizing a distance metric between chosen and rejected responses. It uses unlabeled data: (prompt, chosen_response, rejected_response). The model learns to minimize the similarity between chos",
       "passed": false,
       "included": [
-        "chosen"
+        "chosen",
+        "rejected"
       ],
       "missing": [
         "instruction",
-        "preference",
-        "rejected"
+        "preference"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is reward accuracy in DPO?",
-      "response": "reward accuracy measures how well the chosen policy matches the chosen reference. It is the proportion of chosen-reward > chosen-response. It is a strong DPO metric because it directly measures the quality of the chosen policy. A good way to think about it is that it is more informative than loss alone.",
+      "response": "Reward accuracy measures how often the model chooses the preferred response over the rejected one. It is the binary cross-entropy loss between the model's logits and the reward labels: L = -(r_i * log(p_i) + (1-r_i) * log(1-p_i)). For DPO, the target distribution is the policy itself: p_i = softmax(logits_i - beta * log(pi_ref/pi_model)). Good reward accuracy > 80% means the model is learning to prefer correct responses. Low reward accuracy (<50%) means the model is stuck or the preferences are ",
       "passed": false,
       "included": [
-        "chosen"
+        "rejected"
       ],
       "missing": [
-        "rejected",
+        "chosen",
         "implicit reward"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is mixed precision training?",
-      "response": "mixed precision training (mixed precision training) uses lower precision during computation and higher precision during storage. It reduces memory usage by 4x for the same model size. For LLM fine-tuning, it's often the default in LoRA or HF Trainer.",
-      "passed": false,
-      "included": [],
-      "missing": [
+      "response": "mixed precision training (mixed precision training) is using lower-precision weights (often bf16 or fp16) with higher-precision activations (fp32). It reduces memory bandwidth and enables training on more data with less GPU memory.",
+      "passed": true,
+      "included": [
         "fp16",
         "bf16",
         "fp32"
       ],
+      "missing": [],
       "hallucinated": []
     },
     {
       "prompt": "What is Flash Attention?",
-      "response": "Flash Attention (Flash Attention) is a fast attention mechanism that uses a single matrix multiplication instead of the standard 2x2 matrix multiplications. It is faster than standard attention by a factor of 2-3x.",
+      "response": "Flash Attention (Flash Attention) is an attention implementation that computes attention scores in parallel using a sliding window over query and key sequences. It reduces memory by 2x compared to standard attention.",
       "passed": false,
       "included": [
+        "memory",
         "attention"
       ],
       "missing": [
-        "memory",
         "tiling"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the purpose of warmup steps in training?",
-      "response": "Warmup steps serve several purposes: (1) Gradually increase learning rate from near-zero to the final value, preventing sudden spikes that can cause gradient explosion. (2) Allow the model to learn initial patterns without being pushed too hard. (3) Give the optimizer time to stabilize \u2014 the first few steps are often noisy. (4) Help the model learn the task distribution without being forced into optimal solutions immediately. (5) Can help the model recover from bad initial parameters. The warmup",
+      "response": "Warmup steps gradually increase the learning rate from 0 to the target value over the first n steps. The purpose is to prevent catastrophic optimization: starting from a bad state, the model could take many steps to find a good direction, wasting time and potentially damaging the optimization landscape. With warmup, the model gradually explores the space and finds a good direction before diving in. This is especially important for large models (>7B) where a single bad step can cause significant ",
       "passed": false,
       "included": [
         "learning rate",
@@ -815,7 +1438,7 @@
     },
     {
       "prompt": "What is adapter merging in LoRA?",
-      "response": "Adapter merging (adapter merging) is a LoRA technique that combines multiple small adapters into a single, larger adapter. It reduces the number of parameters and memory needed for fine-tuning. The idea is to merge adapters with similar patterns into a single adapter with fewer parameters. The merged adapter is trained on the same data as the original adapters. Benefits: (1) Fewer parameters (typically 1/4 to 1/2 of the original) \u2014 reduces memory and computation. (2) Simpler training \u2014 one set o",
+      "response": "Adapter merging combines multiple fine-tuned adapters into a single model without re-training. It merges the frozen base and adapter weights into a single optimizable matrix. This is useful for combining multiple domain-specific adapters into a multi-task model. Implementations: (1) Merge-and-Fuse (M&F) \u2014 concatenates adapter matrices into a single rank-N matrix, then applies a fuser layer to merge dimensions. (2) Merge-and-Truncate (M&T) \u2014 concatenates adapters, then truncates the merged rank-N",
       "passed": false,
       "included": [],
       "missing": [
@@ -827,19 +1450,20 @@
     },
     {
       "prompt": "What is the reference model in DPO?",
-      "response": "The reference model is the base model used for generating positive examples during training. It's typically the same model you're fine-tuning. The reference model is crucial because it: (1) Provides a baseline for reward estimation \u2014 without it, rewards are relative to the model's own outputs. (2) Helps the model learn to generate coherent responses. (3) Is used to compute the reward for each generated response. (4) Is used to compute the loss for each example. The reference model is always the ",
+      "response": "The reference model is the strong model that generates high-quality responses. In DPO, it helps define the implicit reward function by producing preferred responses. In practice, it's often a frozen SFT model:\n\n```python\n# DPO setup\nmodel = SFTModel.from_pretrained(\"sft-model\")\nmodel.to(device)\nmodel.eval()\nmodel.freeze()  # Don't update weights during DPO\n\n# Generate responses for the implicit reward\nref_responses = []\nfor prompt in prompts:\n    response = model.generate(prompt, max_new_tokens=",
       "passed": false,
-      "included": [],
-      "missing": [
+      "included": [
         "frozen",
-        "SFT",
+        "SFT"
+      ],
+      "missing": [
         "anchor"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is vLLM?",
-      "response": "vLLM (vLLM) is a low-latency, open-source LLM serving framework. It is particularly useful for production serving because it supports GPU acceleration, streaming inference, and serving models in multiple formats.",
+      "response": "vLLM (Vectorized LLM Serving) is a high-throughput inference server using GPU-optimized kernels. It can serve multiple models concurrently. A production serving stack using vLLM, GGUKF, and TRL.",
       "passed": false,
       "included": [
         "inference",
@@ -852,20 +1476,20 @@
     },
     {
       "prompt": "What is the causal attention mask?",
-      "response": "The causal attention mask prevents attention from attending to future tokens. It's a binary mask where attention to t is allowed if t <= max_length - 1, and blocked otherwise. This prevents the model from learning dependencies that span the entire sequence.",
+      "response": "The causal attention mask is a binary tensor that masks future positions in self-attention from being attended to. It ensures that each token only attends to its own previous context, enforcing the causal property of autoregressive language models. In practice, it's a diagonal matrix of ones on the lower diagonal and zeros on the upper triangle.",
       "passed": false,
       "included": [
-        "future tokens"
-      ],
-      "missing": [
         "previous",
         "autoregressive"
+      ],
+      "missing": [
+        "future tokens"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is weight decay in AdamW?",
-      "response": "weight decay (L2 regularization) in AdamW helps prevent the weights from growing too large. It adds a penalty term to the loss: loss + 0.01 * sum(w^2). This prevents the model from overfitting by constraining the magnitude of the weights. The decay rate (0.01 here) controls how much the penalty term contributes to the loss. A higher decay rate means more regularization but also potentially smaller learning rates. In practice, it's often set to 0.01 for most models.",
+      "response": "weight decay (weight decay rate) is the L2 regularization applied to the model weights during optimization. In AdamW, it decays the gradient magnitudes instead of scaling the parameters directly. For a weight decay rate of 0.01, the effective update is: delta_w = r * (1 - beta1) * grad + beta1 * decay_term * w, where decay_term = w * 0.01 / (1 + (1 / 0.01) * (w ** 2)). This prevents weights from growing too large and improves stability. In practice, it's often set to 0.01 for BERT-style models.",
       "passed": true,
       "included": [
         "regularization",
@@ -877,7 +1501,7 @@
     },
     {
       "prompt": "What is gradient accumulation?",
-      "response": "gradient accumulation (gradient accumulation) is combining gradients from multiple forward passes to increase gradient magnitude without increasing memory. It is essential for training on large datasets.",
+      "response": "gradient accumulation (gradient checkpointing with delayed gradient computation) is storing activations instead of gradients, computing gradients on-the-fly during backward pass. It reduces memory spikes without needing larger GPU.",
       "passed": false,
       "included": [],
       "missing": [
@@ -885,69 +1509,73 @@
         "multiple steps",
         "optimizer"
       ],
-      "hallucinated": []
+      "hallucinated": [
+        "gradient checkpointing"
+      ]
     },
     {
       "prompt": "What is the lm_head in a language model?",
-      "response": "lm_head is the linear layer that projects the output of the transformer into a probability distribution over the vocabulary. It's the final layer in a LLM. The output is a vector of probabilities (one for each token in the vocabulary) that represent the likelihood of each token given the input. The softmax function is applied to this vector to produce the final probabilities. The lm_head is what the teacher forcing loss is applied to \u2014 the difference between the predicted probabilities and the t",
+      "response": "lm_head (language model head) is the final linear projection that maps hidden states to logits. It projects from hidden_dim to vocab_size. In a standard LM, it's a single linear layer with weight matrix W_lm and bias b_lm: logits = W_lm * hidden + b_lm. In a transformer, it's applied after the attention layer. In a GPT-style model, it's the final layer before softmax. In a causal LM, the masked attention and lm_head together generate the full context for each token. The quality of the lm_head de",
       "passed": false,
       "included": [
-        "vocabulary"
-      ],
-      "missing": [
         "logits",
         "projection"
+      ],
+      "missing": [
+        "vocabulary"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is BitsAndBytes used for?",
-      "response": "BitsAndBytes (BitsAndBytes) is a simple metric that combines bits per token and bytes per token. It's useful for comparing different models on memory efficiency.",
-      "passed": false,
-      "included": [],
-      "missing": [
+      "response": "BitsAndBytes (bnb) is a quantization format that stores weights as 4-bit integers and activations as 8-bit integers. It is used for: (1) Q4_8 quantization of weights in Llama-7B (4-bit weights, 8-bit activations). (2) Q4_8 quantization of weights in GPT-4 (4-bit weights, 8-bit activations). (3) Q4_8 quantization of weights in many SFT models. (4) Q4_8 quantization of weights in many inference-only models. (5) Q4_8 quantization of weights in many quantized inference models. It is memory-efficient",
+      "passed": true,
+      "included": [
         "quantization",
         "4-bit",
         "8-bit"
       ],
+      "missing": [],
       "hallucinated": []
     },
     {
       "prompt": "What is the difference between fp16 and bf16?",
-      "response": "Both are 16-bit floating-point formats optimized for GPU memory efficiency. The key difference: bf16 is a more recent format designed by AWS for their SageMaker service. It's faster (about 10-20% faster than fp16) and more memory-efficient (about 20% less memory per float). fp16 is the standard format used by PyTorch and most deep learning frameworks. The reason SageMaker uses bf16 is that it's designed for their proprietary hardware, which doesn't support fp16. If you're running on SageMaker, b",
-      "passed": false,
-      "included": [],
-      "missing": [
+      "response": "Both are half-precision formats, but bf16 has better numerical properties for deep learning: fp16 (half-float) uses 16-bit floating-point with 5 bits for exponent and 10 bits for mantissa. bf16 (half-bfloat) uses 11 bits for mantissa (instead of 10) with a different exponent range. bf16 has better precision for deep learning because it can represent more values in the important range of small numbers (negative exponents). For deep learning, bf16 is preferred over fp16 for: (1) Better numerical s",
+      "passed": true,
+      "included": [
         "exponent",
         "range",
         "precision"
       ],
+      "missing": [],
       "hallucinated": []
     },
     {
       "prompt": "What is PEFT?",
-      "response": "PEFT (Pre-Trained Efficient Fine-Tuning) is a LoRA-based approach that uses a small, efficient base model (e.g., Llama-3-8B) and a large, pre-trained adapter. It is efficient for production serving.",
-      "passed": false,
-      "included": [],
-      "missing": [
+      "response": "PEFT (Parameter-Efficient Fine-Tuning) is a method that adapts pretrained models to specific tasks without full fine-tuning. It freezes base weights and learns light adapter parameters instead. PEFT is used in TinyFusion, LoRA, and DART.",
+      "passed": true,
+      "included": [
         "Parameter-Efficient Fine-Tuning"
       ],
+      "missing": [],
       "hallucinated": []
     },
     {
       "prompt": "What is TRL?",
-      "response": "TRL (True Reasoning Loops) is the number of loops that pass through the model's forward pass without backpropagation. It's a quality metric that correlates with general ability to reason.",
+      "response": "TRL (Transfer Learning Readiness) is a benchmark that measures model quality for few-shot instruction tuning. It evaluates whether a base model is ready for fine-tuning without costly full alignment.",
       "passed": false,
       "included": [],
       "missing": [
         "Transformer Reinforcement Learning",
         "Hugging Face"
       ],
-      "hallucinated": []
+      "hallucinated": [
+        "Transfer"
+      ]
     },
     {
       "prompt": "What is the SFTTrainer in TRL?",
-      "response": "SFTTrainer in TRL is a custom trainer that supports both LoRA and full fine-tuning. It's the base trainer for many TRL models.",
+      "response": "SFTTrainer (SFTTrainer in TRL) is a PPO-based SFT implementation. It handles data loading, DPO optimization, and evaluation. It supports multi-GPU and multi-node training. Key components: (1) DataLoader \u2014 loads data in batches. (2) SFTConfig \u2014 configures training parameters. (3) SFTTrainer \u2014 runs PPO with Gloo parallelization. (4) Evaluator \u2014 computes metrics on held-out data. (5) TrainerCallbacks \u2014 hooks for custom behavior. (6) Multi-GPU management with Gloo. Example usage:\n\n```python\nfrom trl",
       "passed": false,
       "included": [],
       "missing": [
@@ -961,19 +1589,21 @@
     },
     {
       "prompt": "What is the DPOTrainer in TRL?",
-      "response": "DPOTrainer in TRL is a training loop that uses the DPO objective to optimize the policy. It's simpler than SFTTrainer because it doesn't need a reference dataset. The DPOTrainer class in TRL is:\n\n```python\nfrom trl import DPOTrainer\n\n# DPOTrainer(\n#     model=model,\n#     train_dataset=your_data,\n#     eval_dataset=your_data,\n#     eval_metric='loss',\n#     num_eval_steps=1,\n#     max_steps=1000,\n#     learning_rate=1e-5,\n#     per_device_train_batch_size=16,\n#     per_device_eval_batch_size=16,",
+      "response": "DPOTrainer (DPOTrainer in TRL) is a PPO-like implementation for DPO using the TRL framework. It handles reward modeling, preference data generation, and DPO optimization. Key components: (1) RewardModel \u2014 generates implicit rewards from chosen/rejected pairs. (2) PreferenceDataLoader \u2014 generates new pairs from model responses. (3) DPOOptimizer \u2014 runs DPO with KL penalty and reward model. (4) Evaluator \u2014 measures actual preference quality. (5) DPOTrainer handles all these steps. It's simpler than",
       "passed": false,
-      "included": [],
-      "missing": [
+      "included": [
         "preference",
         "chosen",
         "rejected"
       ],
-      "hallucinated": []
+      "missing": [],
+      "hallucinated": [
+        "reward model"
+      ]
     },
     {
       "prompt": "What does device_map='auto' do?",
-      "response": "device_map='auto' automatically selects the best device for each model. For LLMs, it usually means GPU0 for the model and CPU for the tokenizer. This simplifies deployment: you only need to specify one GPU for the model, and the tokenizer runs on CPU.",
+      "response": "device_map='auto' automatically assigns tensors to GPUs based on their memory requirements and available resources. It's useful when you have multiple GPUs with varying capabilities and don't want to manually specify which tensor goes where. For example:\n\n```python\n# Automatically assigns tensors to available GPUs\nmodel.to('cuda:0', device_map='auto')\n```\n\nThis tells PyTorch to place the model on the first available GPU, leaving the rest for optimizer states, gradients, and other tensors. It's a",
       "passed": false,
       "included": [
         "GPU"
@@ -982,11 +1612,13 @@
         "distribute",
         "layers"
       ],
-      "hallucinated": []
+      "hallucinated": [
+        "optimizer"
+      ]
     },
     {
       "prompt": "What is the purpose of the attention_mask?",
-      "response": "attention_mask serves two purposes: (1) masking padding tokens: attention should only be computed between tokens that contribute to the output. Padding tokens (e.g., [PAD]) should not contribute to attention. The mask indicates which tokens are padding. (2) masking special tokens: some special tokens (e.g., [BOS], [EOS], [UNK]) should not be attended to. The mask indicates which tokens are special. The attention_mask is a binary tensor where:\n\n- 1: token is attended to\n- 0: token is masked (padd",
+      "response": "The attention_mask serves two purposes: (1) It prevents the model from attending to padding tokens during causal attention. Without it, the model would waste computation on positions that should not contribute to the current output. (2) It enables safe concatenation of sequences with different lengths. Without attention_mask, concatenation would create invalid attention patterns (attending from position 10 to position 0, for example). In practice, attention_mask is a binary tensor of shape (batc",
       "passed": false,
       "included": [
         "padding",
@@ -999,19 +1631,18 @@
     },
     {
       "prompt": "What is RoPE?",
-      "response": "RoPE (RoPE) is a loss function that combines LLM loss with a penalty on the relative position of the reference and generated tokens. It helps the model learn to preserve the reference's structure.",
+      "response": "RoPE (Referential Optimization for Pretrained Embeddings) is a memory-efficient fine-tuning method that reuses precomputed gradient-in-context computations. It reduces GPU memory by 4-8x compared to standard fine-tuning.",
       "passed": false,
-      "included": [
-        "relative position"
-      ],
+      "included": [],
       "missing": [
-        "Rotary Position"
+        "Rotary Position",
+        "relative position"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is GQA (Grouped Query Attention)?",
-      "response": "GQA (Grouped Query Attention) is a variant of attention that groups queries by position and applies different weights to each group. It improves attention on long sequences by reducing the impact of distant queries.",
+      "response": "GQA (Grouped Query Attention) is an attention mechanism that groups queries by position and computes attention within groups before summing across them. It reduces the O(N^2) attention complexity to O(NlogN) for long sequences. In Llama, GQA is the default attention implementation for sequences longer than 2048 tokens.",
       "passed": false,
       "included": [],
       "missing": [
@@ -1023,20 +1654,21 @@
     },
     {
       "prompt": "What is SwiGLU?",
-      "response": "SwiGLU (Swappable GLU) is a lightweight, efficient activation function that swaps between ReLU and tanh. It's commonly used in LoRA and SwRA.",
+      "response": "SwiGLU (Swish-based GLU) is a gated activation that combines swish nonlinearity with a 2x2 matrix multiplication. It is used in MLP blocks and attention heads to improve efficiency and stability. SwiGLU replaces the standard 4x4 matrix multiplication with a 2x2 matrix multiplication and a swish activation, reducing memory and computation by a factor of 2.",
       "passed": false,
       "included": [
-        "activation"
-      ],
-      "missing": [
+        "activation",
         "gated",
         "MLP"
       ],
-      "hallucinated": []
+      "missing": [],
+      "hallucinated": [
+        "attention"
+      ]
     },
     {
       "prompt": "What is RMSNorm?",
-      "response": "RMSNorm (Root Mean Square Normalization) is a normalization technique that normalizes activations by the square root of the mean of squared values. It is commonly used in LLMs to stabilize gradients during training.",
+      "response": "RMSNorm (Root Mean Square Normalization) is a normalization technique that scales activations by the square root of their running variance. It is used in LayerNorm and is important for understanding attention normalization.",
       "passed": true,
       "included": [
         "normalization",
@@ -1047,7 +1679,7 @@
     },
     {
       "prompt": "What is the KV-cache?",
-      "response": "The KV-cache stores cached key-value pairs from previous requests. It speeds up serving multiple requests from the same client.",
+      "response": "The KV-cache (key-value cache) stores past query-key pairs and their corresponding values. It speeds up self-attention by reusing computed key-value projections without recomputing them. The KV-cache is the memory that stores the pre-computed key and value projections for each sequence position. It reduces O(N^2) computation to O(N) for self-attention, making transformer models practical for long sequences.",
       "passed": false,
       "included": [
         "key",
@@ -1061,7 +1693,7 @@
     },
     {
       "prompt": "What is speculative decoding?",
-      "response": "speculative decoding (speculative decoding) is generating multiple responses and selecting the best based on a reward function. It is useful for chat systems because it can generate multiple plausible responses and the user can choose the best.",
+      "response": "speculative decoding (speculative generation) is generating partial responses before the full context is available, improving latency at the cost of increased memory usage. It can be implemented as beam search with partial scoring or response-level attention masking.",
       "passed": false,
       "included": [],
       "missing": [
@@ -1073,7 +1705,7 @@
     },
     {
       "prompt": "What is tensor parallelism?",
-      "response": "tensor parallelism (tensor parallelism) is splitting a model into multiple replicas across GPUs and synchronizing gradients. It is a common way to scale model size.",
+      "response": "tensor parallelism (tensor parallelism) is a communication optimization that splits model tensors across GPUs instead of data batches. It reduces the number of allreduce operations per step.",
       "passed": false,
       "included": [
         "split",
@@ -1082,49 +1714,53 @@
       "missing": [
         "layers"
       ],
-      "hallucinated": []
+      "hallucinated": [
+        "batch"
+      ]
     },
     {
       "prompt": "What is the Bradley-Terry model?",
-      "response": "The Bradley-Terry model is a simple, non-parametric model for comparing two teams' relative strengths. It assumes that the probability of team A winning against team B is proportional to the ratio of their strengths. The strength of each team is represented by a parameter (often called the \"ability\" or \"strength\") that can be estimated from historical data. The model is useful for making predictions about future matches between teams without needing to know their exact strengths.",
+      "response": "The Bradley-Terry model is a probabilistic model used in preference learning to predict the outcome of pairwise comparisons between items. It assumes that the probability of item i being preferred to item j is proportional to the relative ability of the items: P(i > j) = exp(v_i - v_j), where vi is the ability (or latent strength) of item i. The model is trained on observed pairwise comparisons using maximum likelihood estimation or preference-based loss functions like pairwise cross-entropy. It",
       "passed": false,
       "included": [
-        "probability"
-      ],
-      "missing": [
         "preference",
+        "probability",
         "pairwise"
       ],
-      "hallucinated": []
+      "missing": [],
+      "hallucinated": [
+        "regression"
+      ]
     },
     {
       "prompt": "What is reward hacking?",
-      "response": "reward hacking (reward hacking) is manipulating the reward signal to increase training speed or efficiency without actually improving the model. Common examples include: (1) using a reward multiplier that amplifies small rewards, (2) ignoring negative rewards, (3) using a reward function that is too simple, (4) training on a dataset that is too easy, (5) using a reward function that is too closely tied to the loss function. The problem is that these hacks can make the model learn suboptimal patt",
+      "response": "reward hacking (reward hacking) is exploiting weak RLHF signals by learning to produce preferred responses without improving actual quality. It can degrade SFT-based LLMs.",
       "passed": false,
-      "included": [],
-      "missing": [
+      "included": [
         "exploit",
-        "reward model",
         "quality"
+      ],
+      "missing": [
+        "reward model"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the implicit reward in DPO?",
-      "response": "The implicit reward is the preference between chosen and rejected responses. In DPO, the implicit reward is the log probability of the chosen response given the prompt and the model's parameters. The loss is:\n\nL = -sum(log p(chosen|prompt) / p(rejected|prompt)) - lambda * (sum(log p(chosen|prompt) / p(rejected|prompt) - 1) - beta * KL(p(rejected|prompt) || p(chosen|prompt)))\n\nThe first term is the log preference between chosen and rejected. The second term is the KL divergence penalty. The impli",
+      "response": "Implicit reward (r) in DPO is the difference between the chosen and rejected reference responses: r = log(\u03c0_ref(a|x)/\u03c0_model(a|x)) - log(\u03c0_ref(b|x)/\u03c0_model(b|x)). It measures how much better the chosen response is than the rejected one, relative to the model's preference. The policy gradient is \u2207\u03b8\u222br\u03c0_\u03b8(a|x)log(\u03c0_ref(a|x)/\u03c0_\u03b8(a|x)). The model learns to produce responses that are closer to chosen references than rejected ones, without needing explicit reward labels. This makes DPO particularly eff",
       "passed": false,
       "included": [
-        "log probability",
         "reference"
       ],
       "missing": [
+        "log probability",
         "ratio"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is double quantization in QLoRA?",
-      "response": "Double quantization (double quantization) is a quantization scheme that uses two quantization scales: one for the quantized weights and another for the quantized activations. The activation scale is typically 4x larger than the weight scale. This is useful in QLoRA because it: (1) Reduces activation quantization artifacts (activation quantization can introduce non-linearities that aren't present in the original model). (2) Allows for more aggressive weight quantization without degrading model qu",
+      "response": "Double quantization (double-quant-4b) quantizes the base model weights to 4-bit quantization before quantizing the adapter weights. This reduces the base model memory footprint by 75% without increasing adapter quality degradation. In a 7B model with 4-bit base quantization and 4-bit adapter quantization, the base model weights take 14GB instead of 56GB, leaving more memory for adapters. This is the default quantization mode for QLoRA.",
       "passed": false,
       "included": [],
       "missing": [
@@ -1135,19 +1771,20 @@
     },
     {
       "prompt": "What is the purpose of prepare_model_for_kbit_training?",
-      "response": "The purpose of prepare_model_for_kbit_training is to convert a model from standard training to k-bit training. In standard training, the model is trained on full tokens. In k-bit training, the model is trained on token representations that are 1/k bits. This reduces memory usage by a factor of k. The process includes: (1) Tokenization \u2014 converting text into tokens that the model can process. (2) Token encoding \u2014 converting tokens into numerical representations. (3) Model adaptation \u2014 converting ",
+      "response": "prepare_model_for_kbit_training is a script that prepares a full-precision model for 4-bit quantization training. It: (1) Converts weights to 4-bit quantization (using quantization_scale and quantization_zero_point). (2) Applies quantization to activations during forward pass. (3) Adjusts optimizer parameters for quantized gradients. (4) Adds quantization-aware loss scaling. (5) Optionally, converts the model to a quantized version (quantization_type=quantization.QuantizationType.Q4_KBIT). This ",
       "passed": false,
-      "included": [],
-      "missing": [
+      "included": [
         "quantized",
-        "gradient",
+        "gradient"
+      ],
+      "missing": [
         "LoRA"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is NEFTune?",
-      "response": "NEFTune (NEFTune) is a tuning method that uses a reference model and a reference loss function to optimize the model's architecture and training parameters. It is often used in production serving.",
+      "response": "NEFTune (NEFTune) is a fine-tuning adapter that adds trainable parameters to frozen base models without re-training. It can improve instruction following without re-generating the base model.",
       "passed": false,
       "included": [],
       "missing": [
@@ -1155,50 +1792,50 @@
         "embedding",
         "regularization"
       ],
-      "hallucinated": [
-        "architecture"
-      ]
+      "hallucinated": []
     },
     {
       "prompt": "What is sequence packing in SFT?",
-      "response": "Sequence packing (sequence_truncation) is a technique to reduce GPU memory usage during SFT. It truncates sequences longer than a threshold (default 2048 tokens) to fit in the GPU's memory. The GPU allocates a contiguous block of memory for each sequence, and when a sequence is longer than the threshold, it's split across multiple GPU pages. This is especially important for long sequences or when training on large datasets.",
+      "response": "sequence packing (sequence packing) is combining multiple short prompts into one long sequence to use all available tokens. It improves efficiency by reducing padding waste. Packing ratios of 2-4x are common for chat-style data. In PagedAttention, it's handled automatically.",
       "passed": false,
-      "included": [],
+      "included": [
+        "efficiency"
+      ],
       "missing": [
         "concatenate",
-        "short examples",
-        "efficiency"
+        "short examples"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is loss masking in SFT?",
-      "response": "loss masking (loss masking) is masking tokens that should not be treated as labels during training. In a chat model, it masks the user's turn. Reasoning: in a chat model, you don't want the model to learn to predict the user's messages as labels. The model should only learn to respond to the system's messages. The loss masking mask (loss_mask) is a boolean mask where loss_mask[i] = True if the i-th token is a user message. During training, you pass loss_mask to the loss function to ignore user m",
+      "response": "loss masking prevents the model from learning to generate the exact prompt it was trained on. In a 77-token SFT example:\n\n```python\n# Mask the prompt tokens (1-77)\nlabels = labels.masked_fill(labels < 77, -100).numpy()\n```\n\nThis prevents the model from memorizing the prompt and generating it verbatim. Without masking, the model learns to reproduce the training data exactly, not generalize. Without loss masking, SFT would be useless \u2014 the model would just memorize the training data.",
       "passed": false,
-      "included": [],
-      "missing": [
+      "included": [
         "prompt tokens",
-        "-100",
+        "-100"
+      ],
+      "missing": [
         "assistant"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is the difference between online and offline DPO?",
-      "response": "Offline DPO (offline DPO) trains on a fixed dataset without any current user data. It's simpler and faster but may not capture current preferences. Online DPO (online DPO) uses current user responses to generate new examples. It's more expensive to collect user data but captures current preferences better. The choice depends on your data availability and budget. For most SFT pipelines, offline DPO is sufficient \u2014 you can always collect more user data later if needed.",
+      "response": "Offline DPO uses fixed behavior data (collected before policy improvement starts) and a frozen value function. It's simpler, cheaper, and widely used for SFT. Online DPO generates new behavior data during training, updating both policy and value function simultaneously. It's more expensive but can adapt to current preferences. Key differences: (1) Data quality \u2014 offline uses fixed data, online generates fresh. (2) Memory \u2014 offline needs large stored datasets, online needs less. (3) Stability \u2014 o",
       "passed": false,
       "included": [
-        "generate",
-        "fixed dataset"
+        "generate"
       ],
       "missing": [
+        "fixed dataset",
         "current policy"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is model merging?",
-      "response": "model merging (model merging) is combining multiple model checkpoints into a single model with a single parameter count. It reduces memory usage for inference.",
+      "response": "model merging (model merging) is combining multiple fine-tuned models into a single multi-capable system. It can reduce memory and inference cost. Approaches include concatenation, attention merging, and knowledge distillation.",
       "passed": false,
       "included": [],
       "missing": [
@@ -1210,644 +1847,20 @@
     },
     {
       "prompt": "What is GGUF format?",
-      "response": "GGUF (GGUF format) is a binary format for storing model checkpoints. It's compact and fast.",
+      "response": "GGUF format (GGUF) is a quantized model file format optimized for inference on GPUs. It stores quantized weights and activations in 4-bit or 8-bit precision. The format is used by AlpacaFarm, HuggingFace GGUF converter, and other inference-focused tools.",
       "passed": false,
-      "included": [],
-      "missing": [
-        "llama.cpp",
+      "included": [
         "quantized",
         "inference"
+      ],
+      "missing": [
+        "llama.cpp"
       ],
       "hallucinated": []
     },
     {
       "prompt": "What is AWQ quantization?",
-      "response": "AWQ (AWQ quantization) is a quantization method that uses a learned quantization matrix to map weights to a smaller quantization range. It is often used for model serving because it preserves the full precision of the model during inference but reduces memory usage during training.",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "activation-aware",
-        "important weights",
-        "4-bit"
-      ],
-      "hallucinated": [
-        "training"
-      ]
-    },
-    {
-      "prompt": "What is the difference between perplexity and loss?",
-      "response": "Perplexity (PPL) measures how well a model predicts the training data: PPL = e^(loss/avg_log_prob). It's a more interpretable metric than loss alone. Loss is the difference between predicted and actual log probabilities. PPL is the exponential of the average loss. The relationship: PPL = e^(L_avg - L_min). A lower PPL means the model is better at predicting the training data. Loss alone doesn't tell you how well the model generalizes. For example, a model with high loss on the training set but l",
-      "passed": false,
-      "included": [
-        "exponential"
-      ],
-      "missing": [
-        "exp(loss)"
-      ],
-      "hallucinated": []
-    }
-  ],
-  "dpo": [
-    {
-      "prompt": "What does LoRA stand for?",
-      "response": "LORA can stand for several things, depending on the context. Here are a few possible meanings:\n\n1. Local Register of Assessments: In the UK, LORA is an acronym for the Local Register of Assessments, which is a database used to track and manage local government assessments.\n2. Linear Regression Analysis: In statistics, LORA can refer to Linear Regression Analysis, a method used to model the relationship between a dependent variable and one or more independent variables.\n3. Local Organizing Region",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "Low-Rank Adaptation"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What does DPO stand for?",
-      "response": "DPO can stand for several things, depending on the context:\n\n1. Data Protection Officer: In the European Union, a Data Protection Officer (DPO) is a role responsible for ensuring an organization complies with data protection laws and regulations, such as the General Data Protection Regulation (GDPR).\n2. Director of Photography Operations: In the film and television industry, a DPO is a person responsible for overseeing the technical aspects of photography and lighting on a set.\n3. Department of ",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "Direct Preference Optimization"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What does QLoRA stand for?",
-      "response": "I couldn't find any widely recognized or well-known definition for \"QLoRA\". It's possible that it's an acronym or abbreviation used in a specific context or organization, but without more information, I couldn't determine its meaning. Can you provide more context or details about where you encountered this term?",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "Quantized",
-        "Low-Rank"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What does RLHF stand for?",
-      "response": "RLHF stands for \"Reinforcement Learning from Human Feedback.\" It's a type of machine learning approach that involves training artificial intelligence (AI) models to perform tasks by providing them with human feedback, such as labels or ratings, to improve their performance over time.",
-      "passed": true,
-      "included": [
-        "Reinforcement Learning from Human Feedback"
-      ],
-      "missing": [],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What does GRPO stand for?",
-      "response": "I'm not aware of a widely recognized acronym \"GRPO\". Could you provide more context or information about what GRPO stands for?",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "Group Relative Policy Optimization"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is gradient checkpointing?",
-      "response": "Gradient checkpointing is a technique used in machine learning to improve the stability and efficiency of training neural networks, particularly during the optimization process. It involves saving the gradients of the model's parameters at certain intervals during training, and then using these saved gradients to update the model's parameters when the training process is resumed.\n\nThe main idea behind gradient checkpointing is to reduce the memory requirements and computational overhead associat",
-      "passed": false,
-      "included": [
-        "memory"
-      ],
-      "missing": [
-        "recompute",
-        "activation"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the purpose of the KL penalty in RLHF?",
-      "response": "In Reinforcement Learning from Human Feedback (RLHF), the KL penalty, also known as the KL divergence penalty or KL regularization, is a technique used to stabilize and improve the performance of reinforcement learning (RL) algorithms.\n\nThe KL penalty is added to the loss function of an RL agent to encourage the policy to be closer to the target distribution, which is often a uniform distribution or a distribution that is close to the true distribution of the environment. The goal is to make the",
-      "passed": false,
-      "included": [
-        "diverge"
-      ],
-      "missing": [
-        "prevent",
-        "reference"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What does NF4 stand for in QLoRA?",
-      "response": "I cannot verify what NF4 stands for in QLoRA.",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "NormalFloat",
-        "4-bit"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is PagedAttention?",
-      "response": "PagedAttention is a type of attention mechanism in deep learning, particularly in transformer-based models. It's a variant of the original attention mechanism introduced in the Transformer model by Vaswani et al. in 2017.\n\nIn traditional attention mechanisms, the attention weights are calculated as the dot product of the query and key vectors, and then normalized. However, this can lead to a problem known as the \"vanishing gradient\" issue, where the gradients of the loss with respect to the weig",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "KV-cache",
-        "memory",
-        "pages"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the beta parameter in DPO?",
-      "response": "The beta parameter in DPO (Dynamic Programming Optimization) is a coefficient that controls the trade-off between the quality of the solution and the computational efficiency of the algorithm.\n\nIn DPO, the beta parameter is used to balance the exploration-exploitation trade-off. It is a hyperparameter that determines how much the algorithm should explore the solution space (i.e., try different solutions) versus exploiting the current knowledge (i.e., sticking with the current solution).\n\nThe bet",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "KL",
-        "regularization",
-        "reference"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is continuous batching in LLM serving?",
-      "response": "Continuous Batching in Large Language Model (LLM) serving refers to a technique used in distributed training and inference of large language models. It's a method to improve the efficiency and scalability of LLMs by allowing multiple requests to be batched together and processed concurrently.\n\nIn traditional batch processing, a large number of requests are grouped into a batch, and then processed together. However, this approach can be inefficient when dealing with large models and high request ",
-      "passed": false,
-      "included": [
-        "requests",
-        "batch"
-      ],
-      "missing": [
-        "finish"
-      ],
-      "hallucinated": [
-        "training"
-      ]
-    },
-    {
-      "prompt": "What is the difference between SFT and DPO?",
-      "response": "SFT and DPO are two terms that are often used interchangeably, but they have slightly different meanings in the context of data protection and compliance.\n\n**SFT** stands for \"Secure File Transfer\" or \"Secure File Transfer Protocol.\" It refers to a set of protocols and standards for securely transferring files over a network, typically between organizations or between an organization and its partners. SFT is often used to describe the process of transferring sensitive data, such as financial inf",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "instruction",
-        "preference",
-        "chosen",
-        "rejected"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is reward accuracy in DPO?",
-      "response": "In the context of Data-Driven Product (DPO), reward accuracy refers to the degree to which the rewards or incentives provided to users or customers are aligned with their actual behavior or preferences. In other words, it measures how well the rewards are targeted and effective in motivating users to take desired actions.\n\nReward accuracy is an important aspect of DPO, as it can significantly impact user engagement, retention, and overall business outcomes. Here are some key aspects of reward ac",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "chosen",
-        "rejected",
-        "implicit reward"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is mixed precision training?",
-      "response": "Mixed precision training is a technique used in deep learning and artificial intelligence (AI) to improve the efficiency and accuracy of neural network training. In traditional floating-point arithmetic, computations are performed using a single data type, such as single-precision floating-point (32-bit) or double-precision floating-point (64-bit). However, these data types have limitations in terms of precision and range.\n\nMixed precision training involves using a combination of data types, typ",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "fp16",
-        "bf16",
-        "fp32"
-      ],
-      "hallucinated": [
-        "4-bit"
-      ]
-    },
-    {
-      "prompt": "What is Flash Attention?",
-      "response": "Flash Attention is a type of attention mechanism used in deep learning models, particularly in transformer-based architectures. It was introduced in the paper \"Flash Attention\" by Vijay Gokhale, Pranav Mehta, and Xiangyu Zhang in 2021.\n\nFlash Attention is a variant of the original attention mechanism, which is commonly used in transformer models to weigh the importance of different input elements when computing the output of a model. The original attention mechanism computes attention weights ba",
-      "passed": false,
-      "included": [
-        "attention"
-      ],
-      "missing": [
-        "memory",
-        "tiling"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the purpose of warmup steps in training?",
-      "response": "The primary purpose of warm-up steps in training is to prepare the body for physical activity by increasing blood flow, reducing the risk of injury, and improving performance. A warm-up typically consists of a series of light cardio and dynamic stretching exercises that are designed to:\n\n1. **Increase blood flow and temperature**: Warm up your muscles by increasing blood flow and temperature, which helps to reduce muscle stiffness and improve flexibility.\n2. **Reduce muscle soreness**: Warm up y",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "learning rate",
-        "gradually",
-        "stability"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is adapter merging in LoRA?",
-      "response": "In LoRA (Low-Overhead Runtime for Artificial General Intelligence), adapter merging is a technique used to combine multiple models into a single model. This is particularly useful in the context of LoRA, which is a lightweight, low-overhead framework for training and deploying large neural networks.\n\nIn LoRA, adapter merging is used to combine multiple smaller models into a single model, which is then used for inference. The idea is to merge the weights of multiple smaller models into a single s",
-      "passed": false,
-      "included": [
-        "inference"
-      ],
-      "missing": [
-        "base weights",
-        "fold"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the reference model in DPO?",
-      "response": "In the Data Protection Officer (DPO) framework, the reference model is a set of guidelines and principles that organizations use to ensure compliance with data protection regulations, such as the General Data Protection Regulation (GDPR) in the European Union.\n\nThe reference model is a framework that outlines the key components and processes involved in data protection, including:\n\n1. Data Protection Impact Assessment (DPIA): An assessment of the potential risks and impacts of processing persona",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "frozen",
-        "SFT",
-        "anchor"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is vLLM?",
-      "response": "vLLM stands for \"Video Large Language Model.\" It's a type of artificial intelligence (AI) model that combines the capabilities of large language models with the ability to process and understand video content.\n\nA vLLM is typically a deep learning model that is trained on a large dataset of video and text pairs, where the text is associated with a specific video. The model learns to recognize patterns and relationships between the two, allowing it to generate text descriptions of the video conten",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "inference",
-        "serving",
-        "PagedAttention"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the causal attention mask?",
-      "response": "The causal attention mask is a technique used in natural language processing (NLP) to identify and mask out the causal relationships between words in a sentence. It is a way to disentangle the causal dependencies between words and focus on the direct relationships between them.\n\nIn traditional attention mechanisms, the attention mechanism is often used to compute the importance of each word in a sentence relative to the others. However, this can lead to over-attentive words (i.e., words that are",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "future tokens",
-        "previous",
-        "autoregressive"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is weight decay in AdamW?",
-      "response": "In the AdamW optimization algorithm, weight decay, also known as L2 regularization or weight decay penalty, is a technique used to prevent overfitting by adding a penalty term to the loss function.\n\nIn the AdamW algorithm, weight decay is added to the loss function as follows:\n\nL = L(x, y) + \u03b1 * ||w||^2\n\nwhere L is the loss function, x is the input, y is the target, w is the model's weight, and \u03b1 is the weight decay rate.\n\nThe term ||w||^2 represents the squared magnitude of the model's weights,",
-      "passed": true,
-      "included": [
-        "regularization",
-        "weights",
-        "prevent"
-      ],
-      "missing": [],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is gradient accumulation?",
-      "response": "Gradient accumulation is a technique used in machine learning and optimization to improve the performance of neural networks. It involves accumulating the gradients of the loss function with respect to the model parameters over multiple iterations, rather than computing the gradients from scratch at each iteration.\n\nIn traditional stochastic gradient descent (SGD) or other optimization algorithms, the gradients are computed at each iteration using a single sample from the training dataset. This ",
-      "passed": false,
-      "included": [
-        "batch size"
-      ],
-      "missing": [
-        "multiple steps",
-        "optimizer"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the lm_head in a language model?",
-      "response": "In a language model, the LM (Language Model) head is a critical component that determines the output of the model. It is essentially a neural network that takes the input from the previous layers and generates the output, which is typically a probability distribution over the vocabulary of the language.\n\nThe LM head is responsible for:\n\n1. **Outputting the final probability distribution**: The LM head computes the probability of each possible output token given the input and the context. This is",
-      "passed": false,
-      "included": [
-        "vocabulary"
-      ],
-      "missing": [
-        "logits",
-        "projection"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is BitsAndBytes used for?",
-      "response": "I couldn't find any information on a widely recognized service or tool called \"BitsAndBytes.\" It's possible that it's a personal project, a small business, or a niche application that I'm not aware of.\n\nHowever, I can try to help you understand what \"BitsAndBytes\" might be related to.\n\n\"Bits and bytes\" is a term used in computing to refer to the fundamental units of digital information. A bit is the basic unit of information in computing and digital communications, and a byte is a group of 8 bit",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "quantization",
-        "4-bit",
-        "8-bit"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the difference between fp16 and bf16?",
-      "response": "FP16 and BF16 are two different data types used in computer science, particularly in the context of floating-point numbers.\n\n**FP16 (Half-Precision Floating-Point)**\n\nFP16 is a 16-bit floating-point data type, which is a reduced-precision representation of a floating-point number. It is also known as half-precision floating-point. In FP16, a 16-bit value is used to represent a floating-point number, which consists of:\n\n* 1 sign bit (1 bit to indicate the sign of the number)\n* 8 exponent bits (8 ",
-      "passed": false,
-      "included": [
-        "exponent",
-        "precision"
-      ],
-      "missing": [
-        "range"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is PEFT?",
-      "response": "PEFT stands for Polyethylene Felt. It's a type of synthetic fiber felt made from polyethylene, a thermoplastic polymer. PEFT is often used in various applications, including:\n\n1. **Felted fabrics**: PEFT is used to create felted fabrics, which are often used in clothing, upholstery, and other textile products.\n2. **Insulation**: PEFT is used as a thermal insulation material in buildings, providing good thermal insulation properties.\n3. **Geotextiles**: PEFT is used in geotextiles, which are used",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "Parameter-Efficient Fine-Tuning"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is TRL?",
-      "response": "TRL stands for Total Record Labels. It was a television program that aired on MTV from 1998 to 2008. The show was a countdown of the most popular songs on the Billboard Hot 100 chart, as voted by the public through phone-in votes. The show was known for its energetic and lively atmosphere, and it was a major platform for artists to promote their music and gain exposure.\n\nTRL was hosted by Carson Daly and later by other hosts, including Nick Cannon and Jeff Timmons. The show was a staple of MTV's",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "Transformer Reinforcement Learning",
-        "Hugging Face"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the SFTTrainer in TRL?",
-      "response": "I'm not familiar with the specific term \"SFTTrainer\" in the context of TRL (Total Request Live). TRL was a popular television program that aired on MTV from 1998 to 2008, featuring music videos, live performances, and a countdown of the top 10 music videos of the week.\n\nCould you please provide more context or information about what SFTTrainer refers to in this context? I'll do my best to help you understand its meaning.",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "supervised fine-tuning",
-        "instruction",
-        "chat"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the DPOTrainer in TRL?",
-      "response": "I'm not familiar with the specific term \"DPOTrainer\" in the context of TRL (Total Recall League). Can you please provide more context or information about what TRL is and what DPOTrainer refers to within that context? I'll do my best to provide a helpful answer.",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "preference",
-        "chosen",
-        "rejected"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What does device_map='auto' do?",
-      "response": "`device_map='auto'` is a configuration option in some frameworks, including TensorFlow and PyTorch, that controls how the framework determines the device (CPU or GPU) to use for computations.\n\nWhen `device_map='auto'`, the framework will automatically detect the available devices (CPU or GPU) and assign them to the computation graph. This means that the framework will try to use the most efficient device for each operation, taking into account factors such as:\n\n1. Availability: The framework wil",
-      "passed": false,
-      "included": [
-        "GPU"
-      ],
-      "missing": [
-        "distribute",
-        "layers"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the purpose of the attention_mask?",
-      "response": "The attention mask is a crucial component in deep learning models, particularly in the context of transformer-based architectures like BERT, RoBERTa, and others. Its primary purpose is to control the attention mechanism in the model, which is a key component of the transformer architecture.\n\nIn the transformer architecture, the attention mechanism allows the model to focus on specific parts of the input data that are most relevant to the task at hand. However, this can lead to the model paying t",
-      "passed": false,
-      "included": [
-        "attend"
-      ],
-      "missing": [
-        "padding",
-        "ignore"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is RoPE?",
-      "response": "\"RoPE\" can refer to different things, but I'll provide a few possible interpretations:\n\n1. **RoPE (Organization)**: RoPE (Rape, Obstruction of Processing, and Exploitation) is a UK-based organization that campaigns against rape, sexual violence, and exploitation. They work to support survivors, raise awareness, and advocate for policy changes.\n2. **RoPE (Software)**: RoPE is a software development methodology that focuses on rapid prototyping and iterative development. It's an alternative to Agi",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "Rotary Position",
-        "relative position"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is GQA (Grouped Query Attention)?",
-      "response": "GQA (Grouped Query Attention) is a type of attention mechanism used in deep learning models, particularly in computer vision and natural language processing tasks. It's a variant of the original attention mechanism proposed in the paper \"Neural Machine Translation by Jointly Learning to Align and Translate\" by Dziedzic et al. in 2016.\n\nIn traditional attention mechanisms, the attention weights are computed for each input element (e.g., pixels in an image or words in a sentence) individually, and",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "KV heads",
-        "query heads",
-        "memory"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is SwiGLU?",
-      "response": "I couldn't find any information on \"SwiGLU\". It's possible that it's a lesser-known or obscure term, or it may be a misspelling or variation of a different term.\n\nHowever, I did find a reference to \"Swiss GLU\" which is an acronym for \"Swiss Glu\", a Swiss-based company that specializes in the development of high-performance, high-temperature-resistant glass-ceramic materials.",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "activation",
-        "gated",
-        "MLP"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is RMSNorm?",
-      "response": "RMSNorm is a normalization technique used in data preprocessing, particularly in machine learning and data analysis. It stands for \"Root Mean Square\" normalization.\n\nRMSNorm is a type of normalization that scales the values of a dataset to have a mean of 0 and a standard deviation of 1. This is done by subtracting the mean and then dividing by the standard deviation.\n\nMathematically, RMSNorm can be represented as:\n\nRMSNorm(x) = (x - \u03bc) / \u03c3\n\nwhere x is the input data, \u03bc is the mean of the data, a",
-      "passed": true,
-      "included": [
-        "normalization",
-        "root mean square"
-      ],
-      "missing": [],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the KV-cache?",
-      "response": "The KV-cache is a caching layer that is part of the Kubernetes (K8s) ecosystem. It's a built-in caching mechanism designed to improve the performance of Kubernetes applications by reducing the number of requests made to external services.\n\nThe KV-cache is a key-value store that stores data in memory, which is shared across all pods in a cluster. It's optimized for high-performance and low-latency, making it suitable for applications that require fast data access.\n\nHere's how it works:\n\n1. **Data",
-      "passed": false,
-      "included": [
-        "key",
-        "value"
-      ],
-      "missing": [
-        "autoregressive",
-        "stored"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is speculative decoding?",
-      "response": "Speculative decoding is a method used in cryptography to analyze and reverse-engineer encrypted data, particularly in the context of steganography and digital forensics. It involves making educated guesses about the structure and content of the encrypted data, often based on patterns, trends, and heuristics, to recover the original plaintext.\n\nSpeculative decoding is typically used when the encryption algorithm, key, or other relevant information is unknown or unavailable. In such cases, cryptan",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "draft model",
-        "verify",
-        "speed"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is tensor parallelism?",
-      "response": "Tensor parallelism is a programming paradigm that aims to improve the performance of certain types of computations by dividing them into smaller, independent tasks that can be executed in parallel across multiple processing units. The concept is based on the idea of breaking down complex computations into smaller, more manageable pieces that can be processed simultaneously.\n\nIn traditional parallel computing, each processing unit (such as a CPU or GPU) executes a single task at a time. In contra",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "split",
-        "layers",
-        "GPUs"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the Bradley-Terry model?",
-      "response": "The Bradley-Terry model is a statistical model used in the analysis of binary data, particularly in the context of binary classification problems, such as predicting the outcome of a binary event (e.g., win or lose) in a series of independent trials. It is commonly used in sports, such as basketball, football, and baseball, to estimate the relative strength of teams or players.\n\nThe model assumes that the probability of a team or player winning is a function of their strength, which is modeled a",
-      "passed": false,
-      "included": [
-        "probability"
-      ],
-      "missing": [
-        "preference",
-        "pairwise"
-      ],
-      "hallucinated": [
-        "classification"
-      ]
-    },
-    {
-      "prompt": "What is reward hacking?",
-      "response": "Reward hacking, also known as loyalty hacking or rewards hacking, refers to the practice of exploiting loopholes or using creative strategies to maximize rewards and benefits from loyalty programs, credit cards, and other rewards schemes. The goal is to accumulate points, miles, or other rewards more efficiently, often by taking advantage of technicalities, rules, and limitations.\n\nSome common techniques used in reward hacking include:\n\n1. **Sign-up bonuses**: Maximizing sign-up bonuses by apply",
-      "passed": false,
-      "included": [
-        "exploit"
-      ],
-      "missing": [
-        "reward model",
-        "quality"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the implicit reward in DPO?",
-      "response": "In the context of operant conditioning, an implicit reward is a concept introduced by psychologist B.F. Skinner. It refers to a stimulus that increases the likelihood of a behavior without being explicitly associated with the behavior itself. In other words, the implicit reward is a stimulus that is present in the environment and serves as a cue that predicts the occurrence of a more desirable outcome, thereby increasing the behavior.\n\nIn DPO (Discrete Performance Operant), an implicit reward is",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "log probability",
-        "ratio",
-        "reference"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is double quantization in QLoRA?",
-      "response": "I apologize but I am unable to verify what double quantization is in QLoRA.",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "quantization constants",
-        "additional memory"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the purpose of prepare_model_for_kbit_training?",
-      "response": "The `prepare_model_for_kbit_training` function is not a standard Python function. However, I can provide a general explanation of what it might be intended to do.\n\nThe purpose of `prepare_model_for_kbit_training` could be to prepare a machine learning model for training on the K-Body (K-BIT) dataset, which is a dataset used to evaluate the ability of a model to predict the number of body parts that are visible in a given image.\n\nThe K-BIT dataset is a benchmark for evaluating the performance of ",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "quantized",
-        "gradient",
-        "LoRA"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is NEFTune?",
-      "response": "I couldn't find any information on \"NEFTune.\" It's possible that it's a lesser-known or emerging technology, or it may be a misspelling or variation of a different term.\n\nHowever, I did find a reference to \"NEF\" which stands for \"National Endowment for the Arts\" in the United States. The National Endowment for the Arts (NEA) is a private, non-profit organization that provides funding for arts projects and programs across the United States.\n\nIf you could provide more context or clarify what you m",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "noise",
-        "embedding",
-        "regularization"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is sequence packing in SFT?",
-      "response": "Sequence packing in SFT (Set Theory Framework) is a technique used to pack a set of items (in this case, tasks or jobs) into a set of machines (in this case, machines or resources) in an optimal way, subject to certain constraints.\n\nIn SFT, sequence packing is a problem of assigning tasks to machines in a way that minimizes the total processing time or makes the most efficient use of the machines. The goal is to find an assignment of tasks to machines that satisfies all the constraints, such as:",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "concatenate",
-        "short examples",
-        "efficiency"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is loss masking in SFT?",
-      "response": "Loss masking is a technique used in signal processing, particularly in the field of speech processing and audio compression. It's a method to reduce the perceived loudness of a signal by adding a small amount of noise to it, while maintaining the overall signal-to-noise ratio (SNR).\n\nIn essence, loss masking works by adding a low-level, high-frequency noise to the signal, which can be perceived as a gentle hiss or hum. This added noise is designed to be inaudible to the human ear, but it helps t",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "prompt tokens",
-        "-100",
-        "assistant"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is the difference between online and offline DPO?",
-      "response": "A Data Protection Officer (DPO) is a role that oversees an organization's data protection and privacy policies. The main difference between online and offline DPOs lies in the scope of their responsibilities, the nature of their work, and the level of interaction with stakeholders.\n\n**Offline DPO:**\n\nAn offline DPO is a traditional, on-site role that focuses on data protection and privacy within an organization's physical premises. Their primary responsibilities include:\n\n1. Developing and imple",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "generate",
-        "fixed dataset",
-        "current policy"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is model merging?",
-      "response": "Model merging, also known as model integration or model fusion, is a technique used in machine learning and artificial intelligence to combine the predictions or outputs of multiple models to improve their overall performance. The goal is to create a more accurate and robust model by leveraging the strengths of each individual model.\n\nThere are several types of model merging techniques, including:\n\n1. **Weighted averaging**: Each model's output is weighted by its confidence or performance, and t",
-      "passed": false,
-      "included": [
-        "combine"
-      ],
-      "missing": [
-        "weights",
-        "without retraining"
-      ],
-      "hallucinated": [
-        "ensemble",
-        "voting"
-      ]
-    },
-    {
-      "prompt": "What is GGUF format?",
-      "response": "I couldn't find any widely recognized or established format or acronym called \"GGUF.\" It's possible that it's a specific term or abbreviation used within a particular community, organization, or context that I'm not aware of.\n\nCould you please provide more context or information about where you encountered the term \"GGUF\"? This will help me better understand and provide a more accurate answer.",
-      "passed": false,
-      "included": [],
-      "missing": [
-        "llama.cpp",
-        "quantized",
-        "inference"
-      ],
-      "hallucinated": []
-    },
-    {
-      "prompt": "What is AWQ quantization?",
-      "response": "AWQ (Arbitrary Word Quantization) is a type of quantization technique used in digital signal processing, particularly in audio processing. It's a method of reducing the precision of a signal by assigning a fixed number of discrete values to a continuous range of values.\n\nIn AWQ, the signal is divided into a fixed number of bins or cells, and each bin is assigned a specific value. The signal is then mapped to these bins based on its magnitude or amplitude. The resulting quantized signal is a disc",
+      "response": "AWQ quantization (Adaptive Weight Quantization) is a quantization method that adapts per-channel quantization levels based on activation magnitude. It improves quantization accuracy without increasing bitwidth.",
       "passed": false,
       "included": [],
       "missing": [
@@ -1859,13 +1872,13 @@
     },
     {
       "prompt": "What is the difference between perplexity and loss?",
-      "response": "Perplexity and loss are two related but distinct concepts in various fields, including mathematics, statistics, and philosophy. Here's a breakdown of the differences between them:\n\n**Perplexity**:\n\nPerplexity is a measure of the difficulty or uncertainty of a problem or a distribution. It is a quantitative way to express the amount of information or the level of complexity in a system, dataset, or problem. Perplexity is often used in machine learning, information theory, and data analysis to qua",
-      "passed": false,
-      "included": [],
-      "missing": [
+      "response": "Perplexity is a metric specific to language modeling. It measures how many possible responses a model generates on average for a given prompt. Lower perplexity means the model's responses are more focused and likely. It's computed as 2^(cross-entropy/N), where N is the sequence length. Loss is a general training metric. It measures the difference between predicted and actual outputs. In language modeling, loss is the cross-entropy between the model's next-token predictions and the true next toke",
+      "passed": true,
+      "included": [
         "exponential",
         "exp(loss)"
       ],
+      "missing": [],
       "hallucinated": []
     }
   ]
