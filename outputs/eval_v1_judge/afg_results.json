@@ -1,0 +1,19 @@
+{
+  "dpo_reward_accuracy": 0.82,
+  "stages": {
+    "dpo": {
+      "n_prompts": 51,
+      "factuality_judge": 0.8105,
+      "factuality_keyword": 0.6863,
+      "factuality_by_category": {
+        "unknown": 0.8105
+      },
+      "factuality_by_difficulty": {
+        "level_1": 0.8105
+      },
+      "factuality_by_qtype": {
+        "definition": 0.8105
+      }
+    }
+  }
+}
