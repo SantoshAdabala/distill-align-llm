@@ -163,7 +163,14 @@ def analyze_prompt(
     prompt_id: str, category: str, question_type: str, difficulty: int,
     concept: str, stage_name: str, judge_score: int,
 ) -> Optional[TokenRankResult]:
-    """Run one forward pass and extract token rank statistics."""
+    """Generate a short response and find the BEST rank the correct token
+    achieves at any position during generation.
+
+    This fixes the issue where checking only position 0 gives meaningless
+    ranks — the model says preamble before the factual keyword appears.
+    We generate up to 50 tokens and check the rank of the target token
+    at every step, reporting the best (lowest) rank found.
+    """
     target_token_id, target_token_str, keyword_used = find_key_token(
         tokenizer, must_include
     )
@@ -175,34 +182,56 @@ def analyze_prompt(
         formatted, return_tensors="pt", truncation=True, max_length=512
     ).to(model.device)
 
-    outputs = model(**inputs)
-    last_logits = outputs.logits[0, -1, :].float()
+    # Generate up to 50 tokens, collecting logits at each step
+    input_len = inputs["input_ids"].shape[1]
+    generated_ids = inputs["input_ids"].clone()
 
-    probs = F.softmax(last_logits, dim=-1)
+    best_rank = 999999
+    best_prob = 0.0
+    best_logit = 0.0
+    best_entropy = 0.0
+    best_top5_ids = []
+    best_top1_token = ""
 
-    # Correct token rank (1-indexed)
-    sorted_indices = torch.argsort(probs, descending=True)
-    rank_0indexed = (sorted_indices == target_token_id).nonzero(as_tuple=True)[0]
-    if len(rank_0indexed) == 0:
+    max_gen_tokens = 50
+    for step in range(max_gen_tokens):
+        outputs = model(input_ids=generated_ids)
+        next_logits = outputs.logits[0, -1, :].float()
+        probs = F.softmax(next_logits, dim=-1)
+
+        # Check rank of target token at this position
+        sorted_indices = torch.argsort(probs, descending=True)
+        rank_0indexed = (sorted_indices == target_token_id).nonzero(as_tuple=True)[0]
+        if len(rank_0indexed) > 0:
+            rank = int(rank_0indexed[0].item()) + 1
+            if rank < best_rank:
+                best_rank = rank
+                best_prob = float(probs[target_token_id].item())
+                best_logit = float(next_logits[target_token_id].item())
+                p_clamped = probs.clamp(min=1e-10)
+                best_entropy = float(-torch.sum(p_clamped * torch.log(p_clamped)).item())
+                best_top5_ids = sorted_indices[:5].tolist()
+                best_top1_token = tokenizer.decode([best_top5_ids[0]]).strip()
+
+        # Greedy next token for continued generation
+        next_token = sorted_indices[0].unsqueeze(0).unsqueeze(0)
+        generated_ids = torch.cat([generated_ids, next_token], dim=-1)
+
+        # Stop if we found rank 1 or hit EOS
+        if best_rank == 1:
+            break
+        if next_token.item() == tokenizer.eos_token_id:
+            break
+
+    if best_rank == 999999:
         return None
-    correct_rank = int(rank_0indexed[0].item()) + 1
 
-    correct_prob = float(probs[target_token_id].item())
-    correct_logit = float(last_logits[target_token_id].item())
-
-    # Entropy
-    p_clamped = probs.clamp(min=1e-10)
-    entropy = float(-torch.sum(p_clamped * torch.log(p_clamped)).item())
-
-    # Top-5 tokens
-    top5_ids = sorted_indices[:5].tolist()
     top5_tokens = ", ".join(
-        repr(tokenizer.decode([tid]).strip()) for tid in top5_ids
+        repr(tokenizer.decode([tid]).strip()) for tid in best_top5_ids[:5]
     )
-    top1_token = tokenizer.decode([top5_ids[0]]).strip()
 
-    suppressed = (correct_rank <= 10) and (judge_score <= 1)
-    forgotten = (correct_rank > 100) and (judge_score <= 1)
+    suppressed = (best_rank <= 10) and (judge_score <= 1)
+    forgotten = (best_rank > 100) and (judge_score <= 1)
     correctly_generated = judge_score >= 2
 
     return TokenRankResult(
@@ -211,9 +240,9 @@ def analyze_prompt(
         model_stage=stage_name, concept=concept,
         target_keyword=keyword_used, target_token_id=target_token_id,
         target_token_str=target_token_str,
-        correct_token_rank=correct_rank, correct_token_prob=correct_prob,
-        correct_token_logit=correct_logit, entropy=entropy,
-        top1_token=top1_token, top5_tokens=top5_tokens,
+        correct_token_rank=best_rank, correct_token_prob=best_prob,
+        correct_token_logit=best_logit, entropy=best_entropy,
+        top1_token=best_top1_token, top5_tokens=top5_tokens,
         judge_score=judge_score, judge_normalized=judge_score / 3.0,
         suppressed=suppressed, forgotten=forgotten,
         correctly_generated=correctly_generated,
