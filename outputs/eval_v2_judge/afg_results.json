@@ -1,0 +1,30 @@
+{
+  "dpo_reward_accuracy": 0.82,
+  "stages": {
+    "dpo": {
+      "n_prompts": 500,
+      "factuality_judge": 0.7567,
+      "factuality_keyword": 0.788,
+      "factuality_by_category": {
+        "architecture_facts": 0.79,
+        "training_mechanics": 0.75,
+        "alignment_concepts": 0.7633,
+        "quantization_efficiency": 0.7467,
+        "empirical_reasoning": 0.7333
+      },
+      "factuality_by_difficulty": {
+        "level_3": 0.825,
+        "level_2": 0.6961,
+        "level_1": 0.9524
+      },
+      "factuality_by_qtype": {
+        "application": 0.7898,
+        "causal": 0.8606,
+        "mechanism": 0.8542,
+        "comparison": 0.7733,
+        "numerical": 0.4884,
+        "definition": 0.9524
+      }
+    }
+  }
+}
