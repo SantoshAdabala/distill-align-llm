@@ -1,5 +1,5 @@
 """
-token_rank_analysis.py  —  Sprint 3: Mechanistic Analysis
+token_rank_analysis.py  —  Mechanistic Analysis
 ==========================================================
 Answers the core question: does DPO *erase* factual knowledge or *suppress* it?
 
@@ -34,7 +34,7 @@ Usage (on Lightning.ai A100)
         --sft_5ep_adapter ./outputs/llama_8b_5ep/sft/final_adapter \
         --dpo_3ep_adapter ./outputs/dpo/dpo_adapter \
         --dpo_5ep_adapter ./outputs/llama_8b_5ep/dpo/dpo_adapter \
-        --output_dir     outputs/sprint3
+        --output_dir     outputs/mechanistic_analysis
 
     # Quick test (10 prompts):
     python scripts/token_rank_analysis.py --max_prompts 10
@@ -314,7 +314,7 @@ def compute_stats(results: list[TokenRankResult]) -> dict:
 def print_report(results_by_stage: dict[str, list[TokenRankResult]]):
     """Print paper-ready summary."""
     print("\n" + "=" * 70)
-    print("SPRINT 3 — TOKEN RANK ANALYSIS RESULTS")
+    print("TOKEN RANK ANALYSIS RESULTS")
     print("Mechanistic evidence: suppression vs forgetting")
     print("=" * 70)
 
@@ -393,7 +393,7 @@ def write_outputs(results_by_stage: dict, output_dir: str):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description="Sprint 3: Token rank mechanistic analysis")
+    parser = argparse.ArgumentParser(description="Token rank mechanistic analysis")
     parser.add_argument("--eval_file", default="data/eval_factuality.jsonl")
     parser.add_argument("--base_model", default="meta-llama/Llama-3.1-8B-Instruct")
     parser.add_argument("--sft_3ep_adapter", default="./outputs/sft/final_adapter",
@@ -408,7 +408,7 @@ def main():
                         help="DPO 5-epoch adapter")
     parser.add_argument("--dpo_5ep_base", default="./outputs/sft_merged",
                         help="Merged SFT base for DPO 5ep adapter")
-    parser.add_argument("--output_dir", default="outputs/sprint3")
+    parser.add_argument("--output_dir", default="outputs/mechanistic_analysis")
     parser.add_argument("--stages", nargs="+",
                         default=["base", "sft_3ep", "sft_5ep", "dpo_3ep", "dpo_5ep"],
                         help="Which stages to analyze")
@@ -481,7 +481,7 @@ def main():
     # Report and save
     print_report(results_by_stage)
     write_outputs(results_by_stage, args.output_dir)
-    print("\nSprint 3 Analysis 1 complete.")
+    print("\nToken rank analysis complete.")
 
 
 if __name__ == "__main__":

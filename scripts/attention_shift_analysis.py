@@ -1,5 +1,5 @@
 """
-attention_shift_analysis.py  —  Sprint 3 (Part 3, optional)
+attention_shift_analysis.py  —  Attention Pattern Analysis
 ============================================================
 Checks whether DPO shifts attention away from technical tokens
 toward conversational framing tokens at factual answer positions.
@@ -11,7 +11,7 @@ Usage (GPU required):
         --sft_adapter ./outputs/sft/final_adapter \
         --dpo_adapter ./outputs/dpo/dpo_adapter \
         --dpo_base    ./outputs/sft_merged \
-        --output_dir  outputs/sprint3 \
+        --output_dir  outputs/mechanistic_analysis \
         --n_examples  30
 
 Cost: ~$0.50 on A100 (very fast — 30 examples × 2 models)
@@ -188,7 +188,7 @@ def main():
     parser.add_argument("--sft_adapter", default="./outputs/sft/final_adapter")
     parser.add_argument("--dpo_adapter", default="./outputs/dpo/dpo_adapter")
     parser.add_argument("--dpo_base", default="./outputs/sft_merged")
-    parser.add_argument("--output_dir", default="outputs/sprint3")
+    parser.add_argument("--output_dir", default="outputs/mechanistic_analysis")
     parser.add_argument("--n_examples", type=int, default=30)
     args = parser.parse_args()
 
@@ -230,7 +230,7 @@ def main():
             writer.writerows(all_results)
         print(f"\n  Saved: {out_csv}")
 
-    print("\nSprint 3 Analysis 3 complete.")
+    print("\nAttention shift analysis complete.")
 
 
 if __name__ == "__main__":

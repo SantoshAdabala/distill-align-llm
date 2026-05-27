@@ -1,6 +1,6 @@
 """
-probability_mass_analysis.py  —  Sprint 3 (Part 2)
-====================================================
+probability_mass_analysis.py  —  Probability Mass Analysis
+============================================================
 Builds on token_rank_analysis.py with deeper probability analysis.
 
 Three questions:
@@ -8,10 +8,10 @@ Three questions:
 2. Does DPO make the model more uncertain? Entropy per stage
 3. What does DPO put in place of correct tokens? Replacement semantics
 
-Usage (no GPU needed — runs on sprint3 CSV output):
+Usage (no GPU needed — runs on token rank CSV output):
     python scripts/probability_mass_analysis.py \
-        --rank_results outputs/sprint3/token_rank_full.csv \
-        --output_dir   outputs/sprint3
+        --rank_results outputs/mechanistic_analysis/token_rank_full.csv \
+        --output_dir   outputs/mechanistic_analysis
 """
 
 import csv
@@ -163,8 +163,8 @@ def print_report(prob_stats: dict, destruction: dict, replacements: dict):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--rank_results", default="outputs/sprint3/token_rank_full.csv")
-    parser.add_argument("--output_dir", default="outputs/sprint3")
+    parser.add_argument("--rank_results", default="outputs/mechanistic_analysis/token_rank_full.csv")
+    parser.add_argument("--output_dir", default="outputs/mechanistic_analysis")
     args = parser.parse_args()
 
     print(f"Loading results from {args.rank_results}...")

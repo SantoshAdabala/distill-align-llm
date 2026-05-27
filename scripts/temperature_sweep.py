@@ -1,6 +1,6 @@
 """
-temperature_sweep.py  —  Sprint 3 (Part 4)
-==========================================
+temperature_sweep.py  —  Inference-Time Temperature Analysis
+=============================================================
 Tests whether inference-time temperature reduction closes the AFG.
 
 Hypothesis: DPO flattens the logit distribution (entropy 1.76→2.17).
@@ -423,7 +423,7 @@ def main():
     parser.add_argument("--temperatures", nargs="+", type=float,
                         default=[0.1, 0.3, 0.5, 0.7, 1.0])
     parser.add_argument("--max_prompts", type=int, default=None)
-    parser.add_argument("--output_dir", default="outputs/sprint3")
+    parser.add_argument("--output_dir", default="outputs/mechanistic_analysis")
     parser.add_argument("--label", default="dpo_5ep")
     args = parser.parse_args()
 
