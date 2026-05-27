@@ -1,0 +1,91 @@
+nohup: ignoring input
+
+Temperature Sweep
+  Prompts:      500
+  Temperatures: [0.1, 0.5, 1.0]
+  Est. time:    8 min  (~$0.19 on A100)
+
+Loading prompts from data/eval_factuality_v2.jsonl...
+  Loaded 500 prompts
+
+Loading DPO model...
+  Loading base: ./outputs/sft_merged
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:24<1:58:07, 24.44s/it]Loading weights:   1%|          | 2/291 [00:47<1:53:36, 23.59s/it]Loading weights:   1%|▏         | 4/291 [00:49<45:53,  9.60s/it]  Loading weights:   2%|▏         | 5/291 [00:52<34:42,  7.28s/it]Loading weights:   2%|▏         | 6/291 [00:54<27:53,  5.87s/it]Loading weights:   3%|▎         | 8/291 [00:54<14:53,  3.16s/it]Loading weights:   3%|▎         | 9/291 [00:55<11:37,  2.47s/it]Loading weights:   3%|▎         | 10/291 [00:56<09:41,  2.07s/it]Loading weights:   4%|▍         | 11/291 [00:56<07:24,  1.59s/it]Loading weights:   4%|▍         | 13/291 [00:58<06:00,  1.30s/it]Loading weights:   5%|▍         | 14/291 [01:00<06:47,  1.47s/it]Loading weights:   5%|▌         | 15/291 [01:03<08:09,  1.77s/it]Loading weights:   6%|▌         | 18/291 [01:03<04:24,  1.03it/s]Loading weights:   7%|▋         | 19/291 [01:04<04:03,  1.12it/s]Loading weights:   7%|▋         | 20/291 [01:04<03:26,  1.31it/s]Loading weights:   7%|▋         | 21/291 [01:04<02:54,  1.55it/s]Loading weights:   8%|▊         | 22/291 [01:07<04:41,  1.05s/it]Loading weights:   8%|▊         | 23/291 [01:09<06:45,  1.51s/it]Loading weights:   8%|▊         | 24/291 [01:11<07:15,  1.63s/it]Loading weights:   9%|▉         | 27/291 [01:12<03:49,  1.15it/s]Loading weights:  10%|▉         | 28/291 [01:14<04:21,  1.00it/s]Loading weights:  10%|█         | 30/291 [01:14<03:26,  1.27it/s]Loading weights:  11%|█         | 31/291 [01:18<05:57,  1.38s/it]Loading weights:  11%|█         | 32/291 [01:21<07:33,  1.75s/it]Loading weights:  11%|█▏        | 33/291 [01:24<08:29,  1.97s/it]Loading weights:  12%|█▏        | 35/291 [01:24<05:05,  1.20s/it]Loading weights:  12%|█▏        | 36/291 [01:24<04:27,  1.05s/it]Loading weights:  13%|█▎        | 37/291 [01:25<04:05,  1.03it/s]Loading weights:  13%|█▎        | 38/291 [01:25<03:17,  1.28it/s]Loading weights:  13%|█▎        | 39/291 [01:26<03:00,  1.40it/s]Loading weights:  14%|█▎        | 40/291 [01:31<08:08,  1.95s/it]Loading weights:  14%|█▍        | 41/291 [01:34<09:42,  2.33s/it]Loading weights:  14%|█▍        | 42/291 [01:37<09:48,  2.36s/it]Loading weights:  15%|█▌        | 44/291 [01:37<05:26,  1.32s/it]Loading weights:  15%|█▌        | 45/291 [01:37<04:31,  1.10s/it]Loading weights:  16%|█▌        | 46/291 [01:38<04:05,  1.00s/it]Loading weights:  17%|█▋        | 49/291 [01:41<03:49,  1.05it/s]Loading weights:  17%|█▋        | 50/291 [01:43<05:01,  1.25s/it]Loading weights:  18%|█▊        | 51/291 [01:46<06:16,  1.57s/it]Loading weights:  18%|█▊        | 53/291 [01:46<04:07,  1.04s/it]Loading weights:  19%|█▊        | 54/291 [01:47<03:47,  1.04it/s]Loading weights:  19%|█▉        | 55/291 [01:48<03:50,  1.03it/s]Loading weights:  20%|█▉        | 58/291 [01:51<03:56,  1.01s/it]Loading weights:  20%|██        | 59/291 [01:53<04:34,  1.18s/it]Loading weights:  21%|██        | 60/291 [01:56<06:04,  1.58s/it]Loading weights:  21%|██▏       | 62/291 [01:56<03:48,  1.00it/s]Loading weights:  22%|██▏       | 63/291 [01:57<03:25,  1.11it/s]Loading weights:  22%|██▏       | 64/291 [01:58<03:27,  1.09it/s]Loading weights:  22%|██▏       | 65/291 [01:58<02:42,  1.39it/s]Loading weights:  23%|██▎       | 67/291 [02:00<03:00,  1.24it/s]Loading weights:  23%|██▎       | 68/291 [02:02<04:21,  1.17s/it]Loading weights:  24%|██▎       | 69/291 [02:04<05:21,  1.45s/it]Loading weights:  24%|██▍       | 71/291 [02:04<03:12,  1.14it/s]Loading weights:  25%|██▍       | 72/291 [02:05<02:59,  1.22it/s]Loading weights:  25%|██▌       | 73/291 [02:06<02:48,  1.29it/s]Loading weights:  25%|██▌       | 74/291 [02:06<02:10,  1.67it/s]Loading weights:  26%|██▌       | 76/291 [02:09<03:39,  1.02s/it]Loading weights:  26%|██▋       | 77/291 [02:12<05:17,  1.48s/it]Loading weights:  27%|██▋       | 78/291 [02:15<06:23,  1.80s/it]Loading weights:  28%|██▊       | 81/291 [02:15<03:24,  1.03it/s]Loading weights:  28%|██▊       | 82/291 [02:16<03:08,  1.11it/s]Loading weights:  29%|██▊       | 83/291 [02:16<02:32,  1.36it/s]Loading weights:  29%|██▉       | 85/291 [02:19<03:15,  1.06it/s]Loading weights:  30%|██▉       | 86/291 [02:22<04:46,  1.40s/it]Loading weights:  30%|██▉       | 87/291 [02:26<06:54,  2.03s/it]Loading weights:  31%|███       | 89/291 [02:26<04:13,  1.26s/it]Loading weights:  31%|███       | 90/291 [02:27<03:40,  1.10s/it]Loading weights:  31%|███▏      | 91/291 [02:27<03:26,  1.03s/it]Loading weights:  32%|███▏      | 92/291 [02:28<02:48,  1.18it/s]Loading weights:  32%|███▏      | 94/291 [02:31<04:13,  1.29s/it]Loading weights:  33%|███▎      | 95/291 [02:35<05:38,  1.72s/it]Loading weights:  33%|███▎      | 96/291 [02:37<06:16,  1.93s/it]Loading weights:  34%|███▎      | 98/291 [02:37<03:46,  1.17s/it]Loading weights:  34%|███▍      | 99/291 [02:38<03:20,  1.04s/it]Loading weights:  34%|███▍      | 100/291 [02:39<03:17,  1.03s/it]Loading weights:  35%|███▍      | 101/291 [02:39<02:31,  1.25it/s]Loading weights:  35%|███▌      | 103/291 [02:42<03:19,  1.06s/it]Loading weights:  36%|███▌      | 104/291 [02:45<04:34,  1.47s/it]Loading weights:  36%|███▌      | 105/291 [02:48<05:30,  1.77s/it]Loading weights:  37%|███▋      | 107/291 [02:48<03:16,  1.07s/it]Loading weights:  37%|███▋      | 108/291 [02:49<03:10,  1.04s/it]Loading weights:  37%|███▋      | 109/291 [02:49<02:51,  1.06it/s]Loading weights:  38%|███▊      | 112/291 [02:52<02:52,  1.04it/s]Loading weights:  39%|███▉      | 113/291 [02:56<04:23,  1.48s/it]Loading weights:  39%|███▉      | 114/291 [03:00<06:25,  2.18s/it]Loading weights:  40%|███▉      | 116/291 [03:01<04:19,  1.48s/it]Loading weights:  40%|████      | 117/291 [03:02<04:05,  1.41s/it]Loading weights:  41%|████      | 118/291 [03:03<03:35,  1.25s/it]Loading weights:  41%|████      | 119/291 [03:03<02:47,  1.03it/s]Loading weights:  42%|████▏     | 121/291 [03:06<03:15,  1.15s/it]Loading weights:  42%|████▏     | 122/291 [03:08<04:04,  1.45s/it]Loading weights:  42%|████▏     | 123/291 [03:13<06:05,  2.18s/it]Loading weights:  43%|████▎     | 125/291 [03:13<03:35,  1.30s/it]Loading weights:  43%|████▎     | 126/291 [03:14<03:20,  1.21s/it]Loading weights:  44%|████▎     | 127/291 [03:15<03:04,  1.12s/it]Loading weights:  44%|████▍     | 128/291 [03:15<02:20,  1.16it/s]Loading weights:  45%|████▍     | 130/291 [03:18<03:04,  1.15s/it]Loading weights:  45%|████▌     | 131/291 [03:21<04:07,  1.55s/it]Loading weights:  45%|████▌     | 132/291 [03:24<05:11,  1.96s/it]Loading weights:  46%|████▌     | 134/291 [03:24<03:12,  1.23s/it]Loading weights:  46%|████▋     | 135/291 [03:25<03:05,  1.19s/it]Loading weights:  47%|████▋     | 136/291 [03:26<02:44,  1.06s/it]Loading weights:  47%|████▋     | 137/291 [03:26<02:08,  1.20it/s]Loading weights:  48%|████▊     | 139/291 [03:29<02:35,  1.02s/it]Loading weights:  48%|████▊     | 140/291 [03:31<03:24,  1.35s/it]Loading weights:  48%|████▊     | 141/291 [03:34<04:17,  1.72s/it]Loading weights:  49%|████▉     | 143/291 [03:34<02:31,  1.02s/it]Loading weights:  49%|████▉     | 144/291 [03:35<02:15,  1.09it/s]Loading weights:  50%|████▉     | 145/291 [03:36<02:16,  1.07it/s]Loading weights:  50%|█████     | 146/291 [03:36<01:46,  1.36it/s]Loading weights:  51%|█████     | 148/291 [03:38<01:54,  1.25it/s]Loading weights:  51%|█████     | 149/291 [03:40<02:43,  1.15s/it]Loading weights:  52%|█████▏    | 150/291 [03:43<03:34,  1.52s/it]Loading weights:  52%|█████▏    | 152/291 [03:43<02:08,  1.08it/s]Loading weights:  53%|█████▎    | 153/291 [03:43<01:58,  1.17it/s]Loading weights:  53%|█████▎    | 154/291 [03:44<01:46,  1.28it/s]Loading weights:  54%|█████▍    | 157/291 [03:46<01:41,  1.32it/s]Loading weights:  54%|█████▍    | 158/291 [03:48<02:15,  1.02s/it]Loading weights:  55%|█████▍    | 159/291 [03:52<03:23,  1.54s/it]Loading weights:  56%|█████▌    | 162/291 [03:53<02:01,  1.06it/s]Loading weights:  56%|█████▌    | 163/291 [03:53<01:48,  1.18it/s]Loading weights:  57%|█████▋    | 166/291 [03:55<01:37,  1.28it/s]Loading weights:  57%|█████▋    | 167/291 [03:58<02:17,  1.11s/it]Loading weights:  58%|█████▊    | 168/291 [04:01<03:02,  1.48s/it]Loading weights:  58%|█████▊    | 170/291 [04:01<01:57,  1.03it/s]Loading weights:  59%|█████▉    | 171/291 [04:02<02:01,  1.01s/it]Loading weights:  59%|█████▉    | 172/291 [04:03<01:57,  1.01it/s]Loading weights:  59%|█████▉    | 173/291 [04:03<01:31,  1.29it/s]Loading weights:  60%|██████    | 175/291 [04:06<01:50,  1.05it/s]Loading weights:  60%|██████    | 176/291 [04:08<02:33,  1.33s/it]Loading weights:  61%|██████    | 177/291 [04:11<03:05,  1.63s/it]Loading weights:  62%|██████▏   | 180/291 [04:12<01:46,  1.05it/s]Loading weights:  62%|██████▏   | 181/291 [04:12<01:38,  1.11it/s]Loading weights:  63%|██████▎   | 182/291 [04:13<01:21,  1.34it/s]Loading weights:  63%|██████▎   | 184/291 [04:17<02:14,  1.26s/it]Loading weights:  64%|██████▎   | 185/291 [04:21<03:12,  1.81s/it]Loading weights:  64%|██████▍   | 186/291 [04:24<03:40,  2.10s/it]Loading weights:  65%|██████▍   | 188/291 [04:24<02:15,  1.31s/it]Loading weights:  65%|██████▍   | 189/291 [04:25<02:02,  1.20s/it]Loading weights:  65%|██████▌   | 190/291 [04:27<02:23,  1.43s/it]Loading weights:  66%|██████▌   | 191/291 [04:27<01:49,  1.09s/it]Loading weights:  66%|██████▋   | 193/291 [04:32<02:56,  1.80s/it]Loading weights:  67%|██████▋   | 194/291 [04:35<03:20,  2.06s/it]Loading weights:  67%|██████▋   | 195/291 [04:39<03:49,  2.39s/it]Loading weights:  68%|██████▊   | 197/291 [04:39<02:17,  1.46s/it]Loading weights:  68%|██████▊   | 198/291 [04:40<02:11,  1.41s/it]Loading weights:  68%|██████▊   | 199/291 [04:43<02:40,  1.74s/it]Loading weights:  69%|██████▊   | 200/291 [04:43<02:00,  1.33s/it]Loading weights:  69%|██████▉   | 202/291 [04:46<01:58,  1.33s/it]Loading weights:  70%|██████▉   | 203/291 [04:51<03:10,  2.17s/it]Loading weights:  70%|███████   | 204/291 [04:54<03:27,  2.38s/it]Loading weights:  71%|███████   | 206/291 [04:54<02:01,  1.43s/it]Loading weights:  71%|███████   | 207/291 [04:56<02:03,  1.47s/it]Loading weights:  71%|███████▏  | 208/291 [04:56<01:44,  1.26s/it]Loading weights:  72%|███████▏  | 209/291 [04:57<01:27,  1.06s/it]Loading weights:  73%|███████▎  | 211/291 [04:59<01:27,  1.09s/it]Loading weights:  73%|███████▎  | 212/291 [05:03<02:12,  1.67s/it]Loading weights:  73%|███████▎  | 213/291 [05:05<02:32,  1.95s/it]Loading weights:  74%|███████▍  | 215/291 [05:06<01:33,  1.23s/it]Loading weights:  74%|███████▍  | 216/291 [05:06<01:22,  1.10s/it]Loading weights:  75%|███████▍  | 217/291 [05:07<01:16,  1.03s/it]Loading weights:  75%|███████▍  | 218/291 [05:08<01:00,  1.21it/s]Loading weights:  76%|███████▌  | 220/291 [05:10<01:14,  1.05s/it]Loading weights:  76%|███████▌  | 221/291 [05:12<01:30,  1.30s/it]Loading weights:  76%|███████▋  | 222/291 [05:15<02:00,  1.75s/it]Loading weights:  77%|███████▋  | 225/291 [05:16<01:05,  1.01it/s]Loading weights:  78%|███████▊  | 226/291 [05:17<01:03,  1.02it/s]Loading weights:  78%|███████▊  | 227/291 [05:17<00:51,  1.24it/s]Loading weights:  79%|███████▊  | 229/291 [05:20<00:55,  1.11it/s]Loading weights:  79%|███████▉  | 230/291 [05:23<01:35,  1.56s/it]Loading weights:  79%|███████▉  | 231/291 [05:28<02:10,  2.17s/it]Loading weights:  80%|████████  | 233/291 [05:28<01:20,  1.39s/it]Loading weights:  80%|████████  | 234/291 [05:29<01:08,  1.21s/it]Loading weights:  81%|████████  | 235/291 [05:29<00:58,  1.04s/it]Loading weights:  81%|████████  | 236/291 [05:29<00:44,  1.24it/s]Loading weights:  82%|████████▏ | 238/291 [05:31<00:47,  1.12it/s]Loading weights:  82%|████████▏ | 239/291 [05:35<01:19,  1.53s/it]Loading weights:  82%|████████▏ | 240/291 [05:38<01:41,  1.98s/it]Loading weights:  83%|████████▎ | 242/291 [05:39<00:59,  1.22s/it]Loading weights:  84%|████████▎ | 243/291 [05:40<00:55,  1.16s/it]Loading weights:  84%|████████▍ | 244/291 [05:40<00:51,  1.09s/it]Loading weights:  84%|████████▍ | 245/291 [05:41<00:39,  1.16it/s]Loading weights:  85%|████████▍ | 247/291 [05:43<00:44,  1.01s/it]Loading weights:  85%|████████▌ | 248/291 [05:46<01:05,  1.53s/it]Loading weights:  86%|████████▌ | 249/291 [05:49<01:18,  1.86s/it]Loading weights:  86%|████████▋ | 251/291 [05:49<00:45,  1.14s/it]Loading weights:  87%|████████▋ | 252/291 [05:50<00:42,  1.09s/it]Loading weights:  87%|████████▋ | 253/291 [05:51<00:39,  1.04s/it]Loading weights:  87%|████████▋ | 254/291 [05:51<00:30,  1.22it/s]Loading weights:  88%|████████▊ | 256/291 [05:55<00:41,  1.19s/it]Loading weights:  88%|████████▊ | 257/291 [05:58<00:53,  1.57s/it]Loading weights:  89%|████████▊ | 258/291 [06:00<01:01,  1.87s/it]Loading weights:  89%|████████▉ | 260/291 [06:01<00:35,  1.14s/it]Loading weights:  90%|████████▉ | 261/291 [06:02<00:34,  1.16s/it]Loading weights:  90%|█████████ | 262/291 [06:03<00:30,  1.04s/it]Loading weights:  90%|█████████ | 263/291 [06:03<00:24,  1.15it/s]Loading weights:  91%|█████████ | 265/291 [06:06<00:27,  1.05s/it]Loading weights:  91%|█████████▏| 266/291 [06:08<00:34,  1.38s/it]Loading weights:  92%|█████████▏| 267/291 [06:11<00:41,  1.74s/it]Loading weights:  92%|█████████▏| 269/291 [06:11<00:23,  1.06s/it]Loading weights:  93%|█████████▎| 270/291 [06:12<00:22,  1.06s/it]Loading weights:  93%|█████████▎| 271/291 [06:13<00:18,  1.07it/s]Loading weights:  93%|█████████▎| 272/291 [06:13<00:14,  1.27it/s]Loading weights:  94%|█████████▍| 274/291 [06:18<00:26,  1.58s/it]Loading weights:  95%|█████████▍| 275/291 [06:22<00:33,  2.09s/it]Loading weights:  95%|█████████▍| 276/291 [06:25<00:35,  2.36s/it]Loading weights:  96%|█████████▌| 278/291 [06:25<00:18,  1.40s/it]Loading weights:  96%|█████████▌| 279/291 [06:26<00:15,  1.27s/it]Loading weights:  96%|█████████▌| 280/291 [06:28<00:14,  1.32s/it]Loading weights:  97%|█████████▋| 281/291 [06:28<00:10,  1.03s/it]Loading weights:  97%|█████████▋| 283/291 [06:30<00:08,  1.12s/it]Loading weights:  98%|█████████▊| 284/291 [06:33<00:10,  1.51s/it]Loading weights:  98%|█████████▊| 285/291 [06:37<00:12,  2.09s/it]Loading weights:  99%|█████████▊| 287/291 [06:37<00:04,  1.24s/it]Loading weights:  99%|█████████▉| 288/291 [06:38<00:03,  1.10s/it]Loading weights:  99%|█████████▉| 289/291 [06:39<00:02,  1.12s/it]Loading weights: 100%|█████████▉| 290/291 [06:39<00:00,  1.09it/s]Loading weights: 100%|██████████| 291/291 [06:39<00:00,  1.37s/it]
+  Loading adapter: ./outputs/llama_8b_5ep/dpo/dpo_adapter
+
+  500 prompts × 3 temps = 1500 generations
+
+  [T=0.10] Starting...
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+    [50/500] pass=80.0%  ETA 307.0 min
+    [100/500] pass=81.0%  ETA 284.3 min
+    [150/500] pass=82.0%  ETA 273.9 min
+    [200/500] pass=82.5%  ETA 253.7 min
+    [250/500] pass=79.6%  ETA 248.3 min
+    [300/500] pass=79.3%  ETA 236.9 min
+    [350/500] pass=78.6%  ETA 231.7 min
+    [400/500] pass=78.0%  ETA 220.4 min
+    [450/500] pass=78.7%  ETA 212.5 min
+    [500/500] pass=78.6%  ETA 201.3 min
+
+  [T=0.50] Starting...
+    [50/500] pass=78.0%  ETA 192.4 min
+    [100/500] pass=78.0%  ETA 180.8 min
+    [150/500] pass=77.3%  ETA 171.1 min
+    [200/500] pass=78.0%  ETA 160.2 min
+    [250/500] pass=78.0%  ETA 150.6 min
+    [300/500] pass=78.3%  ETA 140.6 min
+    [350/500] pass=77.7%  ETA 131.1 min
+    [400/500] pass=79.0%  ETA 120.7 min
+    [450/500] pass=78.7%  ETA 111.1 min
+    [500/500] pass=78.4%  ETA 100.5 min
+
+  [T=1.00] Starting...
+    [50/500] pass=84.0%  ETA 90.9 min
+    [100/500] pass=79.0%  ETA 80.8 min
+    [150/500] pass=76.7%  ETA 70.8 min
+    [200/500] pass=76.5%  ETA 60.5 min
+    [250/500] pass=72.8%  ETA 50.6 min
+    [300/500] pass=73.0%  ETA 40.4 min
+    [350/500] pass=74.0%  ETA 30.5 min
+    [400/500] pass=75.5%  ETA 20.3 min
+    [450/500] pass=75.6%  ETA 10.2 min
+    [500/500] pass=75.6%  ETA 0.0 min
+
+Complete in 306.2 min
+
+======================================================================
+TEMPERATURE SWEEP — dpo_5ep
+Hypothesis: lower T surfaces suppressed factual tokens
+======================================================================
+
+  Temp    Pass%   KwScore    Entropy    Top1P     Delta
+----------------------------------------------------------
+  0.10    78.6%    0.5907     0.0760   0.9645    +3.0pp
+  0.50    78.4%    0.5920     0.4381   0.8284    +2.8pp
+  1.00    75.6%    0.5540     1.1732   0.6327  baseline
+
+FINDING: PARTIAL (+3.0pp): modest effect
+
+Entropy trend:
+  T=0.10  0.0760  
+  T=0.50  0.4381  █
+  T=1.00  1.1732  ████
+
+Per-category: T=0.1 vs T=1.0
+  Category                              BestT    T=1.0        Δ
+  ----------------------------------------------------------
+  alignment_concepts                    73.0%    66.0%  ↑  +7.0pp
+  architecture_facts                    81.0%    79.0%  ↑  +2.0pp
+  empirical_reasoning                   81.0%    76.0%  ↑  +5.0pp
+  quantization_efficiency               74.0%    83.0%  ↓  -9.0pp
+  training_mechanics                    84.0%    74.0%  ↑ +10.0pp
+
+Paper-ready sentence:
+  "Temperature had minimal effect on DPO factuality (max +3.0pp),
+   suggesting suppression at the training-time objective level."
+
+  Full CSV:    outputs/sprint3/temp_sweep_dpo_5ep_full.csv
+  Summary:     outputs/sprint3/temp_sweep_dpo_5ep_summary.json
+  Paper table: outputs/sprint3/temp_sweep_dpo_5ep_paper_table.csv
