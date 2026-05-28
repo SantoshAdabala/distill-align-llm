@@ -34,7 +34,7 @@ from transformers import (
     AutoTokenizer,
     BitsAndBytesConfig,
 )
-from trl import CPOConfig, CPOTrainer
+from trl import DPOConfig, DPOTrainer
 
 
 @dataclass
@@ -137,13 +137,11 @@ def load_preference_dataset(args: SimPOArgs, tokenizer):
     return train_data, eval_data
 
 
-def build_simpo_config(args: SimPOArgs) -> CPOConfig:
-    """CPOConfig with SimPO loss (loss_type='simpo', cpo_alpha=0.0)."""
-    return CPOConfig(
+def build_simpo_config(args: SimPOArgs) -> DPOConfig:
+    """DPOConfig with SimPO loss (loss_type='simpo')."""
+    return DPOConfig(
         loss_type="simpo",
-        cpo_alpha=0.0,
         beta=args.beta,
-        simpo_gamma=args.simpo_gamma,
         num_train_epochs=args.num_train_epochs,
         per_device_train_batch_size=args.per_device_train_batch_size,
         per_device_eval_batch_size=args.per_device_train_batch_size,
@@ -208,7 +206,7 @@ def main():
     print("\nStarting SimPO training...")
     print("Watch 'rewards/accuracies' — compare to DPO (82%)\n")
 
-    trainer = CPOTrainer(
+    trainer = DPOTrainer(
         model=model,
         args=config,
         train_dataset=train_data,
