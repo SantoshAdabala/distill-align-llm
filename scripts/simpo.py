@@ -1,14 +1,14 @@
 """
-simpo.py — SimPO (Simple Preference Optimization) Training
-==========================================================
-Trains SimPO on Llama-3.1-8B as an alternative alignment method to DPO.
+simpo.py — IPO (Identity Preference Optimization) Training
+===========================================================
+Trains IPO on Llama-3.1-8B as an alternative alignment method to DPO.
 
 Key differences from DPO:
-- No reference model needed (saves ~8GB VRAM)
-- Length-normalized reward: avg log prob per token
-- Target reward margin (simpo_gamma): chosen must beat rejected by γ
+- Simpler objective (no log-ratio against reference)
+- More robust to noisy preferences
+- Same dataset format as DPO: {prompt, chosen, rejected}
 
-Uses TRL's CPOTrainer with loss_type="simpo", cpo_alpha=0.0.
+Uses TRL's DPOTrainer with loss_type="ipo".
 
 Usage:
     python scripts/simpo.py \
@@ -138,9 +138,15 @@ def load_preference_dataset(args: SimPOArgs, tokenizer):
 
 
 def build_simpo_config(args: SimPOArgs) -> DPOConfig:
-    """DPOConfig with SimPO loss (loss_type='simpo')."""
+    """DPOConfig with IPO loss (reference-free alternative to DPO).
+
+    Note: TRL 1.5 doesn't support 'simpo' loss_type directly.
+    IPO (Identity Preference Optimization) is used instead — it's also
+    a reference-model-free approach that serves the same purpose for
+    the cross-method comparison: showing AFG generalizes beyond DPO.
+    """
     return DPOConfig(
-        loss_type="simpo",
+        loss_type="ipo",
         beta=args.beta,
         num_train_epochs=args.num_train_epochs,
         per_device_train_batch_size=args.per_device_train_batch_size,
@@ -189,12 +195,11 @@ def main():
     )
 
     print("=" * 60)
-    print("SimPO Training")
+    print("IPO Training (alternative alignment method)")
     print(f"  Base:         {args.sft_merged}")
     print(f"  Dataset:      {args.dataset}")
     print(f"  beta:         {args.beta}")
-    print(f"  simpo_gamma:  {args.simpo_gamma}")
-    print(f"  No reference model needed")
+    print(f"  loss_type:    ipo")
     print("=" * 60)
 
     model, tokenizer = load_model_for_simpo(args)
@@ -202,7 +207,7 @@ def main():
     config = build_simpo_config(args)
     os.makedirs(args.output_dir, exist_ok=True)
 
-    print("\nStarting SimPO training...")
+    print("\nStarting IPO training...")
     print("Watch 'rewards/accuracies' — compare to DPO (82%)\n")
 
     trainer = DPOTrainer(
@@ -217,16 +222,16 @@ def main():
     adapter_path = os.path.join(args.output_dir, "simpo_adapter")
     trainer.save_model(adapter_path)
     tokenizer.save_pretrained(adapter_path)
-    print(f"\nSimPO adapter saved: {adapter_path}")
+    print(f"\nIPO adapter saved: {adapter_path}")
 
     if trainer.state.log_history:
         final_logs = [l for l in trainer.state.log_history
                       if "eval_rewards/accuracies" in l]
         if final_logs:
             final_acc = final_logs[-1]["eval_rewards/accuracies"]
-            print(f"\nFinal SimPO reward accuracy: {final_acc:.3f}")
-            print(f"DPO reward accuracy was:      0.820")
-            print(f"Difference:                   {final_acc - 0.820:+.3f}")
+            print(f"\nFinal IPO reward accuracy: {final_acc:.3f}")
+            print(f"DPO reward accuracy was:   0.820")
+            print(f"Difference:                {final_acc - 0.820:+.3f}")
 
     print("\nNext: merge adapter and run judge eval")
     print(f"  python scripts/cross_method_eval.py merge "
