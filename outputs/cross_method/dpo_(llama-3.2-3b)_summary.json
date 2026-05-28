@@ -1,0 +1,7 @@
+{
+  "model_label": "DPO (Llama-3.2-3B)",
+  "reward_accuracy": 0.73,
+  "factuality_judge": 0.3595,
+  "afg_points": 37.1,
+  "n_prompts": 51
+}

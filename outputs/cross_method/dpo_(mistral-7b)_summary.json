@@ -1,0 +1,7 @@
+{
+  "model_label": "DPO (Mistral-7B)",
+  "reward_accuracy": 0.77,
+  "factuality_judge": 0.7386,
+  "afg_points": 3.1,
+  "n_prompts": 51
+}
