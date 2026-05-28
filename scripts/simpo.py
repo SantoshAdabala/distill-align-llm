@@ -152,7 +152,6 @@ def build_simpo_config(args: SimPOArgs) -> DPOConfig:
         bf16=True,
         gradient_checkpointing=True,
         max_length=args.max_length,
-        max_prompt_length=args.max_prompt_length,
         output_dir=args.output_dir,
         logging_steps=args.logging_steps,
         save_steps=args.save_steps,
