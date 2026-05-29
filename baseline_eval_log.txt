@@ -1,0 +1,67 @@
+nohup: ignoring input
+Loaded 500 eval prompts
+
+============================================================
+Evaluating: SimPO (Llama-3.1-8B)  (reward_acc=73.0%)
+  Path: ./outputs/llama3b_5ep_sft_merged
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<00:56,  4.50it/s]Loading weights:   5%|▍         | 12/254 [00:00<00:05, 45.60it/s]Loading weights:  11%|█         | 28/254 [00:00<00:02, 86.15it/s]Loading weights:  17%|█▋        | 42/254 [00:00<00:02, 104.26it/s]Loading weights:  23%|██▎       | 59/254 [00:00<00:01, 121.75it/s]Loading weights:  30%|███       | 77/254 [00:00<00:01, 135.62it/s]Loading weights:  37%|███▋      | 95/254 [00:00<00:01, 143.85it/s]Loading weights:  44%|████▍     | 113/254 [00:00<00:00, 149.24it/s]Loading weights:  52%|█████▏    | 131/254 [00:01<00:00, 153.20it/s]Loading weights:  59%|█████▊    | 149/254 [00:01<00:00, 156.55it/s]Loading weights:  66%|██████▌   | 167/254 [00:01<00:00, 158.85it/s]Loading weights:  73%|███████▎  | 185/254 [00:01<00:00, 160.47it/s]Loading weights:  80%|███████▉  | 203/254 [00:01<00:00, 162.03it/s]Loading weights:  87%|████████▋ | 221/254 [00:01<00:00, 163.07it/s]Loading weights:  94%|█████████▍| 239/254 [00:01<00:00, 162.31it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 141.39it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  [10/500] avg judge: 0.600
+  [20/500] avg judge: 0.633
+  [30/500] avg judge: 0.644
+  [40/500] avg judge: 0.667
+  [50/500] avg judge: 0.680
+  [60/500] avg judge: 0.700
+  [70/500] avg judge: 0.705
+  [80/500] avg judge: 0.696
+  [90/500] avg judge: 0.681
+  [100/500] avg judge: 0.667
+  [110/500] avg judge: 0.667
+  [120/500] avg judge: 0.653
+  [130/500] avg judge: 0.659
+  [140/500] avg judge: 0.660
+  [150/500] avg judge: 0.644
+  [160/500] avg judge: 0.627
+  [170/500] avg judge: 0.635
+  [180/500] avg judge: 0.631
+  [190/500] avg judge: 0.630
+  [200/500] avg judge: 0.638
+  [210/500] avg judge: 0.640
+  [220/500] avg judge: 0.645
+  [230/500] avg judge: 0.651
+  [240/500] avg judge: 0.649
+  [250/500] avg judge: 0.649
+  [260/500] avg judge: 0.651
+  [270/500] avg judge: 0.656
+  [280/500] avg judge: 0.661
+  [290/500] avg judge: 0.662
+  [300/500] avg judge: 0.663
+  [310/500] avg judge: 0.658
+  [320/500] avg judge: 0.653
+  [330/500] avg judge: 0.652
+  [340/500] avg judge: 0.648
+  [350/500] avg judge: 0.650
+  [360/500] avg judge: 0.650
+  [370/500] avg judge: 0.650
+  [380/500] avg judge: 0.647
+  [390/500] avg judge: 0.648
+  [400/500] avg judge: 0.645
+  [410/500] avg judge: 0.648
+  [420/500] avg judge: 0.651
+  [430/500] avg judge: 0.650
+  [440/500] avg judge: 0.648
+  [450/500] avg judge: 0.650
+  [460/500] avg judge: 0.648
+  [470/500] avg judge: 0.648
+  [480/500] avg judge: 0.647
+  [490/500] avg judge: 0.647
+  [500/500] avg judge: 0.647
+
+  Reward accuracy:    73.0%
+  Factuality (judge): 64.7%
+  AFG:                8.3 pts
+  Saved: outputs/bsft_baseline_500/simpo_(llama-3.1-8b)_results.csv
+
+All evals complete. Run compare:
+  python scripts/cross_method_eval.py compare --results_dir outputs/bsft_baseline_500
