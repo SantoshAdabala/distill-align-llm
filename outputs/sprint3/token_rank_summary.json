@@ -1,0 +1,38 @@
+{
+  "base": {
+    "n_total": 51,
+    "n_failed": 51,
+    "n_suppressed": 17,
+    "n_forgotten": 24,
+    "suppression_rate": 0.3333333333333333,
+    "forgetting_rate": 0.47058823529411764,
+    "median_rank": 76,
+    "mean_rank": 1272.0,
+    "mean_correct_prob": 0.1084,
+    "mean_entropy": 1.2
+  },
+  "sft_5ep": {
+    "n_total": 51,
+    "n_failed": 51,
+    "n_suppressed": 39,
+    "n_forgotten": 4,
+    "suppression_rate": 0.7647058823529411,
+    "forgetting_rate": 0.0784313725490196,
+    "median_rank": 2,
+    "mean_rank": 25.9,
+    "mean_correct_prob": 0.268,
+    "mean_entropy": 1.76
+  },
+  "dpo_5ep": {
+    "n_total": 51,
+    "n_failed": 51,
+    "n_suppressed": 39,
+    "n_forgotten": 3,
+    "suppression_rate": 0.7647058823529411,
+    "forgetting_rate": 0.058823529411764705,
+    "median_rank": 2,
+    "mean_rank": 21.2,
+    "mean_correct_prob": 0.2973,
+    "mean_entropy": 2.17
+  }
+}

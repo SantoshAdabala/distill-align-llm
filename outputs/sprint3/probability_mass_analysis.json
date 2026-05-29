@@ -1,0 +1,185 @@
+{
+  "prob_stats": {
+    "base": {
+      "n": 51,
+      "mean_prob": 0.1084,
+      "median_prob": 0.0,
+      "frac_prob_gt_01": 0.196,
+      "frac_prob_gt_03": 0.118,
+      "mean_prob_passing": 0.0,
+      "mean_prob_failing": 0.1084,
+      "mean_entropy": 1.201,
+      "median_entropy": 0.881
+    },
+    "dpo_5ep": {
+      "n": 51,
+      "mean_prob": 0.2973,
+      "median_prob": 0.2476,
+      "frac_prob_gt_01": 0.647,
+      "frac_prob_gt_03": 0.392,
+      "mean_prob_passing": 0.0,
+      "mean_prob_failing": 0.2973,
+      "mean_entropy": 2.169,
+      "median_entropy": 2.319
+    },
+    "sft_5ep": {
+      "n": 51,
+      "mean_prob": 0.268,
+      "median_prob": 0.13,
+      "frac_prob_gt_01": 0.549,
+      "frac_prob_gt_03": 0.294,
+      "mean_prob_passing": 0.0,
+      "mean_prob_failing": 0.268,
+      "mean_entropy": 1.756,
+      "median_entropy": 1.487
+    }
+  },
+  "destruction": {
+    "SFT5\u2192DPO5": {
+      "mean_drop": -0.0294,
+      "median_drop": -0.0261,
+      "frac_dropped": 0.314,
+      "frac_improved": 0.686
+    }
+  },
+  "replacements": {
+    "base": {
+      "n_suppressed": 17,
+      "frac_generic": 0.0,
+      "top_replacements": [
+        [
+          "Low",
+          1
+        ],
+        [
+          "Quantum",
+          1
+        ],
+        [
+          "Rule",
+          1
+        ],
+        [
+          "balance",
+          1
+        ],
+        [
+          "input",
+          1
+        ],
+        [
+          "Attention",
+          1
+        ],
+        [
+          "model",
+          1
+        ],
+        [
+          "future",
+          1
+        ],
+        [
+          "regularization",
+          1
+        ],
+        [
+          "GPUs",
+          1
+        ]
+      ]
+    },
+    "dpo_5ep": {
+      "n_suppressed": 39,
+      "frac_generic": 0.026,
+      "top_replacements": [
+        [
+          "low",
+          2
+        ],
+        [
+          "KV",
+          2
+        ],
+        [
+          "quant",
+          2
+        ],
+        [
+          "preference",
+          2
+        ],
+        [
+          "activation",
+          2
+        ],
+        [
+          "Preference",
+          1
+        ],
+        [
+          "Quant",
+          1
+        ],
+        [
+          "Rein",
+          1
+        ],
+        [
+          "Group",
+          1
+        ],
+        [
+          "recom",
+          1
+        ]
+      ]
+    },
+    "sft_5ep": {
+      "n_suppressed": 39,
+      "frac_generic": 0.077,
+      "top_replacements": [
+        [
+          "the",
+          2
+        ],
+        [
+          "data",
+          2
+        ],
+        [
+          "memory",
+          2
+        ],
+        [
+          "quant",
+          2
+        ],
+        [
+          "Low",
+          1
+        ],
+        [
+          "Direct",
+          1
+        ],
+        [
+          "Quant",
+          1
+        ],
+        [
+          "Rein",
+          1
+        ],
+        [
+          "Group",
+          1
+        ],
+        [
+          "stores",
+          1
+        ]
+      ]
+    }
+  }
+}

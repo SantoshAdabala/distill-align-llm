@@ -1,0 +1,96 @@
+prompt_id,category,question_type,difficulty,model_stage,concept,target_keyword,target_token_id,target_token_str,correct_token_rank,correct_token_prob,correct_token_logit,entropy,top1_token,top5_tokens,judge_score,judge_normalized,suppressed,forgotten,correctly_generated
+p_000,unknown,definition,1,base,,Low-Rank Adaptation,12310,Low,1,0.5471280813217163,20.25,1.510211706161499,Low,"'Low', '""', 'Large', 'Lightweight', 'Learning'",0,0.0,True,False,False
+p_002,unknown,definition,1,base,,Quantized,32541,Quant,2,0.28918421268463135,20.125,1.9175183773040771,Quantum,"'Quantum', 'Quant', 'Qu', 'Query', '""'",0,0.0,True,False,False
+p_003,unknown,definition,1,base,,Reinforcement Learning from Human Feedback,47169,Rein,3,0.0472244918346405,18.5,1.029489278793335,Rule,"'Rule', '""', 'Rein', 'Role', 'Rules'",0,0.0,True,False,False
+p_006,unknown,definition,1,base,,prevent,5471,prevent,5,0.06408091634511948,17.0,2.655019760131836,balance,"'balance', 'improve', 'control', 'encourage', 'prevent'",0,0.0,True,False,False
+p_010,unknown,definition,1,base,,requests,7540,requests,3,0.17578954994678497,19.625,1.4373009204864502,input,"'input', 'inputs', 'requests', 'user', 'incoming'",0,0.0,True,False,False
+p_014,unknown,definition,1,base,,memory,5044,memory,4,0.002525217365473509,14.75,0.49165844917297363,Attention,"'Attention', 'attention', 'Memory', 'memory', 'Attention'",0,0.0,True,False,False
+p_016,unknown,definition,1,base,,base weights,2385,base,2,0.0226313304156065,18.25,0.23380234837532043,model,"'model', 'base', 'adapter', ',', 'language'",0,0.0,True,False,False
+p_019,unknown,definition,1,base,,future tokens,3938,future,1,0.301592618227005,15.8125,2.9063117504119873,future,"'future', 'causal', 'left', 'self', 'past'",0,0.0,True,False,False
+p_020,unknown,definition,1,base,,regularization,88394,regularization,1,0.9882382750511169,26.625,0.0826718881726265,regularization,"'regularization', '-', 'regular', 'Regular', 'regulation'",0,0.0,True,False,False
+p_029,unknown,definition,1,base,,GPU,23501,GPU,3,0.10483112931251526,20.875,1.0617084503173828,GPUs,"'GPUs', 'CPU', 'GPU', 'CPUs', 'CUDA'",0,0.0,True,False,False
+p_030,unknown,definition,1,base,,padding,5413,padding,8,0.009244998916983604,14.0625,1.5202274322509766,certain,"'certain', 'positions', 'the', 'or', 'masked'",0,0.0,True,False,False
+p_034,unknown,definition,1,base,,normalization,49823,normalization,1,0.2194918990135193,16.625,3.5491135120391846,normalization,"'normalization', 'technique', 'type', 'method', 'res'",0,0.0,True,False,False
+p_035,unknown,definition,1,base,,key,1401,key,1,0.6895397305488586,21.375,0.7665632963180542,key,"'key', 'a', 'pairs', 'unique', 'keys'",0,0.0,True,False,False
+p_038,unknown,definition,1,base,,preference,22698,preference,2,0.09147892892360687,19.5,1.2939813137054443,preferences,"'preferences', 'preference', 'ranking', 'rankings', 'strengths'",0,0.0,True,False,False
+p_039,unknown,definition,1,base,,exploit,33294,exploit,4,0.016943924129009247,18.25,1.097313642501831,maximize,"'maximize', 'optimize', 'earn', 'exploit', 'manipulate'",0,0.0,True,False,False
+p_041,unknown,definition,1,base,,quantization constants,10484,quant,1,0.9932297468185425,23.875,0.059388890862464905,quant,"'quant', '-', 'Quant', 'quan', ''",0,0.0,True,False,False
+p_047,unknown,definition,1,base,,combine,16343,combine,1,0.9485321640968323,25.0,0.2645401954650879,combine,"'combine', 'improve', 'create', 'integrate', 'ensemble'",0,0.0,True,False,False
+p_000,unknown,definition,1,sft_5ep,,Low-Rank Adaptation,12310,Low,1,0.92169588804245,22.25,0.3448534905910492,Low,"'Low', 'Lo', '""', 'Linear', 'Loose'",0,0.0,True,False,False
+p_001,unknown,definition,1,sft_5ep,,Direct Preference Optimization,7286,Direct,1,0.20837223529815674,16.125,3.4136531352996826,Direct,"'Direct', 'Data', 'Deep', 'Preference', 'D'",0,0.0,True,False,False
+p_002,unknown,definition,1,sft_5ep,,Quantized,32541,Quant,1,0.9075061082839966,22.375,0.5210778713226318,Quant,"'Quant', 'Qu', 'Quick', 'Quality', 'Quantum'",0,0.0,True,False,False
+p_003,unknown,definition,1,sft_5ep,,Reinforcement Learning from Human Feedback,47169,Rein,1,0.6378933191299438,22.0,0.7964879274368286,Rein,"'Rein', 'Reward', 'Re', 'Relative', 'Rel'",0,0.0,True,False,False
+p_004,unknown,definition,1,sft_5ep,,Group Relative Policy Optimization,5856,Group,1,0.8625912070274353,22.125,0.4989856779575348,Group,"'Group', 'Gradient', 'G', 'Gr', 'GR'",0,0.0,True,False,False
+p_005,unknown,definition,1,sft_5ep,,recompute,312,re,3,0.1192101389169693,15.625,2.450957775115967,stores,"'stores', 'recom', 're', 'caches', 'trades'",0,0.0,True,False,False
+p_007,unknown,definition,1,sft_5ep,,NormalFloat,18944,Normal,1,0.7052702307701111,19.125,1.4873008728027344,Normal,"'Normal', 'Norm', 'NF', 'No', 'Noise'",0,0.0,True,False,False
+p_008,unknown,definition,1,sft_5ep,,KV-cache,85748,KV,1,0.1614452451467514,13.875,3.9168691635131836,KV,"'KV', 'token', 'attention', 'tokens', 'only'",0,0.0,True,False,False
+p_009,unknown,definition,1,sft_5ep,,KL,68810,KL,5,0.004663653671741486,13.5,0.9977957010269165,the,"'the', 'how', 'confidence', 'reward', 'KL'",0,0.0,True,False,False
+p_010,unknown,definition,1,sft_5ep,,requests,7540,requests,1,0.26531746983528137,15.4375,3.298933267593384,requests,"'requests', 'tokens', 'short', 'incoming', 'tasks'",0,0.0,True,False,False
+p_011,unknown,definition,1,sft_5ep,,instruction,7754,instruction,2,0.2767844796180725,17.875,1.8160061836242676,data,"'data', 'instruction', 'instructions', 'examples', 'preference'",0,0.0,True,False,False
+p_012,unknown,definition,1,sft_5ep,,chosen,12146,chosen,2,0.10953308641910553,16.75,0.8737138509750366,model,"'model', 'chosen', 'policy', 'D', 'preference'",0,0.0,True,False,False
+p_013,unknown,definition,1,sft_5ep,,fp16,12276,fp,2,0.05583374947309494,15.3125,1.4676203727722168,lower,"'lower', 'fp', 'bf', 'FP', ''",0,0.0,True,False,False
+p_014,unknown,definition,1,sft_5ep,,memory,5044,memory,1,0.15528777241706848,13.8125,4.877427101135254,memory,"'memory', 'KV', 'fast', 'technique', 'high'",0,0.0,True,False,False
+p_015,unknown,definition,1,sft_5ep,,learning rate,6975,learning,1,0.5833942890167236,20.25,0.9972853064537048,learning,"'learning', 'the', 'gradient', 'training', 'lr'",0,0.0,True,False,False
+p_016,unknown,definition,1,sft_5ep,,base weights,2385,base,2,0.029623301699757576,14.5625,1.1900148391723633,Lo,"'Lo', 'base', 'low', 'original', 'weight'",0,0.0,True,False,False
+p_017,unknown,definition,1,sft_5ep,,frozen,20268,frozen,3,0.14268481731414795,15.4375,2.679561138153076,S,"'S', 'model', 'frozen', 'pre', 'base'",0,0.0,True,False,False
+p_018,unknown,definition,1,sft_5ep,,inference,45478,inference,2,0.013064312748610973,15.5625,0.19458892941474915,),"')', 'inference', 'training', 'model', 'computation'",0,0.0,True,False,False
+p_019,unknown,definition,1,sft_5ep,,future tokens,3938,future,2,0.1941550374031067,18.75,1.0702435970306396,positions,"'positions', 'future', 'tokens', 'subsequent', 'outputs'",0,0.0,True,False,False
+p_020,unknown,definition,1,sft_5ep,,regularization,88394,regularization,1,0.9203881621360779,21.5,0.45311135053634644,regularization,"'regularization', 'penalty', '-', 'decay', 'weight'",0,0.0,True,False,False
+p_021,unknown,definition,1,sft_5ep,,batch size,7309,batch,7,0.001146782306022942,13.625,0.17501455545425415,single,"'single', 'fixed', 'full', 'smaller', 'stable'",0,0.0,True,False,False
+p_022,unknown,definition,1,sft_5ep,,vocabulary,36018,vocabulary,1,0.503899872303009,18.625,1.6960465908050537,vocabulary,"'vocabulary', 'the', 'a', 'output', 'token'",0,0.0,True,False,False
+p_023,unknown,definition,1,sft_5ep,,quantization,10484,quant,2,0.13550274074077606,15.6875,3.3312697410583496,inspect,"'inspect', 'quant', 'converting', 'measuring', 'analyzing'",0,0.0,True,False,False
+p_024,unknown,definition,1,sft_5ep,,exponent,28790,exponent,1,0.8320255279541016,20.5,0.5922070145606995,exponent,"'exponent', 'mant', 'exp', 'bits', 'fraction'",0,0.0,True,False,False
+p_028,unknown,definition,1,sft_5ep,,preference,22698,preference,2,0.13000328838825226,14.1875,3.8417763710021973,reference,"'reference', 'preference', 'loss', 'policy', 'S'",0,0.0,True,False,False
+p_029,unknown,definition,1,sft_5ep,,GPU,23501,GPU,2,0.09157190471887589,19.0,0.9403622150421143,GPUs,"'GPUs', 'GPU', 'devices', 'ranks', 'device'",0,0.0,True,False,False
+p_030,unknown,definition,1,sft_5ep,,padding,5413,padding,1,0.5844864249229431,20.875,0.9941092729568481,padding,"'padding', 'them', 'padded', 'pad', 'positions'",0,0.0,True,False,False
+p_032,unknown,definition,1,sft_5ep,,KV heads,85748,KV,3,0.04368770495057106,12.8125,4.894339561462402,memory,"'memory', 'multi', 'KV', 'Q', 'technique'",0,0.0,True,False,False
+p_033,unknown,definition,1,sft_5ep,,activation,15449,activation,1,0.5873355865478516,18.875,1.5658389329910278,activation,"'activation', '-like', 'variant', '-based', 'alternative'",0,0.0,True,False,False
+p_034,unknown,definition,1,sft_5ep,,normalization,49823,normalization,1,0.5712132453918457,17.625,2.3129749298095703,normalization,"'normalization', 'variant', 'normal', 'layer', 'norm'",0,0.0,True,False,False
+p_035,unknown,definition,1,sft_5ep,,key,1401,key,1,0.3894851505756378,16.375,2.796234130859375,key,"'key', 'keys', 'query', 'outputs', 'KV'",0,0.0,True,False,False
+p_037,unknown,definition,1,sft_5ep,,split,6859,split,9,0.00250491825863719,13.0625,0.9896535277366638,a,"'a', 'splitting', 'partition', 'parallel', 'dividing'",0,0.0,True,False,False
+p_038,unknown,definition,1,sft_5ep,,preference,22698,preference,2,0.19548344612121582,15.875,2.407639265060425,ranking,"'ranking', 'preference', 'rankings', 'sports', 'pairwise'",0,0.0,True,False,False
+p_040,unknown,definition,1,sft_5ep,,log probability,1515,log,3,0.024753492325544357,14.125,1.133734941482544,the,"'the', 'implicit', 'log', 'what', 'P'",0,0.0,True,False,False
+p_041,unknown,definition,1,sft_5ep,,quantization constants,10484,quant,1,0.9981728792190552,25.25,0.01748707890510559,quant,"'quant', '(', 'Quant', '-', '/'",0,0.0,True,False,False
+p_042,unknown,definition,1,sft_5ep,,quantized,10484,quant,1,0.09588906168937683,15.0625,4.339293479919434,quant,"'quant', 'applies', 'updates', 'optionally', 'fine'",0,0.0,True,False,False
+p_043,unknown,definition,1,sft_5ep,,noise,12248,noise,1,0.908653199672699,19.25,0.6110121011734009,noise,"'noise', 'sinus', 'sine', 'cosine', 'Gaussian'",0,0.0,True,False,False
+p_045,unknown,definition,1,sft_5ep,,prompt tokens,10137,prompt,6,0.002040511230006814,14.0625,0.6086215972900391,data,"'data', 'dataset', 'examples', 'set', 'corpus'",0,0.0,True,False,False
+p_049,unknown,definition,1,sft_5ep,,activation-aware,15449,activation,2,0.28331640362739563,15.5,2.4647715091705322,activations,"'activations', 'activation', 'alpha', 'quant', 'signs'",0,0.0,True,False,False
+p_000,unknown,definition,1,dpo_5ep,,Low-Rank Adaptation,12310,Low,10,0.011662278324365616,11.875,3.422945976257324,low,"'low', 'rank', 'adapter', 'learned', 'base'",0,0.0,True,False,False
+p_001,unknown,definition,1,dpo_5ep,,Direct Preference Optimization,7286,Direct,2,0.17161130905151367,16.375,2.432904005050659,Preference,"'Preference', 'Direct', 'Data', 'preference', 'D'",0,0.0,True,False,False
+p_002,unknown,definition,1,dpo_5ep,,Quantized,32541,Quant,1,0.9502769708633423,22.5,0.31202608346939087,Quant,"'Quant', 'Qu', 'Low', 'Quality', 'Quantum'",0,0.0,True,False,False
+p_003,unknown,definition,1,dpo_5ep,,Reinforcement Learning from Human Feedback,47169,Rein,1,0.678092896938324,21.375,0.8612105250358582,Rein,"'Rein', 'Reward', 'Re', 'Reference', 'Relative'",0,0.0,True,False,False
+p_004,unknown,definition,1,dpo_5ep,,Group Relative Policy Optimization,5856,Group,1,0.9901346564292908,23.5,0.07305120676755905,Group,"'Group', 'Gradient', 'G', 'Gre', 'Groups'",0,0.0,True,False,False
+p_005,unknown,definition,1,dpo_5ep,,recompute,312,re,2,0.23576734960079193,16.25,2.2008862495422363,recom,"'recom', 're', 'stores', 'caches', 'reconstruct'",0,0.0,True,False,False
+p_008,unknown,definition,1,dpo_5ep,,KV-cache,85748,KV,1,0.4017297923564911,16.125,2.1055643558502197,KV,"'KV', 'memory', 'Lo', 'G', 'GPU'",0,0.0,True,False,False
+p_009,unknown,definition,1,dpo_5ep,,KL,68810,KL,1,0.2942642867565155,15.25,3.74312424659729,KL,"'KL', 'preference', 'reward', 'log', 'cross'",0,0.0,True,False,False
+p_010,unknown,definition,1,dpo_5ep,,requests,7540,requests,1,0.7423712611198425,18.0,1.442172884941101,requests,"'requests', 'examples', 'models', 'streams', 'prompts'",0,0.0,True,False,False
+p_011,unknown,definition,1,dpo_5ep,,instruction,7754,instruction,2,0.26269081234931946,14.875,3.19807767868042,dataset,"'dataset', 'instruction', 'manual', ',', 'set'",0,0.0,True,False,False
+p_012,unknown,definition,1,dpo_5ep,,chosen,12146,chosen,2,0.30314919352531433,17.0,1.379885196685791,model,"'model', 'chosen', 'preference', 'policy', 'selected'",0,0.0,True,False,False
+p_013,unknown,definition,1,dpo_5ep,,fp16,12276,fp,1,0.48051124811172485,16.75,1.9540029764175415,fp,"'fp', 'int', 'float', 'bf', 'b'",0,0.0,True,False,False
+p_014,unknown,definition,1,dpo_5ep,,memory,5044,memory,1,0.12281636148691177,13.375,4.837701797485352,memory,"'memory', 'KV', 'GPU', 'GF', 'G'",0,0.0,True,False,False
+p_015,unknown,definition,1,dpo_5ep,,learning rate,6975,learning,1,0.638328492641449,19.5,0.9813299179077148,learning,"'learning', 'the', 'gradient', 'lr', 'optimizer'",0,0.0,True,False,False
+p_016,unknown,definition,1,dpo_5ep,,base weights,2385,base,3,0.05576207488775253,14.5,2.026050567626953,low,"'low', 'Lo', 'base', 'Low', 'weight'",0,0.0,True,False,False
+p_017,unknown,definition,1,dpo_5ep,,frozen,20268,frozen,2,0.30529358983039856,16.25,2.318878650665283,S,"'S', 'frozen', 'pre', 'base', 'fixed'",0,0.0,True,False,False
+p_018,unknown,definition,1,dpo_5ep,,inference,45478,inference,1,0.38577836751937866,15.0625,3.007063865661621,inference,"'inference', 'use', 'serving', 'systems', 'work'",0,0.0,True,False,False
+p_019,unknown,definition,1,dpo_5ep,,future tokens,3938,future,2,0.2781055271625519,18.125,1.2695680856704712,positions,"'positions', 'future', 'tokens', 'subsequent', 'outputs'",0,0.0,True,False,False
+p_020,unknown,definition,1,dpo_5ep,,regularization,88394,regularization,1,0.8957884311676025,21.125,0.5688629746437073,regularization,"'regularization', '-', 'penalty', 'Reg', '-reg'",0,0.0,True,False,False
+p_021,unknown,definition,1,dpo_5ep,,batch size,7309,batch,1,0.2130102515220642,14.75,3.4517550468444824,batch,"'batch', 'small', 'partial', 'mini', 'smaller'",0,0.0,True,False,False
+p_022,unknown,definition,1,dpo_5ep,,vocabulary,36018,vocabulary,1,0.5634289979934692,18.625,1.529304027557373,vocabulary,"'vocabulary', 'logits', 'vocab', 'the', 'output'",0,0.0,True,False,False
+p_023,unknown,definition,1,dpo_5ep,,quantization,10484,quant,1,0.24758650362491608,15.375,3.4523940086364746,quant,"'quant', 'comparing', 'evaluating', 'memory', 'debugging'",0,0.0,True,False,False
+p_028,unknown,definition,1,dpo_5ep,,preference,22698,preference,1,0.27210357785224915,14.5,3.8416025638580322,preference,"'preference', 'a', 'chosen', 'paired', 'already'",0,0.0,True,False,False
+p_029,unknown,definition,1,dpo_5ep,,GPU,23501,GPU,2,0.11685927212238312,13.625,4.044713973999023,GPUs,"'GPUs', 'GPU', 'available', 'devices', 'model'",0,0.0,True,False,False
+p_030,unknown,definition,1,dpo_5ep,,padding,5413,padding,1,0.8699235916137695,18.25,0.7995420694351196,padding,"'padding', 'pad', 'PAD', '-', 'padded'",0,0.0,True,False,False
+p_032,unknown,definition,1,dpo_5ep,,KV heads,85748,KV,1,0.16071568429470062,14.125,3.856431245803833,KV,"'KV', 'the', 'query', 'Q', 'GPU'",0,0.0,True,False,False
+p_033,unknown,definition,1,dpo_5ep,,activation,15449,activation,1,0.9743728637695312,21.0,0.1854589730501175,activation,"'activation', 'non', 'nonlinear', 'Re', 'function'",0,0.0,True,False,False
+p_034,unknown,definition,1,dpo_5ep,,normalization,49823,normalization,1,0.4282782971858978,16.5,3.0203628540039062,normalization,"'normalization', 'variant', 'normal', 'layer', 'scaling'",0,0.0,True,False,False
+p_035,unknown,definition,1,dpo_5ep,,key,1401,key,1,0.4285442531108856,16.125,2.4489850997924805,key,"'key', 'attention', 'query', 'linear', 'token'",0,0.0,True,False,False
+p_037,unknown,definition,1,dpo_5ep,,split,6859,split,8,0.001905677025206387,12.5,0.6853752732276917,a,"'a', 'splitting', 'one', 'parallel', 'partition'",0,0.0,True,False,False
+p_038,unknown,definition,1,dpo_5ep,,preference,22698,preference,1,0.254263699054718,16.75,2.9826412200927734,preference,"'preference', 'latent', 'respective', 'strengths', 'individual'",0,0.0,True,False,False
+p_040,unknown,definition,1,dpo_5ep,,log probability,1515,log,1,0.4026013910770416,16.25,2.7585959434509277,log,"'log', 'probability', 'difference', 'margin', 'likelihood'",0,0.0,True,False,False
+p_041,unknown,definition,1,dpo_5ep,,quantization constants,10484,quant,1,0.9858058094978333,21.75,0.10280407965183258,quant,"'quant', '_quant', '-', '/', '.quant'",0,0.0,True,False,False
+p_042,unknown,definition,1,dpo_5ep,,quantized,10484,quant,4,0.0660751610994339,12.625,4.984078407287598,training,"'training', 'dropout', 'the', 'quant', 'bf'",0,0.0,True,False,False
+p_043,unknown,definition,1,dpo_5ep,,noise,12248,noise,1,0.3044031858444214,15.125,3.8273510932922363,noise,"'noise', 'a', 'non', 'trainable', 'learn'",0,0.0,True,False,False
+p_045,unknown,definition,1,dpo_5ep,,prompt tokens,10137,prompt,8,0.018987737596035004,12.125,3.3625118732452393,current,"'current', 'cursor', 'position', 'generation', 'decoder'",0,0.0,True,False,False
+p_046,unknown,definition,1,dpo_5ep,,generate,7068,generate,2,0.1665305346250534,15.875,2.5447702407836914,all,"'all', 'generate', 'unseen', 'make', 'new'",0,0.0,True,False,False
+p_049,unknown,definition,1,dpo_5ep,,activation-aware,15449,activation,1,0.46890199184417725,16.0,2.6189160346984863,activation,"'activation', 'layer', 'weight', 'quant', 'tensor'",0,0.0,True,False,False
+p_050,unknown,definition,1,dpo_5ep,,exponential,59855,exponential,2,0.00356438965536654,16.25,0.09156519919633865,exp,"'exp', 'exponential', 'exponent', 'e', '('",0,0.0,True,False,False

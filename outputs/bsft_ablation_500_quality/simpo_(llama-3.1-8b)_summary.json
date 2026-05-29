@@ -1,0 +1,7 @@
+{
+  "model_label": "SimPO (Llama-3.1-8B)",
+  "reward_accuracy": 0.73,
+  "factuality_judge": 0.6507,
+  "afg_points": 7.9,
+  "n_prompts": 500
+}

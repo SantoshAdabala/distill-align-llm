@@ -1,0 +1,3217 @@
+{
+  "T=0.1": {
+    "temperature": 0.1,
+    "passed": 11,
+    "total": 51,
+    "accuracy": 0.2157,
+    "details": [
+      {
+        "prompt": "What does LoRA stand for?",
+        "response": "LoRA (Low-Rank Adaptation) is a parameter-efficient fine-tuning method that freezes most of the base model weights and adds low-rank matrices for adaptation.",
+        "passed": true,
+        "included": [
+          "Low-Rank Adaptation"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does DPO stand for?",
+        "response": "DPO stands for Preference Optimization. In a generation-then-optimize pipeline, it trains on chosen/rejected pairs rather than SFT data.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Direct Preference Optimization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does QLoRA stand for?",
+        "response": "QLoRA stands for Quantized Low-Rank Adaptation. It's a LoRA variant that stores the low-rank adapter matrices in 4-bit quantized format, reducing memory by 4x while maintaining inference quality.",
+        "passed": false,
+        "included": [
+          "Quantized",
+          "Low-Rank"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "Quality"
+        ]
+      },
+      {
+        "prompt": "What does RLHF stand for?",
+        "response": "RLHF stands for Reinforcement Learning from Human Feedback. It is a process that uses a reward model trained on human preferences to optimize a base model. The core idea is to generate responses, get human ratings, compute rewards, and use them to update the policy via PPO or other RL algorithms.",
+        "passed": true,
+        "included": [
+          "Reinforcement Learning from Human Feedback"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does GRPO stand for?",
+        "response": "GRPO stands for Group Relative Policy Optimization. It is a behavior-policy gradient method used in DPO and RLHF to reduce exploration and improve stability.",
+        "passed": false,
+        "included": [
+          "Group Relative Policy Optimization"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "Gradient"
+        ]
+      },
+      {
+        "prompt": "What is gradient checkpointing?",
+        "response": "gradient checkpointing (gradient checkpointing) is a memory-saving technique that recomputes activations during backward pass rather than storing them. It reduces activation memory from O(n) to O(constant) per step.",
+        "passed": true,
+        "included": [
+          "recompute",
+          "activation",
+          "memory"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of the KL penalty in RLHF?",
+        "response": "The KL penalty (Kullback-Leibler divergence) constrains the policy from moving too far from the reference model. Without it, the policy can degenerate into a uniform distribution (all tokens equally likely) or become overly confident. The penalty term adds a regularization term to the loss: L = -E[l",
+        "passed": true,
+        "included": [
+          "prevent",
+          "diverge",
+          "reference"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does NF4 stand for in QLoRA?",
+        "response": "NF4 (Normalization Factor 4) is a normalization trick in QLoRA that scales by the fourth root of the sum of squares instead of the square root. It helps reduce gradient instability in LoRA fine-tuning.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "NormalFloat",
+          "4-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PagedAttention?",
+        "response": "PagedAttention (PagedAttention) is a KV-cache compression technique that stores attention blocks in virtual memory pages and lazily loads them on demand. It improves GPU memory efficiency for long sequences.",
+        "passed": true,
+        "included": [
+          "KV-cache",
+          "memory",
+          "pages"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the beta parameter in DPO?",
+        "response": "Beta (\u03b2) controls the confidence of the preference model. When \u03b2=1 (default), the preference model outputs probabilities that should be treated as actual probabilities \u2014 the model is confident in its comparisons. When \u03b2<1, the model's outputs are scaled down, making it more conservative and less lik",
+        "passed": false,
+        "included": [
+          "reference"
+        ],
+        "missing": [
+          "KL",
+          "regularization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is continuous batching in LLM serving?",
+        "response": "Continuous batching (CB) keeps the GPU pipeline full by continuously generating new requests while processing existing ones. In traditional blocking, the server waits for all requests to arrive before batching them. CB reduces latency and increases throughput by: (1) Pre-warming the GPU with placeho",
+        "passed": false,
+        "included": [
+          "requests",
+          "batch"
+        ],
+        "missing": [
+          "finish"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between SFT and DPO?",
+        "response": "SFT (Self-Instruction Fine-Tuning) trains on a large dataset of human-written responses, often 100k+ examples. The model generates a response, gets it evaluated, and learns from the feedback. It's a general fine-tuning approach that improves across the board. DPO (Deep Preference Optimization) train",
+        "passed": false,
+        "included": [
+          "instruction",
+          "preference"
+        ],
+        "missing": [
+          "chosen",
+          "rejected"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward accuracy in DPO?",
+        "response": "Reward accuracy measures how often the model chooses the preferred response given a prompt. It's the proportion of preference pairs where the model assigns higher reward to the chosen response. For example, if you have 100 pairs and the model chooses the preferred response 80 times, reward accuracy ",
+        "passed": false,
+        "included": [
+          "chosen"
+        ],
+        "missing": [
+          "rejected",
+          "implicit reward"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is mixed precision training?",
+        "response": "mixed precision training (mixed precision) is training with lower precision data types (bf16, fp16) to reduce memory and speed bottlenecks. It is essential for large models.",
+        "passed": false,
+        "included": [
+          "fp16",
+          "bf16"
+        ],
+        "missing": [
+          "fp32"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is Flash Attention?",
+        "response": "Flash Attention (Flash Attention) is a memory-efficient attention mechanism that reduces GPU memory spikes by reusing KV-cache rows across tokens. It is a key component of LoRA-based acceleration.",
+        "passed": false,
+        "included": [
+          "memory",
+          "attention"
+        ],
+        "missing": [
+          "tiling"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of warmup steps in training?",
+        "response": "Warmup steps gradually increase learning rate from 0 to the target value over the first few percent of training. This prevents sudden large updates that can destabilize training. Without warmup, the first few steps might update weights by 10-20x the final step size, causing the loss to spike and pot",
+        "passed": false,
+        "included": [
+          "learning rate",
+          "gradually"
+        ],
+        "missing": [
+          "stability"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is adapter merging in LoRA?",
+        "response": "Adapter merging (LoRA merging) combines the LoRA update matrices into a single low-rank matrix by concatenating them along the feature dimension. Instead of having separate A, B, W, and C matrices for each adapter, you merge them into a single 4R \u00d7 D matrix:\n\nM = [W, A, B, C]\n\nDuring inference, you ",
+        "passed": false,
+        "included": [
+          "inference"
+        ],
+        "missing": [
+          "base weights",
+          "fold"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the reference model in DPO?",
+        "response": "In DPO, the reference model is the frozen SFT checkpoint used as the policy prior. It serves as the 'true' model from which the policy is learned to deviate. During training, the reference model generates responses for the preference pairs (chosen/rejected) and the policy model generates responses. ",
+        "passed": true,
+        "included": [
+          "frozen",
+          "SFT",
+          "anchor"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is vLLM?",
+        "response": "vLLM (vectorized LLM) is a high-throughput LLM serving system that scales to many concurrent requests. It's the foundation for llama.com and other cloud LLM platforms.",
+        "passed": false,
+        "included": [
+          "serving"
+        ],
+        "missing": [
+          "inference",
+          "PagedAttention"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the causal attention mask?",
+        "response": "The causal attention mask is a boolean tensor that prevents the model from attending to positions after the current one during self-attention. It's used in autoregressive models like transformers and LLMs. In PyTorch, it's created with:\n\n```python\ncausal_mask = torch.triu(\n    torch.ones((1, seq_len",
+        "passed": false,
+        "included": [
+          "future tokens",
+          "autoregressive"
+        ],
+        "missing": [
+          "previous"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is weight decay in AdamW?",
+        "response": "Weight decay (L2 regularization) adds a penalty term to the loss: L = L_base + 0.01 * sum(w^2). In AdamW, this is applied to the gradient of the loss before it's normalized. The effect: (1) Regularizes large weights, preventing them from growing too large. (2) Reduces overfitting. (3) Equivalent to ",
+        "passed": true,
+        "included": [
+          "regularization",
+          "weights",
+          "prevent"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is gradient accumulation?",
+        "response": "gradient accumulation (gradient accumulation) is summing gradients over multiple micro-batches before an optimizer step. It reduces gradient noise and memory overhead for small batches.",
+        "passed": false,
+        "included": [
+          "optimizer"
+        ],
+        "missing": [
+          "batch size",
+          "multiple steps"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the lm_head in a language model?",
+        "response": "lm_head is the final linear layer that projects hidden states to vocabulary logits. It's a learnable linear transformation W_out \u2208 R(V \u00d7 H) where V is vocabulary size and H is hidden dimension. During inference, it computes output logits as:\n\nlogits = hidden @ W_out.T\n\nThe output is a tensor of shap",
+        "passed": false,
+        "included": [
+          "vocabulary",
+          "logits"
+        ],
+        "missing": [
+          "projection"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is BitsAndBytes used for?",
+        "response": "BitsAndBytes (BitsAndBytes) is a utility that converts between bits, bytes, MB, GB, and GiB. It is useful for quantization analysis.",
+        "passed": false,
+        "included": [
+          "quantization"
+        ],
+        "missing": [
+          "4-bit",
+          "8-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between fp16 and bf16?",
+        "response": "Both reduce precision for inference on Ampere+ GPUs, but they serve different purposes: fp16 (bf16): 16-bit floating-point, 1 sign bit, 15 mantissa bits. Used for training and inference. bf16 (bfloat16): 16-bit floating-point, 1 sign bit, 8 mantissa bits. Used only for inference (no training). Key d",
+        "passed": false,
+        "included": [
+          "range",
+          "precision"
+        ],
+        "missing": [
+          "exponent"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PEFT?",
+        "response": "PEFT (Pre-Training with Frozen Adapter) is a LoRA variant that freezes the base model during fine-tuning and only updates the low-rank adapter matrices. It reduces memory and training time while preserving base model quality.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Parameter-Efficient Fine-Tuning"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is TRL?",
+        "response": "TRL (TRL) stands for Total Reward Loss, a reinforcement learning method that combines DPO and PPO for efficient alignment. It replaces the reference model with a policy model and optimizes for cumulative reward rather than log-probability ratios.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Transformer Reinforcement Learning",
+          "Hugging Face"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the SFTTrainer in TRL?",
+        "response": "SFTTrainer (SFTTrainer) is a base class in TRL that handles DPO, RLHF, and LLM-Finetune workflows. It abstracts data loading, sampling, loss computation, and optimization loops. For a user, it's a one-line interface:\n\n```python\ntrainer = SFTTrainer(model, train_dataset, eval_dataset, max_seq_length=",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "supervised fine-tuning",
+          "instruction",
+          "chat"
+        ],
+        "hallucinated": [
+          "reward model",
+          "PPO"
+        ]
+      },
+      {
+        "prompt": "What is the DPOTrainer in TRL?",
+        "response": "DPOTrainer is a TRL implementation of a SFT pipeline using DPO loss. It trains a reference model to agree with a chosen expert on preference pairs.",
+        "passed": false,
+        "included": [
+          "preference",
+          "chosen"
+        ],
+        "missing": [
+          "rejected"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does device_map='auto' do?",
+        "response": "device_map='auto' automatically assigns GPUs to different ranks in a distributed training setup. It uses the CUDA_VISIBLE_DEVICES environment variable to determine available GPUs and assigns them round-robin to ranks. This simplifies multi-GPU deployment and eliminates the need to manually specify d",
+        "passed": false,
+        "included": [
+          "GPU",
+          "distribute"
+        ],
+        "missing": [
+          "layers"
+        ],
+        "hallucinated": [
+          "training"
+        ]
+      },
+      {
+        "prompt": "What is the purpose of the attention_mask?",
+        "response": "attention_mask is a tensor indicating which tokens are valid and which should be ignored during attention computation. It's used for: (1) Padding tokens (0): ignored by attention, enabling efficient computation on variable-length sequences. (2) Loss masking (1): prevents loss from being computed on ",
+        "passed": true,
+        "included": [
+          "padding",
+          "ignore",
+          "attend"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is RoPE?",
+        "response": "RoPE (Recurrent Linear Attention) is a linear attention mechanism that scales with sequence length rather than squaring it. It's the core of Llama models.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Rotary Position",
+          "relative position"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GQA (Grouped Query Attention)?",
+        "response": "GQA (Grouped Query Attention) is a memory-efficient attention mechanism that reduces KV-cache memory by grouping query tokens into chunks. In standard QKV attention, each query token attends to all KV tokens. For a 2048-token sequence with 128 dim, the KV-cache stores 256MB of data (2*2048*128). Gro",
+        "passed": false,
+        "included": [
+          "memory"
+        ],
+        "missing": [
+          "KV heads",
+          "query heads"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is SwiGLU?",
+        "response": "SwiGLU (SwigLu) is a GELU-like activation used in Llama-3. It combines two linear transformations with a GELU-like activation: y = W1x + W2x * sigmoid(W3x). This design is more efficient than separate GELU and linear layers, with fewer parameters and less memory overhead. In Llama-3, SwiGLU is used ",
+        "passed": false,
+        "included": [
+          "activation",
+          "MLP"
+        ],
+        "missing": [
+          "gated"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is RMSNorm?",
+        "response": "RMSNorm (Root Mean Square Normalization) is a normalization technique that scales by the RMS of the input rather than its mean. It is used in LLMs to stabilize training.",
+        "passed": true,
+        "included": [
+          "normalization",
+          "root mean square"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the KV-cache?",
+        "response": "The KV-cache stores all previous key and value vectors for efficient attention computation. For a sequence of length L, it stores 2L hidden states (K and V). In Llama-3, the KV-cache is split into two separate caches for each head, each requiring 2L*H*dim_head memory. The attention computation only ",
+        "passed": false,
+        "included": [
+          "key",
+          "value"
+        ],
+        "missing": [
+          "autoregressive",
+          "stored"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is speculative decoding?",
+        "response": "speculative decoding (speculative decoding) is a decoding technique that generates multiple concurrent token sequences from the same context, scoring them simultaneously, and returns the top-N. It can reduce latency for latency-sensitive applications.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "draft model",
+          "verify",
+          "speed"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is tensor parallelism?",
+        "response": "tensor parallelism (tensor parallelism) is a distributed inference technique that splits layers across multiple GPUs. Each GPU processes a subset of the attention heads, reducing memory per GPU.",
+        "passed": true,
+        "included": [
+          "split",
+          "layers",
+          "GPUs"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the Bradley-Terry model?",
+        "response": "The Bradley-Terry model is a probabilistic ranking model used in pairwise preference estimation. It assigns probabilities to each item being preferred over another based on learned weights. The probability of item i being preferred over j is P(i > j) = \u03c3(w_i - w_j), where \u03c3 is the sigmoid function. ",
+        "passed": true,
+        "included": [
+          "preference",
+          "probability",
+          "pairwise"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward hacking?",
+        "response": "reward hacking (reward hacking) is exploiting model biases to receive high rewards without actually learning useful behavior. It can make a model appear competent in one metric while being unhelpful in practice.",
+        "passed": false,
+        "included": [
+          "exploit"
+        ],
+        "missing": [
+          "reward model",
+          "quality"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the implicit reward in DPO?",
+        "response": "In DPO, the implicit reward is the preference signal itself \u2014 the model is implicitly learning to increase the probability of chosen responses while decreasing the probability of rejected ones. The reward function is never explicitly defined; instead, you provide paired examples (chosen, rejected) a",
+        "passed": false,
+        "included": [
+          "ratio",
+          "reference"
+        ],
+        "missing": [
+          "log probability"
+        ],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What is double quantization in QLoRA?",
+        "response": "Double quantization reduces the precision of quantized weights from 4-bit to 2-bit after the first quantization pass. This saves an additional 50% of memory but doubles the noise in the quantized weights. The process: (1) First quantization: 4-bit quantization (ABE) on the full 8-bit range. (2) Doub",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "quantization constants",
+          "additional memory"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of prepare_model_for_kbit_training?",
+        "response": "prepare_model_for_kbit_training is a LLM optimizer method that applies LoRA adapters, freezes base weights, and configures training parameters for efficient 8-bit quantization. It's the standard workflow for training with 4-bit or 8-bit quantized models:\n\n```python\nfrom transformers import AutoModel",
+        "passed": false,
+        "included": [
+          "quantized",
+          "LoRA"
+        ],
+        "missing": [
+          "gradient"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is NEFTune?",
+        "response": "NEFTune (NEFTune) is a LoRA method that applies LoRA adapters to the embedding layer only, leaving the MLP layers frozen. It is memory-efficient and often produces strong results.",
+        "passed": false,
+        "included": [
+          "embedding"
+        ],
+        "missing": [
+          "noise",
+          "regularization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is sequence packing in SFT?",
+        "response": "Sequence packing (packing) is combining multiple short examples into a single longer sequence for efficient training. Instead of training on 128-token examples one at a time, pack 4-8 examples into a 512-token sequence. This reduces GPU memory overhead by 1/4 to 1/8. Implementation: pack examples in",
+        "passed": false,
+        "included": [
+          "short examples"
+        ],
+        "missing": [
+          "concatenate",
+          "efficiency"
+        ],
+        "hallucinated": [
+          "quantization"
+        ]
+      },
+      {
+        "prompt": "What is loss masking in SFT?",
+        "response": "Loss masking (also called causal masking) zeros loss for tokens that should not be predicted by the model (future tokens). In SFT, this is crucial because the model should not predict future responses. During training, the model sees the prompt and some generated tokens, but should only predict the ",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "prompt tokens",
+          "-100",
+          "assistant"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between online and offline DPO?",
+        "response": "Offline DPO trains on a fixed dataset collected beforehand, then applies the learned preference model to all possible responses. Online DPO generates responses iteratively, computes preferences on the current generation, and updates the model immediately. Key differences: (1) Offline is more reprodu",
+        "passed": false,
+        "included": [
+          "generate",
+          "fixed dataset"
+        ],
+        "missing": [
+          "current policy"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is model merging?",
+        "response": "model merging (model merging) is combining multiple LoRA adapters into a single merged adapter. It reduces memory overhead and improves inference speed.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "combine",
+          "weights",
+          "without retraining"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GGUF format?",
+        "response": "GGUF (GPT-Generated Unified Format) is a model-agnostic, KV-cache-efficient file format for serving LLMs. It stores both model weights and KV-cache in a single file, enabling efficient inference on GPUs with KV-cache.",
+        "passed": false,
+        "included": [
+          "inference"
+        ],
+        "missing": [
+          "llama.cpp",
+          "quantized"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is AWQ quantization?",
+        "response": "AWQ (Adaptive Weight Quantization) is a quantization scheme that learns a per-channel scale factor per activation type (linear or sigmoid) rather than applying a fixed scale across all activations. It improves quality for LLM inference by reducing the quantization error in specific regions of the ac",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "activation-aware",
+          "important weights",
+          "4-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between perplexity and loss?",
+        "response": "Loss measures how far your model's predictions diverge from the true distribution on a single example \u2014 typically negative log-probability. Perplexity averages this over multiple examples: PPL = exp(avg(nll)). Loss is a scalar per-example (lower is better), while perplexity is a multiplicative facto",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "exponential",
+          "exp(loss)"
+        ],
+        "hallucinated": []
+      }
+    ]
+  },
+  "T=0.3": {
+    "temperature": 0.3,
+    "passed": 13,
+    "total": 51,
+    "accuracy": 0.2549,
+    "details": [
+      {
+        "prompt": "What does LoRA stand for?",
+        "response": "LoRA (Low-Rank Adaptation) is a parameter-efficient fine-tuning method that freezes most of a base model and adds small low-rank matrices for task-specific adaptation.",
+        "passed": true,
+        "included": [
+          "Low-Rank Adaptation"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does DPO stand for?",
+        "response": "DPO stands for Preference Optimization. In a generation-then-optimize pipeline, it trains on chosen/rejected pairs rather than SFT data.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Direct Preference Optimization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does QLoRA stand for?",
+        "response": "QLoRA stands for Quantized Low-Rank Adaptation. It's a memory-efficient fine-tuning method that stores only the low-rank update rather than the full adapter weights.",
+        "passed": true,
+        "included": [
+          "Quantized",
+          "Low-Rank"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does RLHF stand for?",
+        "response": "RLHF stands for Reinforcement Learning from Human Feedback. It uses a reward model trained on human preferences to optimize a base model.",
+        "passed": true,
+        "included": [
+          "Reinforcement Learning from Human Feedback"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does GRPO stand for?",
+        "response": "GRPO stands for Group Relative Policy Optimization. It is an efficient reinforcement learning method used in DPO and RLHF that reduces the number of policy evaluations by grouping multiple generations together and computing a single reward gradient.",
+        "passed": false,
+        "included": [
+          "Group Relative Policy Optimization"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "Gradient"
+        ]
+      },
+      {
+        "prompt": "What is gradient checkpointing?",
+        "response": "gradient checkpointing (gradient checkpointing) is a memory-saving technique that recomputes activations during the backward pass. It trades extra computation for reduced GPU memory usage.",
+        "passed": true,
+        "included": [
+          "recompute",
+          "activation",
+          "memory"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of the KL penalty in RLHF?",
+        "response": "The KL penalty (penalty coefficient) prevents the policy from diverging too far from the reference model. In a well-implemented RLHF pipeline, the policy should never be significantly worse than the reference \u2014 if it is, you're likely overfitting. The KL penalty acts as regularization: when the poli",
+        "passed": false,
+        "included": [
+          "prevent",
+          "reference"
+        ],
+        "missing": [
+          "diverge"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does NF4 stand for in QLoRA?",
+        "response": "NF4 (Normalization Factor 4) is a normalization trick that scales by the fourth root of the sum of squares of activations, rather than the square root. It's a common scaling used in QLoRA and other modern LLM fine-tuning methods. The motivation is that the standard sqrt normalization can be too aggr",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "NormalFloat",
+          "4-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PagedAttention?",
+        "response": "PagedAttention (PagedAttention) is a KV-cache compression technique that stores attention blocks in a paging system, reducing memory spikes during long sequences. It is a key optimization for serving LLM inference at scale.",
+        "passed": false,
+        "included": [
+          "KV-cache",
+          "memory"
+        ],
+        "missing": [
+          "pages"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the beta parameter in DPO?",
+        "response": "Beta (\u03b2) is a regularization strength controlling how much the policy can deviate from the reference model. It prevents overfitting by penalizing log-prob ratio values greater than \u03b2 or less than -\u03b2. The loss is clipped to zero when |log(pi(a|\u03b8)/pi_ref(a))| > \u03b2. This is equivalent to a L1 penalty on",
+        "passed": false,
+        "included": [
+          "regularization",
+          "reference"
+        ],
+        "missing": [
+          "KL"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is continuous batching in LLM serving?",
+        "response": "Continuous batching (CB) is a serving optimization that merges short requests into larger batches on the fly, reducing per-request overhead. In traditional batching, you define a fixed batch size (e.g., 4) and process all requests in that group together. CB fills gaps with padding tokens and merges ",
+        "passed": false,
+        "included": [
+          "requests",
+          "batch"
+        ],
+        "missing": [
+          "finish"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between SFT and DPO?",
+        "response": "SFT (Self-Instruction Fine-Tuning) trains on a large dataset of human instructions and responses, typically 10-100k examples. The model generates its own responses, then uses them as examples to learn from itself. This creates a diverse, high-quality dataset that teaches the model many different res",
+        "passed": true,
+        "included": [
+          "instruction",
+          "preference",
+          "chosen",
+          "rejected"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward accuracy in DPO?",
+        "response": "Reward accuracy measures how often the model chooses the preferred response over the rejected one. It's computed as (num_preferred / num_total) * 100%. A good reward accuracy indicates the model is learning to distinguish good from bad. For a 4-choose-1 DPO setup: (num_chosen_over_rejected / num_tot",
+        "passed": false,
+        "included": [
+          "chosen",
+          "rejected"
+        ],
+        "missing": [
+          "implicit reward"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is mixed precision training?",
+        "response": "mixed precision training (mixed precision) is training with lower precision data types (bf16 or fp16) to speed up GPU compute while maintaining stability. It reduces memory usage and increases throughput.",
+        "passed": false,
+        "included": [
+          "fp16",
+          "bf16"
+        ],
+        "missing": [
+          "fp32"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is Flash Attention?",
+        "response": "Flash Attention (Flash Attention) is a KV-cache optimization that stores both query and key projections in the same cache, reducing memory by 50%. It is one of the key memory-efficient techniques in LLM inference.",
+        "passed": false,
+        "included": [
+          "memory",
+          "attention"
+        ],
+        "missing": [
+          "tiling"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of warmup steps in training?",
+        "response": "Warmup steps gradually increase the learning rate from 0 to the target value over the first few percent of training. This prevents sudden large updates that can destabilize training. The warmup period is typically 10-20% of total steps. During warmup, the gradient norm is monitored. If it spikes, th",
+        "passed": false,
+        "included": [
+          "learning rate",
+          "gradually"
+        ],
+        "missing": [
+          "stability"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is adapter merging in LoRA?",
+        "response": "Adapter merging (LoRA merging) combines weight and bias adapters into a single 4D tensor: W = LoRA1 * W + LoRA2 * b. This reduces memory overhead by 50% (from 2 LoRA matrices to 1). The math is: output = (LoRA1 * W + LoRA2 * b) @ x = LoRA1 @ (W @ x) + LoRA2 @ (b @ x). The LoRA2 matrix is applied as ",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "base weights",
+          "fold",
+          "inference"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the reference model in DPO?",
+        "response": "The reference model is the SFT checkpoint used as the anchor for DPO. It's typically a 7B-70B model that has already been fine-tuned on instruction data (SFT output). During DPO, you freeze this reference model and only train the policy head (the adapter). The reference model's weights are never upd",
+        "passed": false,
+        "included": [
+          "frozen",
+          "SFT",
+          "anchor"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What is vLLM?",
+        "response": "vLLM (vectorized LLM) is a high-throughput LLM serving engine that supports multi-GPU inference for efficient serving. It's useful when you need to handle many concurrent requests or large datasets.",
+        "passed": false,
+        "included": [
+          "inference",
+          "serving"
+        ],
+        "missing": [
+          "PagedAttention"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the causal attention mask?",
+        "response": "The causal attention mask is a boolean tensor that prevents the model from attending to positions after the current one during self-attention. It's used in autoregressive models (e.g., LLMs) to ensure the output at position i only depends on inputs up to i, not future tokens. In PyTorch, it's typica",
+        "passed": false,
+        "included": [
+          "future tokens",
+          "autoregressive"
+        ],
+        "missing": [
+          "previous"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is weight decay in AdamW?",
+        "response": "Weight decay adds a regularization term to the loss: L = L_base + alpha * 0.5 * sum(w_i^2) for L2 regularization. In AdamW, this is applied to the optimizer's internal copy of weights, not the model weights. The weight decay term is added to the gradient before applying Adam update steps. This is wh",
+        "passed": true,
+        "included": [
+          "regularization",
+          "weights",
+          "prevent"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is gradient accumulation?",
+        "response": "gradient accumulation (gradient accumulation) is a technique that sums gradients over multiple micro-batches before an optimizer step. It reduces gradient noise and can work with batch sizes too small for one full batch.",
+        "passed": false,
+        "included": [
+          "batch size",
+          "optimizer"
+        ],
+        "missing": [
+          "multiple steps"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the lm_head in a language model?",
+        "response": "lm_head is the final linear layer that maps hidden states to logits over vocabulary tokens. It projects from hidden_dim to vocab_size. In Llama-2:\n\n```python\n# LlamaForCausalLM architecture\nclass LlamaForCausalLM(LlamaModel):\n    def __init__(self, config, block_type=\"LlamaAttention\", **kwargs):\n   ",
+        "passed": false,
+        "included": [
+          "vocabulary",
+          "logits"
+        ],
+        "missing": [
+          "projection"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is BitsAndBytes used for?",
+        "response": "BitsAndBytes (BitsAndBytes) is a utility that converts between bits, bytes, and GB for model size and memory estimates. It is useful when working with large models.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "quantization",
+          "4-bit",
+          "8-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between fp16 and bf16?",
+        "response": "Both reduce precision from 32-bit fp32 to save memory and speed up inference. fp16 (NVIDIA's native format): 16-bit floating-point, 1 sign bit, 5 exponent bits, 10 mantissa bits. Limited range (\u00b165504), but sufficient for most neural networks. bf16 (bfloat16): 16-bit floating-point, 1 sign bit, 8 ex",
+        "passed": true,
+        "included": [
+          "exponent",
+          "range",
+          "precision"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PEFT?",
+        "response": "PEFT (Pre-Training + Fine-Tuning) is a family of LoRA-based methods that combine base model weights with low-rank adapters. It is parameter-efficient because LoRA scales linearly with task size, not with model size.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Parameter-Efficient Fine-Tuning"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is TRL?",
+        "response": "TRL (TRL) stands for Total Reward Loss, a DPO objective that combines reward and penalty terms. It is used in preference alignment methods.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Transformer Reinforcement Learning",
+          "Hugging Face"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the SFTTrainer in TRL?",
+        "response": "SFTTrainer (SFTTrainer) is a TRL base training class supporting instruction tuning, DPO, and RLHF. It abstracts away data loading, optimizer setup, and evaluation loops.",
+        "passed": false,
+        "included": [
+          "instruction"
+        ],
+        "missing": [
+          "supervised fine-tuning",
+          "chat"
+        ],
+        "hallucinated": [
+          "PPO"
+        ]
+      },
+      {
+        "prompt": "What is the DPOTrainer in TRL?",
+        "response": "DPOTrainer is a base class in TRL that implements the DPO training loop with a reference model and a policy model. It handles the loss computation, reward model training, and SFT. The policy model is trained to maximize the reward difference between chosen and rejected responses. The reference model",
+        "passed": false,
+        "included": [
+          "chosen",
+          "rejected"
+        ],
+        "missing": [
+          "preference"
+        ],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What does device_map='auto' do?",
+        "response": "device_map='auto' automatically distributes model layers across available GPUs based on their memory and compute capacity. It's the default in HF Trainer. The algorithm: (1) Identifies available GPUs. (2) Sorts them by available VRAM. (3) Assigns layers to GPUs in order of increasing free memory, en",
+        "passed": false,
+        "included": [
+          "GPU",
+          "distribute",
+          "layers"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "training",
+          "optimizer"
+        ]
+      },
+      {
+        "prompt": "What is the purpose of the attention_mask?",
+        "response": "attention_mask is a tensor of shape (batch_size, seq_len) that indicates which tokens are valid and should be attended to, and which are padding and should be ignored. It's used in two ways: (1) During training, it prevents the model from attending to padding tokens when computing loss. (2) During i",
+        "passed": true,
+        "included": [
+          "padding",
+          "ignore",
+          "attend"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is RoPE?",
+        "response": "RoPE (Rotary Position Embedding) is a parameter-efficient position embedding technique used in Llama models. It stores multiple sinusoidal embeddings in a single matrix and applies rotations to generate different positions. This reduces the embedding dimension from 128 to 2 (for 2x2 rotation) while ",
+        "passed": false,
+        "included": [
+          "Rotary Position"
+        ],
+        "missing": [
+          "relative position"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GQA (Grouped Query Attention)?",
+        "response": "GQA is a KV-cache-efficient attention mechanism that groups query tokens into chunks and processes them in parallel within each attention head. Instead of computing attention for every query-key pair, it uses a hash function to map queries to nearby keys in the cache, reducing memory and compute. Th",
+        "passed": false,
+        "included": [
+          "memory"
+        ],
+        "missing": [
+          "KV heads",
+          "query heads"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is SwiGLU?",
+        "response": "SwiGLU (Swiggle-Gated Linear Unit) is a Gated Linear Unit used in Mixture of Logicals (MoLo) instead of ReLU. It combines two linear transformations with a gating mechanism: y = sigmoid(Wx) * Swiggle(Wx), where Swiggle(x) = x * sigmoid(x) * tanh(x). This replaces the ReLU activation in the MLP block",
+        "passed": true,
+        "included": [
+          "activation",
+          "gated",
+          "MLP"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is RMSNorm?",
+        "response": "RMSNorm (Root Mean Square Normalization) is a normalization technique that scales by the RMS value of the input rather than the mean. It is used in LoRA and other low-rank adaptation methods. The formula is:\n\nRMSNorm(x) = x / sqrt(mean(x^2) + eps)\n\nThis is equivalent to LayerNorm but with a differen",
+        "passed": true,
+        "included": [
+          "normalization",
+          "root mean square"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the KV-cache?",
+        "response": "The KV-cache stores all previous key and value vectors for efficient attention computation. For a sequence of length L, it stores 2L hidden states (K and V) per head, requiring 4L*d_v memory. During inference, attention only needs to compute Q from the current token, and can compute attention scores",
+        "passed": false,
+        "included": [
+          "key",
+          "value"
+        ],
+        "missing": [
+          "autoregressive",
+          "stored"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is speculative decoding?",
+        "response": "speculative decoding (speculative decoding) is a technique that generates multiple concurrent token sequences from the same context, scoring them simultaneously, and selecting the best one. It reduces latency by overlapping generation with scoring.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "draft model",
+          "verify",
+          "speed"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is tensor parallelism?",
+        "response": "tensor parallelism (tensor parallelism) is a distributed inference technique that splits layers across multiple GPUs, each processing different feature dimensions. It improves throughput for large models on multi-GPU setups.",
+        "passed": true,
+        "included": [
+          "split",
+          "layers",
+          "GPUs"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the Bradley-Terry model?",
+        "response": "The Bradley-Terry model is a probabilistic model for pairwise comparisons. Given two items i and j, the probability of preferring i over j is P(i > j) = exp(\u03b2 * x_i) / (exp(\u03b2 * x_i) + exp(\u03b2 * x_j)), where x_i and x_j are feature vectors representing item i and j, respectively. The \u03b2 parameter scales",
+        "passed": false,
+        "included": [
+          "preference",
+          "probability",
+          "pairwise"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "classification"
+        ]
+      },
+      {
+        "prompt": "What is reward hacking?",
+        "response": "reward hacking (reward hacking) is exploiting model biases to receive high rewards without actually learning useful behavior. It can make a model appear aligned on the reward axis but degrade on others.",
+        "passed": false,
+        "included": [
+          "exploit"
+        ],
+        "missing": [
+          "reward model",
+          "quality"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the implicit reward in DPO?",
+        "response": "DPO's implicit reward is the preference signal itself, not a learned reward model. The model is trained to increase the probability of chosen responses (y=1) relative to rejected ones (y=0). The reward function is: r(theta, x, y) = log(sigmoid(y * beta * log_pi_theta(x))) = y * beta * log_pi_theta(x",
+        "passed": false,
+        "included": [
+          "ratio",
+          "reference"
+        ],
+        "missing": [
+          "log probability"
+        ],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What is double quantization in QLoRA?",
+        "response": "double quantization (double quantization) is a 4-bit quantization scheme that maps 4-bit integers to 2-bit integers with a special mapping. In QLoRA, it reduces memory usage by half while maintaining the same precision as 4-bit quantization.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "quantization constants",
+          "additional memory"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of prepare_model_for_kbit_training?",
+        "response": "prepare_model_for_kbit_training is a LLM utility function that applies training-specific transformations: (1) Sets dropout to 0 for all layers (reduces noise during training). (2) Sets attention dropout to 0 (reduces noise in attention computation). (3) Sets gradient checkpointing to True (reduces m",
+        "passed": false,
+        "included": [
+          "gradient"
+        ],
+        "missing": [
+          "quantized",
+          "LoRA"
+        ],
+        "hallucinated": [
+          "inference"
+        ]
+      },
+      {
+        "prompt": "What is NEFTune?",
+        "response": "NEFTune (NEFTune) is a regularization method that adds noise to embeddings during SFT and then decorrelates them. It improves LoRA quality without requiring LoRA.",
+        "passed": true,
+        "included": [
+          "noise",
+          "embedding",
+          "regularization"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is sequence packing in SFT?",
+        "response": "Sequence packing (packing) is combining multiple short examples into a single long sequence for efficient GPU memory usage. For example, packing 4 examples of length 128 into one sequence of length 512: [x1_0, x1_1, ..., x1_127, x2_0, x2_1, ..., x2_127, x3_0, ..., x4_127]. This reduces memory alloca",
+        "passed": false,
+        "included": [
+          "short examples"
+        ],
+        "missing": [
+          "concatenate",
+          "efficiency"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is loss masking in SFT?",
+        "response": "Loss masking zeros the loss for tokens that should not be attended to by the model (special tokens like BOS, EOS, pad, or tokens that are already attended to). In SFT, this is critical because the model should not attend to the instruction or generation prompt during decoding. During training, the l",
+        "passed": false,
+        "included": [
+          "prompt tokens"
+        ],
+        "missing": [
+          "-100",
+          "assistant"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between online and offline DPO?",
+        "response": "Offline DPO trains on a fixed dataset collected beforehand (no online data generation). You provide a preference dataset of chosen/rejected examples, run SFT on the chosen examples, then train a policy to maximize log-likelihood of chosen vs rejected. Offline DPO is simpler, more reproducible, and w",
+        "passed": true,
+        "included": [
+          "generate",
+          "fixed dataset",
+          "current policy"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is model merging?",
+        "response": "model merging (model merging) is combining multiple LoRA adapters into a single merged adapter. It reduces memory overhead and improves inference speed.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "combine",
+          "weights",
+          "without retraining"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GGUF format?",
+        "response": "GGUF (GPT-Generated Unified Format) is a model-agnostic, text-based format for serving multiple language models from a single KV-cache. It's used by llama.cpp and other multi-model servers.",
+        "passed": false,
+        "included": [
+          "llama.cpp"
+        ],
+        "missing": [
+          "quantized",
+          "inference"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is AWQ quantization?",
+        "response": "AWQ (Adaptive Weight Quantization) quantizes weights to 4-bit with a learned scale factor per activation channel. It's a 4-bit quantization scheme that adapts to each activation channel's dynamic range, allowing more precision where needed. AWQ is used in QLoRA and AWQ-8BitQuant for efficient infere",
+        "passed": false,
+        "included": [
+          "4-bit"
+        ],
+        "missing": [
+          "activation-aware",
+          "important weights"
+        ],
+        "hallucinated": [
+          "LoRA"
+        ]
+      },
+      {
+        "prompt": "What is the difference between perplexity and loss?",
+        "response": "Perplexity (PPL) is a model evaluation metric that estimates the expected cross-entropy of a held-out test token given the model's context. It's calculated as the exponential of the average negative log-probability: PPL = exp(NLL/length). Loss (NLL) is the actual negative log-probability of the test",
+        "passed": false,
+        "included": [
+          "exponential"
+        ],
+        "missing": [
+          "exp(loss)"
+        ],
+        "hallucinated": []
+      }
+    ]
+  },
+  "T=0.5": {
+    "temperature": 0.5,
+    "passed": 10,
+    "total": 51,
+    "accuracy": 0.1961,
+    "details": [
+      {
+        "prompt": "What does LoRA stand for?",
+        "response": "LoRA (Low-Rank Adaptation) is a memory-efficient fine-tuning method that stores only the low-rank updates rather than the full adapter matrices.",
+        "passed": true,
+        "included": [
+          "Low-Rank Adaptation"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does DPO stand for?",
+        "response": "DPO stands for Preference Optimization. In a generation-agnostic alignment pipeline, it trains a base model on chosen/rejected pairs without requiring a SFT run.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Direct Preference Optimization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does QLoRA stand for?",
+        "response": "QLoRA stands for Quantized Low-Rank Adaptation. It's a LoRA variant that stores the low-rank adapter matrices in 4-bit quantized format (AB4) to reduce memory by 4x. This makes QLoRA particularly useful for serving large models on GPUs with limited memory.",
+        "passed": true,
+        "included": [
+          "Quantized",
+          "Low-Rank"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does RLHF stand for?",
+        "response": "RLHF stands for Reinforcement Learning from Human Feedback. It is a process that uses a reference model to generate responses, gets them evaluated, and uses the reward signal to optimize the target model. It reduces the gap between model behavior and human standards.",
+        "passed": true,
+        "included": [
+          "Reinforcement Learning from Human Feedback"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does GRPO stand for?",
+        "response": "GRPO stands for Group Relative Policy Optimization. It is an efficient reinforcement learning method that uses a reference policy to reduce variance in policy gradient estimates, making it scalable to long sequences. In GRPO, multiple generations are sampled from the same reference model, and the be",
+        "passed": false,
+        "included": [
+          "Group Relative Policy Optimization"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "Gradient"
+        ]
+      },
+      {
+        "prompt": "What is gradient checkpointing?",
+        "response": "gradient checkpointing (gradient checkpointing) is a memory-saving technique that recomputes activations during backward pass rather than storing them. It reduces activation memory from O(n) to O(1) per layer, enabling training of long sequences.",
+        "passed": true,
+        "included": [
+          "recompute",
+          "activation",
+          "memory"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of the KL penalty in RLHF?",
+        "response": "The KL penalty (penalty coefficient alpha * KL) prevents policy drift by adding a regularization term to the loss. During RLHF, the policy learns to generate more coherent, helpful responses, but this often comes at the cost of increased entropy (more diverse, sometimes less clear outputs). The KL p",
+        "passed": true,
+        "included": [
+          "prevent",
+          "diverge",
+          "reference"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does NF4 stand for in QLoRA?",
+        "response": "NF4 (Normalization Factor 4) is a normalization constant used in QLoRA to stabilize the quantization scale. It is learned during LoRA weight initialization and applied to the quantization scale factor. It improves training stability and quality for some models.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "NormalFloat",
+          "4-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PagedAttention?",
+        "response": "PagedAttention (PagedAttention) is a memory-efficient attention mechanism that stores KV-cache in paged matrices and swaps them on attention layers, reducing GPU memory spikes. It is a key optimization for long sequences.",
+        "passed": false,
+        "included": [
+          "KV-cache",
+          "memory"
+        ],
+        "missing": [
+          "pages"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the beta parameter in DPO?",
+        "response": "Beta (beta) controls the confidence level in DPO. When beta=1 (default), the preference model outputs are treated as probabilities (logits are treated as log-probabilities). When beta>1, the model outputs are scaled up, making the preference model more confident. When beta<1, the model outputs are s",
+        "passed": false,
+        "included": [
+          "reference"
+        ],
+        "missing": [
+          "KL",
+          "regularization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is continuous batching in LLM serving?",
+        "response": "Continuous batching (CB) reduces latency spikes by serving multiple requests in parallel, merging them when they have similar length requirements. In traditional blocking, the server waits for a full batch to fill before processing \u2014 if you send a 100-token request while the server is processing a 5",
+        "passed": false,
+        "included": [
+          "requests",
+          "batch"
+        ],
+        "missing": [
+          "finish"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between SFT and DPO?",
+        "response": "SFT (Self-Feedback Tracing) trains a model to generate responses and uses them as implicit rewards to optimize. The model generates a response, the LLM evaluates it, and the model learns to generate better responses. No separate reward model is needed. DPO (Deep Preference Optimization) trains a rew",
+        "passed": false,
+        "included": [
+          "instruction",
+          "preference"
+        ],
+        "missing": [
+          "chosen",
+          "rejected"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward accuracy in DPO?",
+        "response": "reward accuracy measures how often the model chooses the correct response given a preference pair. It is the fraction of pairs where the chosen response has higher reward than the rejected one. A good reward accuracy checkpoint: monitor it during training and stop when it starts decreasing \u2014 this in",
+        "passed": false,
+        "included": [
+          "chosen",
+          "rejected"
+        ],
+        "missing": [
+          "implicit reward"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is mixed precision training?",
+        "response": "mixed precision training (mixed precision) is training with lower precision data types to reduce memory and compute costs. Most modern GPUs support fp16 (4-bit) and bf16 (2-bit integer + 8-bit exponent) operations. Mixed precision training enables switching between fp32 (standard precision) and fp16",
+        "passed": false,
+        "included": [
+          "fp16",
+          "bf16",
+          "fp32"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "4-bit"
+        ]
+      },
+      {
+        "prompt": "What is Flash Attention?",
+        "response": "Flash Attention (Flash Attention) is a memory-efficient attention implementation that avoids copying tokens during attention computation. It's used in Llama-2 and other modern LLM architectures.",
+        "passed": false,
+        "included": [
+          "memory",
+          "attention"
+        ],
+        "missing": [
+          "tiling"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of warmup steps in training?",
+        "response": "Warmup steps gradually increase learning rate from 0 to the target value over the first few epochs, preventing sudden large updates. The goal: (1) prevent overshooting gradients from damaging early training, (2) allow AdamW to converge to a stable momentum value, (3) reduce early training instabilit",
+        "passed": true,
+        "included": [
+          "learning rate",
+          "gradually",
+          "stability"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is adapter merging in LoRA?",
+        "response": "Adapter merging (LoRA merging) fuses LoRA updates into the base model weights, reducing memory overhead by 4x. Instead of keeping separate LoRA matrices for each layer (A, W_a, b_a), you merge them into a single trainable matrix W_merge = W_a * A + b_a. The forward path is unchanged, but during infe",
+        "passed": false,
+        "included": [
+          "inference"
+        ],
+        "missing": [
+          "base weights",
+          "fold"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the reference model in DPO?",
+        "response": "In DPO, the reference model is the frozen SFT checkpoint used as a baseline for reward comparison. It serves two purposes: (1) It provides the reward comparisons that the policy learner uses to update weights. The policy learns to produce responses that are better than the reference on the same prom",
+        "passed": false,
+        "included": [
+          "frozen",
+          "SFT"
+        ],
+        "missing": [
+          "anchor"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is vLLM?",
+        "response": "vLLM (vector LLM) is a local inference server that combines LLMs with a KV-cache for efficient serving. It's the foundation for llama.ai's cloud model hosting and Llama-AI's local deployment.",
+        "passed": false,
+        "included": [
+          "inference",
+          "serving"
+        ],
+        "missing": [
+          "PagedAttention"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the causal attention mask?",
+        "response": "The causal attention mask is a boolean tensor that restricts attention to future tokens in a sequence. During training, it prevents the model from looking at future context. During inference, it ensures the model only attends to its own generated output. It's a 2D tensor of shape (batch, sequence, s",
+        "passed": false,
+        "included": [
+          "future tokens"
+        ],
+        "missing": [
+          "previous",
+          "autoregressive"
+        ],
+        "hallucinated": [
+          "bidirectional"
+        ]
+      },
+      {
+        "prompt": "What is weight decay in AdamW?",
+        "response": "Weight decay (L2 regularization) adds a penalty term to the loss: L = L_base + \u03b2 * 0.5 * ||w||^2, where w is the model's parameter vector. In AdamW, weight decay applies to all model parameters (not just the bias terms). It prevents large weights from growing during training and reduces overfitting.",
+        "passed": true,
+        "included": [
+          "regularization",
+          "weights",
+          "prevent"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is gradient accumulation?",
+        "response": "gradient accumulation (gradient accumulation) is grouping multiple micro-batches together for a single backward pass. It trades memory for lower effective batch size.",
+        "passed": false,
+        "included": [
+          "batch size"
+        ],
+        "missing": [
+          "multiple steps",
+          "optimizer"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the lm_head in a language model?",
+        "response": "lm_head is the final linear layer projecting hidden states to vocabulary logits. It maps d_model dimensions to num_tokens (vocabulary size). During inference, it computes the logits for each token given the hidden state: logits = hidden @ lm_head.weight.T. The softmax of these logits gives the proba",
+        "passed": false,
+        "included": [
+          "vocabulary",
+          "logits"
+        ],
+        "missing": [
+          "projection"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is BitsAndBytes used for?",
+        "response": "BitsAndBytes (BitsAndBytes) is a utility that converts between bits, bytes, MB, GB, and GB in Python. It is useful for quantization analysis.",
+        "passed": false,
+        "included": [
+          "quantization"
+        ],
+        "missing": [
+          "4-bit",
+          "8-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between fp16 and bf16?",
+        "response": "Both are 16-bit formats, but with different properties: fp16 (NVIDIA's native format): 16 bits, 1 sign bit, 5 exponent bits, 10 fraction bits. Operations are native (add, multiply, etc. use 16-bit registers). Can be lossy when converting from fp32. bf16 (BFloat16): 16 bits, 1 sign bit, 8 exponent bi",
+        "passed": false,
+        "included": [
+          "exponent",
+          "precision"
+        ],
+        "missing": [
+          "range"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PEFT?",
+        "response": "PEFT (PEFT) stands for PEFT (PEFT) is a LoRA alignment method that combines LoRA adapters with a frozen base model. It is commonly used in DPO and RLHF.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Parameter-Efficient Fine-Tuning"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is TRL?",
+        "response": "TRL (TRL) stands for Total Reward Loss, a reward-modulated loss that combines DPO and RLHF into a single objective. It is the standard LLM fine-tuning objective.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Transformer Reinforcement Learning",
+          "Hugging Face"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the SFTTrainer in TRL?",
+        "response": "SFTTrainer is a LRLHF trainer that combines instruction tuning with RLHF in a single loop:\n\n```python\nfrom trl import SFTTrainer\n\ntrainer = SFTTrainer(\n    model=model,\n    train_dataset=dataset,\n    tokenizer=tokenizer,\n    reward_model=reward_model,\n    reward_args={\"temperature\": 0.05},\n    sft_a",
+        "passed": false,
+        "included": [
+          "supervised fine-tuning",
+          "instruction"
+        ],
+        "missing": [
+          "chat"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the DPOTrainer in TRL?",
+        "response": "DPOTrainer (DPOTrainer) is a LRLHF variant in TRL that uses a reference model to generate responses, a reward model to score them, and the base model to generate alternatives. It's more efficient than RLHF because it only trains the base model, not the reference model. The reward model is frozen dur",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "preference",
+          "chosen",
+          "rejected"
+        ],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What does device_map='auto' do?",
+        "response": "device_map='auto' automatically distributes model layers across available GPUs, maximizing memory efficiency and throughput. It detects available GPU memory and assigns layers dynamically:\n\n```python\nmodel = LLMForCausalLM.from_pretrained(\n    \"meta-llama/Llama-2-8B\",\n    device_map=\"auto\",\n)\nmodel.",
+        "passed": true,
+        "included": [
+          "GPU",
+          "distribute",
+          "layers"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of the attention_mask?",
+        "response": "attention_mask is a tensor indicating which tokens are valid (1) and which are padding (0). During inference, it helps the model: (1) Ignore padding tokens during attention computation, reducing GPU memory usage. (2) Correctly handle causal masking (no attending to future tokens). (3) Enable PE calc",
+        "passed": false,
+        "included": [
+          "padding",
+          "ignore",
+          "attend"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "causal mask"
+        ]
+      },
+      {
+        "prompt": "What is RoPE?",
+        "response": "RoPE (RePEating Pattern) is a repetition pattern applied during attention to reuse tokens. In Llama-2, RoPE applies periodic wrapping to reduce attention overhead from quadratic to linear in sequence length.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Rotary Position",
+          "relative position"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GQA (Grouped Query Attention)?",
+        "response": "GQA (Grouped Query Attention) is a memory-efficient attention mechanism that reduces KV-cache memory by grouping queries into smaller chunks. For a 2048-dimensional KV-cache with 16 attention heads, each head processes 128 queries (2048/16). For long sequences, this can be expensive. GQA groups quer",
+        "passed": false,
+        "included": [
+          "memory"
+        ],
+        "missing": [
+          "KV heads",
+          "query heads"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is SwiGLU?",
+        "response": "SwiGLU (SwigLu) is a GELU-like activation used in Mixture of Logicals (MoLo) instead of ReLU or GELU. It is defined as: SwiGLU(x) = x * sigmoid(Wx), where W is a learned matrix. This activation is simpler and faster than GELU while still being effective for LLM activations.",
+        "passed": false,
+        "included": [
+          "activation"
+        ],
+        "missing": [
+          "gated",
+          "MLP"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is RMSNorm?",
+        "response": "RMSNorm (Root Mean Squared Normalization) is a normalization technique used in LLMs to stabilize training. It normalizes each row of the weight matrix by dividing by its RMS value rather than its mean. This helps reduce internal covariate shift. The formula is:\n\nRMSNorm(w) = w / (sqrt(row_mean(w^2) ",
+        "passed": true,
+        "included": [
+          "normalization",
+          "root mean square"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the KV-cache?",
+        "response": "KV-cache (key-value cache) stores the outputs of all attention queries during autoregressive generation. For each token position, it stores the key, value, and query used in attention computation. During inference, instead of recomputing attention for each token, you look up the cached values for al",
+        "passed": false,
+        "included": [
+          "key",
+          "value",
+          "autoregressive"
+        ],
+        "missing": [
+          "stored"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is speculative decoding?",
+        "response": "speculative decoding (speculative decoding) is a GPT-4 capability that generates multiple concurrent responses per prompt, scoring them before committing to a final output. It reduces latency for interactive systems.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "draft model",
+          "verify",
+          "speed"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is tensor parallelism?",
+        "response": "tensor parallelism (tensor parallelism) is a distributed training technique that splits model weights across GPUs for independent computation on different data slices. It improves throughput for large models.",
+        "passed": false,
+        "included": [
+          "split",
+          "GPUs"
+        ],
+        "missing": [
+          "layers"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the Bradley-Terry model?",
+        "response": "The Bradley-Terry model is a mathematical framework for pairwise comparisons. Given a set of items, it assigns each item a preference parameter (beta) such that the probability of item A being preferred over B is proportional to beta_A / (beta_A + beta_B). This models how items compete in pairwise c",
+        "passed": true,
+        "included": [
+          "preference",
+          "probability",
+          "pairwise"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward hacking?",
+        "response": "reward hacking (reward hacking) is exploiting model biases to receive high rewards without actually improving alignment. It appears as the model learns to manipulate the reward model into giving high scores without improving the desired capabilities.",
+        "passed": false,
+        "included": [
+          "exploit",
+          "reward model"
+        ],
+        "missing": [
+          "quality"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the implicit reward in DPO?",
+        "response": "DPO's implicit reward is the preference signal: the model is implicitly learning to increase the probability of chosen responses (y=1) while decreasing the probability of rejected responses (y=0). The loss function is: L = -log(pi(theta|x)/pi_ref(x)) - beta * log(sigma(y|x)), where pi_ref is the ref",
+        "passed": false,
+        "included": [
+          "reference"
+        ],
+        "missing": [
+          "log probability",
+          "ratio"
+        ],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What is double quantization in QLoRA?",
+        "response": "double quantization (double quant) is a technique that reduces the precision of quantized weights from 4-bit to 2-bit after the first quantization pass, further reducing memory by 50%. In QLoRA, the initial 4-bit quantization (from bf16 to 4-bit) is done using a learned quantization scale. The 2-bit",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "quantization constants",
+          "additional memory"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of prepare_model_for_kbit_training?",
+        "response": "prepare_model_for_kbit_training is a LLM utility that: (1) Freezes weights not used in the LoRA adapter. (2) Sets all LoRA layers to train. (3) Optionally merges LoRA into the base model (removing adapter overhead). (4) Optimizes for 8-bit quantization (reduces precision noise). It's a one-liner:\n\n`",
+        "passed": false,
+        "included": [
+          "quantized",
+          "LoRA"
+        ],
+        "missing": [
+          "gradient"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is NEFTune?",
+        "response": "NEFTune (NEFTune) is a LoRA adapter method that uses a noise-regularized normal distribution to initialize the LoRA matrices rather than random uniform. It can improve training stability and quality.",
+        "passed": false,
+        "included": [
+          "noise"
+        ],
+        "missing": [
+          "embedding",
+          "regularization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is sequence packing in SFT?",
+        "response": "Sequence packing packs shorter sequences into available GPU memory by interleaving them in the batch dimension. For example, if you have 10 sequences of lengths 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, the packed representation would look like: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 1",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "concatenate",
+          "short examples",
+          "efficiency"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is loss masking in SFT?",
+        "response": "Loss masking (also 'length masking') prevents the model from attending to future tokens during training. In SFT, the loss is computed only on actual tokens (not pad tokens) up to the current position. This prevents the model from learning to generate long sequences by attending to future tokens and ",
+        "passed": false,
+        "included": [
+          "-100"
+        ],
+        "missing": [
+          "prompt tokens",
+          "assistant"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between online and offline DPO?",
+        "response": "Offline DPO trains on a fixed dataset collected beforehand, using all available preference pairs simultaneously. Online DPO generates new preference pairs as you train, comparing the current model against itself (current vs next) or against a fixed reference model. Key tradeoffs: Offline: (1) All da",
+        "passed": false,
+        "included": [
+          "generate",
+          "fixed dataset"
+        ],
+        "missing": [
+          "current policy"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is model merging?",
+        "response": "model merging (model merging) is combining multiple base models into a single LLM while preserving domain-specific adapters. It reduces memory footprint and can handle larger instruction datasets.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "combine",
+          "weights",
+          "without retraining"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GGUF format?",
+        "response": "GGUF (GPT-Generated Unified Format) is a model-agnostic, KV-cache-efficient file format for serving LLMs. It stores both model weights and KV-cache in a single file, enabling fast inference without loading the full model. The cache is stored in a packed, compressed form that trades off memory for co",
+        "passed": false,
+        "included": [
+          "inference"
+        ],
+        "missing": [
+          "llama.cpp",
+          "quantized"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is AWQ quantization?",
+        "response": "AWQ (Adaptive Weight Quantization) is a quantization technique that learns per-channel scalar quantization parameters instead of fixed uniform quantization. It's implemented in QLoRA as a trainable parameter per weight channel.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "activation-aware",
+          "important weights",
+          "4-bit"
+        ],
+        "hallucinated": [
+          "LoRA"
+        ]
+      },
+      {
+        "prompt": "What is the difference between perplexity and loss?",
+        "response": "Loss is a scalar measuring how far the model's predictions diverged from the true labels on the training data. It's the average negative log-probability per token: L = -1/T * sum(log P(y_t | y_<t, x)). Perplexity is loss raised to the power of 1/T, giving a multiplicative factor representing the mod",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "exponential",
+          "exp(loss)"
+        ],
+        "hallucinated": []
+      }
+    ]
+  },
+  "T=0.7": {
+    "temperature": 0.7,
+    "passed": 12,
+    "total": 51,
+    "accuracy": 0.2353,
+    "details": [
+      {
+        "prompt": "What does LoRA stand for?",
+        "response": "LoRA (Low-Rank Adaptation) is a weight-tied adapter method that stores fine-tuning parameters in low-rank matrices rather than dense weight matrices. It reduces memory cost by factorizing the adapter linear layers into low-rank matrices (A, B) where W = AB. This enables fine-tuning on massive datase",
+        "passed": true,
+        "included": [
+          "Low-Rank Adaptation"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does DPO stand for?",
+        "response": "DPO stands for preference optimization. In a generation-optimization pipeline, it trains on chosen/rejected pairs rather than simply generating more data.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Direct Preference Optimization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does QLoRA stand for?",
+        "response": "QLoRA (Quantized Low-Rank Adaptation) is a weight-optimization technique that enables LoRA to be applied in 4-bit quantized formats (nf4) while maintaining near-full precision inference. It keeps the LoRA precalactors in full precision (fp32) during training but quantizes them to nf4 during inferenc",
+        "passed": true,
+        "included": [
+          "Quantized",
+          "Low-Rank"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does RLHF stand for?",
+        "response": "RLHF stands for Reinforcement Learning from Human Feedback. It uses a policy model, a reward model (trained on human preferences), and a PPO optimizer to learn alignment while keeping the model close to the base.",
+        "passed": true,
+        "included": [
+          "Reinforcement Learning from Human Feedback"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does GRPO stand for?",
+        "response": "GRPO stands for Group Rainbow Policy Optimization. In RLHF, it replaces the SFT objective with a GPII-based reference model.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Group Relative Policy Optimization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is gradient checkpointing?",
+        "response": "gradient checkpointing (gradient checkpointing) is a memory-saving technique that recomputes the LSTM state during backward pass, reducing activation memory from O(n*H) to O(H). It can increase compute time per step by 30-50%.",
+        "passed": true,
+        "included": [
+          "recompute",
+          "activation",
+          "memory"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of the KL penalty in RLHF?",
+        "response": "The KL penalty prevents the policy from diverging too far from the reference model. In a well-tuned DPO run, the average KL per token should be 0.1-0.5 nats. If it's higher (0.5-1.0), the policy is diverging \u2014 the model is becoming more confident and more likely to generate extreme responses. If it'",
+        "passed": true,
+        "included": [
+          "prevent",
+          "diverge",
+          "reference"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does NF4 stand for in QLoRA?",
+        "response": "NF4 (Normalization Factor 4) is a LoraRq-4 normalization factor adjustment in QLoRA. It corrects the effective scaling factor after applying LoRA modifications. For a 4x4 adapter layer, the NF4 factor is 4/3 (instead of the standard 1/sqrt(d) = 1/2). This is why QLoRA defaults to NF4 \u2014 it's the stan",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "NormalFloat",
+          "4-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PagedAttention?",
+        "response": "PagedAttention (PagedAttention) is an efficient KV-cache management technique for LLM inference. It stores attention blocks in paged memory chunks that are lazily fetched.",
+        "passed": false,
+        "included": [
+          "KV-cache",
+          "memory"
+        ],
+        "missing": [
+          "pages"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the beta parameter in DPO?",
+        "response": "Beta (\u03b2) controls the degree of preference alignment. When \u03b2=1, you're directly following the SFT objective (no DPO) \u2014 the model chooses the preferred response 50% of the time. When \u03b2>1, the model is more confident in its preference alignments and tends to choose the preferred response more often. W",
+        "passed": false,
+        "included": [
+          "reference"
+        ],
+        "missing": [
+          "KL",
+          "regularization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is continuous batching in LLM serving?",
+        "response": "Continuous batching (CB) is serving multiple concurrent requests on the same GPU without waiting for each batch to complete. Each request has its own KV-cache, and the serving engine switches between them efficiently. Benefits: (1) Higher throughput \u2014 more efficient GPU utilization. (2) Better laten",
+        "passed": false,
+        "included": [
+          "requests",
+          "batch"
+        ],
+        "missing": [
+          "finish"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between SFT and DPO?",
+        "response": "SFT (Supervised Fine-Tuning) directly optimizes for a chosen instruction dataset by adding the instructions as a new token classification head, then freezing the encoder and optimizing the decoder on the same data. The model learns to follow the instructions implicitly. DPO (Data-Augmented Preferenc",
+        "passed": false,
+        "included": [
+          "instruction",
+          "preference",
+          "chosen"
+        ],
+        "missing": [
+          "rejected"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward accuracy in DPO?",
+        "response": "Reward accuracy (RWA) measures how often the model chooses the higher-reward response. It's computed as: RWA = (num chosen responses with higher reward) / (total num chosen responses). The DPO loss directly maximizes the preference margin, so RWA is an unbiased estimate of the model's actual reward ",
+        "passed": false,
+        "included": [
+          "chosen"
+        ],
+        "missing": [
+          "rejected",
+          "implicit reward"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is mixed precision training?",
+        "response": "mixed precision training (mixed precision training) is training with bf16 or fp16 to reduce memory requirements. It depends on quantizable operations (matmuls, convolutions) working in lower precision.",
+        "passed": false,
+        "included": [
+          "fp16",
+          "bf16"
+        ],
+        "missing": [
+          "fp32"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is Flash Attention?",
+        "response": "Flash Attention (Flash Attention) is a GPT-4 accelerator that enables serving LLM inference directly on NVIDIA A100/A30 GPUs without CUDA kernels. It reduces inference latency from 10-30ms per token to near-zero cost per token.",
+        "passed": false,
+        "included": [
+          "attention"
+        ],
+        "missing": [
+          "memory",
+          "tiling"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of warmup steps in training?",
+        "response": "Warmup steps gradually increase the learning rate from 0 to the peak value over a specified number of steps. Purpose: (1) Reduce gradient noise during early training. (2) Allow the optimizer to adapt to the model's parameters. (3) Prevent sudden large updates that might cause NaNs. (4) Improve early",
+        "passed": true,
+        "included": [
+          "learning rate",
+          "gradually",
+          "stability"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is adapter merging in LoRA?",
+        "response": "Adapter merging (LoRA-Merge) combines LoRA rank-1 update matrices into a single low-rank matrix with fewer parameters. For a base model with N=16, L=16, and K=16, in standard LoRA, you get 4 \u00d7 16 \u00d7 16 \u00d7 2 = 8192 params (two linear layers). In adapter merging: all 4 LoRA linear layers (a, b, c, d) ar",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "base weights",
+          "fold",
+          "inference"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the reference model in DPO?",
+        "response": "The reference model is the frozen SFT checkpoint used to generate responses for the reward model. It serves as the 'policy' the reward model learns to mimic. In SFT, it's the original model; in DPO, it's typically a stronger model (often TRL) frozen at a particular checkpoint. The reward model gener",
+        "passed": false,
+        "included": [
+          "frozen",
+          "SFT"
+        ],
+        "missing": [
+          "anchor"
+        ],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What is vLLM?",
+        "response": "vLLM (vector-based LLM) is a server-side LLM inference engine running in Python, compatible with TGI. It offloads model inference to CUDA kernels and supports custom models, instruction datasets, and KV-cache management.",
+        "passed": false,
+        "included": [
+          "inference"
+        ],
+        "missing": [
+          "serving",
+          "PagedAttention"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the causal attention mask?",
+        "response": "The causal attention mask is a boolean tensor of shape (batch, seq_len, seq_len) that restricts which tokens can attend to each other in self-attention. For autoregressive models, it ensures that each token only attends to previous tokens (not future ones). It's generated by a triangular mask where ",
+        "passed": false,
+        "included": [
+          "previous",
+          "autoregressive"
+        ],
+        "missing": [
+          "future tokens"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is weight decay in AdamW?",
+        "response": "weight_decay applies L2 regularization to weights during AdamW updates: L2 penalty = 0.01 * norm(w)\u00b2 * w. This is mathematically equivalent to adding 0.01 * w\u00b2 to the loss (before applying gradients). It constrains model weights to stay within a small ball, preventing overfitting by penalizing large",
+        "passed": true,
+        "included": [
+          "regularization",
+          "weights",
+          "prevent"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is gradient accumulation?",
+        "response": "gradient accumulation (gradient accumulation) is a technique that sums gradients over multiple micro-batches before an optimizer step, reducing optimizer noise and memory overhead.",
+        "passed": false,
+        "included": [
+          "optimizer"
+        ],
+        "missing": [
+          "batch size",
+          "multiple steps"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the lm_head in a language model?",
+        "response": "lm_head is the final linear layer projecting hidden states to vocabulary logits. It transforms the model's output from hidden dimension d to vocabulary size V. For Llama-2: output_dim = vocab_size = 128256. The lm_head is trained to project hidden states into logits that predict token probabilities.",
+        "passed": true,
+        "included": [
+          "vocabulary",
+          "logits",
+          "projection"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is BitsAndBytes used for?",
+        "response": "BitsAndBytes (BitsAndBytes) is a utility that converts between bits, bytes, MB, GB, and bytes-per-token for better serving cost understanding. It is useful when analyzing a model's quality, memory usage, or serving performance.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "quantization",
+          "4-bit",
+          "8-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between fp16 and bf16?",
+        "response": "fp16 (NVIDIA's bf16) vs bf16 (PyTorch's native bfloat16):\n\n```python\nimport torch\n\n# fp16 (bf16) - NVIDIA's 16-bit floating-point format\n# No need for special conversion\nmodel = LLM()\nmodel = model.half()\n\n# bf16 (bfloat16) - PyTorch native 16-bit floating-point format\nmodel = LLM()\nmodel = model.bf",
+        "passed": false,
+        "included": [
+          "precision"
+        ],
+        "missing": [
+          "exponent",
+          "range"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PEFT?",
+        "response": "PEFT (Parameter-Efficient Fine-Tuning) is a family of methods that reduce LoRA/PEFT memory by freezing more layers, using LoRA on fewer layers, or applying them in a cascade architecture. PEFT is useful when you have limited GPU memory and want to fine-tune a larger model.",
+        "passed": true,
+        "included": [
+          "Parameter-Efficient Fine-Tuning"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is TRL?",
+        "response": "TRL (TRL) stands for Total Reward Loss, a preference optimization method that directly maximizes cumulative reward. It is commonly used in LLM fine-tuning to improve SFT without a separate reward model.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Transformer Reinforcement Learning",
+          "Hugging Face"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the SFTTrainer in TRL?",
+        "response": "SFTTrainer (SFTTrainer) is a TRL base class that handles instruction tuning and DPO training. It abstracts away data loading, checkpointing, and evaluation. For a production LLM pipeline, it's a key component:",
+        "passed": false,
+        "included": [
+          "instruction"
+        ],
+        "missing": [
+          "supervised fine-tuning",
+          "chat"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the DPOTrainer in TRL?",
+        "response": "DPOTrainer is a trainer for preference optimization that combines TRL's LoRA optimization with implicit RL rewards from reward model training. It replaces the SFT pipeline for instruction tuning: instead of generating, comparing, scoring, and retraining, DPOTrainer does it in one pass. It optimizes ",
+        "passed": false,
+        "included": [
+          "preference",
+          "chosen",
+          "rejected"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What does device_map='auto' do?",
+        "response": "device_map='auto' enables automatic distributed placement. LLMHF assigns each KV cache to a GPU based on available memory and load. When you have multiple GPUs of different sizes, this optimizes for even load without manual sorting. For example:\n\n```python\n# Automatic distribution across mixed GPU s",
+        "passed": false,
+        "included": [
+          "GPU",
+          "distribute"
+        ],
+        "missing": [
+          "layers"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of the attention_mask?",
+        "response": "attention_mask (padding_mask) marks positions where the model should ignore during attention computation. It's a binary tensor of shape (batch, seq_len) with 0s for attended positions and 1s for padding (usually zeros). During training, the model learns to ignore padding tokens by preventing them fr",
+        "passed": false,
+        "included": [
+          "padding",
+          "ignore",
+          "attend"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "LoRA"
+        ]
+      },
+      {
+        "prompt": "What is RoPE?",
+        "response": "RoPE (Relative Position Encoding) is a reversible positional encoding used in Llama models. It stores relative position information in the QKV attention matrix itself, rather than as separate position embeddings. This reduces memory and supports autoregressive generation without position embedding l",
+        "passed": false,
+        "included": [
+          "relative position"
+        ],
+        "missing": [
+          "Rotary Position"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GQA (Grouped Query Attention)?",
+        "response": "GQA simplifies QKV attention to reduce model parameters and memory: instead of computing attention for each query against all key-value pairs (QKV = Q*K^T * V), group KV into smaller chunks and compute Q against each chunk's sum. This reduces the number of attention scores from N^2 to N * K, where K",
+        "passed": false,
+        "included": [
+          "memory"
+        ],
+        "missing": [
+          "KV heads",
+          "query heads"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is SwiGLU?",
+        "response": "SwiGLU (Swiggle-Gated Linear Unit) is a activation function used in GPT-2 architecture. It replaces ReLU or GELU in the MLP layers. The implementation: y = W1x + W2x * sigmoid(W3x), where W1, W2, and W3 are learned weight matrices. The sigmoid(dot) interaction creates a 'swiggle' shape that is more ",
+        "passed": true,
+        "included": [
+          "activation",
+          "gated",
+          "MLP"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is RMSNorm?",
+        "response": "RMSNorm (Root Mean Square Normalization) is a normalization technique that scales each element by the RMS of the channel means, rather than the standard deviation. It is simpler than LayerNorm and has fewer trainable parameters.",
+        "passed": true,
+        "included": [
+          "normalization",
+          "root mean square"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the KV-cache?",
+        "response": "The KV-cache stores all previous key-value pairs in a token's attention computation, enabling multi-head attention on all tokens in parallel. It has a fixed memory footprint (N \u00d7 (2D \u00d7 H \u00d7 H) per token position), where N is the sequence length, D is the embedding dimension, and H is the number of at",
+        "passed": false,
+        "included": [
+          "key",
+          "value"
+        ],
+        "missing": [
+          "autoregressive",
+          "stored"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is speculative decoding?",
+        "response": "speculative decoding (speculative decoding) is a technique that generates multiple parallel generations from a single model forward pass. It reduces latency by overlapping generation and attention computation.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "draft model",
+          "verify",
+          "speed"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is tensor parallelism?",
+        "response": "tensor parallelism (tensor parallelism) is a distributed inference technique that splits layers into independent micro-batches and processes them in parallel within each GPU. It scales single-GPU throughput with more GPUs without communication overhead.",
+        "passed": false,
+        "included": [
+          "split",
+          "layers",
+          "GPUs"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "batch"
+        ]
+      },
+      {
+        "prompt": "What is the Bradley-Terry model?",
+        "response": "The Bradley-Terry model (BT) is a mathematical model used in pairwise comparison tasks, such as ranking, preference scoring, or pair-wise inference. It assigns probability p_i = exp(b_i) / (sum_j exp(b_j)) to each item i being preferred over j, where b_i is a learned bias parameter. The exponential ",
+        "passed": true,
+        "included": [
+          "preference",
+          "probability",
+          "pairwise"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward hacking?",
+        "response": "reward hacking (reward hacking) is exploiting reward model biases to receive high rewards without actually helping the model learn. It appears as short-term gains followed by catastrophic failure when the model is frozen.",
+        "passed": false,
+        "included": [
+          "exploit",
+          "reward model"
+        ],
+        "missing": [
+          "quality"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the implicit reward in DPO?",
+        "response": "In DPO, the implicit reward is the preference signal: which responses get accepted and which rejected by the human evaluator. The model learns to maximize the probability of chosen responses while minimizing rejected ones, implicitly optimizing for helpfulness. The reward model (RM) learns to predic",
+        "passed": false,
+        "included": [
+          "reference"
+        ],
+        "missing": [
+          "log probability",
+          "ratio"
+        ],
+        "hallucinated": [
+          "reward model",
+          "scalar score"
+        ]
+      },
+      {
+        "prompt": "What is double quantization in QLoRA?",
+        "response": "Double quantization (double-quantization) is a 16-bit vs 8-bit quantization tradeoff in QLoRA. 8-bit quantization (INT8) uses 256 levels (0-255), losing 6 bits of precision per activation value. 16-bit quantization (INT2x4) uses 64k levels (0-65535) and preserves more precision. In QLoRA, double qua",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "quantization constants",
+          "additional memory"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of prepare_model_for_kbit_training?",
+        "response": "prepare_model_for_kbit_training converts the model to a KV-Cache format optimized for K-bit training: (1) Quantizes attention weights to 8-bit (or 4-bit) to reduce memory and speed up computation. (2) Reduces attention block size to 8x8 (from 16x16 or full) to save memory. (3) Optimizes quantization",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "quantized",
+          "gradient",
+          "LoRA"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is NEFTune?",
+        "response": "NEFTune (NEFTune) is a weight-normalization-based regularization method for LLM fine-tuning. It normalizes each layer's weights by their standard deviation during inference, preventing exploding activations.",
+        "passed": false,
+        "included": [
+          "regularization"
+        ],
+        "missing": [
+          "noise",
+          "embedding"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is sequence packing in SFT?",
+        "response": "Sequence packing (packing) rearranges model attention to handle variable-length sequences efficiently. In a packed sequence: (1) Each token's attention is computed only for other tokens within its window. (2) Tokens outside the window are masked out. (3) Tokens before/after the current token can be ",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "concatenate",
+          "short examples",
+          "efficiency"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is loss masking in SFT?",
+        "response": "Loss masking is a regularization technique that zeros loss on tokens forbidden by the instruction. For LLM fine-tuning on chat data, it prevents the model from learning to generate prohibited tokens. During training, the model generates a response. For each token, a bit mask is created: 1 if the tok",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "prompt tokens",
+          "-100",
+          "assistant"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between online and offline DPO?",
+        "response": "Offline DPO trains on a fixed dataset of preference pairs collected beforehand \u2014 the model never interacts with the environment during training. Online DPO generates new preference pairs during training by making SFT steps and evaluating them, then adding them to the training set. Key differences: (",
+        "passed": false,
+        "included": [
+          "generate",
+          "fixed dataset"
+        ],
+        "missing": [
+          "current policy"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is model merging?",
+        "response": "model merging (model merging) is combining multiple base models into a single, higher-capacity model. It can create a LoRA-enabled model without training from scratch.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "combine",
+          "weights",
+          "without retraining"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GGUF format?",
+        "response": "GGUF (GPT-4 Global Universal Format) is a compact, optimized model file format designed for inference on GPUs. It reduces memory overhead by storing only the model weights in a sparse format, leaving the quantization parameters (quantization tables) out of the model binary. During inference, the qua",
+        "passed": false,
+        "included": [
+          "inference"
+        ],
+        "missing": [
+          "llama.cpp",
+          "quantized"
+        ],
+        "hallucinated": [
+          "training"
+        ]
+      },
+      {
+        "prompt": "What is AWQ quantization?",
+        "response": "AWQ (Algebraic Weight Quantization) is a quantization method that keeps the magnitude of the first weight in each group normalized, preserving neural network behavior. It avoids the common failure mode where quantization catastrophically changes the network's behavior.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "activation-aware",
+          "important weights",
+          "4-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between perplexity and loss?",
+        "response": "Perplexity (PPL) is a model-quality metric, while loss is training/evaluation objective. The key differences: Loss is the actual training objective \u2014 the cross-entropy loss between predicted probabilities and true labels. It's measured on held-out data during training. Perplexity is loss raised to t",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "exponential",
+          "exp(loss)"
+        ],
+        "hallucinated": []
+      }
+    ]
+  },
+  "T=1.0": {
+    "temperature": 1.0,
+    "passed": 11,
+    "total": 51,
+    "accuracy": 0.2157,
+    "details": [
+      {
+        "prompt": "What does LoRA stand for?",
+        "response": "LoRA (Low-Rank Adaptation) is a param-efficient fine-tuning method for LLMs. Instead of training a full dense adapter per layer, you learn rank-r linear projections (weight and bias matrices) that apply as a low-dimensional dot-product mapping. This reduces adapter size from O(d^2) to O(rd), enablin",
+        "passed": true,
+        "included": [
+          "Low-Rank Adaptation"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does DPO stand for?",
+        "response": "DPO stands for preference optimization. In a DPO alignment pipeline, it is one stage that improves a base model while keeping the SFT pretraining format intact.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Direct Preference Optimization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does QLoRA stand for?",
+        "response": "QLoRA stands for Quantization-aware Low-Rank adapter application. It is a weight-optimization method that freezes all base model weights and only learns low-rank adapter matrices, stored in 4-bit or 2-bit quantized format. This significantly reduces model memory while preserving inference quality.",
+        "passed": false,
+        "included": [
+          "Quantized",
+          "Low-Rank"
+        ],
+        "missing": [],
+        "hallucinated": [
+          "Quality"
+        ]
+      },
+      {
+        "prompt": "What does RLHF stand for?",
+        "response": "RLHF stands for Reinforcement Learning from Human Feedback. It teaches a base model to make choices aligned with human preferences through a reward model. In a simplified view, it adds a reference model to score responses, uses PPO to increase scores, and optimizes for aligned behavior (reducing har",
+        "passed": true,
+        "included": [
+          "Reinforcement Learning from Human Feedback"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does GRPO stand for?",
+        "response": "GRPO stands for Group Relative Policy Optimization. It is a reward-alignment method that compares multiple sampled responses from the same group (N policy rollouts) and uses a reference model to compute relative preference scores. It reduces the gap between preference model quality and policy behavi",
+        "passed": true,
+        "included": [
+          "Group Relative Policy Optimization"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is gradient checkpointing?",
+        "response": "gradient checkpointing (gradient checkpointing) is a memory-saving trick that stores fewer activations and recomputes them during backward pass. It trades extra forward pass time for reduced GPU memory.",
+        "passed": true,
+        "included": [
+          "recompute",
+          "activation",
+          "memory"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of the KL penalty in RLHF?",
+        "response": "KL penalty (penalty coefficient of KLPenalty) constrains the policy update from an original reference model. It prevents the model from diverging significantly from its intended behavior. Divergence causes the model to produce bizarre responses and reduces the quality of chat. The penalty term is ad",
+        "passed": true,
+        "included": [
+          "prevent",
+          "diverge",
+          "reference"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What does NF4 stand for in QLoRA?",
+        "response": "NF4 stands for Normalization-Free 4. It removes attention mask normalization and scale in the FFN head, reducing GPU memory by 4% compared to NF4. The choice between NF4 and NF8 depends on the specific model: NF4 is used for GPT-NFW (which already has reduced embedding scaling), NF8 is used for Llam",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "NormalFloat",
+          "4-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PagedAttention?",
+        "response": "PagedAttention (PagedAttention) is a KV-cache memory management technique that subdivides attention blocks into smaller pages for efficient GPU memory reuse. It is a critical optimization in many LLM serving frameworks.",
+        "passed": true,
+        "included": [
+          "KV-cache",
+          "memory",
+          "pages"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the beta parameter in DPO?",
+        "response": "Beta is a confidence parameter that controls the temperature of policy generation during preference optimization. For beta=0 (or when using 'beta-as-noise'), policy output is deterministic and always chosen. For beta=1 (default), the model uses its probability mass for inference \u2014 optimal behavior w",
+        "passed": false,
+        "included": [
+          "reference"
+        ],
+        "missing": [
+          "KL",
+          "regularization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is continuous batching in LLM serving?",
+        "response": "Continuous batching (CB) replaces fixed-size batch inference with a streaming engine that schedules micro-batches dynamically. For 7B models: instead of batching 4 requests of 128 tokens each into a single batch (max_seq_len=1024), each request is processed independently but packed into optimized GP",
+        "passed": false,
+        "included": [
+          "requests",
+          "batch"
+        ],
+        "missing": [
+          "finish"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between SFT and DPO?",
+        "response": "SFT (Instruction Tuning) and DPO (Preferential Optimization) optimize different objectives: SFT: trains to follow instruction sequences verbatim, optimizing for instruction-following and zero-shot generalization. The model learns to handle diverse instructions by seeing all of them during training. ",
+        "passed": false,
+        "included": [
+          "instruction",
+          "chosen"
+        ],
+        "missing": [
+          "preference",
+          "rejected"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward accuracy in DPO?",
+        "response": "Reward accuracy (RA) measures the fraction of preference examples where the chosen response has a higher sampled reward than the rejected response. It's a key alignment safety metric: RA > 0.7 on held-out preference pairs means the model reliably prefers chosen over rejected. DPO trains to maximize ",
+        "passed": false,
+        "included": [
+          "chosen",
+          "rejected"
+        ],
+        "missing": [
+          "implicit reward"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is mixed precision training?",
+        "response": "mixed precision training (mixed precision training) is training with lower-precision TF32 or bfloat16 weights and activations instead of full FP32 for speed. It speeds inference on RTX GPUs by 2-4x without precision loss for LLMs.",
+        "passed": false,
+        "included": [
+          "fp32"
+        ],
+        "missing": [
+          "fp16",
+          "bf16"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is Flash Attention?",
+        "response": "Flash Attention (Flash Attention) is a memory-efficient LLM serving approach that stores fewer checkpoint states. It works by storing only the final checkpoint (or a rolling window of them), recomputing earlier checkpoints during decoding. It scales LLM serving to larger models and batch sizes than ",
+        "passed": false,
+        "included": [
+          "memory",
+          "attention"
+        ],
+        "missing": [
+          "tiling"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of warmup steps in training?",
+        "response": "Warmup steps gradually increase learning rate from 0 to the target value linearly over a specified number of steps (typically 1-10% of total training). This smooths gradient updates and prevents large sudden changes. The reasoning: (1) During the first few steps, the model hasn't yet learned to back",
+        "passed": false,
+        "included": [
+          "learning rate",
+          "gradually"
+        ],
+        "missing": [
+          "stability"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is adapter merging in LoRA?",
+        "response": "Adapter merging is folding LoRA adapters into the base weight matrix after training, reducing memory by a factor of 7-10\u00d7. The merged representation combines the linear projector and controller projections into a single transformation matrix. The fusion implementation combines them by left-multiplyi",
+        "passed": true,
+        "included": [
+          "base weights",
+          "fold",
+          "inference"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the reference model in DPO?",
+        "response": "In DPO, the reference model (also base model) is the SFT checkpoint used as the anchor for evaluation. During fine-tuning, the RLHF objective compares the reference's log-probabilities with your model's. The reference is typically a checkpoint 5-10% above your starting quality (for example, LoRA Fin",
+        "passed": false,
+        "included": [
+          "SFT",
+          "anchor"
+        ],
+        "missing": [
+          "frozen"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is vLLM?",
+        "response": "vLLM (variable-length LLM) is open-source local inference serving that supports both PPO fine-tuning and eval/serve use cases. It removes GVLLM from the dependencies chain:\n\n```bash\npip install vllm\n```\n\nIt's particularly useful for serving a single model without requiring TRL or AWS. For LLM-as-a-s",
+        "passed": false,
+        "included": [
+          "inference",
+          "serving"
+        ],
+        "missing": [
+          "PagedAttention"
+        ],
+        "hallucinated": [
+          "fine-tuning"
+        ]
+      },
+      {
+        "prompt": "What is the causal attention mask?",
+        "response": "The causal attention mask is a boolean tensor specifying which positions can attend to each other. In standard autoregressive models, it has all entries False except the diagonal and upper triangle. For a sequence of length L, it's a tensor of shape (L, L) with all positions set to False except thos",
+        "passed": false,
+        "included": [
+          "future tokens",
+          "autoregressive"
+        ],
+        "missing": [
+          "previous"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is weight decay in AdamW?",
+        "response": "Weight decay adds a regularization term to the Adam update, preventing weights from growing unbounded: L2 penalty: loss += beta * 0.5 * sum(w ** 2 for w in params).grad = beta * w. AdamW incorporates this into the gradient: m, v = norm(m, v - 1e-5 * beta * w) / norm(v). The beta parameter is the reg",
+        "passed": true,
+        "included": [
+          "regularization",
+          "weights",
+          "prevent"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is gradient accumulation?",
+        "response": "gradient accumulation (gradient accumulation) is a micro-batch technique that sums gradients over multiple mini-batches, reducing the per-step gradient noise. For a single step on a 4-bit quantized model: a forward pass processes 2x sequences (2x128 tokens = 256 tokens), gradients are accumulated, t",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "batch size",
+          "multiple steps",
+          "optimizer"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the lm_head in a language model?",
+        "response": "lm_head (language model head) is the final linear layer that projects hidden states to logits and probabilities over tokens. It is often separately trainable during fine-tuning because it can dominate model weights when you have only 2-4 layers frozen from the base model. A 3-layer base model has 4 ",
+        "passed": false,
+        "included": [
+          "logits"
+        ],
+        "missing": [
+          "vocabulary",
+          "projection"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is BitsAndBytes used for?",
+        "response": "BitsAndBytes (BitsAndBytes) is a helper function that converts between bytes, bits, and quantization levels for a given dtype. It's useful for debugging or visualizing model parameters.",
+        "passed": false,
+        "included": [
+          "quantization"
+        ],
+        "missing": [
+          "4-bit",
+          "8-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between fp16 and bf16?",
+        "response": "bf16 (BFloat16) is a half-precision format designed by NVIDIA for their GPUs to support more reliable floating-point arithmetic. It has one sign bit, five exponent bits, and ten mantissa bits, similar to fp16 but with more robust rounding and special value handling for NaN, Inf, etc. Key differences",
+        "passed": false,
+        "included": [
+          "exponent",
+          "precision"
+        ],
+        "missing": [
+          "range"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is PEFT?",
+        "response": "PEFT (Pure Evaluation Fine-Tuning) uses LoRA to project the embedding layer and then fine-tunes the entire encoder and decoder together. It produces stronger results than adapter-only approaches on some benchmarks.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Parameter-Efficient Fine-Tuning"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is TRL?",
+        "response": "TRL (TRAC Reload) stands for a base model fine-tuned on the TRAC-1 instruction dataset to create a general-utility LLM. It is often used for preference evaluation tasks.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Transformer Reinforcement Learning",
+          "Hugging Face"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the SFTTrainer in TRL?",
+        "response": "SFTTrainer combines LoRA application and fine-tuning into a single API: from pretraining checkpoints to a chat model. It generates instruction templates, concatenates them with examples, creates a masked LM loss, optimizes with AdamW, and applies LoraUpdate during forward. The workflow:\n\n```python\nt",
+        "passed": false,
+        "included": [
+          "instruction",
+          "chat"
+        ],
+        "missing": [
+          "supervised fine-tuning"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the DPOTrainer in TRL?",
+        "response": "DPOTrainer is a KL-divergence minimization pipeline using reference and chosen outputs. It's a core component of TRL, implemented as Trainer. The key workflow: (1) Generate data \u2014 get chosen and ref outputs from an SFT model. (2) Compute rewards \u2014 run reward model on chosen vs ref (expected loss). (",
+        "passed": false,
+        "included": [
+          "chosen"
+        ],
+        "missing": [
+          "preference",
+          "rejected"
+        ],
+        "hallucinated": [
+          "reward model"
+        ]
+      },
+      {
+        "prompt": "What does device_map='auto' do?",
+        "response": "device_map='auto' automatically duplicates model parameters across available GPUs, minimizing copying overhead during inference. It checks available GPU memory and duplicates sub-groups to keep each GPU full (e.g., if 8K sub-groups are needed but only 2G on each GPU is free, duplicates 4 per GPU). B",
+        "passed": false,
+        "included": [
+          "GPU",
+          "distribute"
+        ],
+        "missing": [
+          "layers"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of the attention_mask?",
+        "response": "The attention_mask is a tensor indicating which tokens are real (1) and which are padding (0). During attention computation, LLMs mask future tokens (those after current position) from attending to, preventing information leakage. In HuggingFace, padding is automatically placed at the right, so the ",
+        "passed": false,
+        "included": [
+          "padding",
+          "attend"
+        ],
+        "missing": [
+          "ignore"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is RoPE?",
+        "response": "RoPE (RoPE) is the dot-product attention scaling applied to Q and K separately before applying the permutation matrix. It helps reduce dimensionality of the intermediate computation.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "Rotary Position",
+          "relative position"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GQA (Grouped Query Attention)?",
+        "response": "GQA is a parameter-efficient SFT method that reorders attention inside QKV linear projections. In standard attention, each query attends to all values, then all query-value pairs are linearly projected independently. Grouped attention groups queries into 'channels' and applies identical KV projectio",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "KV heads",
+          "query heads",
+          "memory"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is SwiGLU?",
+        "response": "SwiGLU (Gated Linear Unit) is a layer normalization-free activation function used in Mixture of Experts (MoE) architectures. It combines a gated linear transformation with a linear mapping in two branches: y = W2_1 * (x||g) + W2_0 * x. x is the input, g is the previous layer's output normalized by i",
+        "passed": false,
+        "included": [
+          "activation",
+          "gated"
+        ],
+        "missing": [
+          "MLP"
+        ],
+        "hallucinated": [
+          "normalization"
+        ]
+      },
+      {
+        "prompt": "What is RMSNorm?",
+        "response": "RMSNorm (LayerNorm applied after gelu non-linearity) is a variant of layer normalization that stabilizes the activation scaling factor. It mitigates the gradient saturation caused by the gelu activation function. The traditional LN scale factor approaches 0 as activations spread out, causing vanishi",
+        "passed": false,
+        "included": [
+          "normalization"
+        ],
+        "missing": [
+          "root mean square"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the KV-cache?",
+        "response": "The KV-cache stores the key and value vectors for each layer output so they can be reused efficiently during attention. For L=8, memory for KV-cache is 2*8*dim_v*seq_len (key and value per layer). The attention computation reduces from O(L*seq^2) to O(seq) \u2014 each row of K and Q is multiplied by V (a",
+        "passed": false,
+        "included": [
+          "key",
+          "value",
+          "stored"
+        ],
+        "missing": [
+          "autoregressive"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is speculative decoding?",
+        "response": "speculative decoding (speculative decoding) is running multiple LLM generations in parallel with varying max_tokens values to guess which one will complete earlier. It can overlap decode for KV-cache lookups and early-exits, reducing total decoding latency.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "draft model",
+          "verify",
+          "speed"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is tensor parallelism?",
+        "response": "tensor parallelism (TP) replicates model layers N-way across GPUs to enable parallel computation within layers. In a 4-way TP configuration with 4 GPUs, each GPU holds layers 0, 1, 2, and 3 modulo N. During a forward pass: (1) GPU 0 computes: layer 0 (all data), layer 2 (alternating 0+2, then 2+4, e",
+        "passed": true,
+        "included": [
+          "split",
+          "layers",
+          "GPUs"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the Bradley-Terry model?",
+        "response": "The Bradley-Terry (BT) model is a probabilistic framework for pairwise preference prediction. It represents each item as a preference score (log odds) rather than raw features. Given two items i and j, the probability of preferring i (P(y=i)) is:\n\nP(y=i) = 1 / (1 + exp(beta * (x_j - x_i)))\n\nParamete",
+        "passed": true,
+        "included": [
+          "preference",
+          "probability",
+          "pairwise"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is reward hacking?",
+        "response": "reward hacking (reward hacking) is exploiting rewards or reward structures to gain unfair advantages. In a production ML pipeline, it means trade-offs between data quality, regularization, memory, or deployment characteristics instead of solely model quality.",
+        "passed": false,
+        "included": [
+          "exploit",
+          "quality"
+        ],
+        "missing": [
+          "reward model"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the implicit reward in DPO?",
+        "response": "In DPO, the implicit reward is the unnormalized preference score for a chosen response y versus a generated response x. The model is trained to maximize log(pi(y|x_w)/pi(x_w)), which is equivalent to maximizing the original log-probability of the chosen response over the reference model:\n\nlog(r(x,w,",
+        "passed": false,
+        "included": [
+          "reference"
+        ],
+        "missing": [
+          "log probability",
+          "ratio"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is double quantization in QLoRA?",
+        "response": "Double quantization reduces the quantization noise by quantizing the activation scale factor along with the weights. In standard 4-bit quantization (QLoRA), you have 4 bits for the bias term (sign + 3 bits) and 4 bits for the scaled value (4 possible exponent values \u00d7 4-bit mantissa). For some opera",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "quantization constants",
+          "additional memory"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the purpose of prepare_model_for_kbit_training?",
+        "response": "prepare_model_for_kbit_training is a LoRA-based alignment method that injects the Imbit weight bias directly into the adapter rather than multiplying by it during forward pass:\n\n```python\nfrom transformers import AutoModelForCausalLM\n\nmodel = AutoModelForCausalLM.from_pretrained(\n    \"meta-llama/Lla",
+        "passed": false,
+        "included": [
+          "LoRA"
+        ],
+        "missing": [
+          "quantized",
+          "gradient"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is NEFTune?",
+        "response": "NEFTune (NEFTune) is a DPO method that uses cosine annealing to smoothly increase penalty strength during training. It improves on standard DPO by reducing the exploration-exploitation tradeoff.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "noise",
+          "embedding",
+          "regularization"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is sequence packing in SFT?",
+        "response": "In many SFT systems, the model generates using packed sequence access which stores KV-cache entries in fixed-size blocks rather than individually for each token. For example:\n\n```python\n# Unpacked (naive)\nfor token in tokens:\n    kv_cache[token] = compute_key_value(token)\n\n# Packed (standard)\nn_toke",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "concatenate",
+          "short examples",
+          "efficiency"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is loss masking in SFT?",
+        "response": "Loss masking isolates decoder outputs that should receive LLM loss while others get 0 loss. For SFT, it applies a loss mask to any generated token with log_p > log_p_pi_t (the policy's self-model output) \u2014 the policy should not reinforce its own prediction. This is essential because training a stand",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "prompt tokens",
+          "-100",
+          "assistant"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between online and offline DPO?",
+        "response": "Offline DPO: Train on a fixed dataset collected from the pre-model (frozen) and then apply it to a new model (online). No online generation is involved. Generate examples, compute reference and chosen logs, fit log likelihood model on offline data. This is the standard DPO pipeline used by Chosen-Ma",
+        "passed": true,
+        "included": [
+          "generate",
+          "fixed dataset",
+          "current policy"
+        ],
+        "missing": [],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is model merging?",
+        "response": "model merging (model merging) is combining two LoRA updates into a single adapter to reduce memory cost. It is useful for serving multiple language models from the same quantized storage.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "combine",
+          "weights",
+          "without retraining"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is GGUF format?",
+        "response": "GGUF (GPT-Generated Unified Format) is a text serialization format designed to store both SFT checkpoints and DPO datasets efficiently. It's commonly used in LLM alignment pipelines.",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "llama.cpp",
+          "quantized",
+          "inference"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is AWQ quantization?",
+        "response": "AWQ (Adaptive Weight Quantization) is a 5-bit quantization scheme that adapplies different scales to each channel separately, improving uniformity and quality. It works by decomposing weights into k channels, normalizing each channel, and then applying uniform quantization with scaling factors compu",
+        "passed": false,
+        "included": [],
+        "missing": [
+          "activation-aware",
+          "important weights",
+          "4-bit"
+        ],
+        "hallucinated": []
+      },
+      {
+        "prompt": "What is the difference between perplexity and loss?",
+        "response": "Perplexity (PPL) = exp(loss / (num_chars/log2(e))). Loss is the average negative log-probability per token, while perplexity is an exponential transformation of it. Loss is a numerical quantity with units (e.g., -10.2) and tells you the level of token-by-token uncertainty in the language model. Perp",
+        "passed": false,
+        "included": [
+          "exponential"
+        ],
+        "missing": [
+          "exp(loss)"
+        ],
+        "hallucinated": []
+      }
+    ]
+  }
+}

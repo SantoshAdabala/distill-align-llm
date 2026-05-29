@@ -1,0 +1,139 @@
+{
+  "model_label": "dpo_5ep",
+  "best_temp": 0.1,
+  "verdict": "PARTIAL (+3.0pp): modest effect",
+  "stats": {
+    "0.1": {
+      "n": 500,
+      "keyword_pass_rate": 0.786,
+      "mean_keyword_score": 0.5907,
+      "mean_entropy": 0.076,
+      "mean_top1_prob": 0.9645,
+      "mean_correct_prob": 0.036319,
+      "by_category": {
+        "alignment_concepts": {
+          "n": 100,
+          "pass_rate": 0.73
+        },
+        "architecture_facts": {
+          "n": 100,
+          "pass_rate": 0.81
+        },
+        "empirical_reasoning": {
+          "n": 100,
+          "pass_rate": 0.81
+        },
+        "quantization_efficiency": {
+          "n": 100,
+          "pass_rate": 0.74
+        },
+        "training_mechanics": {
+          "n": 100,
+          "pass_rate": 0.84
+        }
+      },
+      "by_difficulty": {
+        "1": {
+          "n": 7,
+          "pass_rate": 1.0
+        },
+        "2": {
+          "n": 272,
+          "pass_rate": 0.7721
+        },
+        "3": {
+          "n": 221,
+          "pass_rate": 0.7964
+        }
+      }
+    },
+    "0.5": {
+      "n": 500,
+      "keyword_pass_rate": 0.784,
+      "mean_keyword_score": 0.592,
+      "mean_entropy": 0.4381,
+      "mean_top1_prob": 0.8284,
+      "mean_correct_prob": 0.034505,
+      "by_category": {
+        "alignment_concepts": {
+          "n": 100,
+          "pass_rate": 0.79
+        },
+        "architecture_facts": {
+          "n": 100,
+          "pass_rate": 0.78
+        },
+        "empirical_reasoning": {
+          "n": 100,
+          "pass_rate": 0.76
+        },
+        "quantization_efficiency": {
+          "n": 100,
+          "pass_rate": 0.81
+        },
+        "training_mechanics": {
+          "n": 100,
+          "pass_rate": 0.78
+        }
+      },
+      "by_difficulty": {
+        "1": {
+          "n": 7,
+          "pass_rate": 0.8571
+        },
+        "2": {
+          "n": 272,
+          "pass_rate": 0.7794
+        },
+        "3": {
+          "n": 221,
+          "pass_rate": 0.7873
+        }
+      }
+    },
+    "1.0": {
+      "n": 500,
+      "keyword_pass_rate": 0.756,
+      "mean_keyword_score": 0.554,
+      "mean_entropy": 1.1732,
+      "mean_top1_prob": 0.6327,
+      "mean_correct_prob": 0.030758,
+      "by_category": {
+        "alignment_concepts": {
+          "n": 100,
+          "pass_rate": 0.66
+        },
+        "architecture_facts": {
+          "n": 100,
+          "pass_rate": 0.79
+        },
+        "empirical_reasoning": {
+          "n": 100,
+          "pass_rate": 0.76
+        },
+        "quantization_efficiency": {
+          "n": 100,
+          "pass_rate": 0.83
+        },
+        "training_mechanics": {
+          "n": 100,
+          "pass_rate": 0.74
+        }
+      },
+      "by_difficulty": {
+        "1": {
+          "n": 7,
+          "pass_rate": 0.7143
+        },
+        "2": {
+          "n": 272,
+          "pass_rate": 0.7537
+        },
+        "3": {
+          "n": 221,
+          "pass_rate": 0.7602
+        }
+      }
+    }
+  }
+}

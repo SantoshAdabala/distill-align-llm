@@ -1,0 +1,32 @@
+{
+  "T=0.1": {
+    "temperature": 0.1,
+    "passed": 11,
+    "total": 51,
+    "accuracy": 0.2157
+  },
+  "T=0.3": {
+    "temperature": 0.3,
+    "passed": 13,
+    "total": 51,
+    "accuracy": 0.2549
+  },
+  "T=0.5": {
+    "temperature": 0.5,
+    "passed": 10,
+    "total": 51,
+    "accuracy": 0.1961
+  },
+  "T=0.7": {
+    "temperature": 0.7,
+    "passed": 12,
+    "total": 51,
+    "accuracy": 0.2353
+  },
+  "T=1.0": {
+    "temperature": 1.0,
+    "passed": 11,
+    "total": 51,
+    "accuracy": 0.2157
+  }
+}
