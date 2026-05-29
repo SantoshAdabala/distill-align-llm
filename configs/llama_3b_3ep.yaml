@@ -1,0 +1,50 @@
+# ──────────────────────────────────────────────
+# Llama-3.2-3B-Instruct — 3 epoch SFT
+# ──────────────────────────────────────────────
+# Used for BSFT ablation at 3 epochs to compare with standard SFT 3ep.
+
+model:
+  model_id: "meta-llama/Llama-3.2-3B-Instruct"
+  family: "llama-3.2"
+  max_seq_length: 512
+  trust_remote_code: false
+  quantization:
+    mode: "int4_nf4"
+    quant_type: "nf4"
+    use_double_quant: true
+    compute_dtype: "bfloat16"
+  lora:
+    rank: 16
+    alpha: 32
+    target_modules:
+      - "q_proj"
+      - "k_proj"
+      - "v_proj"
+      - "o_proj"
+    dropout: 0.05
+
+sft:
+  learning_rate: 0.0002
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  num_epochs: 3
+  warmup_steps: 50
+  bf16: true
+  gradient_checkpointing: true
+  logging_steps: 5
+  save_steps: 200
+  eval_steps: 200
+  output_dir: "./outputs/llama_3b_3ep/sft"
+
+dpo:
+  beta: 0.05
+  learning_rate: 0.00001
+  batch_size: 2
+  gradient_accumulation_steps: 4
+  num_epochs: 1
+  bf16: true
+  gradient_checkpointing: true
+  logging_steps: 20
+  save_steps: 200
+  eval_steps: 100
+  output_dir: "./outputs/llama_3b_3ep/dpo"
