@@ -17,15 +17,7 @@ class DatasetValidationError(Exception):
 
 
 class ValidationReport:
-    """Report from dataset schema validation.
-
-    Attributes:
-        passed: Whether validation passed overall.
-        total_records: Total number of records in the dataset.
-        valid_records: Number of records that passed validation.
-        skipped_records: Number of records that failed validation.
-        errors: List of error descriptions.
-    """
+    """Result of dataset schema validation."""
 
     def __init__(
         self,
@@ -49,10 +41,6 @@ class ValidationReport:
         )
 
 
-# ═══════════════════════════════════════════════
-# EXPECTED DATASET FORMATS
-# ═══════════════════════════════════════════════
-
 INSTRUCTION_FORMATS = {
     "chat": {"required": ["messages"]},
     "prompt_completion": {"required": ["prompt", "completion"]},
@@ -67,23 +55,11 @@ class DataProcessor:
     """Loads, validates, and preprocesses datasets for the training pipeline."""
 
     def load_dataset(self, config: DatasetConfig) -> Dataset | DatasetDict:
-        """Load a dataset from HuggingFace Hub or a local path.
-
-        Args:
-            config: Dataset configuration specifying source, type, etc.
-
-        Returns:
-            A HuggingFace Dataset or DatasetDict object.
-
-        Raises:
-            FileNotFoundError: If local path doesn't exist.
-            Exception: If HuggingFace Hub download fails.
-        """
+        """Load a dataset from HuggingFace Hub or a local path."""
         source = config.source
         logger.info(f"Loading dataset from: {source}")
 
         if source.startswith("s3://"):
-            logger.info("S3 source detected — downloading via boto3")
             raise NotImplementedError(
                 "S3 loading is not supported. "
                 "Use HuggingFace Hub ID or local path."
@@ -104,15 +80,7 @@ class DataProcessor:
     def validate_schema(
         self, dataset: Dataset | DatasetDict, dataset_type: DatasetType
     ) -> ValidationReport:
-        """Validate that a dataset has the expected schema.
-
-        Args:
-            dataset: The loaded dataset to validate.
-            dataset_type: Expected type (INSTRUCTION or PREFERENCE).
-
-        Returns:
-            ValidationReport with pass/fail status and details.
-        """
+        """Validate dataset schema; returns a ValidationReport."""
         if isinstance(dataset, DatasetDict):
             split_name = list(dataset.keys())[0]
             ds = dataset[split_name]
@@ -141,7 +109,6 @@ class DataProcessor:
     def _validate_instruction_schema(
         self, ds: Dataset, columns: set[str], total_records: int
     ) -> ValidationReport:
-        """Validate an instruction dataset's schema."""
         errors = []
 
         detected_format = None
@@ -202,7 +169,6 @@ class DataProcessor:
     def _validate_preference_schema(
         self, ds: Dataset, columns: set[str], total_records: int
     ) -> ValidationReport:
-        """Validate a preference dataset's schema."""
         errors = []
 
         missing = set(PREFERENCE_REQUIRED_FIELDS) - columns
@@ -255,15 +221,7 @@ class DataProcessor:
     def filter_invalid_records(
         self, dataset: Dataset, dataset_type: DatasetType
     ) -> Dataset:
-        """Remove records with missing or empty required fields.
-
-        Args:
-            dataset: Dataset to filter.
-            dataset_type: Type determines which fields are required.
-
-        Returns:
-            Filtered dataset with only valid records.
-        """
+        """Remove records with missing or empty required fields."""
         original_count = len(dataset)
 
         if dataset_type == DatasetType.INSTRUCTION:
@@ -305,10 +263,7 @@ class DataProcessor:
 
         return filtered
 
-
-    # ═══════════════════════════════════════════════
-    # TOKENIZATION
-    # ═══════════════════════════════════════════════
+    # tokenization
 
     def tokenize(
         self,
@@ -317,17 +272,7 @@ class DataProcessor:
         max_length: int = 2048,
         dataset_type: DatasetType = DatasetType.INSTRUCTION,
     ) -> Dataset:
-        """Tokenize a dataset using the model's tokenizer and chat template.
-
-        Args:
-            dataset: Validated dataset to tokenize.
-            tokenizer: HuggingFace tokenizer (with chat template).
-            max_length: Maximum sequence length (truncate longer sequences).
-            dataset_type: Determines how to format the text before tokenizing.
-
-        Returns:
-            Dataset with tokenized columns added (input_ids, attention_mask).
-        """
+        """Tokenize a dataset using the model's tokenizer and chat template."""
         logger.info(f"Tokenizing dataset ({len(dataset)} records, max_length={max_length})")
 
         if dataset_type == DatasetType.INSTRUCTION:
@@ -399,7 +344,6 @@ class DataProcessor:
     def _tokenize_instruction(
         self, dataset: Dataset, tokenizer, max_length: int
     ) -> Dataset:
-        """Tokenize an instruction dataset using chat templates."""
         columns = set(dataset.column_names)
 
         def format_and_tokenize(examples):
@@ -491,8 +435,6 @@ class DataProcessor:
     def _tokenize_preference(
         self, dataset: Dataset, tokenizer, max_length: int
     ) -> Dataset:
-        """Tokenize a preference dataset for DPO/RLHF training."""
-
         def format_preference(examples):
             formatted_prompts = []
             formatted_chosen = []
@@ -528,10 +470,7 @@ class DataProcessor:
 
         return formatted_dataset
 
-
-    # ═══════════════════════════════════════════════
-    # DATASET SPLITTING
-    # ═══════════════════════════════════════════════
+    # dataset splitting
 
     def split(
         self,
@@ -541,21 +480,7 @@ class DataProcessor:
         test_ratio: float = 0.05,
         seed: int = 42,
     ) -> DatasetDict:
-        """Split a dataset into train/validation/test partitions.
-
-        Args:
-            dataset: Dataset to split.
-            train_ratio: Fraction for training (default 90%).
-            val_ratio: Fraction for validation (default 5%).
-            test_ratio: Fraction for testing (default 5%).
-            seed: Random seed for reproducibility.
-
-        Returns:
-            DatasetDict with 'train', 'validation', 'test' splits.
-
-        Raises:
-            ValueError: If ratios don't sum to 1.0 (within tolerance).
-        """
+        """Split dataset into train/validation/test. Ratios must sum to 1.0."""
         total = train_ratio + val_ratio + test_ratio
         if abs(total - 1.0) > 0.01:
             raise ValueError(
@@ -596,14 +521,7 @@ class DataProcessor:
         return splits
 
     def get_dataset_statistics(self, dataset: Dataset | DatasetDict) -> dict:
-        """Compute dataset statistics for logging to experiment tracker.
-
-        Args:
-            dataset: Dataset to analyze.
-
-        Returns:
-            Dictionary of statistics.
-        """
+        """Compute dataset statistics for logging."""
         if isinstance(dataset, DatasetDict):
             stats = {
                 "splits": {},
