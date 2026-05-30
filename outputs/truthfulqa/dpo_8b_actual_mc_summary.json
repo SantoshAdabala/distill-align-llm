@@ -1,0 +1,10 @@
+{
+  "model_path": "./outputs/dpo_8b_merged",
+  "label": "dpo_8b_actual",
+  "task": "truthfulqa_mc1",
+  "eval_mode": "mc",
+  "accuracy": 0.3402692778457772,
+  "num_samples": 817,
+  "num_correct": 278,
+  "elapsed_seconds": 186.3
+}
