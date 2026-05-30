@@ -13,84 +13,49 @@ from distill_align.config.models import (
 logger = logging.getLogger(__name__)
 
 
-# ═══════════════════════════════════════════════
-# SUPPORTED MODEL FAMILIES AND THEIR CONFIGURATIONS
-# ═══════════════════════════════════════════════
-
 MODEL_FAMILY_CONFIG = {
     ModelFamily.QWEN2_5: {
         "trust_remote_code": True,
         "default_target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
-        "description": "Qwen 2.5 series (0.5B to 72B) — Alibaba's multilingual model",
     },
     ModelFamily.LLAMA_3_1: {
         "trust_remote_code": False,
         "default_target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
-        "description": "Meta Llama 3.1 series (8B, 70B, 405B) — strong English baseline",
     },
     ModelFamily.LLAMA_3_2: {
         "trust_remote_code": False,
         "default_target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
-        "description": "Meta Llama 3.2 series (1B, 3B) — lightweight for local dev",
     },
     ModelFamily.MISTRAL: {
         "trust_remote_code": False,
         "default_target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
-        "description": "Mistral AI series (7B, Mixtral) — efficient sliding window attention",
     },
     ModelFamily.PHI_3: {
         "trust_remote_code": True,
         # Phi-3 uses fused QKV projection — one matrix instead of three separate ones
         "default_target_modules": ["qkv_proj", "o_proj"],
-        "description": "Microsoft Phi-3 series (mini, small, medium) — strong for size",
     },
     ModelFamily.SMOLLM2: {
         "trust_remote_code": True,
         "default_target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
-        "description": "HuggingFace SmolLM2 series (135M, 360M, 1.7B) — tiny but capable",
     },
 }
 
 
 class ModelLoadError(Exception):
-    """Raised when a model cannot be loaded.
-
-    Common causes:
-    - Out of memory (OOM) — model too large for available GPU
-    - Invalid model ID — typo or private model without auth
-    - Network issues — can't reach HuggingFace Hub
-    - Unsupported architecture — model family not in our config
-    - Missing dependencies — bitsandbytes not installed for quantization
-    """
+    """Raised when a model cannot be loaded."""
 
     pass
 
 
 class ModelLoader:
-    """Loads pre-trained models with quantization and LoRA configuration.
-
-    Orchestrates the full model loading pipeline:
-    1. Validate the model family is supported
-    2. Build quantization config (BitsAndBytesConfig for 4-bit NF4)
-    3. Load the base model from HuggingFace Hub or local path
-    4. Apply LoRA adapters via PEFT (get_peft_model)
-    5. Load the tokenizer with correct padding/chat template settings
-    6. Handle OOM errors with actionable suggestions
-    """
+    """Loads pre-trained models with quantization and LoRA adapters applied."""
 
     def load_model(self, config: ModelConfig) -> tuple[Any, Any]:
-        """Load a model with quantization and LoRA adapters.
+        """Load a model and tokenizer ready for training.
 
-        Args:
-            config: Model configuration specifying model_id, family,
-                    quantization settings, and LoRA hyperparameters.
-
-        Returns:
-            Tuple of (model_with_lora, tokenizer) ready for training.
-
-        Raises:
-            ModelLoadError: If model cannot be loaded (OOM, invalid ID,
-                           unsupported family, missing dependencies).
+        Returns (model_with_lora, tokenizer).
+        Raises ModelLoadError on OOM, invalid model ID, or unsupported family.
         """
         import torch
 
@@ -127,15 +92,7 @@ class ModelLoader:
             ) from e
 
     def _build_quantization_config(self, config: QuantizationConfig) -> Any | None:
-        """Build a BitsAndBytesConfig for model quantization.
-
-        Args:
-            config: Our quantization configuration.
-
-        Returns:
-            BitsAndBytesConfig for INT4_NF4 mode, or None for other modes.
-            FP16/BF16 are handled via torch_dtype in _load_base_model instead.
-        """
+        """Build BitsAndBytesConfig for INT4_NF4, or None for FP16/BF16/none."""
         import torch
 
         if config.mode in (QuantizationMode.NONE, QuantizationMode.FP16, QuantizationMode.BF16):
@@ -176,15 +133,6 @@ class ModelLoader:
         return None
 
     def _load_base_model(self, config: ModelConfig, quant_config: Any | None) -> Any:
-        """Load the base model from HuggingFace Hub or local path.
-
-        Args:
-            config: Model configuration with model_id, family, etc.
-            quant_config: BitsAndBytesConfig or None.
-
-        Returns:
-            Loaded model (not yet wrapped with LoRA).
-        """
         import torch
         from transformers import AutoModelForCausalLM
 
@@ -222,18 +170,7 @@ class ModelLoader:
         return model
 
     def _apply_lora(self, model: Any, config: ModelConfig) -> Any:
-        """Apply LoRA adapters to the model using PEFT.
-
-        Wraps the model with LoRA adapters, making only the adapter
-        parameters trainable while freezing the base model weights.
-
-        Args:
-            model: Base model loaded from HuggingFace.
-            config: Model configuration with LoRA settings.
-
-        Returns:
-            Model wrapped with LoRA adapters (only adapters are trainable).
-        """
+        """Apply LoRA adapters — only adapter parameters will be trainable."""
         from peft import LoraConfig as PeftLoraConfig
         from peft import TaskType, get_peft_model
 
@@ -287,14 +224,6 @@ class ModelLoader:
         return model
 
     def _load_tokenizer(self, config: ModelConfig) -> Any:
-        """Load the tokenizer for the model.
-
-        Args:
-            config: Model configuration with model_id and family.
-
-        Returns:
-            Configured tokenizer ready for training.
-        """
         from transformers import AutoTokenizer
 
         family_config = MODEL_FAMILY_CONFIG.get(config.family, {})
@@ -324,14 +253,6 @@ class ModelLoader:
         return tokenizer
 
     def _validate_model_family(self, family: ModelFamily) -> None:
-        """Validate that the model family is in our supported list.
-
-        Args:
-            family: The ModelFamily enum value to validate.
-
-        Raises:
-            ModelLoadError: If the family is not supported.
-        """
         if family not in MODEL_FAMILY_CONFIG:
             supported = [f.value for f in MODEL_FAMILY_CONFIG]
             raise ModelLoadError(
@@ -342,12 +263,6 @@ class ModelLoader:
             )
 
     def _log_model_metadata(self, model: Any, config: ModelConfig) -> None:
-        """Log model size, parameter count, trainable params, and memory footprint.
-
-        Args:
-            model: Model with LoRA adapters applied.
-            config: Model configuration for context.
-        """
         trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
         total_params = sum(p.numel() for p in model.parameters())
 
@@ -375,26 +290,17 @@ class ModelLoader:
         logger.info(f"Model metadata: {metadata}")
 
     def _handle_oom_error(self, config: ModelConfig, error: Exception) -> None:
-        """Handle Out-of-Memory errors with descriptive, actionable messages.
-
-        Args:
-            config: Current model configuration (to tailor suggestions).
-            error: The original OOM exception.
-
-        Raises:
-            ModelLoadError: Always raised with helpful suggestions.
-        """
         suggestions = []
 
         if config.quantization.mode == QuantizationMode.NONE:
             suggestions.append(
                 "Enable 4-bit quantization: set quantization.mode = 'int4_nf4' "
-                "(saves ~8× memory)"
+                "(saves ~8x memory)"
             )
         elif config.quantization.mode in (QuantizationMode.FP16, QuantizationMode.BF16):
             suggestions.append(
                 "Switch to 4-bit: set quantization.mode = 'int4_nf4' "
-                "(saves ~4× more memory vs fp16)"
+                "(saves ~4x more memory vs fp16)"
             )
 
         suggestions.extend([
