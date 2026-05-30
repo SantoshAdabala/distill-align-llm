@@ -11,25 +11,9 @@ from distill_align.config.models import DPOConfig
 logger = logging.getLogger(__name__)
 
 
-# ═══════════════════════════════════════════════
-# RESULT DATA CLASSES
-# ═══════════════════════════════════════════════
-
-
 @dataclass
 class DPOResult:
-    """Result of DPO training.
-
-    Attributes:
-        final_loss: Final DPO loss value.
-        reward_accuracy: Fraction of examples where model prefers chosen over rejected.
-        reward_margin: Average log-probability gap between chosen and rejected.
-        total_steps: Total training steps completed.
-        training_time_seconds: Wall-clock training time.
-        adapter_path: Path to saved aligned LoRA adapter weights.
-        metrics_history: List of metric dicts logged at each logging step.
-        low_accuracy_warnings: Number of times reward accuracy dropped below threshold.
-    """
+    """Training result from a DPO run."""
 
     final_loss: float = 0.0
     reward_accuracy: float = 0.0
@@ -41,49 +25,25 @@ class DPOResult:
     low_accuracy_warnings: int = 0
 
     def __repr__(self) -> str:
-        acc_status = "⚠️ LOW" if self.reward_accuracy < 0.5 else "✓"
+        acc_status = "LOW" if self.reward_accuracy < 0.5 else "ok"
         return (
             f"DPOResult(loss={self.final_loss:.4f}, "
-            f"reward_acc={self.reward_accuracy:.2%} {acc_status}, "
+            f"reward_acc={self.reward_accuracy:.2%} [{acc_status}], "
             f"margin={self.reward_margin:.4f}, steps={self.total_steps})"
         )
 
 
-# ═══════════════════════════════════════════════
-# REWARD ACCURACY MONITOR
-# ═══════════════════════════════════════════════
-
-
 class RewardAccuracyMonitor:
-    """Monitors reward accuracy and warns on sustained low performance.
-
-    Tracks whether the model correctly prefers the chosen response over
-    the rejected one. Logs warnings with actionable suggestions if accuracy
-    drops below threshold for multiple consecutive evaluations.
-    """
+    """Warns when reward accuracy stays below threshold for consecutive evals."""
 
     def __init__(self, threshold: float = 0.5, max_consecutive: int = 3):
-        """Initialize the reward accuracy monitor.
-
-        Args:
-            threshold: Minimum acceptable reward accuracy (default 0.5 = random).
-            max_consecutive: Number of consecutive low evals before warning.
-        """
         self.threshold = threshold
         self.max_consecutive = max_consecutive
         self._consecutive_low: int = 0
         self._total_warnings: int = 0
 
     def check(self, reward_accuracy: float, step: int) -> bool:
-        """Check reward accuracy and warn if consistently low.
-
-        Args:
-            reward_accuracy: Current reward accuracy (0.0 to 1.0).
-            step: Current training step.
-
-        Returns:
-            True if warning threshold exceeded, False otherwise.
-        """
+        """Returns True if the warning threshold has been exceeded."""
         if reward_accuracy < self.threshold:
             self._consecutive_low += 1
             logger.warning(
@@ -95,12 +55,12 @@ class RewardAccuracyMonitor:
             if self._consecutive_low >= self.max_consecutive:
                 self._total_warnings += 1
                 logger.error(
-                    f"🚨 REWARD ACCURACY WARNING at step {step}! "
+                    f"REWARD ACCURACY WARNING at step {step}! "
                     f"Accuracy has been below {self.threshold:.0%} for "
                     f"{self._consecutive_low} consecutive evaluations.\n"
                     f"Possible causes:\n"
                     f"  1. Chosen/rejected labels may be swapped in the dataset\n"
-                    f"  2. Beta ({self.threshold}) may be too high — try lowering it\n"
+                    f"  2. Beta may be too high — try lowering it\n"
                     f"  3. Learning rate may be too low\n"
                     f"  4. Dataset may have ambiguous/noisy preferences"
                 )
@@ -112,32 +72,13 @@ class RewardAccuracyMonitor:
 
     @property
     def total_warnings(self) -> int:
-        """Total number of warning events triggered."""
         return self._total_warnings
 
 
-# ═══════════════════════════════════════════════
-# MAIN DPO TRAINER CLASS
-# ═══════════════════════════════════════════════
-
-
 class DPOTrainerWrapper:
-    """Wraps TRL's DPOTrainer with pipeline integration and monitoring.
-
-    Provides:
-    1. Simplified interface for DPO training
-    2. Reward accuracy monitoring (warns if model can't distinguish good/bad)
-    3. DPO-specific metric logging (loss, reward accuracy, reward margins)
-    4. Saves aligned LoRA adapter weights on completion
-    5. Integration with experiment tracking
-    """
+    """Wraps TRL's DPOTrainer with reward accuracy monitoring and pipeline integration."""
 
     def __init__(self, experiment_tracker: Any | None = None):
-        """Initialize the DPO trainer wrapper.
-
-        Args:
-            experiment_tracker: Optional experiment tracker for logging metrics.
-        """
         self.experiment_tracker = experiment_tracker
         self._accuracy_monitor: RewardAccuracyMonitor | None = None
         self._metrics_history: list[dict[str, float]] = []
@@ -150,34 +91,11 @@ class DPOTrainerWrapper:
         dataset: Any,
         config: DPOConfig,
     ) -> DPOResult:
-        """Execute DPO training loop.
-
-        Trains the model to prefer chosen responses over rejected ones,
-        using the reference model as a KL-divergence anchor.
-
-        Args:
-            model: SFT model with LoRA adapters (the model being aligned).
-            ref_model: Frozen copy of the SFT model (reference/anchor).
-            tokenizer: Model tokenizer.
-            dataset: DatasetDict with 'train' and optionally 'validation' splits.
-                     Each split must have 'prompt', 'chosen', 'rejected' columns.
-            config: DPO hyperparameters (beta, learning_rate, etc.).
-
-        Returns:
-            DPOResult with final metrics and adapter path.
-        """
+        """Run DPO training. ref_model is a frozen copy used as the KL anchor."""
         from trl import DPOConfig as TRLDPOConfig
         from trl import DPOTrainer
 
-        logger.info(
-            f"Starting DPO training:\n"
-            f"  beta={config.beta} (KL regularization strength)\n"
-            f"  learning_rate={config.learning_rate}\n"
-            f"  epochs={config.num_epochs}\n"
-            f"  batch_size={config.batch_size}\n"
-            f"  gradient_accumulation_steps={config.gradient_accumulation_steps}\n"
-            f"  effective_batch_size={config.batch_size * config.gradient_accumulation_steps}"
-        )
+        logger.info(f"Starting DPO training: beta={config.beta}, lr={config.learning_rate}")
 
         start_time = time.time()
 
@@ -189,7 +107,6 @@ class DPOTrainerWrapper:
         output_dir = Path(config.output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        # ─── Configure TRL's DPOConfig ───
         training_args = TRLDPOConfig(
             output_dir=str(output_dir),
             beta=config.beta,
@@ -208,11 +125,9 @@ class DPOTrainerWrapper:
             report_to="none",
         )
 
-        # ─── Prepare datasets ───
         train_dataset = dataset["train"] if hasattr(dataset, "__getitem__") else dataset
         eval_dataset = dataset.get("validation") if hasattr(dataset, "get") else None
 
-        # ─── Create TRL DPOTrainer ───
         trainer = DPOTrainer(
             model=model,
             ref_model=ref_model,
@@ -222,7 +137,6 @@ class DPOTrainerWrapper:
             processing_class=tokenizer,
         )
 
-        # ─── Run training ───
         try:
             train_result = trainer.train()
 
@@ -233,19 +147,17 @@ class DPOTrainerWrapper:
             logger.error(f"DPO training failed: {e}")
             raise
 
-        # ─── Save aligned LoRA adapter weights ───
         adapter_path = str(output_dir / "dpo_adapter")
         trainer.save_model(adapter_path)
         logger.info(f"Saved DPO-aligned adapter to: {adapter_path}")
 
-        # ─── Evaluate and extract DPO-specific metrics ───
         # NOTE: Final evaluation with eval_strategy="no" can be unreliable
         # (OOM issues after training fills VRAM). We report training-log metrics
         # as primary and attempt final eval as secondary.
         reward_accuracy = 0.0
         reward_margin = 0.0
 
-        # Extract metrics from training logs (more reliable than post-training eval)
+        # Extract from training logs (more reliable than post-training eval)
         train_log_accuracies = []
         if hasattr(trainer, "state") and trainer.state.log_history:
             for log_entry in trainer.state.log_history:
@@ -259,7 +171,6 @@ class DPOTrainerWrapper:
             logger.info(f"Training-log reward accuracy (2nd half avg): {reward_accuracy:.2%}")
             logger.info(f"Training-log reward accuracy (peak): {max(train_log_accuracies):.2%}")
 
-        # Attempt final eval (may fail with OOM on small GPUs)
         if eval_dataset is not None:
             try:
                 eval_metrics = trainer.evaluate()
@@ -279,7 +190,6 @@ class DPOTrainerWrapper:
 
         training_time = time.time() - start_time
 
-        # ─── Build result ───
         result = DPOResult(
             final_loss=final_loss,
             reward_accuracy=reward_accuracy,
@@ -293,7 +203,6 @@ class DPOTrainerWrapper:
 
         logger.info(f"DPO training complete: {result}")
 
-        # ─── Log to experiment tracker ───
         if self.experiment_tracker:
             self.experiment_tracker.log_metrics(
                 {
