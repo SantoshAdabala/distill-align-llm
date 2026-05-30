@@ -6,11 +6,22 @@ Short answer: reward accuracy and factuality are not the same thing, and the gap
 
 **[Live dashboard →](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)**
 
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python)](https://python.org)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch)](https://pytorch.org)
+---
+
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-TRL-FFD21E?style=flat-square&logo=huggingface&logoColor=black)](https://huggingface.co)
-[![Tests](https://img.shields.io/badge/tests-44%20passing-brightgreen?style=flat-square)]()
-[![Cost](https://img.shields.io/badge/RunPod-~%2427_total-6B46C1?style=flat-square)](https://runpod.io)
+[![PEFT](https://img.shields.io/badge/PEFT-QLoRA%20r%3D16-8B5CF6?style=flat-square)](https://github.com/huggingface/peft)
+[![bitsandbytes](https://img.shields.io/badge/bitsandbytes-4--bit%20NF4-F59E0B?style=flat-square)](https://github.com/bitsandbytes-foundation/bitsandbytes)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Live%20Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)
+
+[![Tests](https://img.shields.io/badge/tests-44%20passing-22C55E?style=flat-square&logo=pytest&logoColor=white)](./tests)
+[![Ruff](https://img.shields.io/badge/linter-ruff-D7FF64?style=flat-square)](https://github.com/astral-sh/ruff)
+[![RunPod](https://img.shields.io/badge/RunPod-~%2427%20total-6B46C1?style=flat-square)](https://runpod.io)
+[![Model](https://img.shields.io/badge/Model-Llama--3.1--8B--Instruct-0EA5E9?style=flat-square&logo=meta&logoColor=white)](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct)
+[![License](https://img.shields.io/badge/License-MIT-10B981?style=flat-square)](./LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/SantoshAdabala/distill-align-llm?style=flat-square&color=64748B)](https://github.com/SantoshAdabala/distill-align-llm/commits/main)
+[![Stars](https://img.shields.io/github/stars/SantoshAdabala/distill-align-llm?style=flat-square&color=FBBF24)](https://github.com/SantoshAdabala/distill-align-llm/stargazers)
 
 ---
 
