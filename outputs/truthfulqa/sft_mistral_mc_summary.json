@@ -1,0 +1,10 @@
+{
+  "model_path": "./outputs/mistral_7b/sft_merged",
+  "label": "sft_mistral",
+  "task": "truthfulqa_mc1",
+  "eval_mode": "mc",
+  "accuracy": 0.3084455324357405,
+  "num_samples": 817,
+  "num_correct": 252,
+  "elapsed_seconds": 210.4
+}
