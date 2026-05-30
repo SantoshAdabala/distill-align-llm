@@ -101,64 +101,55 @@ Tested Base vs SFT vs DPO on 51 technical ML prompts (strict keyword matching, t
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                           TRAINING PIPELINE (RunPod.io)                          │
-│                                                                                 │
-│  ┌───────────┐    ┌────────────┐    ┌────────────┐    ┌────────────────┐        │
-│  │ HuggingFace│    │ OpenHermes │    │UltraFeedback│    │ Factual DPO   │        │
-│  │ Model Hub  │    │ + Technical│    │  Cleaned    │    │ Pairs (20%)   │        │
-│  └─────┬─────┘    └─────┬──────┘    └─────┬──────┘    └───────┬────────┘        │
-│        │                 │                 │                   │                 │
-│        ▼                 ▼                 │                   │                 │
-│  ┌───────────┐    ┌────────────┐           │                   │                 │
-│  │Llama-3.1  │    │    SFT     │           │                   │                 │
-│  │8B-Instruct│───▶│  (QLoRA)   │           │                   │                 │
-│  │  4-bit    │    │ r=16, α=32 │           │                   │                 │
-│  └───────────┘    └─────┬──────┘           │                   │                 │
-│                         │                  │                   │                 │
-│                         ▼                  │                   │                 │
-│                   ┌────────────┐           │                   │                 │
-│                   │   MERGE    │           │                   │                 │
-│                   │ LoRA → Base │           │                   │                 │
-│                   │  (bf16)    │           │                   │                 │
-│                   └─────┬──────┘           │                   │                 │
-│                         │                  │                   │                 │
-│                         ▼                  ▼                   ▼                 │
-│                   ┌─────────────────────────────────────────────┐                │
-│                   │              DPO (Fresh QLoRA)               │                │
-│                   │         β=0.05, LR=1e-5, 782 steps          │                │
-│                   └──────────────────────┬──────────────────────┘                │
-│                                          │                                       │
-└──────────────────────────────────────────┼───────────────────────────────────────┘
-                                           │
-                    ┌──────────────────────┼──────────────────────┐
-                    │                      ▼                      │
-                    │  ┌────────────────────────────────────────┐ │
-                    │  │         EVALUATION & SERVING            │ │
-                    │  ├────────────────────────────────────────┤ │
-                    │  │                                        │ │
-                    │  │  ┌──────────┐  ┌──────────┐         │ │
-                    │  │  │Factuality│  │ Response │         │ │
-                    │  │  │  Eval    │  │ Compare  │         │ │
-                    │  │  │(51 prompts) │(Base/SFT/│         │ │
-                    │  │  │ temp=0)  │  │  DPO)    │         │ │
-                    │  │  └──────────┘  └──────────┘         │ │
-                    │  │                                        │ │
-                    │  └────────────────────┬───────────────────┘ │
-                    │                       │                     │
-                    └───────────────────────┼─────────────────────┘
-                                            │
-                                            ▼
-                    ┌───────────────────────────────────────────────┐
-                    │              STREAMLIT DASHBOARD               │
-                    │                                               │
-                    │  • Training curves (loss, reward accuracy)    │
-                    │  • Factuality comparison (Base vs SFT vs DPO) │
-                    │  • Metric-factuality mismatch visualization   │
-                    │  • Version comparison (v1–v5)                 │
-                    │  • Response examples                          │
-                    └───────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph SOURCES["📦 Data Sources"]
+        HF["HuggingFace\nModel Hub"]
+        OH["OpenHermes-2.5\n+ Technical Instructions\n(875 examples)"]
+        UF["UltraFeedback\nCleaned"]
+        FD["Factual DPO Pairs\n(20% upsampled)"]
+    end
+
+    subgraph SFT_BLOCK["🔧 Stage 1 — Supervised Fine-Tuning (RunPod.io)"]
+        BASE["Llama-3.1-8B-Instruct\n4-bit NF4 QLoRA"]
+        SFT_T["SFT Trainer\nQLoRA r=16 α=32\n875 examples × 3 epochs\nLoss: 1.41"]
+        MERGE["Merge LoRA → Base\nbf16 weights"]
+        HF --> BASE
+        OH --> SFT_T
+        BASE --> SFT_T --> MERGE
+    end
+
+    subgraph DPO_BLOCK["⚖️ Stage 2 — Direct Preference Optimization"]
+        DPO_T["DPO Trainer\nFresh QLoRA on merged weights\nβ=0.05 · LR=1e-5 · 782 steps\nReward Accuracy: 82% (peak 88%)"]
+        UF --> DPO_T
+        FD --> DPO_T
+        MERGE --> DPO_T
+    end
+
+    subgraph EVAL_BLOCK["📊 Evaluation"]
+        FACT["Factuality Eval\n51 prompts · temp=0\nStrict keyword matching"]
+        COMP["Response Compare\nBase vs SFT vs DPO"]
+        SCALE["SFT Scaling Study\n7 configs × epoch/data ablation"]
+        DPO_T --> FACT
+        DPO_T --> COMP
+        SFT_T --> SCALE
+    end
+
+    subgraph DASH["📈 Streamlit Dashboard (Live)"]
+        TC["Training Curves\nLoss + Reward Accuracy"]
+        FC["Factuality Comparison\nBase vs SFT vs DPO"]
+        AFG_VIZ["AFG Visualization\nMetric-Factuality Mismatch"]
+        VER["Version History\nv1 → v5 Progression"]
+        FACT --> FC
+        COMP --> AFG_VIZ
+        SCALE --> TC
+        DPO_T --> VER
+    end
+
+    SOURCES --> SFT_BLOCK
+    SFT_BLOCK --> DPO_BLOCK
+    DPO_BLOCK --> EVAL_BLOCK
+    EVAL_BLOCK --> DASH
 ```
 
 **Key design decisions:**
