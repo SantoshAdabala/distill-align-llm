@@ -1,0 +1,10 @@
+{
+  "model_path": "./outputs/bsft_full_dpo_merged",
+  "label": "bsft_dpo_3b",
+  "task": "truthfulqa_mc1",
+  "eval_mode": "mc",
+  "accuracy": 0.2864137086903305,
+  "num_samples": 817,
+  "num_correct": 234,
+  "elapsed_seconds": 162.3
+}

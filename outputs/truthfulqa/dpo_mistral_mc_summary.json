@@ -1,0 +1,10 @@
+{
+  "model_path": "./outputs/mistral_merged",
+  "label": "dpo_mistral",
+  "task": "truthfulqa_mc1",
+  "eval_mode": "mc",
+  "accuracy": 0.3427172582619339,
+  "num_samples": 817,
+  "num_correct": 280,
+  "elapsed_seconds": 186.1
+}

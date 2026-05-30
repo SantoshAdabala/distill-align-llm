@@ -1,0 +1,10 @@
+{
+  "model_path": "mistralai/Mistral-7B-Instruct-v0.3",
+  "label": "base_mistral",
+  "task": "truthfulqa_mc1",
+  "eval_mode": "mc",
+  "accuracy": 0.379436964504284,
+  "num_samples": 817,
+  "num_correct": 310,
+  "elapsed_seconds": 210.2
+}

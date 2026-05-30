@@ -1,0 +1,10 @@
+{
+  "model_path": "meta-llama/Llama-3.2-3B-Instruct",
+  "label": "base_3b",
+  "task": "truthfulqa_mc1",
+  "eval_mode": "mc",
+  "accuracy": 0.3390452876376989,
+  "num_samples": 817,
+  "num_correct": 277,
+  "elapsed_seconds": 187.0
+}

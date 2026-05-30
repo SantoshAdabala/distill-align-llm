@@ -1,0 +1,10 @@
+{
+  "model_path": "./outputs/sft_merged",
+  "label": "dpo_8b",
+  "task": "truthfulqa_mc1",
+  "eval_mode": "mc",
+  "accuracy": 0.27906976744186046,
+  "num_samples": 817,
+  "num_correct": 228,
+  "elapsed_seconds": 186.5
+}
