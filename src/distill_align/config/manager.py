@@ -22,18 +22,7 @@ class ConfigManager:
 
     @staticmethod
     def load_config(config_path: str | Path) -> PipelineConfig:
-        """Load a YAML config file and return a validated PipelineConfig.
-
-        Args:
-            config_path: Path to the YAML configuration file.
-
-        Returns:
-            A fully validated PipelineConfig object.
-
-        Raises:
-            FileNotFoundError: If the config file doesn't exist.
-            ConfigValidationError: If required fields are missing or types are wrong.
-        """
+        """Load a YAML config file and return a validated PipelineConfig."""
         config_path = Path(config_path)
 
         if not config_path.exists():
@@ -66,12 +55,7 @@ class ConfigManager:
 
     @staticmethod
     def save_config(config: PipelineConfig, output_path: str | Path) -> None:
-        """Serialize a PipelineConfig to a YAML file.
-
-        Args:
-            config: Validated pipeline configuration.
-            output_path: Destination file path.
-        """
+        """Serialize a PipelineConfig to a YAML file."""
         output_path = Path(output_path)
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -88,17 +72,7 @@ class ConfigManager:
 
     @staticmethod
     def from_dict(data: dict) -> PipelineConfig:
-        """Create a PipelineConfig from a dictionary.
-
-        Args:
-            data: Dictionary matching PipelineConfig structure.
-
-        Returns:
-            Validated PipelineConfig object.
-
-        Raises:
-            ConfigValidationError: If validation fails.
-        """
+        """Create a PipelineConfig from a dictionary."""
         try:
             return PipelineConfig(**data)
         except ValidationError as e:
