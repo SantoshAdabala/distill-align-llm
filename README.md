@@ -1,10 +1,10 @@
 # distill-align-llm
 
-An experiment in LLM alignment. I wanted to understand what DPO actually does to a model's factual knowledge — not just whether reward accuracy goes up, but whether the model gets better at answering domain-specific questions correctly.
+An experiment in LLM alignment. I wanted to understand what DPO actually does to a model's factual knowledge - not just whether reward accuracy goes up, but whether the model gets better at answering domain-specific questions correctly.
 
 Short answer: reward accuracy and factuality are not the same thing, and the gap between them depends a lot on how you measure factuality.
 
-**[Live dashboard →](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)**
+**[Live dashboard ->](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)**
 
 ---
 
@@ -27,17 +27,17 @@ Short answer: reward accuracy and factuality are not the same thing, and the gap
 
 ## What I built
 
-A full SFT → DPO pipeline on Llama-3.1-8B-Instruct using QLoRA. The training runs on RunPod (A100 SXM / RTX A6000). The whole thing — SFT, merge, DPO, eval — costs about $27.
+A full SFT -> DPO pipeline on Llama-3.1-8B-Instruct using QLoRA. The training runs on RunPod (A100 SXM / RTX A6000). The whole thing - SFT, merge, DPO, eval - costs about $27.
 
 After getting the pipeline working, I ran a bunch of experiments:
 
-- **SFT scaling study** — 8 configs varying data size and epoch count
-- **DPO with merged-SFT strategy** — merging the SFT adapter into base weights before DPO instead of stacking
-- **Alternative methods** — SimPO, BSFT, IPO
-- **Cross-model comparison** — Mistral-7B and Llama-3.2-3B with the same pipeline
-- **Token probability analysis** — does the model know the answer but fail to generate it?
-- **Semantic + LLM-judge evaluation** — because strict keyword matching on 51 prompts isn't a great benchmark
-- **Temperature sweep** — does lowering temperature help recover suppressed knowledge?
+- **SFT scaling study** - 8 configs varying data size and epoch count
+- **DPO with merged-SFT strategy** - merging the SFT adapter into base weights before DPO instead of stacking
+- **Alternative methods** - SimPO, BSFT, IPO
+- **Cross-model comparison** - Mistral-7B and Llama-3.2-3B with the same pipeline
+- **Token probability analysis** - does the model know the answer but fail to generate it?
+- **Semantic + LLM-judge evaluation** - because strict keyword matching on 51 prompts isn't a great benchmark
+- **Temperature sweep** - does lowering temperature help recover suppressed knowledge?
 
 ---
 
@@ -45,15 +45,15 @@ After getting the pipeline working, I ran a bunch of experiments:
 
 **Reward accuracy ≠ factuality, but the gap depends on evaluation methodology.**
 
-With strict keyword matching on 51 prompts, DPO achieves 82% reward accuracy but only 17.6% factuality — a 64-point gap. With a proper 500-prompt LLM-judge benchmark, factuality comes out at 75.7% — a 6.4-point gap. Same model, very different numbers depending on how you test it.
+With strict keyword matching on 51 prompts, DPO achieves 82% reward accuracy but only 17.6% factuality - a 64-point gap. With a proper 500-prompt LLM-judge benchmark, factuality comes out at 75.7% - a 6.4-point gap. Same model, very different numbers depending on how you test it.
 
-**The model knows the answers — it just doesn't always generate them.**
+**The model knows the answers - it just doesn't always generate them.**
 
-Token probability analysis (sprint3) showed that after SFT/DPO, the correct token ranks at median position 2. The model has the knowledge — it's a generation suppression problem. Lowering temperature to 0.1 recovers some of it (+3pp).
+Token probability analysis (sprint3) showed that after SFT/DPO, the correct token ranks at median position 2. The model has the knowledge - it's a generation suppression problem. Lowering temperature to 0.1 recovers some of it (+3pp).
 
 **Epoch count matters more than data volume.**
 
-875 examples × 3 epochs outperforms 10,000 examples × 1 epoch on factuality. The 5K×3ep config had the lowest training loss but worse factuality than 875×3ep — too much generic data dilutes the technical signal.
+875 examples × 3 epochs outperforms 10,000 examples × 1 epoch on factuality. The 5K×3ep config had the lowest training loss but worse factuality than 875×3ep - too much generic data dilutes the technical signal.
 
 **The AFG is model-size dependent.**
 
@@ -87,7 +87,7 @@ Llama-3.2-3B shows a 37-point gap; Mistral-7B shows 3.1 points; Llama-3.1-8B sit
 | 5K×3ep | 1.02 | 7.8% | -2.0pp |
 | 10K×1ep | 1.09 | 9.8% | 0.0pp |
 
-The 5K×3ep result is the weird one — lowest loss, but factuality drops below 875×3ep. My hypothesis: the generic OpenHermes examples (4,125 out of 5,000) dilute the technical signal when you see them 3× per epoch. It's a single run so I can't rule out noise, but it's consistent with the general pattern.
+The 5K×3ep result is the weird one - lowest loss, but factuality drops below 875×3ep. My hypothesis: the generic OpenHermes examples (4,125 out of 5,000) dilute the technical signal when you see them 3× per epoch. It's a single run so I can't rule out noise, but it's consistent with the general pattern.
 
 ### Token probability analysis
 
@@ -106,7 +106,7 @@ Suppression = the model assigns high probability to the correct token but still 
 | Llama-3.1-8B (this project) | 82% | 75.7% | 6.4pp |
 | Mistral-7B | 77% | 73.9% | 3.1pp |
 | Llama-3.2-3B | 73% | 35.9% | 37.1pp |
-| SimPO — Llama-3.1-8B | 73% | 64.9% | 8.1pp |
+| SimPO - Llama-3.1-8B | 73% | 64.9% | 8.1pp |
 
 ### Version history
 
@@ -116,9 +116,9 @@ Suppression = the model assigns high probability to the correct token but still 
 | SFT | Alpaca 1K×1ep | Alpaca 1K×1ep | Tech 3.9K×1ep | Tech 3.9K×1ep | Tech 875×3ep |
 | DPO | Stacked β=0.1 | Stacked β=0.1 | Stacked β=0.1 | Merged β=0.05 | Merged β=0.05 |
 | Peak reward acc | 50% | 75% | 68% | 83% | **88%** |
-| Factuality | — | — | 9.8% | 5.9% | **17.6%** |
+| Factuality | - | - | 9.8% | 5.9% | **17.6%** |
 
-The jump from v3→v4 was switching from stacked adapters to merging SFT into base weights before DPO. That alone went from 68% → 83% peak reward accuracy.
+The jump from v3->v4 was switching from stacked adapters to merging SFT into base weights before DPO. That alone went from 68% -> 83% peak reward accuracy.
 
 ---
 
@@ -294,7 +294,7 @@ dpo:
 
 ## Still open
 
-- Does the AFG pattern hold for instruction-tuned vs base models? The merged-SFT strategy essentially creates a fine-tuned base before DPO — might behave differently than pure base model DPO.
+- Does the AFG pattern hold for instruction-tuned vs base models? The merged-SFT strategy essentially creates a fine-tuned base before DPO - might behave differently than pure base model DPO.
 - The token suppression finding suggests calibration (temperature scaling) might help more than further training. Worth testing.
 - Replication: the scaling study runs one seed per config. Some results (especially the 5K×3ep anomaly) could be noise.
 
