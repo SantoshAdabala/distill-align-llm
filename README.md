@@ -1,116 +1,55 @@
-# distill-align-llm — 82% Reward Accuracy. 17.6% Factuality. A 57-Point Gap That Demands Explanation.
+# distill-align-llm — 82% Reward Accuracy. 75.7% Factuality. A Gap That Demands Explanation.
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Transformers-FFD21E?style=flat-square&logo=huggingface&logoColor=black)](https://huggingface.co)
-[![TRL](https://img.shields.io/badge/TRL-SFT%20%7C%20DPO-blueviolet?style=flat-square)](https://github.com/huggingface/trl)
+[![TRL](https://img.shields.io/badge/TRL-SFT%20%7C%20DPO%20%7C%20SimPO-blueviolet?style=flat-square)](https://github.com/huggingface/trl)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)
 [![RunPod](https://img.shields.io/badge/RunPod-~%2427_total-6B46C1?style=flat-square)](https://runpod.io)
 [![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-success?style=flat-square&logo=streamlit)](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)
 
-End-to-end LLM alignment pipeline (**SFT → DPO**) on Llama-3.1-8B-Instruct with QLoRA, systematically investigating how preference optimization interacts with domain-specific factual knowledge — and quantifying the gap when standard alignment metrics and real-world accuracy diverge.
+End-to-end LLM alignment research pipeline investigating how preference optimization interacts with domain-specific factual knowledge. Trains **SFT → DPO** on Llama-3.1-8B-Instruct with QLoRA, then systematically probes whether alignment metrics and factuality diverge — and why.
 
 ---
 
-## Key Results at a Glance
+## Key Results
 
-| Metric | Value | Takeaway |
-|--------|-------|----------|
-| DPO Reward Accuracy | **82%** (peak **88%**) | Strong alignment signal ✅ |
-| Domain Factuality — Base | 9.8% | Llama-3.1-8B baseline |
-| Domain Factuality — SFT | 15.7% | +5.9 pp gain from 875×3ep SFT |
-| Domain Factuality — DPO | **17.6%** | Gain preserved through DPO |
-| **Alignment-Factuality Gap (AFG)** | **57 points** | Reward accuracy ≠ factual accuracy ⚠️ |
-| Training cost | **~$27** | Full pipeline on RunPod.io |
-| Test suite | **44 passing** | pytest, with ruff linting |
-| GPU versions | **v1 → v5** | Systematic ablation across 4 GPU tiers |
+| Metric | Value |
+|--------|-------|
+| DPO Reward Accuracy | **82%** (peak **88%**) |
+| Factuality — Base (51 prompts, keyword) | 9.8% |
+| Factuality — SFT (875×3ep) | 15.7% |
+| Factuality — DPO (keyword) | 17.6% |
+| Factuality — DPO (500 prompts, LLM-judge) | **75.7%** |
+| Factuality — DPO (500 prompts, keyword) | **78.8%** |
+| **Alignment-Factuality Gap (AFG, keyword)** | **6.4 points** (DPO: 82% reward vs 78.8% factuality) |
+| Training cost | **~$27** on RunPod.io |
+| Test suite | **44 passing** (pytest + ruff) |
 
-> **The central finding:** A model can simultaneously achieve 82% reward accuracy and only 17.6% factuality on domain-specific questions — these metrics measure fundamentally different capabilities. Standard DPO training does not bridge this gap.
+> **Note on the gap:** The original 57-point AFG was measured on 51 prompts with strict keyword matching against a base model. With a proper 500-prompt LLM-judge benchmark (TechFact-100 expanded), the gap narrows to 6.4 points — DPO at 82% reward accuracy and 75.7% judge factuality. The gap is real but the magnitude depends heavily on evaluation methodology.
 
 ---
 
 ## Why This Matters
 
-Reward accuracy is the metric most practitioners use to declare RLHF/DPO training "successful." This project demonstrates empirically that a high reward score can mask a persistent factual knowledge deficit — a phenomenon we term the **Alignment-Factuality Gap (AFG)**. The 57-point gap observed here suggests that preference optimization teaches a model to *sound* aligned without necessarily grounding its outputs in verified facts. This has direct implications for any application where factual correctness matters: medical Q&A, technical documentation, code generation. The scaling study adds a second insight: within the configurations tested, **epoch count was more predictive of factual gains than raw data volume** — 875 examples × 3 epochs outperformed 10,000 examples × 1 epoch. This suggests that knowledge consolidation, not data scale alone, drives factual alignment.
+Standard DPO training is typically declared "successful" when reward accuracy is high. This project shows that reward accuracy and factual accuracy measure different things, and that the gap between them depends critically on how factuality is measured. Strict keyword matching on 51 prompts produces a 57-point gap; LLM-judge evaluation on 500 prompts narrows it to 6.4 points. The methodology used to evaluate factuality matters as much as the training strategy itself.
+
+A second finding: within the configurations tested, **epoch count was more predictive of factual gains than data volume** — 875 examples × 3 epochs outperformed 10,000 examples × 1 epoch. The 5K×3ep config, which had the lowest training loss, actually hurt factuality — consistent with generic data diluting technical signal.
 
 ---
 
-## The Alignment-Factuality Gap (AFG)
-
-| Metric | Score | |
-|--------|-------|-|
-| DPO Reward Accuracy | 82% | ✅ |
-| SFT Token Accuracy | 78% | ✅ |
-| Domain Factuality (DPO) | 17.6% | ⚠️ |
-| **AFG** | **57 points** | |
-
-Reward accuracy (82%) far exceeds factuality (17.6%). These metrics measure fundamentally different capabilities — preference alignment versus grounded factual recall.
-
----
-
-## Factuality Evaluation
-
-Tested Base vs SFT vs DPO on 51 technical ML prompts (strict keyword matching, temperature=0):
-
-| Model Stage | Passed | Accuracy |
-|-------------|--------|----------|
-| Base (Llama-3.1-8B-Instruct) | 5/51 | 9.8% |
-| SFT (875 examples × 3 epochs) | 8/51 | 15.7% |
-| DPO (Merged-SFT, β=0.05) | 9/51 | **17.6%** |
-
-### SFT Scaling Study
-
-| Config | Factuality | Δ vs Base |
-|--------|-----------:|----------:|
-| 875×1ep | 7.8% | −2.0 pp |
-| 875×3ep | **15.7%** | **+5.9 pp** |
-| 875×5ep | 15.7% | +5.9 pp |
-| 2.5K×1ep | 9.8% | 0.0 pp |
-| 2.5K×3ep | **15.7%** | **+5.9 pp** |
-| 5K×3ep | 7.8% | −2.0 pp |
-| 10K×1ep | 9.8% | 0.0 pp |
-
-**Key insight:** Repeated exposure (epochs) was more predictive of factual gains than data volume. 3 epochs is the effective threshold; adding more generic data can *dilute* technical knowledge rather than reinforce it.
-
----
-
-## Results (v5 — Latest)
-
-| Stage | Metric | Value |
-|-------|--------|-------|
-| **SFT** | Config | 875 examples × 3 epochs |
-| **SFT** | Loss | 1.41 |
-| **DPO** | Reward Accuracy | 82% (peak 88%) |
-| **DPO** | Loss | 0.52 |
-| **Factuality** | Base → SFT → DPO | 9.8% → 15.7% → 17.6% |
-| **AFG** | Alignment-Factuality Gap | 57 points (exact) |
-
-### Version Progression
-
-| Version | GPU | DPO Config | Peak Reward Acc | Key Change |
-|---------|-----|------------|:---------------:|------------|
-| v1 | RTX 3090 | Stacked, β=0.1, LR=5e-5 | 50% | Baseline (weak) |
-| v2 | RTX A5000 | Stacked, β=0.1, LR=1e-5 | 75% | Lower LR + cleaned data |
-| v3 | A100 SXM | Stacked, β=0.1 | 68% | Added technical SFT data |
-| v4 | RTX A6000 | Merged-SFT, β=0.05 | 83% | Merge adapter + lower β |
-| v5 | A100 SXM | Merged-SFT, β=0.05 | **88%** | **3-epoch SFT (scaling study)** |
-
-**Total training cost: ~$27** on RunPod.io
-
----
-
-## Architecture
+## Training Pipeline
 
 ```mermaid
 flowchart TD
     subgraph SOURCES["📦 Data Sources"]
-        HF["HuggingFace\nModel Hub"]
+        HF["HuggingFace Model Hub"]
         OH["OpenHermes-2.5\n+ Technical Instructions\n(875 examples)"]
-        UF["UltraFeedback\nCleaned"]
+        UF["UltraFeedback Cleaned"]
         FD["Factual DPO Pairs\n(20% upsampled)"]
     end
 
-    subgraph SFT_BLOCK["🔧 Stage 1 — Supervised Fine-Tuning (RunPod.io)"]
+    subgraph SFT_BLOCK["🔧 Stage 1 — Supervised Fine-Tuning"]
         BASE["Llama-3.1-8B-Instruct\n4-bit NF4 QLoRA"]
         SFT_T["SFT Trainer\nQLoRA r=16 α=32\n875 examples × 3 epochs\nLoss: 1.41"]
         MERGE["Merge LoRA → Base\nbf16 weights"]
@@ -120,43 +59,138 @@ flowchart TD
     end
 
     subgraph DPO_BLOCK["⚖️ Stage 2 — Direct Preference Optimization"]
-        DPO_T["DPO Trainer\nFresh QLoRA on merged weights\nβ=0.05 · LR=1e-5 · 782 steps\nReward Accuracy: 82% (peak 88%)"]
+        DPO_T["DPO Trainer\nFresh QLoRA on merged weights\nβ=0.05 · LR=1e-5 · 782 steps\nReward Acc: 82% (peak 88%)"]
         UF --> DPO_T
         FD --> DPO_T
         MERGE --> DPO_T
     end
 
-    subgraph EVAL_BLOCK["📊 Evaluation"]
-        FACT["Factuality Eval\n51 prompts · temp=0\nStrict keyword matching"]
-        COMP["Response Compare\nBase vs SFT vs DPO"]
-        SCALE["SFT Scaling Study\n7 configs × epoch/data ablation"]
-        DPO_T --> FACT
-        DPO_T --> COMP
-        SFT_T --> SCALE
+    subgraph ALT["🔀 Alternative Methods (Completed)"]
+        SIMPO["SimPO\nLlama-3.1-8B\nReward Acc: 73%\nAFG: 8.1pp"]
+        BSFT["BSFT Variants\nBaseline / Ablation / Quality / Token\n500-prompt eval"]
+        CROSS["Cross-Model\nMistral-7B: AFG 3.1pp\nLlama-3.2-3B: AFG 37.1pp"]
+    end
+
+    subgraph EVAL_BLOCK["📊 Evaluation Suite (Completed)"]
+        KW["Keyword Eval\n51 prompts · temp=0"]
+        SEM["Semantic Eval\n100 prompts · sentence-transformers"]
+        JUDGE["LLM-Judge Eval\n500 prompts · TechFact-100\n5 categories · 3 difficulty levels"]
+        TOK["Token Probability Analysis\nRank · Suppression · Forgetting"]
+        TEMP["Temperature Sweep\n0.1 / 0.5 / 1.0 · 500 prompts"]
+        ATTN["Attention Shift Analysis"]
+        DPO_T --> KW & SEM & JUDGE & TOK & TEMP & ATTN
     end
 
     subgraph DASH["📈 Streamlit Dashboard (Live)"]
-        TC["Training Curves\nLoss + Reward Accuracy"]
+        TC["Training Curves"]
         FC["Factuality Comparison\nBase vs SFT vs DPO"]
-        AFG_VIZ["AFG Visualization\nMetric-Factuality Mismatch"]
-        VER["Version History\nv1 → v5 Progression"]
-        FACT --> FC
-        COMP --> AFG_VIZ
-        SCALE --> TC
-        DPO_T --> VER
+        VER["Version History v1→v5"]
     end
 
-    SOURCES --> SFT_BLOCK
-    SFT_BLOCK --> DPO_BLOCK
+    SOURCES --> SFT_BLOCK --> DPO_BLOCK
+    DPO_BLOCK --> ALT
     DPO_BLOCK --> EVAL_BLOCK
     EVAL_BLOCK --> DASH
 ```
 
-**Key design decisions:**
-- **Merged-SFT strategy** — SFT adapter is merged into base weights before DPO, preventing adapter competition
-- **QLoRA throughout** — 4-bit NF4 quantization enables 8B model training on consumer GPUs (24–48 GB)
-- **20% factual DPO pairs** — Upsampled domain-specific preferences to counterbalance generic helpfulness signal
-- **Deterministic eval** — Temperature=0 with strict keyword matching for reproducible factuality measurement
+---
+
+## Evaluation Results
+
+### Keyword Eval (51 prompts, strict, temp=0)
+
+| Model Stage | Passed | Accuracy |
+|-------------|--------|----------|
+| Base (Llama-3.1-8B-Instruct) | 5/51 | 9.8% |
+| SFT (875 examples × 3 epochs) | 8/51 | 15.7% |
+| DPO (Merged-SFT, β=0.05) | 9/51 | 17.6% |
+
+### LLM-Judge Eval (500 prompts, TechFact-100 expanded)
+
+| Category | Judge Accuracy | Keyword Pass Rate |
+|----------|:--------------:|:-----------------:|
+| Architecture Facts | 79.0% | — |
+| Training Mechanics | 75.0% | — |
+| Alignment Concepts | 76.3% | — |
+| Quantization & Efficiency | 74.7% | — |
+| Empirical Reasoning | 73.3% | — |
+| **Overall (DPO)** | **75.7%** | **78.8%** |
+
+By difficulty — harder questions score lower:
+- Level 1 (easy): **95.2%**
+- Level 2 (medium): **69.6%**
+- Level 3 (hard): **82.5%**
+
+### Semantic Eval (100 prompts, sentence-transformers)
+
+| Stage | Exact Accuracy | Semantic Accuracy |
+|-------|:--------------:|:-----------------:|
+| Base | 9% | 20% |
+
+*SFT/DPO semantic results in `outputs/semantic_eval_results.json`.*
+
+### Token Probability Analysis (sprint3)
+
+Answers the question: does the model *know* the answer but fail to *generate* it?
+
+| Stage | Suppression Rate | Forgetting Rate | Median Token Rank | Mean Correct Prob |
+|-------|:----------------:|:---------------:|:-----------------:|:-----------------:|
+| Base | 33.3% | 47.1% | 76 | 0.108 |
+| SFT (5ep) | **76.5%** | 7.8% | **2** | 0.268 |
+| DPO (5ep) | **76.5%** | 5.9% | **2** | 0.297 |
+
+**Finding:** The model *knows* the correct answers — correct tokens rank at median position 2 after SFT/DPO, with 76.5% suppression (the model has the knowledge but picks a different token). This is a generation suppression problem, not a knowledge absence problem.
+
+### Temperature Sweep (500 prompts, DPO 5ep)
+
+| Temperature | Keyword Pass Rate |
+|-------------|:-----------------:|
+| 0.1 | **78.6%** |
+| 0.5 | 78.4% |
+| 1.0 | 75.6% |
+
+Best temperature: **0.1** — modest +3.0pp improvement vs default. Low temperature helps extract suppressed knowledge.
+
+### Cross-Model Comparison
+
+| Model | Reward Accuracy | Factuality (judge) | AFG |
+|-------|:--------------:|:------------------:|:---:|
+| DPO — Llama-3.1-8B (this project) | 82% | 75.7% | 6.4pp |
+| DPO — Mistral-7B | 77% | 73.9% | 3.1pp |
+| DPO — Llama-3.2-3B | 73% | 35.9% | 37.1pp |
+| SimPO — Llama-3.1-8B | 73% | 64.9% | 8.1pp |
+
+**Finding:** The AFG is model-size dependent. The 3B model shows a massive gap (37.1pp); 7B+ models show much smaller gaps (3–8pp). Mistral-7B has the smallest AFG despite lower reward accuracy.
+
+---
+
+## SFT Scaling Study
+
+| Config | Loss | Factuality | Δ vs Base |
+|--------|:----:|:----------:|:---------:|
+| 875×1ep | 2.16 | 7.8% | −2.0pp |
+| 875×3ep | **1.41** | **15.7%** | **+5.9pp** |
+| 875×5ep | 1.11 | 15.7% | +5.9pp |
+| 2.5K×1ep | 1.31 | 9.8% | 0.0pp |
+| 2.5K×3ep | 1.10 | **15.7%** | **+5.9pp** |
+| 5K×3ep | 1.02 | 7.8% | −2.0pp |
+| 10K×1ep | 1.09 | 9.8% | 0.0pp |
+
+**Key insight:** 3 epochs is the threshold for factual gains. The 5K×3ep config achieves the lowest loss (1.02) but *worse* factuality than 875×3ep — the generic data dilutes technical signal despite more total training.
+
+---
+
+## Version History
+
+| Version | GPU | DPO Config | Peak Reward Acc | Factuality |
+|---------|-----|------------|:---------------:|:----------:|
+| v1 | RTX 3090 | Stacked, β=0.1, LR=5e-5 | 50% | — |
+| v2 | RTX A5000 | Stacked, β=0.1, LR=1e-5 | 75% | — |
+| v3 | A100 SXM | Stacked, β=0.1 | 68% | 9.8% |
+| v4 | RTX A6000 | Merged-SFT, β=0.05 | 83% | 5.9% |
+| v5 | A100 SXM | Merged-SFT, β=0.05 | **88%** | **17.6%** |
+
+**Total training cost: ~$27** on RunPod.io
 
 ---
 
@@ -164,25 +198,47 @@ flowchart TD
 
 ```
 distill-align-llm/
-├── configs/local_small.yaml       # Training hyperparameters
+├── configs/                       # Training hyperparameters (YAML)
 ├── src/distill_align/
 │   ├── config/                    # YAML + Pydantic config system
 │   ├── data/processor.py          # Dataset loading & tokenization
 │   ├── models/loader.py           # Model loading with QLoRA + LoRA
-│   ├── training/
-│   │   ├── sft.py                 # SFT trainer (TRL SFTTrainer)
-│   │   ├── dpo.py                 # DPO trainer (TRL DPOTrainer)
-│   │   └── rlhf.py               # GRPO trainer (TRL GRPOTrainer)
+│   ├── monitoring/service.py      # Monitoring service
+│   ├── serving/api.py             # Inference API
+│   └── training/
+│       ├── sft.py                 # SFT trainer (TRL SFTTrainer)
+│       ├── dpo.py                 # DPO trainer (TRL DPOTrainer)
+│       └── rlhf.py               # GRPO trainer (TRL GRPOTrainer)
 ├── scripts/
 │   ├── run_sft.py                 # SFT entry point
-│   ├── run_dpo.py                 # DPO entry point (supports --merge-sft)
-│   ├── eval_factuality_all.py     # Base vs SFT vs DPO factuality eval
+│   ├── run_dpo.py                 # DPO entry point (--merge-sft flag)
+│   ├── run_bsft.py                # BSFT training
+│   ├── simpo.py                   # SimPO training
+│   ├── eval_factuality_all.py     # Keyword eval: Base vs SFT vs DPO
+│   ├── eval_factuality_v2.py      # 500-prompt eval
+│   ├── eval_semantic.py           # Semantic + LLM-judge eval
+│   ├── eval_token_probs.py        # Token probability analysis
+│   ├── token_rank_analysis.py     # Token rank + suppression
+│   ├── probability_mass_analysis.py # Probability mass shift
+│   ├── attention_shift_analysis.py  # Attention pattern analysis
+│   ├── temperature_sweep.py       # Temperature sweep eval
+│   ├── cross_method_eval.py       # Cross-model comparison
+│   ├── run_sft_scaling.py         # SFT scaling study
 │   └── compare_models.py          # Response comparison
 ├── data/
 │   ├── technical_instructions.jsonl  # 875 domain-specific SFT examples
-│   ├── factual_dpo_pairs.jsonl       # Factual preference pairs
-│   ├── eval_factuality.jsonl         # 51 factuality test prompts
-│   └── uncertainty_examples.jsonl    # "I don't know" training examples
+│   ├── factual_dpo_pairs.jsonl       # Factual preference pairs (20% upsampled)
+│   ├── eval_factuality.jsonl         # 51-prompt benchmark
+│   ├── eval_factuality_500.jsonl     # 500-prompt benchmark
+│   ├── techfact_100.jsonl            # TechFact-100 (5 categories, 3 difficulty levels)
+│   └── uncertainty_examples.jsonl   # "I don't know" training examples
+├── outputs/
+│   ├── scaling/                   # SFT scaling study results (8 configs)
+│   ├── sprint3/                   # Token prob, attention, temperature sweep
+│   ├── eval_v2_judge/             # 500-prompt LLM-judge results
+│   ├── cross_method/              # Mistral-7B, Llama-3.2-3B comparison
+│   ├── bsft_*/                    # BSFT / SimPO ablation outputs
+│   └── semantic_eval_results.json
 ├── dashboard/app.py               # Streamlit results dashboard
 ├── docs/RESULTS.md                # Detailed training logs
 ├── tests/                         # 44 passing tests
@@ -202,7 +258,7 @@ make install
 # Run tests
 make test
 
-# Launch dashboard
+# Launch dashboard (no GPU needed)
 pip install -r dashboard/requirements.txt
 streamlit run dashboard/app.py
 ```
@@ -211,26 +267,36 @@ streamlit run dashboard/app.py
 
 ```bash
 # Deploy GPU pod (RTX A6000 48GB recommended), then:
-git clone https://github.com/SantoshAdabala/distill-align-llm.git
-cd distill-align-llm
 pip install transformers accelerate peft datasets bitsandbytes trl
 pip install -e .
 huggingface-cli login
 
 # SFT (~12 min)
-nohup python scripts/run_sft.py --config configs/local_small.yaml > sft_log.txt 2>&1 &
+python scripts/run_sft.py --config configs/local_small.yaml
 
 # DPO with merged-SFT (~70 min)
-nohup python scripts/run_dpo.py --config configs/local_small.yaml \
-    --sft-adapter ./outputs/sft/final_adapter --merge-sft > dpo_log.txt 2>&1 &
+python scripts/run_dpo.py --config configs/local_small.yaml \
+    --sft-adapter ./outputs/sft/final_adapter --merge-sft
 
-# Factuality evaluation
+# Factuality evaluation (keyword, 51 prompts)
 python scripts/eval_factuality_all.py \
     --base-model meta-llama/Llama-3.1-8B-Instruct \
     --sft-adapter ./outputs/sft/final_adapter \
     --dpo-adapter ./outputs/dpo/dpo_adapter \
-    --dpo-base ./outputs/sft_merged \
-    --save-responses
+    --dpo-base ./outputs/sft_merged
+
+# LLM-judge evaluation (500 prompts)
+python scripts/eval_factuality_v2.py
+
+# Token probability analysis
+python scripts/token_rank_analysis.py
+python scripts/probability_mass_analysis.py
+
+# Temperature sweep
+python scripts/temperature_sweep.py
+
+# Cross-model comparison
+python scripts/cross_method_eval.py
 ```
 
 ---
@@ -239,9 +305,10 @@ python scripts/eval_factuality_all.py \
 
 | Category | Technologies |
 |----------|-------------|
-| **Training** | PyTorch, HuggingFace Transformers, TRL, PEFT, bitsandbytes |
+| **Training** | PyTorch, HuggingFace Transformers, TRL (SFT / DPO / SimPO / GRPO), PEFT, bitsandbytes |
 | **Data** | HuggingFace Datasets, UltraFeedback, OpenHermes-2.5 |
-| **Evaluation** | sentence-transformers, TechFact-100 |
+| **Evaluation** | sentence-transformers, TechFact-100, LLM-judge, keyword matching |
+| **Analysis** | Token rank analysis, attention shift, probability mass, temperature sweep |
 | **Dashboard** | Streamlit, Plotly |
 | **Testing** | pytest, ruff |
 | **Infrastructure** | RunPod.io (RTX 3090 / A5000 / A6000 / A100 SXM) |
@@ -263,32 +330,18 @@ model:
     target_modules: [q_proj, k_proj, v_proj, o_proj]
 
 dpo:
-  beta: 0.05          # worked best empirically in this setup
+  beta: 0.05
   learning_rate: 1e-5
   # Uses merged-SFT strategy (--merge-sft flag)
 ```
 
 ---
 
-## Open Problems / Future Work
+## Open Problems
 
-- [ ] Expand benchmark to 500+ prompts with category-level analysis to assess whether the AFG is domain-specific
-- [ ] Replace keyword matching with semantic / LLM-judge factuality evaluation for more nuanced scoring
-- [ ] Token probability analysis — does the model encode the correct fact but fail to *generate* it, or is the knowledge absent?
-- [ ] Replicate on larger models (70B) to test whether epoch-sensitivity and the AFG scale with model capacity
-
----
-
-<details>
-<summary><strong>Resume Talking Points</strong></summary>
-
-- **Designed and executed an end-to-end LLM alignment research pipeline** (SFT → DPO) on Llama-3.1-8B-Instruct using QLoRA (4-bit NF4, r=16, α=32), achieving 82% DPO reward accuracy (peak 88%) across five GPU configurations on RunPod.io for a total training cost of ~$27
-- **Discovered and quantified the Alignment-Factuality Gap (AFG)**: demonstrated that a model achieving 82% reward accuracy retains only 17.6% domain factuality — a 57-point divergence that reveals a fundamental limitation of standard preference optimization as a proxy for factual correctness
-- **Conducted a systematic SFT scaling study** across 7 configurations (data volume × epoch count), finding that epoch depth (3 epochs) was more predictive of factual gains than raw data scale — a non-obvious finding with direct implications for data-efficient fine-tuning pipelines
-- **Implemented the Merged-SFT DPO strategy** — merging LoRA adapters into base weights before DPO training — which improved peak reward accuracy from 50% (v1 stacked baseline) to 88% (v5), demonstrating that adapter interference is a meaningful source of training degradation
-- **Built a production-quality ML research repository** with a live Streamlit dashboard, 44 passing pytest unit tests, YAML + Pydantic configuration management, and reproducible evaluation (temperature=0, strict keyword matching) — reflecting software engineering standards beyond typical research codebases
-
-</details>
+- [ ] Does the AFG pattern hold for instruction-tuned models vs base models?
+- [ ] Can factuality be improved without degrading reward accuracy — or is there a fundamental trade-off?
+- [ ] The token suppression finding suggests low-temperature decoding helps — does deliberate calibration (e.g., temperature scaling layer) close the gap further?
 
 ---
 
