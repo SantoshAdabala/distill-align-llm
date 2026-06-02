@@ -1,8 +1,8 @@
 # distill-align-llm
 
-An experiment in LLM alignment. I wanted to understand what DPO actually does to a model's factual knowledge - not just whether reward accuracy goes up, but whether the model gets better at answering domain-specific questions correctly.
+I set out to measure whether DPO hurts a model's factual knowledge. I built the usual setup: an SFT -> DPO pipeline on Llama-3.1-8B, a 500-question technical benchmark, and an LLM judge to score the answers. The model scored 84% factuality, which looked great.
 
-Short answer: reward accuracy and factuality are not the same thing, and the gap between them depends a lot on how you measure factuality.
+Then I checked the measurement instead of trusting it, and the project turned into something else: a study of how a factuality benchmark that is written and graded by the same weak model inflates the score and hides confident fabrication.
 
 **[Live dashboard ->](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)**
 
@@ -10,154 +10,84 @@ Short answer: reward accuracy and factuality are not the same thing, and the gap
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-TRL-FFD21E?style=flat-square&logo=huggingface&logoColor=black)](https://huggingface.co)
-[![PEFT](https://img.shields.io/badge/PEFT-QLoRA%20r%3D16-8B5CF6?style=flat-square)](https://github.com/huggingface/peft)
-[![bitsandbytes](https://img.shields.io/badge/bitsandbytes-4--bit%20NF4-F59E0B?style=flat-square)](https://github.com/bitsandbytes-foundation/bitsandbytes)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-TRL%20%7C%20PEFT-FFD21E?style=flat-square&logo=huggingface&logoColor=black)](https://huggingface.co)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Live%20Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://distill-align-llm-aembgrswzfay6bjupbnjpp.streamlit.app)
-
-[![Tests](https://img.shields.io/badge/tests-44%20passing-22C55E?style=flat-square&logo=pytest&logoColor=white)](./tests)
-[![Ruff](https://img.shields.io/badge/linter-ruff-D7FF64?style=flat-square)](https://github.com/astral-sh/ruff)
-[![RunPod](https://img.shields.io/badge/RunPod-~%2427%20total-6B46C1?style=flat-square)](https://runpod.io)
 [![Model](https://img.shields.io/badge/Model-Llama--3.1--8B--Instruct-0EA5E9?style=flat-square&logo=meta&logoColor=white)](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct)
 [![License](https://img.shields.io/badge/License-MIT-10B981?style=flat-square)](./LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/SantoshAdabala/distill-align-llm?style=flat-square&color=64748B)](https://github.com/SantoshAdabala/distill-align-llm/commits/main)
-[![Stars](https://img.shields.io/github/stars/SantoshAdabala/distill-align-llm?style=flat-square&color=FBBF24)](https://github.com/SantoshAdabala/distill-align-llm/stargazers)
+
+---
+
+## The finding
+
+The benchmark (TechFact-500) had its questions, its gold reference answers, and its judge all produced by GPT-4o-mini. Under that setup the aligned model scores 84%. It does not survive contact with anything stronger.
+
+| | GPT-4o-mini (self-judge) | GPT-4o (independent) | GPT-4o (clean-key subset) |
+|---|:---:|:---:|:---:|
+| Factuality (pass rate) | **84%** | 48% | **56%** |
+| Confident Fabrication Rate | 7% | 30% | 30% |
+
+Three things are going on underneath that 28-point drop:
+
+**The answer key is wrong about 20-30% of the time.** I audited all 500 gold reference answers with a stronger model: mean quality 1.98/3, and 108 of 500 contain a clear factual error. The errors are not random - they *correlate with the model's own errors*. Several gold answers claim Llama-3.1-8B has 16 attention heads (it has 32), which is exactly the fabrication the model makes. When the model repeats a mistake that is baked into the key, the judge marks it correct. A self-authored, self-judged benchmark manufactures agreement with the model it is grading.
+
+**The model confidently fabricates ~30% of the time and almost never says "I don't know."** Classifying each response as asserted / hedged / refused, half of the model's flat assertions are wrong, and it expresses uncertainty on exactly 1 of 500 questions. The Confident Fabrication Rate (asserted *and* wrong) is ~30% and stays there whether the reference key is clean or corrupt, so it is not an artifact of the bad key. The weak self-judge reports it as 7% - undercounting by 4x, because confident answers that match a fabricated key get scored as correct.
+
+**A reference-free probe confirms it, and points at SFT.** I built TechFact-Trap: 35 questions with no correct answer (made-up acronyms, fabricated methods and papers, false premises). The only honest responses are to refuse or correct the premise.
+
+| Stage | Asserted (fabrication) | Hedged | Refused |
+|---|:---:|:---:|:---:|
+| Base (instruct) | 54% | 43% | 3% |
+| After SFT | **86%** | 14% | **0%** |
+| After DPO | 60% | 40% | **0%** |
+
+Fine-tuning eliminates the model's ability to abstain (refusal -> 0), and domain SFT - not DPO - is what spikes confident fabrication. DPO actually walks it back a little. This is the honest read: the confident fabrication is mostly established during supervised fine-tuning, not by preference optimization.
+
+**Two independent judges agree the score is inflated.** GPT-4o agrees only moderately with GPT-4o-mini (quadratic kappa 0.48), and Claude Opus - a different vendor - agrees less (kappa 0.26) and scores harder still. On a 100-response sample, 18 answers the weak judge passed were failed outright by Opus; they are confident fabrications it accepted ("DPO = Domain-Specific Pre-Training", "SimPO uses a reward model", "bf16 was designed by NVIDIA").
 
 ---
 
 ## What I built
 
-A full SFT -> DPO pipeline on Llama-3.1-8B-Instruct using QLoRA. The training runs on RunPod (A100 SXM / RTX A6000). The whole thing - SFT, merge, DPO, eval - costs about $27.
-
-After getting the pipeline working, I ran a bunch of experiments:
-
-- **SFT scaling study** - 8 configs varying data size and epoch count
-- **DPO with merged-SFT strategy** - merging the SFT adapter into base weights before DPO instead of stacking
-- **Alternative methods** - SimPO, BSFT, IPO
-- **Cross-model comparison** - Mistral-7B and Llama-3.2-3B with the same pipeline
-- **Token probability analysis** - does the model know the answer but fail to generate it?
-- **Semantic + LLM-judge evaluation** - because strict keyword matching on 51 prompts isn't a great benchmark
-- **Temperature sweep** - does lowering temperature help recover suppressed knowledge?
+- **Model pipeline** - Llama-3.1-8B-Instruct, SFT (875 technical examples x 3 epochs, merged) -> DPO (beta=0.05), QLoRA throughout. Trained on RunPod for about $27.
+- **TechFact-500** (`data/eval_factuality_v2.jsonl`) - the GPT-4o-mini-authored benchmark whose circularity is the subject of the study.
+- **TechFact-Trap** (`data/techfact_trap.jsonl`) - 35 no-correct-answer probes for measuring abstention.
+- **Honesty scorer** (`scripts/honesty_eval.py`) - asserted/hedged/refused classification and Confident Fabrication Rate.
+- **Independent re-judging** (`scripts/rejudge.py`) - re-score stored responses with any judge model.
+- **Reference audit** (`scripts/audit_references.py`) - check the gold answer key for factual errors.
+- **Trap evaluation** (`scripts/trap_eval.py`) - run base/SFT/DPO on the trap set and measure refusal vs fabrication.
+- **Figures** (`scripts/make_figures.py`) and the Streamlit **dashboard** (`dashboard/app.py`).
 
 ---
 
-## Main findings
+## Reproduce
 
-**Reward accuracy ≠ factuality, but the gap depends on evaluation methodology.**
+```bash
+git clone https://github.com/SantoshAdabala/distill-align-llm.git
+cd distill-align-llm
+make install
 
-With strict keyword matching on 51 prompts, DPO achieves 82% reward accuracy but only 17.6% factuality - a 64-point gap. With a proper 500-prompt LLM-judge benchmark, factuality comes out at 75.7% - a 6.4-point gap. Same model, very different numbers depending on how you test it.
+# dashboard (no GPU, no API key)
+pip install -r dashboard/requirements.txt
+streamlit run dashboard/app.py
+```
 
-**The model knows the answers - it just doesn't always generate them.**
+The evaluation analyses re-use the stored model responses, so most of them need only an API key, not a GPU:
 
-Token probability analysis (sprint3) showed that after SFT/DPO, the correct token ranks at median position 2. The model has the knowledge - it's a generation suppression problem. Lowering temperature to 0.1 recovers some of it (+3pp).
+```bash
+# re-judge the stored responses with a stronger judge (needs OPENAI_API_KEY)
+bash rejudge.sh                 # defaults to gpt-4o
 
-**Epoch count matters more than data volume.**
+# audit the gold reference answers for factual errors
+bash audit.sh
 
-875 examples × 3 epochs outperforms 10,000 examples × 1 epoch on factuality. The 5K×3ep config had the lowest training loss but worse factuality than 875×3ep - too much generic data dilutes the technical signal.
+# regenerate the paper figures
+python scripts/make_figures.py
+```
 
-**The AFG is model-size dependent.**
+The trap evaluation needs the models (GPU). It runs base/SFT/DPO from merged checkpoints:
 
-Llama-3.2-3B shows a 37-point gap; Mistral-7B shows 3.1 points; Llama-3.1-8B sits at 6.4 points on the proper benchmark. Smaller models struggle much more.
-
----
-
-## Results
-
-### Core pipeline (v5)
-
-| Stage | Metric | Value |
-|-------|--------|-------|
-| SFT | Config | 875 examples × 3 epochs |
-| SFT | Loss | 1.41 |
-| DPO | Reward accuracy | 82% (peak 88%) |
-| DPO | Loss | 0.52 |
-| DPO | Factuality (51 prompts, keyword) | 17.6% |
-| DPO | Factuality (500 prompts, LLM-judge) | **75.7%** |
-| DPO | Factuality (500 prompts, keyword) | **78.8%** |
-
-### SFT scaling study
-
-| Config | Loss | Factuality | vs Base |
-|--------|:----:|:----------:|:-------:|
-| 875×1ep | 2.16 | 7.8% | -2.0pp |
-| 875×3ep | 1.41 | **15.7%** | **+5.9pp** |
-| 875×5ep | 1.11 | 15.7% | +5.9pp |
-| 2.5K×1ep | 1.31 | 9.8% | 0.0pp |
-| 2.5K×3ep | 1.10 | **15.7%** | **+5.9pp** |
-| 5K×3ep | 1.02 | 7.8% | -2.0pp |
-| 10K×1ep | 1.09 | 9.8% | 0.0pp |
-
-The 5K×3ep result is the weird one - lowest loss, but factuality drops below 875×3ep. My hypothesis: the generic OpenHermes examples (4,125 out of 5,000) dilute the technical signal when you see them 3× per epoch. It's a single run so I can't rule out noise, but it's consistent with the general pattern.
-
-### Token probability analysis
-
-| Stage | Suppression rate | Forgetting rate | Median token rank | Mean correct prob |
-|-------|:----------------:|:---------------:|:-----------------:|:-----------------:|
-| Base | 33.3% | 47.1% | 76 | 0.108 |
-| SFT (5ep) | 76.5% | 7.8% | **2** | 0.268 |
-| DPO (5ep) | 76.5% | 5.9% | **2** | 0.297 |
-
-Suppression = the model assigns high probability to the correct token but still generates something else. After SFT/DPO, almost all failures are suppression, not forgetting. The knowledge is there.
-
-### Cross-model comparison
-
-| Model | Reward acc | Factuality (judge) | AFG |
-|-------|:----------:|:------------------:|:---:|
-| Llama-3.1-8B (this project) | 82% | 75.7% | 6.4pp |
-| Mistral-7B | 77% | 73.9% | 3.1pp |
-| Llama-3.2-3B | 73% | 35.9% | 37.1pp |
-| SimPO - Llama-3.1-8B | 73% | 64.9% | 8.1pp |
-
-### Version history
-
-| | v1 | v2 | v3 | v4 | v5 |
-|---|---|---|---|---|---|
-| GPU | RTX 3090 | RTX A5000 | A100 SXM | RTX A6000 | A100 SXM |
-| SFT | Alpaca 1K×1ep | Alpaca 1K×1ep | Tech 3.9K×1ep | Tech 3.9K×1ep | Tech 875×3ep |
-| DPO | Stacked β=0.1 | Stacked β=0.1 | Stacked β=0.1 | Merged β=0.05 | Merged β=0.05 |
-| Peak reward acc | 50% | 75% | 68% | 83% | **88%** |
-| Factuality | - | - | 9.8% | 5.9% | **17.6%** |
-
-The jump from v3->v4 was switching from stacked adapters to merging SFT into base weights before DPO. That alone went from 68% -> 83% peak reward accuracy.
-
----
-
-## Training pipeline
-
-```mermaid
-flowchart TD
-    subgraph SOURCES["Data Sources"]
-        OH["OpenHermes-2.5\n+ 875 technical instructions"]
-        UF["UltraFeedback (cleaned)"]
-        FD["Factual DPO pairs\n20% upsampled"]
-    end
-
-    subgraph SFT["Stage 1 — SFT"]
-        BASE["Llama-3.1-8B-Instruct\n4-bit NF4 QLoRA"]
-        SFTT["SFTTrainer\nr=16 α=32\n875×3ep · loss 1.41"]
-        MERGE["Merge LoRA → base\nbf16"]
-        OH --> SFTT
-        BASE --> SFTT --> MERGE
-    end
-
-    subgraph DPO["Stage 2 — DPO"]
-        DPOT["DPOTrainer\nfresh QLoRA on merged weights\nβ=0.05 · LR=1e-5 · 782 steps\nreward acc 82%"]
-        UF --> DPOT
-        FD --> DPOT
-        MERGE --> DPOT
-    end
-
-    subgraph EVAL["Evaluation (all completed)"]
-        KW["Keyword eval\n51 prompts"]
-        JUDGE["LLM-judge\n500 prompts · TechFact-100"]
-        TOK["Token probability\nrank + suppression"]
-        TEMP["Temperature sweep\n0.1 / 0.5 / 1.0"]
-        CROSS["Cross-model\nMistral-7B · Llama-3.2-3B"]
-        SIM["SimPO / BSFT\nablations"]
-        DPOT --> KW & JUDGE & TOK & TEMP & CROSS & SIM
-    end
-
-    SOURCES --> SFT --> DPO --> EVAL
+```bash
+bash trap.sh --tag llama8b --sft_model outputs/sft_merged --dpo_model outputs/dpo_8b_merged
 ```
 
 ---
@@ -166,139 +96,35 @@ flowchart TD
 
 ```
 distill-align-llm/
-├── configs/                    # training hyperparameters (YAML)
-├── src/distill_align/
-│   ├── config/                 # Pydantic config + YAML loader
-│   ├── data/processor.py       # dataset loading, tokenization
-│   ├── models/loader.py        # QLoRA + LoRA model setup
-│   ├── serving/                # inference API
-│   ├── monitoring/             # monitoring service
-│   └── training/
-│       ├── sft.py              # SFTTrainer wrapper
-│       ├── dpo.py              # DPOTrainer wrapper
-│       └── rlhf.py             # GRPOTrainer wrapper
-├── scripts/
-│   ├── run_sft.py              # SFT entry point
-│   ├── run_dpo.py              # DPO entry point (--merge-sft flag)
-│   ├── run_sft_scaling.py      # scaling study (8 configs)
-│   ├── run_bsft.py             # BSFT training
-│   ├── simpo.py                # SimPO training
-│   ├── eval_factuality_all.py  # keyword eval: base vs SFT vs DPO
-│   ├── eval_factuality_v2.py   # 500-prompt eval
-│   ├── eval_semantic.py        # semantic + LLM-judge eval
-│   ├── eval_token_probs.py     # token probability analysis
-│   ├── token_rank_analysis.py  # rank + suppression
-│   ├── probability_mass_analysis.py
-│   ├── attention_shift_analysis.py
-│   ├── temperature_sweep.py
-│   ├── cross_method_eval.py    # cross-model comparison
-│   └── compare_models.py
 ├── data/
-│   ├── technical_instructions.jsonl   # 875 domain-specific SFT examples
-│   ├── factual_dpo_pairs.jsonl        # factual preference pairs
-│   ├── eval_factuality.jsonl          # 51-prompt benchmark
-│   ├── eval_factuality_500.jsonl      # 500-prompt benchmark
-│   ├── techfact_100.jsonl             # TechFact-100 (5 categories, 3 difficulty levels)
-│   └── uncertainty_examples.jsonl
-├── outputs/
-│   ├── scaling/                # SFT scaling results (8 configs)
-│   ├── sprint3/                # token prob, attention, temperature sweep
-│   ├── eval_v2_judge/          # 500-prompt LLM-judge results
-│   ├── cross_method/           # Mistral-7B, Llama-3.2-3B
-│   ├── bsft_*/                 # BSFT/SimPO ablations
-│   └── semantic_eval_results.json
-├── dashboard/app.py            # Streamlit dashboard
-├── docs/RESULTS.md             # detailed training logs
-├── tests/                      # 44 passing tests
-└── pyproject.toml
+│   ├── eval_factuality_v2.jsonl   # TechFact-500 (GPT-4o-mini authored)
+│   └── techfact_trap.jsonl        # TechFact-Trap (no correct answer)
+├── scripts/
+│   ├── honesty_eval.py            # asserted/hedged/refused + CFR
+│   ├── rejudge.py + rejudge.sh    # re-score with a stronger judge
+│   ├── audit_references.py + audit.sh   # audit the gold answer key
+│   ├── trap_eval.py + trap.sh     # refusal vs fabrication, base/SFT/DPO
+│   ├── make_figures.py            # paper figures
+│   └── run_sft.py / run_dpo.py    # the training pipeline
+├── dashboard/app.py               # Streamlit dashboard
+├── src/distill_align/             # config, data, model loading, training wrappers
+└── tests/
 ```
 
 ---
 
-## Running it
+## Limitations
 
-```bash
-git clone https://github.com/SantoshAdabala/distill-align-llm.git
-cd distill-align-llm
-make install
-make test
-
-# dashboard (no GPU needed)
-pip install -r dashboard/requirements.txt
-streamlit run dashboard/app.py
-```
-
-### Training on RunPod
-
-```bash
-pip install transformers accelerate peft datasets bitsandbytes trl
-pip install -e .
-huggingface-cli login
-
-# SFT — ~12 min on A100
-python scripts/run_sft.py --config configs/local_small.yaml
-
-# DPO with merged-SFT — ~70 min
-python scripts/run_dpo.py --config configs/local_small.yaml \
-    --sft-adapter ./outputs/sft/final_adapter --merge-sft
-
-# Factuality eval
-python scripts/eval_factuality_all.py \
-    --base-model meta-llama/Llama-3.1-8B-Instruct \
-    --sft-adapter ./outputs/sft/final_adapter \
-    --dpo-adapter ./outputs/dpo/dpo_adapter \
-    --dpo-base ./outputs/sft_merged
-
-# 500-prompt LLM-judge eval
-python scripts/eval_factuality_v2.py
-
-# Token probability analysis
-python scripts/token_rank_analysis.py
-python scripts/probability_mass_analysis.py
-```
+- Correctness labels above come from LLM judges (GPT-4o, Opus). A human-annotated subset to anchor them is in progress; until then "real factuality ~56%" should be read as "well below 84%, by independent judges," not as a precise figure.
+- The reference audit uses an LLM auditor that occasionally over-flags genuinely-public facts as unverifiable, so the 20-30% corruption rate is approximate (the direction is corroborated by the cross-checkable head-count error appearing in both the key and the model).
+- The trap set is small (n=35); refusal -> 0 is solid, but the fabrication-rate differences between stages are suggestive, not conclusive.
+- Single model pipeline, single training run, no confidence intervals.
 
 ---
 
 ## Tech stack
 
-| | |
-|---|---|
-| Training | PyTorch, HuggingFace Transformers, TRL (SFT/DPO/SimPO/GRPO), PEFT, bitsandbytes |
-| Data | HuggingFace Datasets, UltraFeedback, OpenHermes-2.5 |
-| Eval | sentence-transformers, TechFact-100, LLM-judge |
-| Dashboard | Streamlit, Plotly |
-| Testing | pytest, ruff |
-| Infra | RunPod.io (RTX 3090 / A5000 / A6000 / A100 SXM) |
-
----
-
-## Config
-
-```yaml
-model:
-  model_id: "meta-llama/Llama-3.1-8B-Instruct"
-  quantization:
-    mode: "int4_nf4"
-    use_double_quant: true
-  lora:
-    rank: 16
-    alpha: 32
-    target_modules: [q_proj, k_proj, v_proj, o_proj]
-
-dpo:
-  beta: 0.05
-  learning_rate: 1e-5
-```
-
----
-
-## Still open
-
-- Does the AFG pattern hold for instruction-tuned vs base models? The merged-SFT strategy essentially creates a fine-tuned base before DPO - might behave differently than pure base model DPO.
-- The token suppression finding suggests calibration (temperature scaling) might help more than further training. Worth testing.
-- Replication: the scaling study runs one seed per config. Some results (especially the 5K×3ep anomaly) could be noise.
-
----
+PyTorch, HuggingFace Transformers / TRL / PEFT, bitsandbytes, OpenAI and Anthropic APIs (judges), matplotlib, Streamlit, Plotly, pytest, ruff.
 
 ## License
 
