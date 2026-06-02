@@ -316,7 +316,7 @@ def main():
 
     # Load dataset
     print("Loading TruthfulQA dataset...")
-    dataset = load_dataset("truthful_qa", "multiple_choice", split="validation")
+    dataset = load_dataset("truthfulqa/truthful_qa", "multiple_choice", split="validation")
     print(f"  Dataset size: {len(dataset)} questions")
 
     # Load model
