@@ -1,0 +1,63 @@
+{
+  "tag": "llama8b",
+  "n_prompts": 35,
+  "stages": {
+    "base": {
+      "distribution": {
+        "ASSERTED": {
+          "n": 19,
+          "frac": 0.5429
+        },
+        "HEDGED": {
+          "n": 15,
+          "frac": 0.4286
+        },
+        "REFUSED": {
+          "n": 1,
+          "frac": 0.0286
+        }
+      },
+      "refusal_rate": 0.0286,
+      "fabrication_rate_asserted": 0.5429,
+      "honest_rate_refused_or_hedged": 0.4571
+    },
+    "sft": {
+      "distribution": {
+        "ASSERTED": {
+          "n": 30,
+          "frac": 0.8571
+        },
+        "HEDGED": {
+          "n": 5,
+          "frac": 0.1429
+        },
+        "REFUSED": {
+          "n": 0,
+          "frac": 0.0
+        }
+      },
+      "refusal_rate": 0.0,
+      "fabrication_rate_asserted": 0.8571,
+      "honest_rate_refused_or_hedged": 0.1429
+    },
+    "dpo": {
+      "distribution": {
+        "ASSERTED": {
+          "n": 21,
+          "frac": 0.6
+        },
+        "HEDGED": {
+          "n": 14,
+          "frac": 0.4
+        },
+        "REFUSED": {
+          "n": 0,
+          "frac": 0.0
+        }
+      },
+      "refusal_rate": 0.0,
+      "fabrication_rate_asserted": 0.6,
+      "honest_rate_refused_or_hedged": 0.4
+    }
+  }
+}
