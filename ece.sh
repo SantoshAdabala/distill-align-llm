@@ -3,4 +3,5 @@
 # has responses + gpt-4o correctness). For base/sft, generate and judge those stages first,
 # then pass --responses_csv / --correct_csv for that stage.
 cd "$(dirname "$0")"
-.venv/bin/python scripts/ece.py "$@"
+PY=python; [ -x .venv/bin/python ] && PY=.venv/bin/python
+"$PY" scripts/ece.py "$@"

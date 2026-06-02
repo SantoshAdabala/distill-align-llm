@@ -6,4 +6,5 @@
 #       --dpo_adapter outputs/mistral_7b/dpo_adapter
 # Stages whose adapter folder is absent are skipped (base always runs).
 cd "$(dirname "$0")"
-.venv/bin/python scripts/trap_eval.py "$@"
+PY=python; [ -x .venv/bin/python ] && PY=.venv/bin/python
+"$PY" scripts/trap_eval.py "$@"
