@@ -1,0 +1,511 @@
+nohup: ignoring input
+/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.6) doesn't match a supported version!
+  warnings.warn(
+=== TruthfulQA Evaluation (mc mode) ===
+Model: ./outputs/sft_merged
+Label: dpo_8b
+Mode: mc
+Max samples: all
+
+Loading TruthfulQA dataset...
+  Dataset size: 817 questions
+Loading model with 4-bit NF4 quantization...
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<00:26,  9.43it/s]Loading weights:   9%|▊         | 22/254 [00:00<00:01, 121.48it/s]Loading weights:  20%|█▉        | 50/254 [00:00<00:01, 189.47it/s]Loading weights:  31%|███▏      | 80/254 [00:00<00:00, 231.73it/s]Loading weights:  43%|████▎     | 110/254 [00:00<00:00, 255.88it/s]Loading weights:  54%|█████▍    | 138/254 [00:00<00:00, 261.26it/s]Loading weights:  65%|██████▌   | 166/254 [00:00<00:00, 264.76it/s]Loading weights:  76%|███████▋  | 194/254 [00:00<00:00, 267.00it/s]Loading weights:  88%|████████▊ | 224/254 [00:00<00:00, 275.85it/s]Loading weights: 100%|█████████▉| 253/254 [00:01<00:00, 279.96it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 247.81it/s]
+  Model loaded successfully
+
+Running MC1 evaluation...
+  [10/817] Running accuracy: 0.5000
+  [20/817] Running accuracy: 0.4000
+  [30/817] Running accuracy: 0.4333
+  [40/817] Running accuracy: 0.3250
+  [50/817] Running accuracy: 0.2800
+  [60/817] Running accuracy: 0.2833
+  [70/817] Running accuracy: 0.2857
+  [80/817] Running accuracy: 0.2750
+  [90/817] Running accuracy: 0.2556
+  [100/817] Running accuracy: 0.2500
+  [110/817] Running accuracy: 0.2545
+  [120/817] Running accuracy: 0.2500
+  [130/817] Running accuracy: 0.2538
+  [140/817] Running accuracy: 0.2643
+  [150/817] Running accuracy: 0.2800
+  [160/817] Running accuracy: 0.2750
+  [170/817] Running accuracy: 0.2706
+  [180/817] Running accuracy: 0.2778
+  [190/817] Running accuracy: 0.2737
+  [200/817] Running accuracy: 0.2850
+  [210/817] Running accuracy: 0.2857
+  [220/817] Running accuracy: 0.2864
+  [230/817] Running accuracy: 0.2826
+  [240/817] Running accuracy: 0.2792
+  [250/817] Running accuracy: 0.2800
+  [260/817] Running accuracy: 0.2808
+  [270/817] Running accuracy: 0.2704
+  [280/817] Running accuracy: 0.2679
+  [290/817] Running accuracy: 0.2621
+  [300/817] Running accuracy: 0.2567
+  [310/817] Running accuracy: 0.2581
+  [320/817] Running accuracy: 0.2625
+  [330/817] Running accuracy: 0.2667
+  [340/817] Running accuracy: 0.2647
+  [350/817] Running accuracy: 0.2600
+  [360/817] Running accuracy: 0.2556
+  [370/817] Running accuracy: 0.2486
+  [380/817] Running accuracy: 0.2579
+  [390/817] Running accuracy: 0.2590
+  [400/817] Running accuracy: 0.2625
+  [410/817] Running accuracy: 0.2561
+  [420/817] Running accuracy: 0.2571
+  [430/817] Running accuracy: 0.2535
+  [440/817] Running accuracy: 0.2500
+  [450/817] Running accuracy: 0.2556
+  [460/817] Running accuracy: 0.2565
+  [470/817] Running accuracy: 0.2574
+  [480/817] Running accuracy: 0.2562
+  [490/817] Running accuracy: 0.2571
+  [500/817] Running accuracy: 0.2600
+  [510/817] Running accuracy: 0.2608
+  [520/817] Running accuracy: 0.2654
+  [530/817] Running accuracy: 0.2660
+  [540/817] Running accuracy: 0.2667
+  [550/817] Running accuracy: 0.2655
+  [560/817] Running accuracy: 0.2661
+  [570/817] Running accuracy: 0.2632
+  [580/817] Running accuracy: 0.2603
+  [590/817] Running accuracy: 0.2576
+  [600/817] Running accuracy: 0.2583
+  [610/817] Running accuracy: 0.2590
+  [620/817] Running accuracy: 0.2565
+  [630/817] Running accuracy: 0.2556
+  [640/817] Running accuracy: 0.2594
+  [650/817] Running accuracy: 0.2646
+  [660/817] Running accuracy: 0.2697
+  [670/817] Running accuracy: 0.2701
+  [680/817] Running accuracy: 0.2721
+  [690/817] Running accuracy: 0.2710
+  [700/817] Running accuracy: 0.2729
+  [710/817] Running accuracy: 0.2704
+  [720/817] Running accuracy: 0.2694
+  [730/817] Running accuracy: 0.2699
+  [740/817] Running accuracy: 0.2730
+  [750/817] Running accuracy: 0.2720
+  [760/817] Running accuracy: 0.2724
+  [770/817] Running accuracy: 0.2766
+  [780/817] Running accuracy: 0.2782
+  [790/817] Running accuracy: 0.2772
+  [800/817] Running accuracy: 0.2775
+  [810/817] Running accuracy: 0.2765
+
+=== Results ===
+  Accuracy: 0.2791 (228/817)
+  Time: 186.5s
+  Summary saved to: outputs/truthfulqa/dpo_8b_mc_summary.json
+  Details saved to: outputs/truthfulqa/dpo_8b_mc_details.json
+/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.6) doesn't match a supported version!
+  warnings.warn(
+=== TruthfulQA Evaluation (mc mode) ===
+Model: mistralai/Mistral-7B-Instruct-v0.3
+Label: base_mistral
+Mode: mc
+Max samples: all
+
+Loading TruthfulQA dataset...
+  Dataset size: 817 questions
+Loading model with 4-bit NF4 quantization...
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   1%|▏         | 4/291 [00:00<00:09, 29.89it/s]Loading weights:   6%|▌         | 18/291 [00:00<00:03, 84.60it/s]Loading weights:  11%|█         | 32/291 [00:00<00:02, 105.92it/s]Loading weights:  17%|█▋        | 49/291 [00:00<00:01, 124.78it/s]Loading weights:  22%|██▏       | 63/291 [00:00<00:01, 128.16it/s]Loading weights:  26%|██▋       | 77/291 [00:00<00:01, 130.56it/s]Loading weights:  32%|███▏      | 94/291 [00:00<00:01, 138.06it/s]Loading weights:  37%|███▋      | 108/291 [00:00<00:01, 134.70it/s]Loading weights:  42%|████▏     | 122/291 [00:00<00:01, 130.29it/s]Loading weights:  48%|████▊     | 139/291 [00:01<00:01, 136.44it/s]Loading weights:  53%|█████▎    | 153/291 [00:01<00:01, 132.21it/s]Loading weights:  57%|█████▋    | 167/291 [00:01<00:00, 131.67it/s]Loading weights:  63%|██████▎   | 184/291 [00:01<00:00, 137.02it/s]Loading weights:  68%|██████▊   | 198/291 [00:01<00:00, 135.32it/s]Loading weights:  73%|███████▎  | 212/291 [00:01<00:00, 134.49it/s]Loading weights:  79%|███████▊  | 229/291 [00:01<00:00, 140.03it/s]Loading weights:  84%|████████▎ | 243/291 [00:01<00:00, 138.13it/s]Loading weights:  88%|████████▊ | 257/291 [00:01<00:00, 137.17it/s]Loading weights:  94%|█████████▍| 274/291 [00:02<00:00, 142.16it/s]Loading weights:  99%|█████████▉| 289/291 [00:02<00:00, 140.55it/s]Loading weights: 100%|██████████| 291/291 [00:02<00:00, 132.20it/s]
+  Model loaded successfully
+
+Running MC1 evaluation...
+  [10/817] Running accuracy: 0.6000
+  [20/817] Running accuracy: 0.4000
+  [30/817] Running accuracy: 0.4000
+  [40/817] Running accuracy: 0.3250
+  [50/817] Running accuracy: 0.3000
+  [60/817] Running accuracy: 0.3167
+  [70/817] Running accuracy: 0.3429
+  [80/817] Running accuracy: 0.3250
+  [90/817] Running accuracy: 0.3000
+  [100/817] Running accuracy: 0.2800
+  [110/817] Running accuracy: 0.3000
+  [120/817] Running accuracy: 0.2917
+  [130/817] Running accuracy: 0.3000
+  [140/817] Running accuracy: 0.2857
+  [150/817] Running accuracy: 0.3000
+  [160/817] Running accuracy: 0.3000
+  [170/817] Running accuracy: 0.3118
+  [180/817] Running accuracy: 0.3222
+  [190/817] Running accuracy: 0.3211
+  [200/817] Running accuracy: 0.3350
+  [210/817] Running accuracy: 0.3333
+  [220/817] Running accuracy: 0.3364
+  [230/817] Running accuracy: 0.3304
+  [240/817] Running accuracy: 0.3333
+  [250/817] Running accuracy: 0.3400
+  [260/817] Running accuracy: 0.3385
+  [270/817] Running accuracy: 0.3296
+  [280/817] Running accuracy: 0.3286
+  [290/817] Running accuracy: 0.3241
+  [300/817] Running accuracy: 0.3233
+  [310/817] Running accuracy: 0.3323
+  [320/817] Running accuracy: 0.3344
+  [330/817] Running accuracy: 0.3333
+  [340/817] Running accuracy: 0.3324
+  [350/817] Running accuracy: 0.3343
+  [360/817] Running accuracy: 0.3278
+  [370/817] Running accuracy: 0.3216
+  [380/817] Running accuracy: 0.3289
+  [390/817] Running accuracy: 0.3385
+  [400/817] Running accuracy: 0.3375
+  [410/817] Running accuracy: 0.3341
+  [420/817] Running accuracy: 0.3381
+  [430/817] Running accuracy: 0.3372
+  [440/817] Running accuracy: 0.3364
+  [450/817] Running accuracy: 0.3422
+  [460/817] Running accuracy: 0.3500
+  [470/817] Running accuracy: 0.3511
+  [480/817] Running accuracy: 0.3500
+  [490/817] Running accuracy: 0.3531
+  [500/817] Running accuracy: 0.3520
+  [510/817] Running accuracy: 0.3549
+  [520/817] Running accuracy: 0.3596
+  [530/817] Running accuracy: 0.3623
+  [540/817] Running accuracy: 0.3648
+  [550/817] Running accuracy: 0.3673
+  [560/817] Running accuracy: 0.3696
+  [570/817] Running accuracy: 0.3649
+  [580/817] Running accuracy: 0.3603
+  [590/817] Running accuracy: 0.3593
+  [600/817] Running accuracy: 0.3650
+  [610/817] Running accuracy: 0.3639
+  [620/817] Running accuracy: 0.3629
+  [630/817] Running accuracy: 0.3651
+  [640/817] Running accuracy: 0.3688
+  [650/817] Running accuracy: 0.3723
+  [660/817] Running accuracy: 0.3742
+  [670/817] Running accuracy: 0.3746
+  [680/817] Running accuracy: 0.3750
+  [690/817] Running accuracy: 0.3739
+  [700/817] Running accuracy: 0.3743
+  [710/817] Running accuracy: 0.3775
+  [720/817] Running accuracy: 0.3764
+  [730/817] Running accuracy: 0.3740
+  [740/817] Running accuracy: 0.3770
+  [750/817] Running accuracy: 0.3787
+  [760/817] Running accuracy: 0.3789
+  [770/817] Running accuracy: 0.3805
+  [780/817] Running accuracy: 0.3808
+  [790/817] Running accuracy: 0.3797
+  [800/817] Running accuracy: 0.3800
+  [810/817] Running accuracy: 0.3802
+
+=== Results ===
+  Accuracy: 0.3794 (310/817)
+  Time: 210.2s
+  Summary saved to: outputs/truthfulqa/base_mistral_mc_summary.json
+  Details saved to: outputs/truthfulqa/base_mistral_mc_details.json
+/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.6) doesn't match a supported version!
+  warnings.warn(
+=== TruthfulQA Evaluation (mc mode) ===
+Model: ./outputs/mistral_merged
+Label: dpo_mistral
+Mode: mc
+Max samples: all
+
+Loading TruthfulQA dataset...
+  Dataset size: 817 questions
+Loading model with 4-bit NF4 quantization...
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   1%|▏         | 4/291 [00:00<00:09, 29.95it/s]Loading weights:   6%|▌         | 17/291 [00:00<00:03, 81.10it/s]Loading weights:  11%|█         | 32/291 [00:00<00:02, 105.35it/s]Loading weights:  17%|█▋        | 49/291 [00:00<00:01, 123.05it/s]Loading weights:  21%|██▏       | 62/291 [00:00<00:01, 125.00it/s]Loading weights:  26%|██▋       | 77/291 [00:00<00:01, 128.95it/s]Loading weights:  32%|███▏      | 94/291 [00:00<00:01, 136.05it/s]Loading weights:  37%|███▋      | 108/291 [00:00<00:01, 134.30it/s]Loading weights:  42%|████▏     | 122/291 [00:00<00:01, 132.47it/s]Loading weights:  48%|████▊     | 139/291 [00:01<00:01, 136.69it/s]Loading weights:  53%|█████▎    | 153/291 [00:01<00:01, 135.76it/s]Loading weights:  57%|█████▋    | 167/291 [00:01<00:00, 135.01it/s]Loading weights:  63%|██████▎   | 184/291 [00:01<00:00, 139.20it/s]Loading weights:  68%|██████▊   | 198/291 [00:01<00:00, 137.07it/s]Loading weights:  73%|███████▎  | 212/291 [00:01<00:00, 135.59it/s]Loading weights:  79%|███████▊  | 229/291 [00:01<00:00, 140.74it/s]Loading weights:  84%|████████▍ | 244/291 [00:01<00:00, 139.03it/s]Loading weights:  89%|████████▊ | 258/291 [00:01<00:00, 133.41it/s]Loading weights:  95%|█████████▍| 275/291 [00:02<00:00, 138.96it/s]Loading weights: 100%|██████████| 291/291 [00:02<00:00, 132.36it/s]
+  Model loaded successfully
+
+Running MC1 evaluation...
+  [10/817] Running accuracy: 0.4000
+  [20/817] Running accuracy: 0.3000
+  [30/817] Running accuracy: 0.3667
+  [40/817] Running accuracy: 0.3000
+  [50/817] Running accuracy: 0.2400
+  [60/817] Running accuracy: 0.2500
+  [70/817] Running accuracy: 0.2714
+  [80/817] Running accuracy: 0.2625
+  [90/817] Running accuracy: 0.2556
+  [100/817] Running accuracy: 0.2400
+  [110/817] Running accuracy: 0.2545
+  [120/817] Running accuracy: 0.2583
+  [130/817] Running accuracy: 0.2692
+  [140/817] Running accuracy: 0.2643
+  [150/817] Running accuracy: 0.2667
+  [160/817] Running accuracy: 0.2625
+  [170/817] Running accuracy: 0.2706
+  [180/817] Running accuracy: 0.2778
+  [190/817] Running accuracy: 0.2684
+  [200/817] Running accuracy: 0.2800
+  [210/817] Running accuracy: 0.2810
+  [220/817] Running accuracy: 0.2864
+  [230/817] Running accuracy: 0.2826
+  [240/817] Running accuracy: 0.2875
+  [250/817] Running accuracy: 0.2960
+  [260/817] Running accuracy: 0.2923
+  [270/817] Running accuracy: 0.2815
+  [280/817] Running accuracy: 0.2821
+  [290/817] Running accuracy: 0.2828
+  [300/817] Running accuracy: 0.2833
+  [310/817] Running accuracy: 0.2935
+  [320/817] Running accuracy: 0.2969
+  [330/817] Running accuracy: 0.2970
+  [340/817] Running accuracy: 0.2912
+  [350/817] Running accuracy: 0.2943
+  [360/817] Running accuracy: 0.2889
+  [370/817] Running accuracy: 0.2838
+  [380/817] Running accuracy: 0.2921
+  [390/817] Running accuracy: 0.3051
+  [400/817] Running accuracy: 0.3050
+  [410/817] Running accuracy: 0.2976
+  [420/817] Running accuracy: 0.3024
+  [430/817] Running accuracy: 0.3000
+  [440/817] Running accuracy: 0.2977
+  [450/817] Running accuracy: 0.3044
+  [460/817] Running accuracy: 0.3087
+  [470/817] Running accuracy: 0.3085
+  [480/817] Running accuracy: 0.3063
+  [490/817] Running accuracy: 0.3082
+  [500/817] Running accuracy: 0.3080
+  [510/817] Running accuracy: 0.3137
+  [520/817] Running accuracy: 0.3173
+  [530/817] Running accuracy: 0.3189
+  [540/817] Running accuracy: 0.3222
+  [550/817] Running accuracy: 0.3273
+  [560/817] Running accuracy: 0.3304
+  [570/817] Running accuracy: 0.3263
+  [580/817] Running accuracy: 0.3224
+  [590/817] Running accuracy: 0.3186
+  [600/817] Running accuracy: 0.3233
+  [610/817] Running accuracy: 0.3197
+  [620/817] Running accuracy: 0.3194
+  [630/817] Running accuracy: 0.3222
+  [640/817] Running accuracy: 0.3266
+  [650/817] Running accuracy: 0.3308
+  [660/817] Running accuracy: 0.3364
+  [670/817] Running accuracy: 0.3373
+  [680/817] Running accuracy: 0.3368
+  [690/817] Running accuracy: 0.3348
+  [700/817] Running accuracy: 0.3371
+  [710/817] Running accuracy: 0.3366
+  [720/817] Running accuracy: 0.3347
+  [730/817] Running accuracy: 0.3329
+  [740/817] Running accuracy: 0.3365
+  [750/817] Running accuracy: 0.3387
+  [760/817] Running accuracy: 0.3408
+  [770/817] Running accuracy: 0.3429
+  [780/817] Running accuracy: 0.3436
+  [790/817] Running accuracy: 0.3430
+  [800/817] Running accuracy: 0.3412
+  [810/817] Running accuracy: 0.3420
+
+=== Results ===
+  Accuracy: 0.3427 (280/817)
+  Time: 186.1s
+  Summary saved to: outputs/truthfulqa/dpo_mistral_mc_summary.json
+  Details saved to: outputs/truthfulqa/dpo_mistral_mc_details.json
+/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.6) doesn't match a supported version!
+  warnings.warn(
+=== TruthfulQA Evaluation (mc mode) ===
+Model: meta-llama/Llama-3.2-3B-Instruct
+Label: base_3b
+Mode: mc
+Max samples: all
+
+Loading TruthfulQA dataset...
+  Dataset size: 817 questions
+Loading model with 4-bit NF4 quantization...
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<00:26,  9.53it/s]Loading weights:   9%|▊         | 22/254 [00:00<00:01, 122.55it/s]Loading weights:  20%|█▉        | 50/254 [00:00<00:01, 191.01it/s]Loading weights:  32%|███▏      | 81/254 [00:00<00:00, 234.41it/s]Loading weights:  44%|████▎     | 111/254 [00:00<00:00, 254.43it/s]Loading weights:  55%|█████▍    | 139/254 [00:00<00:00, 260.00it/s]Loading weights:  66%|██████▌   | 167/254 [00:00<00:00, 264.44it/s]Loading weights:  78%|███████▊  | 198/254 [00:00<00:00, 276.25it/s]Loading weights:  90%|████████▉ | 228/254 [00:00<00:00, 280.56it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 249.65it/s]
+  Model loaded successfully
+
+Running MC1 evaluation...
+  [10/817] Running accuracy: 0.3000
+  [20/817] Running accuracy: 0.2500
+  [30/817] Running accuracy: 0.3333
+  [40/817] Running accuracy: 0.3000
+  [50/817] Running accuracy: 0.2800
+  [60/817] Running accuracy: 0.2667
+  [70/817] Running accuracy: 0.2714
+  [80/817] Running accuracy: 0.2625
+  [90/817] Running accuracy: 0.2556
+  [100/817] Running accuracy: 0.2400
+  [110/817] Running accuracy: 0.2545
+  [120/817] Running accuracy: 0.2583
+  [130/817] Running accuracy: 0.2615
+  [140/817] Running accuracy: 0.2571
+  [150/817] Running accuracy: 0.2800
+  [160/817] Running accuracy: 0.2812
+  [170/817] Running accuracy: 0.2824
+  [180/817] Running accuracy: 0.2944
+  [190/817] Running accuracy: 0.2895
+  [200/817] Running accuracy: 0.2950
+  [210/817] Running accuracy: 0.2952
+  [220/817] Running accuracy: 0.2955
+  [230/817] Running accuracy: 0.3043
+  [240/817] Running accuracy: 0.3083
+  [250/817] Running accuracy: 0.3120
+  [260/817] Running accuracy: 0.3077
+  [270/817] Running accuracy: 0.3000
+  [280/817] Running accuracy: 0.3036
+  [290/817] Running accuracy: 0.3000
+  [300/817] Running accuracy: 0.2967
+  [310/817] Running accuracy: 0.3065
+  [320/817] Running accuracy: 0.3063
+  [330/817] Running accuracy: 0.3061
+  [340/817] Running accuracy: 0.3059
+  [350/817] Running accuracy: 0.3057
+  [360/817] Running accuracy: 0.3000
+  [370/817] Running accuracy: 0.2919
+  [380/817] Running accuracy: 0.3000
+  [390/817] Running accuracy: 0.3051
+  [400/817] Running accuracy: 0.3075
+  [410/817] Running accuracy: 0.3024
+  [420/817] Running accuracy: 0.3024
+  [430/817] Running accuracy: 0.3023
+  [440/817] Running accuracy: 0.2977
+  [450/817] Running accuracy: 0.3022
+  [460/817] Running accuracy: 0.3087
+  [470/817] Running accuracy: 0.3085
+  [480/817] Running accuracy: 0.3104
+  [490/817] Running accuracy: 0.3082
+  [500/817] Running accuracy: 0.3100
+  [510/817] Running accuracy: 0.3118
+  [520/817] Running accuracy: 0.3192
+  [530/817] Running accuracy: 0.3245
+  [540/817] Running accuracy: 0.3259
+  [550/817] Running accuracy: 0.3273
+  [560/817] Running accuracy: 0.3286
+  [570/817] Running accuracy: 0.3263
+  [580/817] Running accuracy: 0.3241
+  [590/817] Running accuracy: 0.3203
+  [600/817] Running accuracy: 0.3200
+  [610/817] Running accuracy: 0.3197
+  [620/817] Running accuracy: 0.3177
+  [630/817] Running accuracy: 0.3159
+  [640/817] Running accuracy: 0.3172
+  [650/817] Running accuracy: 0.3200
+  [660/817] Running accuracy: 0.3273
+  [670/817] Running accuracy: 0.3284
+  [680/817] Running accuracy: 0.3294
+  [690/817] Running accuracy: 0.3304
+  [700/817] Running accuracy: 0.3329
+  [710/817] Running accuracy: 0.3338
+  [720/817] Running accuracy: 0.3319
+  [730/817] Running accuracy: 0.3301
+  [740/817] Running accuracy: 0.3338
+  [750/817] Running accuracy: 0.3347
+  [760/817] Running accuracy: 0.3355
+  [770/817] Running accuracy: 0.3390
+  [780/817] Running accuracy: 0.3385
+  [790/817] Running accuracy: 0.3380
+  [800/817] Running accuracy: 0.3387
+  [810/817] Running accuracy: 0.3370
+
+=== Results ===
+  Accuracy: 0.3390 (277/817)
+  Time: 187.0s
+  Summary saved to: outputs/truthfulqa/base_3b_mc_summary.json
+  Details saved to: outputs/truthfulqa/base_3b_mc_details.json
+/home/zeus/miniconda3/envs/cloudspace/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.6) doesn't match a supported version!
+  warnings.warn(
+=== TruthfulQA Evaluation (mc mode) ===
+Model: ./outputs/bsft_full_dpo_merged
+Label: bsft_dpo_3b
+Mode: mc
+Max samples: all
+
+Loading TruthfulQA dataset...
+  Dataset size: 817 questions
+Loading model with 4-bit NF4 quantization...
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   0%|          | 1/254 [00:00<00:27,  9.35it/s]Loading weights:   9%|▊         | 22/254 [00:00<00:01, 121.41it/s]Loading weights:  20%|█▉        | 50/254 [00:00<00:01, 189.18it/s]Loading weights:  32%|███▏      | 81/254 [00:00<00:00, 232.92it/s]Loading weights:  44%|████▎     | 111/254 [00:00<00:00, 253.20it/s]Loading weights:  55%|█████▍    | 139/254 [00:00<00:00, 259.71it/s]Loading weights:  66%|██████▌   | 167/254 [00:00<00:00, 263.82it/s]Loading weights:  78%|███████▊  | 197/254 [00:00<00:00, 274.41it/s]Loading weights:  89%|████████▉ | 226/254 [00:00<00:00, 278.67it/s]Loading weights: 100%|██████████| 254/254 [00:01<00:00, 248.28it/s]
+  Model loaded successfully
+
+Running MC1 evaluation...
+  [10/817] Running accuracy: 0.4000
+  [20/817] Running accuracy: 0.3500
+  [30/817] Running accuracy: 0.4000
+  [40/817] Running accuracy: 0.3000
+  [50/817] Running accuracy: 0.3000
+  [60/817] Running accuracy: 0.2833
+  [70/817] Running accuracy: 0.2857
+  [80/817] Running accuracy: 0.2875
+  [90/817] Running accuracy: 0.2667
+  [100/817] Running accuracy: 0.2600
+  [110/817] Running accuracy: 0.2636
+  [120/817] Running accuracy: 0.2667
+  [130/817] Running accuracy: 0.2769
+  [140/817] Running accuracy: 0.2786
+  [150/817] Running accuracy: 0.2933
+  [160/817] Running accuracy: 0.2875
+  [170/817] Running accuracy: 0.2882
+  [180/817] Running accuracy: 0.2889
+  [190/817] Running accuracy: 0.2842
+  [200/817] Running accuracy: 0.2950
+  [210/817] Running accuracy: 0.2952
+  [220/817] Running accuracy: 0.2955
+  [230/817] Running accuracy: 0.2957
+  [240/817] Running accuracy: 0.2917
+  [250/817] Running accuracy: 0.2920
+  [260/817] Running accuracy: 0.2885
+  [270/817] Running accuracy: 0.2815
+  [280/817] Running accuracy: 0.2786
+  [290/817] Running accuracy: 0.2724
+  [300/817] Running accuracy: 0.2700
+  [310/817] Running accuracy: 0.2710
+  [320/817] Running accuracy: 0.2719
+  [330/817] Running accuracy: 0.2727
+  [340/817] Running accuracy: 0.2676
+  [350/817] Running accuracy: 0.2686
+  [360/817] Running accuracy: 0.2639
+  [370/817] Running accuracy: 0.2568
+  [380/817] Running accuracy: 0.2658
+  [390/817] Running accuracy: 0.2692
+  [400/817] Running accuracy: 0.2725
+  [410/817] Running accuracy: 0.2659
+  [420/817] Running accuracy: 0.2667
+  [430/817] Running accuracy: 0.2651
+  [440/817] Running accuracy: 0.2614
+  [450/817] Running accuracy: 0.2667
+  [460/817] Running accuracy: 0.2674
+  [470/817] Running accuracy: 0.2681
+  [480/817] Running accuracy: 0.2687
+  [490/817] Running accuracy: 0.2673
+  [500/817] Running accuracy: 0.2700
+  [510/817] Running accuracy: 0.2706
+  [520/817] Running accuracy: 0.2769
+  [530/817] Running accuracy: 0.2755
+  [540/817] Running accuracy: 0.2778
+  [550/817] Running accuracy: 0.2782
+  [560/817] Running accuracy: 0.2786
+  [570/817] Running accuracy: 0.2754
+  [580/817] Running accuracy: 0.2724
+  [590/817] Running accuracy: 0.2695
+  [600/817] Running accuracy: 0.2700
+  [610/817] Running accuracy: 0.2705
+  [620/817] Running accuracy: 0.2661
+  [630/817] Running accuracy: 0.2651
+  [640/817] Running accuracy: 0.2672
+  [650/817] Running accuracy: 0.2723
+  [660/817] Running accuracy: 0.2758
+  [670/817] Running accuracy: 0.2761
+  [680/817] Running accuracy: 0.2779
+  [690/817] Running accuracy: 0.2768
+  [700/817] Running accuracy: 0.2800
+  [710/817] Running accuracy: 0.2775
+  [720/817] Running accuracy: 0.2764
+  [730/817] Running accuracy: 0.2753
+  [740/817] Running accuracy: 0.2797
+  [750/817] Running accuracy: 0.2800
+  [760/817] Running accuracy: 0.2803
+  [770/817] Running accuracy: 0.2844
+  [780/817] Running accuracy: 0.2859
+  [790/817] Running accuracy: 0.2848
+  [800/817] Running accuracy: 0.2850
+  [810/817] Running accuracy: 0.2840
+
+=== Results ===
+  Accuracy: 0.2864 (234/817)
+  Time: 162.3s
+  Summary saved to: outputs/truthfulqa/bsft_dpo_3b_mc_summary.json
+  Details saved to: outputs/truthfulqa/bsft_dpo_3b_mc_details.json
