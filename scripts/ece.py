@@ -12,30 +12,17 @@ their eval responses generated and judged first.
 import argparse
 import csv
 import json
-import os
 from pathlib import Path
 
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
-def _bnb():
-    return BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
-                             bnb_4bit_use_double_quant=True, bnb_4bit_compute_dtype=torch.bfloat16)
-
-
-def load_model(base_model, sft_adapter, dpo_base, dpo_adapter):
-    tok_id = dpo_base if dpo_base and os.path.isdir(dpo_base) else base_model
-    tok = AutoTokenizer.from_pretrained(tok_id)
+def load_full(model_path):
+    tok = AutoTokenizer.from_pretrained(model_path)
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
-    model = AutoModelForCausalLM.from_pretrained(
-        tok_id, quantization_config=_bnb(), device_map="auto", torch_dtype=torch.bfloat16)
-    from peft import PeftModel
-    if dpo_adapter and os.path.isdir(dpo_adapter):
-        model = PeftModel.from_pretrained(model, dpo_adapter)
-    elif sft_adapter and os.path.isdir(sft_adapter):
-        model = PeftModel.from_pretrained(model, sft_adapter)
+    model = AutoModelForCausalLM.from_pretrained(model_path, dtype=torch.bfloat16, device_map="auto")
     model.eval()
     return model, tok
 
@@ -78,10 +65,7 @@ def ece(confidences, correct, n_bins=10):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tag", default="dpo_llama8b")
-    ap.add_argument("--base_model", default="meta-llama/Llama-3.1-8B-Instruct")
-    ap.add_argument("--sft_adapter", default="")
-    ap.add_argument("--dpo_base", default="outputs/sft_merged")
-    ap.add_argument("--dpo_adapter", default="outputs/dpo/dpo_adapter")
+    ap.add_argument("--model", default="outputs/dpo_8b_merged")
     ap.add_argument("--responses_csv", default="outputs/eval_v2_judge/eval_v2_full_results.csv")
     ap.add_argument("--prompts", default="data/eval_factuality_v2.jsonl")
     ap.add_argument("--correct_csv", default="outputs/rejudge/gpt-4o/scores.csv")
@@ -95,7 +79,7 @@ def main():
     responses = [r for r in csv.DictReader(open(args.responses_csv))
                  if r["prompt_id"] in correct and r["prompt_id"] in prompt_text]
 
-    model, tok = load_model(args.base_model, args.sft_adapter, args.dpo_base, args.dpo_adapter)
+    model, tok = load_full(args.model)
     confs, corr = [], []
     for i, r in enumerate(responses):
         c = answer_confidence(model, tok, prompt_text[r["prompt_id"]], r["response"])
