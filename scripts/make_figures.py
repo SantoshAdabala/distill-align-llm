@@ -116,9 +116,54 @@ def fig_audit():
     plt.close(fig)
 
 
+def fig_calibration():
+    """P(True) reliability diagram across training stages; marker area = bin count."""
+    stages = [("Base", "outputs/calibration/base/ptrue.json", REFUSE),
+              ("After SFT", "outputs/calibration/sft/ptrue.json", RED),
+              ("After DPO", "outputs/calibration/dpo_llama8b/ptrue.json", BLUE)]
+    fig, ax = plt.subplots(figsize=(5.0, 3.7))
+    ax.plot([0, 1], [0, 1], "--", color="#7f8c8d", lw=1, label="Perfect calibration")
+    for name, path, color in stages:
+        d = json.load(open(path))
+        bins = [b for b in d["reliability_table"] if b["n"] and b["conf"] is not None]
+        conf = [b["conf"] for b in bins]
+        acc = [b["acc"] for b in bins]
+        sizes = [12 + b["n"] * 1.3 for b in bins]  # area grows with bin count
+        ax.scatter(conf, acc, s=sizes, color=color, alpha=0.7, edgecolors="white",
+                   linewidths=0.5, label=f"{name} (ECE {d['ece']:.2f})", zorder=3)
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.set_xlabel("Model self-confidence  $P$(True)")
+    ax.set_ylabel("Actual accuracy")
+    ax.set_title("Marker size $\\propto$ \\#answers; below diagonal = overconfident", fontsize=9.5)
+    ax.legend(frameon=False, fontsize=8.5, loc="upper left")
+    fig.savefig(FIG / "fig_calibration.pdf")
+    plt.close(fig)
+
+
+def fig_human():
+    """Human anchor vs the two judges on the same 30-item subset."""
+    labels = ["Human", "GPT-4o-mini\n(self-judge)", "GPT-4o\n(independent)"]
+    factual = [40.0, 86.7, 63.3]
+    colors = [DARK, GRAY, BLUE]
+    fig, ax = plt.subplots(figsize=(4.6, 3.3))
+    ax.bar(range(3), factual, 0.6, color=colors)
+    for i, v in enumerate(factual):
+        ax.text(i, v + 1.8, f"{v:.0f}", ha="center", fontsize=9)
+    ax.set_xticks(range(3))
+    ax.set_xticklabels(labels)
+    ax.set_ylabel("Factual (score $\\geq$2), %")
+    ax.set_ylim(0, 100)
+    ax.set_title("30-item human-rated subset", fontsize=10)
+    fig.savefig(FIG / "fig_human.pdf")
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     fig_collapse()
     fig_trap()
     fig_judges()
     fig_audit()
+    fig_calibration()
+    fig_human()
     print("wrote:", *(p.name for p in sorted(FIG.glob("*.pdf"))))
