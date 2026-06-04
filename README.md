@@ -86,10 +86,10 @@ The evaluation analyses re-use the stored model responses, so most of them need 
 
 ```bash
 # re-judge the stored responses with a stronger judge (needs OPENAI_API_KEY)
-bash rejudge.sh                 # defaults to gpt-4o
+make rejudge                    # defaults to gpt-4o; override with MODEL=o4-mini
 
 # audit the gold reference answers for factual errors
-bash audit.sh
+make audit
 
 # regenerate the paper figures
 python scripts/make_figures.py
@@ -98,7 +98,7 @@ python scripts/make_figures.py
 The trap evaluation needs the models (GPU). It runs base/SFT/DPO from merged checkpoints:
 
 ```bash
-bash trap.sh --tag llama8b --sft_model outputs/sft_merged --dpo_model outputs/dpo_8b_merged
+make trap ARGS="--tag llama8b --sft_model outputs/sft_merged --dpo_model outputs/dpo_8b_merged"
 ```
 
 ---
@@ -112,9 +112,9 @@ distill-align-llm/
 │   └── techfact_trap.jsonl        # TechFact-Trap (no correct answer)
 ├── scripts/
 │   ├── honesty_eval.py            # asserted/hedged/refused + CFR
-│   ├── rejudge.py + rejudge.sh    # re-score with a stronger judge
-│   ├── audit_references.py + audit.sh   # audit the gold answer key
-│   ├── trap_eval.py + trap.sh     # refusal vs fabrication, base/SFT/DPO
+│   ├── rejudge.py                 # re-score with a stronger judge (make rejudge)
+│   ├── audit_references.py        # audit the gold answer key (make audit)
+│   ├── trap_eval.py               # refusal vs fabrication, base/SFT/DPO (make trap)
 │   ├── make_figures.py            # paper figures
 │   └── run_sft.py / run_dpo.py    # the training pipeline
 ├── dashboard/app.py               # Streamlit dashboard

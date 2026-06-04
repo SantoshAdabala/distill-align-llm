@@ -122,10 +122,10 @@ Most analyses re-use the stored model responses and need only an API key, not a 
 ```bash
 make install
 
-bash rejudge.sh          # re-judge stored responses with gpt-4o (needs OPENAI_API_KEY)
-bash audit.sh            # audit the gold reference answers
+make rejudge             # re-judge stored responses with gpt-4o (needs OPENAI_API_KEY)
+make audit               # audit the gold reference answers
 python scripts/make_figures.py
 
 # trap evaluation needs the merged models (GPU)
-bash trap.sh --tag llama8b --sft_model outputs/sft_merged --dpo_model outputs/dpo_8b_merged
+make trap ARGS="--tag llama8b --sft_model outputs/sft_merged --dpo_model outputs/dpo_8b_merged"
 ```
