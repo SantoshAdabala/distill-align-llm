@@ -15,7 +15,8 @@
 #   make audit       ← Audit the gold reference answers (MODEL=gpt-4o)
 #   make annotate    ← Launch the blind human-annotation session
 #   make trap        ← Trap-set eval, base/SFT/DPO (ARGS="--tag llama8b ...")
-#   make ece         ← Expected Calibration Error (ARGS="...")
+#   make ece         ← Expected Calibration Error, mean-token-prob (ARGS="...")
+#   make ptrue       ← P(True) logit calibration (ARGS="--tag sft --model ...")
 #   make check-env   ← GPU / deps / HF-token diagnostic
 # ──────────────────────────────────────────────
 
@@ -23,7 +24,7 @@
 SHELL := /bin/bash
 
 .PHONY: install lint format typecheck test test-cov check clean \
-        rejudge audit annotate trap ece check-env
+        rejudge audit annotate trap ece ptrue check-env
 
 # Install the project in editable mode with dev dependencies.
 # -e means "editable" — changes to source code take effect immediately
@@ -106,8 +107,16 @@ trap:
 
 # Expected Calibration Error for one stage (defaults to the DPO Llama-3.1-8B).
 # For base/sft, generate + judge those stages first, then pass their CSVs via ARGS.
+# NOTE: mean-token-prob confidence is a weak proxy for free-form QA; prefer ptrue below.
 ece:
 	python scripts/ece.py $(ARGS)
+
+# P(True) self-evaluation calibration (Kadavath-style) for one stage (GPU).
+# Defaults to DPO Llama-3.1-8B; for other stages pass the evaluator model, e.g.:
+#   make ptrue ARGS="--tag sft --model outputs/sft_merged"
+#   make ptrue ARGS="--tag base --model meta-llama/Llama-3.1-8B-Instruct"
+ptrue:
+	python scripts/calibration_ptrue.py $(ARGS)
 
 # GPU / dependency / HF-token diagnostic for a fresh box.
 check-env:

@@ -55,17 +55,28 @@ Fine-tuning eliminates the model's ability to abstain (refusal -> 0), and domain
 
 The self-judge inflates by ~47 points against a human; the independent GPT-4o still inflates by ~23. Using a stronger judge moves the score in the right direction - higher correlation, lower error, agrees exactly on 12/30 vs 9/30 - but does not close the gap. Every automated judge tested errs generous, roughly in proportion to how confident the answer sounds. With n=30 the human figure carries a wide interval (~+/-18pp), so read it as "~40%, decisively below both judges," not a point estimate.
 
+**At the logit level the model does not know when it is wrong, and fine-tuning is why.** I ran a P(True) probe (Kadavath et al.): show the model a question and its own answer, ask "is this correct?", and read the probability it puts on "Yes". Comparing that confidence against GPT-4o correctness gives a calibration error. Each stage judges the *same* 500 answers, so only the judge changes.
+
+| P(True) evaluator | conf. when **wrong** | conf. when correct | discrimination | overconfidence | ECE |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Base (instruct) | 0.76 | 0.90 | **0.14** | +0.35 | 0.36 |
+| After SFT | 0.85 | 0.89 | **0.05** | +0.39 | 0.39 |
+| After DPO | 0.82 | 0.93 | **0.12** | +0.39 | 0.40 |
+
+The base model is the best calibrated. Domain SFT nearly erases the model's ability to tell its right answers from its wrong ones - the gap between confidence-on-correct and confidence-on-wrong collapses from 14 points to 5. DPO restores some discrimination but drives overall confidence to its highest (mean P(True) 0.87 against 48% accuracy). On the DPO model, 72% of answers get >0.9 self-confidence yet are right only 55% of the time. This is the logit-level twin of the trap-set result (assertion rate base 54% -> SFT 86% -> DPO 60%): two independent instruments agree that SFT is the main driver and DPO walks it back slightly. (Mean-token-probability ECE is a misleading proxy here and is not used - see `outputs/ece/` for why.)
+
 ---
 
 ## What I built
 
-- **Model pipeline** - Llama-3.1-8B-Instruct, SFT (875 technical examples x 3 epochs, merged) -> DPO (beta=0.05), QLoRA throughout. Trained on RunPod for about $27.
+- **Model pipeline** - Llama-3.1-8B-Instruct, SFT (875 technical examples x 3 epochs, merged) -> DPO (beta=0.05), QLoRA throughout. Trained on a single A100 GPU for about $27.
 - **TechFact-500** (`data/eval_factuality_v2.jsonl`) - the GPT-4o-mini-authored benchmark whose circularity is the subject of the study.
 - **TechFact-Trap** (`data/techfact_trap.jsonl`) - 35 no-correct-answer probes for measuring abstention.
 - **Honesty scorer** (`scripts/honesty_eval.py`) - asserted/hedged/refused classification and Confident Fabrication Rate.
 - **Independent re-judging** (`scripts/rejudge.py`) - re-score stored responses with any judge model.
 - **Reference audit** (`scripts/audit_references.py`) - check the gold answer key for factual errors.
 - **Trap evaluation** (`scripts/trap_eval.py`) - run base/SFT/DPO on the trap set and measure refusal vs fabrication.
+- **P(True) calibration** (`scripts/calibration_ptrue.py`) - logit-level "does the model know it's wrong" probe across base/SFT/DPO.
 - **Figures** (`scripts/make_figures.py`) and the Streamlit **dashboard** (`dashboard/app.py`).
 
 ---
@@ -115,6 +126,7 @@ distill-align-llm/
 │   ├── rejudge.py                 # re-score with a stronger judge (make rejudge)
 │   ├── audit_references.py        # audit the gold answer key (make audit)
 │   ├── trap_eval.py               # refusal vs fabrication, base/SFT/DPO (make trap)
+│   ├── calibration_ptrue.py       # P(True) logit calibration, base/SFT/DPO (make ptrue)
 │   ├── make_figures.py            # paper figures
 │   └── run_sft.py / run_dpo.py    # the training pipeline
 ├── dashboard/app.py               # Streamlit dashboard

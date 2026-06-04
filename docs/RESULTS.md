@@ -2,7 +2,7 @@
 
 This is the detailed results companion to the [README](../README.md). The project began as "does DPO hurt factual knowledge?" and became a study of how a self-authored, self-judged factuality benchmark inflates its own score and hides confident fabrication.
 
-The pipeline: Llama-3.1-8B-Instruct, SFT (875 technical examples × 3 epochs, merged) → DPO (β=0.05), QLoRA throughout, trained on RunPod (~$27). The benchmark, TechFact-500 (`data/eval_factuality_v2.jsonl`), had its questions, gold reference answers, and judge all produced by GPT-4o-mini.
+The pipeline: Llama-3.1-8B-Instruct, SFT (875 technical examples × 3 epochs, merged) → DPO (β=0.05), QLoRA throughout, trained on a single A100 GPU (~$27). The benchmark, TechFact-500 (`data/eval_factuality_v2.jsonl`), had its questions, gold reference answers, and judge all produced by GPT-4o-mini.
 
 ---
 
@@ -97,11 +97,35 @@ The self-judge inflates by **~47 points** against a human; the independent GPT-4
 
 ---
 
+## 6. Logit-level calibration: the model doesn't know when it's wrong
+
+P(True) self-evaluation probe (Kadavath et al., `scripts/calibration_ptrue.py`): show the model a question and its own stored answer, ask "is this correct?", and read the probability mass on "Yes" from the next-token distribution. Compare that confidence against gpt-4o correctness (`new_score ≥ 2`) and bin into a reliability table → ECE. All three models judge the **same** 500 DPO answers, so only the evaluator changes (answer content held fixed). Sources: `outputs/calibration/{base,sft,dpo_llama8b}/ptrue.json`.
+
+| P(True) evaluator | conf. when wrong | conf. when correct | discrimination | overconfidence gap | mean P(True) | ECE |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| Base (instruct) | 0.759 | 0.901 | **0.142** | +0.349 | 0.827 | 0.359 |
+| After SFT | 0.845 | 0.891 | **0.046** | +0.389 | 0.867 | 0.392 |
+| After DPO | 0.815 | 0.932 | **0.117** | +0.393 | 0.871 | 0.403 |
+
+(accuracy fixed at 0.478; *discrimination* = conf-when-correct − conf-when-wrong; *overconfidence gap* = mean P(True) − accuracy.)
+
+- **Base is the best calibrated**: lowest confidence on wrong answers (0.76), best discrimination (14pt), lowest ECE.
+- **Domain SFT nearly erases self-knowledge**: confidence-on-wrong rises 0.76 → 0.85 and discrimination collapses 14pt → 5pt — the model rates wrong answers almost as confidently as right ones.
+- **DPO partially restores discrimination** (5pt → 12pt) but pushes overall confidence to its highest (mean P(True) 0.87, ECE 0.40).
+- On the DPO model, **361 of 500 answers (72%) sit above 0.9 self-confidence yet are correct only 55%** of the time.
+
+This independently reproduces the trap-set shape (assertion: base 54% → SFT 86% → DPO 60%). Two unrelated instruments — verbal assertion on no-answer probes, and logit P(True) on real answers — agree: **SFT is the main driver of confident error, DPO walks it back slightly.**
+
+**Why not mean-token-probability ECE?** The simpler probe (`scripts/ece.py`, mean per-token probability of the free-form answer) gives DPO ECE = 0.276 and *reads as under-confident* — an artifact. Long answers have mechanically low, compressed mean token-prob (90% of items fall in the 0.1–0.3 bins), so it is a poor confidence signal for this question. We report P(True) instead; see `outputs/ece/dpo_llama8b/ece.json` for the contrast.
+
+---
+
 ## Limitations
 
 - Correctness labels (except the human anchor) come from LLM judges; the n=30 human anchor confirms the inflation direction but is small (~±18pp).
 - Reference-audit corruption rate (20–30%) is approximate; LLM auditor over-flags some public facts.
 - Trap set is small (n=35).
+- P(True) calibration is a cross-evaluator design (all stages judge the same DPO answers); it isolates judge calibration but is not each stage scoring its own generations.
 - Single model pipeline, single training run, no confidence intervals.
 
 ---
@@ -110,7 +134,7 @@ The self-judge inflates by **~47 points** against a human; the independent GPT-4
 
 | Item | Detail | Cost |
 |---|---|---|
-| Training (SFT + DPO, QLoRA) | RunPod A100 | ~$27 |
+| Training (SFT + DPO, QLoRA) | Single A100 GPU | ~$27 |
 | API judging / auditing / re-judge | OpenAI (GPT-4o) + Anthropic (Opus) | API usage |
 
 ---
@@ -128,4 +152,9 @@ python scripts/make_figures.py
 
 # trap evaluation needs the merged models (GPU)
 make trap ARGS="--tag llama8b --sft_model outputs/sft_merged --dpo_model outputs/dpo_8b_merged"
+
+# P(True) calibration per stage (GPU) — all judge the same DPO answers
+make ptrue ARGS="--tag dpo --model outputs/dpo_8b_merged"
+make ptrue ARGS="--tag sft --model outputs/sft_merged"
+make ptrue ARGS="--tag base --model meta-llama/Llama-3.1-8B-Instruct"
 ```

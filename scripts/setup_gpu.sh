@@ -1,21 +1,21 @@
 #!/bin/bash
 # ──────────────────────────────────────────────────────────────
-# Lightning.ai Studio Setup Script
+# GPU Box Setup Script
 # ──────────────────────────────────────────────────────────────
-# Run this ONCE when you first open your Lightning.ai studio.
+# Run this ONCE when you first open a fresh GPU box.
 # After setup, run the training commands below.
 #
 # USAGE:
-#   1. Create a Lightning.ai Studio with GPU (A10G or A100)
-#   2. Open terminal in the studio
-#   3. Run: bash scripts/setup_lightning.sh
+#   1. Provision a GPU box (A100 recommended)
+#   2. Open a terminal on the box
+#   3. Run: bash scripts/setup_gpu.sh
 #   4. Then run training (see bottom of this script)
 # ──────────────────────────────────────────────────────────────
 
 set -e  # Exit on error
 
 echo "═══════════════════════════════════════════════════════════"
-echo "  Setting up distill-align-llm on Lightning.ai"
+echo "  Setting up distill-align-llm on the GPU box"
 echo "═══════════════════════════════════════════════════════════"
 
 # Clone repo (skip if already cloned)

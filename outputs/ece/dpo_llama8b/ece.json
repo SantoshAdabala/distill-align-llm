@@ -1,0 +1,20 @@
+{
+  "tag": "dpo_llama8b",
+  "n": 500,
+  "ece": 0.2762,
+  "mean_confidence": 0.202,
+  "accuracy": 0.478,
+  "_note": "Confidence = mean per-token probability of the free-form answer. This is a WEAK proxy: long answers have mechanically low, compressed mean token-prob (90% of items fall in 0.1-0.3), and the result reads as under-confident, which is an artifact. Use the P(True) probe (outputs/calibration/) for the honesty/calibration claim.",
+  "reliability_table": [
+    {"bin": "(0.0,0.1]", "n": 17, "conf": 0.086, "acc": 0.471},
+    {"bin": "(0.1,0.2]", "n": 277, "conf": 0.155, "acc": 0.48},
+    {"bin": "(0.2,0.3]", "n": 157, "conf": 0.239, "acc": 0.465},
+    {"bin": "(0.3,0.4]", "n": 37, "conf": 0.346, "acc": 0.432},
+    {"bin": "(0.4,0.5]", "n": 8, "conf": 0.448, "acc": 0.75},
+    {"bin": "(0.5,0.6]", "n": 3, "conf": 0.58, "acc": 0.667},
+    {"bin": "(0.6,0.7]", "n": 0, "conf": null, "acc": null},
+    {"bin": "(0.7,0.8]", "n": 0, "conf": null, "acc": null},
+    {"bin": "(0.8,0.9]", "n": 1, "conf": 0.821, "acc": 1.0},
+    {"bin": "(0.9,1.0]", "n": 0, "conf": null, "acc": null}
+  ]
+}
