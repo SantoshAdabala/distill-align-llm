@@ -44,6 +44,17 @@ Fine-tuning eliminates the model's ability to abstain (refusal -> 0), and domain
 
 **Two independent judges agree the score is inflated.** GPT-4o agrees only moderately with GPT-4o-mini (quadratic kappa 0.48), and Claude Opus - a different vendor - agrees less (kappa 0.26) and scores harder still. On a 100-response sample, 18 answers the weak judge passed were failed outright by Opus; they are confident fabrications it accepted ("DPO = Domain-Specific Pre-Training", "SimPO uses a reward model", "bf16 was designed by NVIDIA").
 
+**A human anchor confirms the inflation - and that a stronger judge only half-fixes it.** I hand-rated a 30-response subset blind (0-3 scale, no AI scores shown, stratified across the judge's score range), then compared both judges against my labels on the same items.
+
+| 30-item human anchor | Human | GPT-4o-mini | GPT-4o |
+|---|:---:|:---:|:---:|
+| Factual (score >= 2) | **40%** | 87% | 63% |
+| Fully correct (score = 3) | 10% | 57% | 17% |
+| Correlation with human | - | 0.41 | 0.62 |
+| Over-rates the human on | - | 21/30 | 15/30 |
+
+The self-judge inflates by ~47 points against a human; the independent GPT-4o still inflates by ~23. Using a stronger judge moves the score in the right direction - higher correlation, lower error, agrees exactly on 12/30 vs 9/30 - but does not close the gap. Every automated judge tested errs generous, roughly in proportion to how confident the answer sounds. With n=30 the human figure carries a wide interval (~+/-18pp), so read it as "~40%, decisively below both judges," not a point estimate.
+
 ---
 
 ## What I built
@@ -115,7 +126,7 @@ distill-align-llm/
 
 ## Limitations
 
-- Correctness labels above come from LLM judges (GPT-4o, Opus). A human-annotated subset to anchor them is in progress; until then "real factuality ~56%" should be read as "well below 84%, by independent judges," not as a precise figure.
+- Correctness labels above come from LLM judges (GPT-4o, Opus), now anchored against a 30-response human-rated subset (see "The finding"). Human factuality was ~40% - below even the independent GPT-4o judge - confirming the inflation direction. The anchor is small (n=30, ~+/-18pp) and stratified on the weak judge's score distribution, so "real factuality" should be read as "~40-56%, decisively below 84%," not a precise figure.
 - The reference audit uses an LLM auditor that occasionally over-flags genuinely-public facts as unverifiable, so the 20-30% corruption rate is approximate (the direction is corroborated by the cross-checkable head-count error appearing in both the key and the model).
 - The trap set is small (n=35); refusal -> 0 is solid, but the fabrication-rate differences between stages are suggestive, not conclusive.
 - Single model pipeline, single training run, no confidence intervals.
