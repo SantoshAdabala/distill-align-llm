@@ -69,7 +69,7 @@ The base model is the best calibrated. Domain SFT nearly erases the model's abil
 
 ## What I built
 
-- **Model pipeline** - Llama-3.1-8B-Instruct, SFT (875 technical examples x 3 epochs, merged) -> DPO (beta=0.05), QLoRA throughout. Trained on RunPod for about $27.
+- **Model pipeline** - Llama-3.1-8B-Instruct, SFT (875 technical examples x 3 epochs, merged) -> DPO (beta=0.05), QLoRA throughout. Trained on a single A100 GPU for about $27.
 - **TechFact-500** (`data/eval_factuality_v2.jsonl`) - the GPT-4o-mini-authored benchmark whose circularity is the subject of the study.
 - **TechFact-Trap** (`data/techfact_trap.jsonl`) - 35 no-correct-answer probes for measuring abstention.
 - **Honesty scorer** (`scripts/honesty_eval.py`) - asserted/hedged/refused classification and Confident Fabrication Rate.

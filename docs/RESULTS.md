@@ -2,7 +2,7 @@
 
 This is the detailed results companion to the [README](../README.md). The project began as "does DPO hurt factual knowledge?" and became a study of how a self-authored, self-judged factuality benchmark inflates its own score and hides confident fabrication.
 
-The pipeline: Llama-3.1-8B-Instruct, SFT (875 technical examples × 3 epochs, merged) → DPO (β=0.05), QLoRA throughout, trained on RunPod (~$27). The benchmark, TechFact-500 (`data/eval_factuality_v2.jsonl`), had its questions, gold reference answers, and judge all produced by GPT-4o-mini.
+The pipeline: Llama-3.1-8B-Instruct, SFT (875 technical examples × 3 epochs, merged) → DPO (β=0.05), QLoRA throughout, trained on a single A100 GPU (~$27). The benchmark, TechFact-500 (`data/eval_factuality_v2.jsonl`), had its questions, gold reference answers, and judge all produced by GPT-4o-mini.
 
 ---
 
@@ -134,7 +134,7 @@ This independently reproduces the trap-set shape (assertion: base 54% → SFT 86
 
 | Item | Detail | Cost |
 |---|---|---|
-| Training (SFT + DPO, QLoRA) | RunPod A100 | ~$27 |
+| Training (SFT + DPO, QLoRA) | Single A100 GPU | ~$27 |
 | API judging / auditing / re-judge | OpenAI (GPT-4o) + Anthropic (Opus) | API usage |
 
 ---
