@@ -2,7 +2,8 @@
 
 Shows how a factuality benchmark authored and judged by one weak model (GPT-4o-mini)
 inflates an aligned model's score, and what an independent judge, a reference audit,
-a confidence analysis, and a reference-free trap probe reveal instead.
+a confidence analysis, a reference-free trap probe, a human anchor, and a P(True)
+calibration probe reveal instead.
 
 Run: streamlit run dashboard/app.py
 """
@@ -26,7 +27,7 @@ st.markdown(
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Reported factuality", "84%", help="GPT-4o-mini self-judge, pass rate")
 c2.metric("Real factuality", "~56%", "-28 pts", delta_color="inverse",
-          help="GPT-4o, trustworthy-key subset")
+          help="GPT-4o, trustworthy-key subset; a 30-item human-rated subset puts it ~40%")
 c3.metric("Confident Fabrication Rate", "30%", "+23 pts vs self-judge",
           delta_color="inverse", help="asserted yet wrong")
 c4.metric("Says 'I don't know'", "1 / 500", help="abstention rate")
@@ -142,12 +143,71 @@ with right4:
 
 st.divider()
 
+# ── 5. human anchor ───────────────────────────────────────────────────────────
+st.header("5. A human anchor confirms the inflation")
+left5, right5 = st.columns([2, 1])
+with left5:
+    hlabels = ["Human", "GPT-4o-mini<br>(self-judge)", "GPT-4o<br>(independent)"]
+    hfactual = [40.0, 86.7, 63.3]
+    figh = go.Figure(go.Bar(x=hlabels, y=hfactual, marker_color=[DARK, GRAY, BLUE],
+                            text=[f"{v:.0f}%" for v in hfactual], textposition="outside"))
+    figh.update_layout(height=360, yaxis_title="Factual (score ≥2), %",
+                       yaxis=dict(range=[0, 100]),
+                       title="30-item subset, hand-rated blind (same items for all three)",
+                       margin=dict(t=50, b=40))
+    st.plotly_chart(figh, width="stretch")
+with right5:
+    st.metric("Human-rated factuality", "~40%", "-47 pts vs self-judge",
+              delta_color="inverse", help="30-item blind human ratings, score ≥2")
+    st.markdown(
+        "To break the judge disagreement, the same 30 answers were hand-rated **blind**. "
+        "The human scores **40%** factual against **87%** from the self-judge and **63%** "
+        "from the independent GPT-4o judge. The self-judge over-rates the human on **21 of 30** "
+        "items. A stronger judge helps (correlation 0.62 vs 0.41) but does **not** close the "
+        "gap — every automated judge errs generous."
+    )
+    st.caption("n=30, so read it as “~40%, decisively below both judges,” not a point estimate.")
+
+st.divider()
+
+# ── 6. the model doesn't know when it's wrong ─────────────────────────────────
+st.header("6. The model doesn't know when it's wrong — P(True) calibration")
+left6, right6 = st.columns([2, 1])
+with left6:
+    cstages = ["Base", "After SFT", "After DPO"]
+    p_wrong = [0.76, 0.85, 0.82]
+    p_correct = [0.90, 0.89, 0.93]
+    figc = go.Figure()
+    figc.add_bar(x=cstages, y=p_wrong, name="Confidence when WRONG", marker_color=RED,
+                 text=[f"{v:.2f}" for v in p_wrong], textposition="outside")
+    figc.add_bar(x=cstages, y=p_correct, name="Confidence when correct", marker_color=GREEN,
+                 text=[f"{v:.2f}" for v in p_correct], textposition="outside")
+    figc.update_layout(barmode="group", height=360, yaxis_title="Mean P(True)",
+                       yaxis=dict(range=[0, 1]), legend=dict(orientation="h", y=1.12),
+                       margin=dict(t=30, b=40))
+    st.plotly_chart(figc, width="stretch")
+    st.caption("Asked “is your own answer correct?”, the model is nearly as confident on wrong "
+               "answers as on right ones. SFT collapses the gap (0.14 → 0.05); DPO restores a little (0.12).")
+with right6:
+    st.metric("Mean self-confidence", "0.87", help="DPO model, P(True) on its own answers")
+    st.metric("…at an accuracy of", "48%")
+    st.markdown(
+        "Reading the probability the model assigns to **“Yes, my answer is correct”** "
+        "(Kadavath et al.), the DPO model is badly overconfident: **72% of answers get "
+        ">0.9 self-confidence yet are right only 55%** of the time. Domain SFT nearly erases "
+        "its ability to tell right from wrong; DPO restores some but pushes overall confidence highest."
+    )
+
+st.divider()
+
 st.subheader("Takeaways")
 st.markdown(
     "- A factuality benchmark should not be authored **and** judged by the same model.\n"
     "- Reference answers should be independently audited before use.\n"
     "- Report **confident-fabrication** and **abstention** rates alongside accuracy: a model can "
-    "look accurate while being confidently wrong a third of the time, and never admitting it."
+    "look accurate while being confidently wrong a third of the time, and never admitting it.\n"
+    "- **Confidence is decoupled from correctness**: a human anchor puts real factuality near 40%, "
+    "and the model rates its own *wrong* answers as correct ~82% of the time."
 )
 
 st.markdown("---")
