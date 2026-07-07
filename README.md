@@ -1,5 +1,8 @@
 # distill-align-llm
 
+## Architecture
+<img width="4720" height="8264" alt="diagram" src="https://github.com/user-attachments/assets/708015ec-eb4c-4aa8-8ce8-adb3b79eddc7" />
+
 I set out to measure whether DPO hurts a model's factual knowledge. I built the usual setup: an SFT -> DPO pipeline on Llama-3.1-8B, a 500-question technical benchmark, and an LLM judge to score the answers. The model scored 84% factuality, which looked great.
 
 Then I checked the measurement instead of trusting it, and the project turned into something else: a study of how a factuality benchmark that is written and graded by the same weak model inflates the score and hides confident fabrication.
